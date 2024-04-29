@@ -1,0 +1,12 @@
+,z,n,symbol,start_level_idx,start_level_energy,unc_sle,start_level_jp,end_level_idx,end_level_energy,unc_ele,end_level_jp,gamma_idx,energy,unc_en,relative_intensity,unc_ri,multipolarity,mixing_ratio,unc_mr,b_e1,unc_be1,b_e2,unc_be2,b_m1,unc_bm1,b_m2,unc_bm2,tot_conv_coeff,tce_unc,ensdf_publication_cut-off,ensdf_authors,Extraction_date
+0,83,129,Bi,1,115.183,0.005,2(-),0,0.0,,1(-),0,115.183,0.005,100.0,,M1,,,,,,,0.23,,,,6.8,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+1,83,129,Bi,3,213.1,0.2,(3-),1,115.183,0.005,2(-),0,97.9,0.2,100.0,,M1(+E2),,,,,,,,,,,9.1,1.7,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+2,83,129,Bi,4,238.632,0.002,0(-),1,115.183,0.005,2(-),0,123.5,,,,,,,,,,,,,,,,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+3,83,129,Bi,4,238.632,0.002,0(-),0,0.0,,1(-),1,238.632,0.002,100.0,,M1,,,,,,,0.87,,,,0.872,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+4,83,129,Bi,6,250.7,0.5,(4-),3,213.1,0.2,(3-),0,37.6,0.4,100.0,,M1,,,,,,,,,,,33.5,1.2,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+5,83,129,Bi,8,415.272,0.011,1(-),4,238.632,0.002,0(-),0,176.68,0.05,1.6,0.2,M1,,,,,,,0.0036,,,,2.02,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+6,83,129,Bi,8,415.272,0.011,1(-),1,115.183,0.005,2(-),1,300.087,0.01,100.0,1.0,M1,,,,,,,0.053,,,,0.464,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+7,83,129,Bi,8,415.272,0.011,1(-),0,0.0,,1(-),2,415.2,,0.4,0.07,(M1),,,,,,,6.6e-05,,,,0.192,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+8,83,129,Bi,9,417.9,0.2,,3,213.1,0.2,(3-),0,204.8,0.3,7.7,2.3,,,,,,,,,,,,,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+9,83,129,Bi,9,417.9,0.2,,0,0.0,,1(-),1,417.9,0.2,100.0,15.0,,,,,,,,,,,,,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+10,83,129,Bi,10,494.5,0.3,,1,115.183,0.005,2(-),0,379.3,0.3,100.0,,,,,,,,,,,,,,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27

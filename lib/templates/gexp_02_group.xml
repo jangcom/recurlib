@@ -1,0 +1,82 @@
+{#- A Jinja template for exporting a RecurLib-generated radionuclide library #}
+{#- to Gamma Explorer (Mirion Technologies Canberra Japan KK) #}
+{#- Library type: Analysis group #}
+{#- Prepared by Jaewoong Jang on March 30, 2024 -#}
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="nuc_対象核種_Index">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="PurposeCode" type="xs:string" minOccurs="0" />
+                <xs:element name="Purpose" type="xs:string" minOccurs="0" />
+                <xs:element name="Comment1" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="nuc_対象核種_List">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="PurposeCode" type="xs:string" minOccurs="0" />
+                <xs:element name="IsoCode" type="xs:string" minOccurs="0" />
+                <xs:element name="OriginCode" type="xs:string" minOccurs="0" />
+                <xs:element name="UsrNucAtri" type="xs:string" minOccurs="0" />
+                <xs:element name="SysNucAtri" type="xs:string" minOccurs="0" />
+                <xs:element name="DispOrder" type="xs:short" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="nuc_対象核種_Pks">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="PurposeCode" type="xs:string" minOccurs="0" />
+                <xs:element name="IsoCode" type="xs:string" minOccurs="0" />
+                <xs:element name="OriginCode" type="xs:string" minOccurs="0" />
+                <xs:element name="PeakNo" type="xs:short" minOccurs="0" />
+                <xs:element name="Energy" type="xs:float" minOccurs="0" />
+                <xs:element name="Priority" type="xs:short" minOccurs="0" />
+                <xs:element name="UsrPksAtri" type="xs:string" minOccurs="0" />
+                <xs:element name="SysPksAtri" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <nuc_対象核種_Index>
+    <PurposeCode>{{ rnlib_info.code_group }}</PurposeCode>
+    <Purpose>{{ rnlib_info.name }}</Purpose>
+    <Comment1>{{ rnlib_info.comment }}</Comment1>
+  </nuc_対象核種_Index>
+  {%- for rn in rns %}
+  <nuc_対象核種_List>
+    <PurposeCode>{{ rnlib_info.code_group }}</PurposeCode>
+    <IsoCode>{{ rns[rn].code }}</IsoCode>
+    <OriginCode>{{ rnlib_info.code_master }}</OriginCode>
+    {#- The UsrNucAtri == % will make the corresponding radionuclide #}
+    {#- to be printed on the report file if it has been detected. #}
+    <UsrNucAtri>%</UsrNucAtri>
+  </nuc_対象核種_List>
+  {%- endfor %}
+  {%- for rn in rns %}
+  {%- for radiat in rns[rn]['radiats'] %}
+  <nuc_対象核種_Pks>
+    <PurposeCode>{{ rnlib_info.code_group }}</PurposeCode>
+    <IsoCode>{{ rns[rn].code }}</IsoCode>
+    <OriginCode>{{ rnlib_info.code_master }}</OriginCode>
+    <PeakNo>{{ radiat.radiation_number }}</PeakNo>
+    <Energy>{{ radiat.energy }}</Energy>
+    {#- The UsrPksAtri == # will make the corresponding radiation, #}
+    {#- in this case a key radiation, to be printed on the report file. #}
+    {%- if radiat.key_radiation_bool == 1 %}
+    <UsrPksAtri>#</UsrPksAtri>
+    {%- endif %}
+    <Priority>{{ radiat.key_radiation_bool }}</Priority>
+  </nuc_対象核種_Pks>
+  {%- endfor %}
+  {%- endfor %}
+</NewDataSet>

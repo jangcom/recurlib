@@ -1,0 +1,17 @@
+,z,n,symbol,start_level_idx,start_level_energy,unc_sle,start_level_jp,end_level_idx,end_level_energy,unc_ele,end_level_jp,gamma_idx,energy,unc_en,relative_intensity,unc_ri,multipolarity,mixing_ratio,unc_mr,b_e1,unc_be1,b_e2,unc_be2,b_m1,unc_bm1,b_m2,unc_bm2,tot_conv_coeff,tce_unc,ensdf_publication_cut-off,ensdf_authors,Extraction_date
+0,82,129,Pb,1,438.9,0.2,(7/2)+,0,0.0,,9/2+,0,438.9,0.2,100.0,,E2(+M1),,,,,,,,,,,0.1,0.06,28-FEB-2013,A. Sonzogni and  G. Mukherjee and  H. Huang and  A. Tarazaga and ,2024-04-27
+1,82,129,Pb,2,584.0,,,0,0.0,,9/2+,0,584.0,,100.0,,,,,,,,,,,,,,,28-FEB-2013,A. Sonzogni and  G. Mukherjee and  H. Huang and  A. Tarazaga and ,2024-04-27
+2,82,129,Pb,3,598.0,,(5/2+),0,0.0,,9/2+,0,598.0,,100.0,,,,,,,,,,,,,,,28-FEB-2013,A. Sonzogni and  G. Mukherjee and  H. Huang and  A. Tarazaga and ,2024-04-27
+3,82,129,Pb,4,643.0,,(11/2+),0,0.0,,9/2+,0,643.0,,100.0,,,,,,,,,,,,,,,28-FEB-2013,A. Sonzogni and  G. Mukherjee and  H. Huang and  A. Tarazaga and ,2024-04-27
+4,82,129,Pb,5,733.0,,(13/2+),0,0.0,,9/2+,0,733.7,0.2,100.0,,,,,,,,,,,,,,,28-FEB-2013,A. Sonzogni and  G. Mukherjee and  H. Huang and  A. Tarazaga and ,2024-04-27
+5,82,129,Pb,6,815.0,,(9/2+),0,0.0,,9/2+,0,815.0,,100.0,,,,,,,,,,,,,,,28-FEB-2013,A. Sonzogni and  G. Mukherjee and  H. Huang and  A. Tarazaga and ,2024-04-27
+6,82,129,Pb,7,894.0,,(11/2+),2,584.0,,,0,310.0,,,,,,,,,,,,,,,,,28-FEB-2013,A. Sonzogni and  G. Mukherjee and  H. Huang and  A. Tarazaga and ,2024-04-27
+7,82,129,Pb,7,894.0,,(11/2+),0,0.0,,9/2+,1,894.0,,,,,,,,,,,,,,,,,28-FEB-2013,A. Sonzogni and  G. Mukherjee and  H. Huang and  A. Tarazaga and ,2024-04-27
+8,82,129,Pb,8,1055.7,0.3,(17/2+),5,733.0,,(13/2+),0,322.0,0.2,100.0,,(E2),,,,,,,,,,,0.0939,,28-FEB-2013,A. Sonzogni and  G. Mukherjee and  H. Huang and  A. Tarazaga and ,2024-04-27
+9,82,129,Pb,9,1193.1,0.4,(21/2+),8,1055.7,0.3,(17/2+),0,137.4,0.2,100.0,,E2,,,,,1.36,,,,,,1.72,,28-FEB-2013,A. Sonzogni and  G. Mukherjee and  H. Huang and  A. Tarazaga and ,2024-04-27
+10,82,129,Pb,13,1679.1,0.4,(23/2+),9,1193.1,0.4,(21/2+),0,486.0,0.2,100.0,,,,,,,,,,,,,,,28-FEB-2013,A. Sonzogni and  G. Mukherjee and  H. Huang and  A. Tarazaga and ,2024-04-27
+11,82,129,Pb,14,1679.1,,(27/2+),13,1679.1,0.4,(23/2+),0,,,,,,,,,,,,,,,,,,28-FEB-2013,A. Sonzogni and  G. Mukherjee and  H. Huang and  A. Tarazaga and ,2024-04-27
+12,82,129,Pb,29,2851.0,0.5,(33/2-),14,1679.1,,(27/2+),0,1171.9,0.5,100.0,,(E3),,,,,,,,,,,0.01083,,28-FEB-2013,A. Sonzogni and  G. Mukherjee and  H. Huang and  A. Tarazaga and ,2024-04-27
+13,82,129,Pb,30,3414.4,0.7,(33/2:37/2-),29,2851.0,0.5,(33/2-),0,563.4,0.5,100.0,,,,,,,,,,,,,,,28-FEB-2013,A. Sonzogni and  G. Mukherjee and  H. Huang and  A. Tarazaga and ,2024-04-27
+14,82,129,Pb,31,4411.9,0.7,(39/2+),29,2851.0,0.5,(33/2-),0,1560.9,0.5,100.0,,[E3],,,,,,,,,,,,,28-FEB-2013,A. Sonzogni and  G. Mukherjee and  H. Huang and  A. Tarazaga and ,2024-04-27
+15,82,129,Pb,32,5557.4,0.9,(39/2:43/2+),31,4411.9,0.7,(39/2+),0,1145.5,0.5,100.0,,,,,,,,,,,,,,,28-FEB-2013,A. Sonzogni and  G. Mukherjee and  H. Huang and  A. Tarazaga and ,2024-04-27

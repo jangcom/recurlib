@@ -1,0 +1,89 @@
+{#- A Jinja template for exporting a RecurLib-generated radionuclide library #}
+{#- to Gamma Explorer (Mirion Technologies Canberra Japan KK) #}
+{#- Library type: Master data #}
+{#- Prepared by Jaewoong Jang on March 30, 2024 -#}
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="nuc_核データ出典">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Code" type="xs:string" minOccurs="0" />
+                <xs:element name="Name" type="xs:string" minOccurs="0" />
+                <xs:element name="Comment1" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="nuc_核種">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="IsoCode" type="xs:string" minOccurs="0" />
+                <xs:element name="OriginCode" type="xs:string" minOccurs="0" />
+                <xs:element name="IsoName" type="xs:string" minOccurs="0" />
+                <xs:element name="HlfLif" type="xs:double" minOccurs="0" />
+                <xs:element name="HlfLifErr" type="xs:float" minOccurs="0" />
+                <xs:element name="HlfLif_Unit" type="xs:string" minOccurs="0" />
+                <xs:element name="HlfLif_Sec" type="xs:double" minOccurs="0" />
+                <xs:element name="ChemicalSymbol" type="xs:string" minOccurs="0" />
+                <xs:element name="MassNumber" type="xs:short" minOccurs="0" />
+                <xs:element name="Parent" type="xs:string" minOccurs="0" />
+                <xs:element name="ParentCode" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="nuc_核種ピーク">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="IsoCode" type="xs:string" minOccurs="0" />
+                <xs:element name="OriginCode" type="xs:string" minOccurs="0" />
+                <xs:element name="PeakNo" type="xs:int" minOccurs="0" />
+                <xs:element name="Energy" type="xs:double" minOccurs="0" />
+                <xs:element name="EneErr" type="xs:float" minOccurs="0" />
+                <xs:element name="Abundance" type="xs:double" minOccurs="0" />
+                <xs:element name="AbnErr" type="xs:float" minOccurs="0" />
+                <xs:element name="Priority" type="xs:short" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <nuc_核データ出典>
+    <Code>{{ rnlib_info.code_master }}</Code>
+    <Name>{{ rnlib_info.name }}</Name>
+    <Comment1>{{ rnlib_info.comment }}</Comment1>
+  </nuc_核データ出典>
+  {%- for rn in rns %}
+  <nuc_核種>
+    <IsoCode>{{ rns[rn].code }}</IsoCode>
+    <OriginCode>{{ rnlib_info.code_master }}</OriginCode>
+    <IsoName>{{ rns[rn].radionuclide }}</IsoName>
+    <HlfLif>{{ rns[rn].half_life }}</HlfLif>
+    <HlfLifErr>{{ rns[rn].half_life_unc }}</HlfLifErr>
+    <HlfLif_Unit>{{ rns[rn].half_life_unit }}</HlfLif_Unit>
+    <HlfLif_Sec>{{ rns[rn].half_life_sec }}</HlfLif_Sec>
+    <ChemicalSymbol>{{ rns[rn].element_symbol }}</ChemicalSymbol>
+    <MassNumber>{{ rns[rn].mass_number }}</MassNumber>
+    <Parent>{{ rns[rn].parent }}</Parent>
+    <ParentCode>{{ rns[rn].parent_code }}</ParentCode>
+  </nuc_核種>
+  {%- endfor %}
+  {%- for rn in rns %}
+  {%- for radiat in rns[rn]['radiats'] %}
+  <nuc_核種ピーク>
+    <IsoCode>{{ rns[rn].code }}</IsoCode>
+    <OriginCode>{{ rnlib_info.code_master }}</OriginCode>
+    <PeakNo>{{ radiat.radiation_number }}</PeakNo>
+    <Energy>{{ radiat.energy }}</Energy>
+    <EneErr>{{ radiat.energy_unc }}</EneErr>
+    <Abundance>{{ radiat.emission_probability }}</Abundance>
+    <AbnErr>{{ radiat.emission_probability_unc }}</AbnErr>
+    <Priority>{{ radiat.key_radiation_bool }}</Priority>
+  </nuc_核種ピーク>
+  {%- endfor %}
+  {%- endfor %}
+</NewDataSet>

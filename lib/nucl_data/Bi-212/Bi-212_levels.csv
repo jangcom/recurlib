@@ -1,0 +1,14 @@
+,z,n,symbol,idx,energy_shift,energy,unc_e,ripl_shift,jp,jp_order,half_life,operator_hl,unc_hl,unit_hl,half_life_sec,unc_hl.1,decay_1,decay_1_%,unc_1,decay_2,decay_2_%,unc_2,decay_3,decay_3_%,unc_3,isospin,magnetic_dipole,unc_mn,electric_quadrupole,unc_eq,ENSDF_publication_cut-off,ENSDF_authors,Extraction_date
+0,83,129,Bi,0,,0.0,,,1(-),1.0,60.55,,6.0,m,3633.0,3.6,B-,64.06,0.06,A,35.94,0.06,,,,,0.32,0.04,0.1,0.4,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+1,83,129,Bi,1,,115.183,0.005,,2(-),1.0,8.0,,4.0,ps,8e-12,4e-12,,,,,,,,,,,,,,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+2,83,129,Bi,2,,196.0,16.0,,,,,,,,,,,,,,,,,,,,,,,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+3,83,129,Bi,3,,213.1,0.2,,(3-),1.0,,,,,,,,,,,,,,,,,,,,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+4,83,129,Bi,4,,238.632,0.002,,0(-),1.0,1.0,,2.0,ps,1e-12,2e-13,,,,,,,,,,,,,,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+5,83,129,Bi,5,,239.0,30.0,,(8- 9-),1.0,25.0,,2.0,m,1500.0,12.0,A,67.0,1.0,B-,33.0,1.0,B-A,30.0,1.0,,,,,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+6,83,129,Bi,6,,250.7,0.5,,(4-),1.0,,,,,,,,,,,,,,,,,,,,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+7,83,129,Bi,7,,338.0,16.0,,,,,,,,,,,,,,,,,,,,,,,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+8,83,129,Bi,8,,415.272,0.011,,1(-),2.0,10.0,LE,,ps,1e-11,,,,,,,,,,,,,,,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+9,83,129,Bi,9,,417.9,0.2,,,,,,,,,,,,,,,,,,,,,,,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+10,83,129,Bi,10,,494.5,0.3,,,,,,,,,,,,,,,,,,,,,,,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+11,83,129,Bi,11,,573.0,16.0,,,,,,,,,,,,,,,,,,,,,,,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+12,83,129,Bi,12,,1478.0,38.0,,(18-),1.0,7.0,,3.0,m,420.0,18.0,IT,75.0,,B-,25.0,,,,,,,,,,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27

@@ -1,0 +1,7 @@
+,energy,unc_en,intensity,unc_i,daughter_level_hl,daughter_level_energy,hindrance_factor,unc_hf,p_z,p_n,p_symbol,p_energy_shift,p_energy,unc_pe,jp,half_life,operator_hl,unc_hl,unit_hl,half_life_sec,unc_hls,decay,decay_%,unc_d,q,unc_q,d_z,d_n,d_symbol,ensdf_publication_cut-off,ensdf_authors,Extraction_date
+0,4941,,5.25e-05,1.07935165724e-05,,582.0,129,,83,131,Bi,,0,,1-,19.71,,2,m,1182.6,1.2,A,0.021,0.0013,5621,3,81,129,Tl,31-Mar-2014,M. SHAMSUZZOHA BASUNIA,2024-04-27
+1,5023,,4.41e-05,8.6585218137e-06,,498.0,464,,83,131,Bi,,0,,1-,19.71,,2,m,1182.6,1.2,A,0.021,0.0013,5621,3,81,129,Tl,31-Mar-2014,M. SHAMSUZZOHA BASUNIA,2024-04-27
+2,5184,,0.0001281,1.39989285304e-05,,334.0,1290,,83,131,Bi,,0,,1-,19.71,,2,m,1182.6,1.2,A,0.021,0.0013,5621,3,81,129,Tl,31-Mar-2014,M. SHAMSUZZOHA BASUNIA,2024-04-27
+3,5273,9.0,0.001218,6.16846820531e-05,,253.6,363,,83,131,Bi,,0,,1-,19.71,,2,m,1182.6,1.2,A,0.021,0.0013,5621,3,81,129,Tl,31-Mar-2014,M. SHAMSUZZOHA BASUNIA,2024-04-27
+4,5452,3.0,0.011319,0.0005426693284128,,62.5,372,,83,131,Bi,,0,,1-,19.71,,2,m,1182.6,1.2,A,0.021,0.0013,5621,3,81,129,Tl,31-Mar-2014,M. SHAMSUZZOHA BASUNIA,2024-04-27
+5,5516,3.0,0.008232,0.0003970302255496,78.0,0.0,1040,,83,131,Bi,,0,,1-,19.71,,2,m,1182.6,1.2,A,0.021,0.0013,5621,3,81,129,Tl,31-Mar-2014,M. SHAMSUZZOHA BASUNIA,2024-04-27

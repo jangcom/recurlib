@@ -1,0 +1,69 @@
+,z,n,symbol,idx,energy_shift,energy,unc_e,ripl_shift,jp,jp_order,half_life,operator_hl,unc_hl,unit_hl,half_life_sec,unc_hl.1,decay_1,decay_1_%,unc_1,decay_2,decay_2_%,unc_2,decay_3,decay_3_%,unc_3,isospin,magnetic_dipole,unc_mn,electric_quadrupole,unc_eq,ENSDF_publication_cut-off,ENSDF_authors,Extraction_date
+0,88,136,Ra,0,,0.0,,,0+,1.0,3.6316,,23,d,313770.24,198.72,A,100.0,,14C,4e-09,1e-09,,,,,0.9,0.2,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+1,88,136,Ra,1,,84.372,0.003,,2+,1.0,0.748,,19,ns,7.48e-10,1.9e-11,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+2,88,136,Ra,2,,215.985,0.004,,1-,1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+3,88,136,Ra,3,,250.782,0.005,,4+,1.0,0.181,,9,ns,1.81e-10,9e-12,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+4,88,136,Ra,4,,290.352,0.021,,3-,1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+5,88,136,Ra,5,,433.02,0.07,,(5)-,1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+6,88,136,Ra,6,,479.12,0.1,,6+,1.0,52.7,,42,ps,5.27e-11,4.2e-12,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+7,88,136,Ra,7,,640.69,0.18,,(7-),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+8,88,136,Ra,8,,754.88,0.2,,8+,1.0,20.8,,+49-55,ps,2.08e-11,5.2e-12,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+9,88,136,Ra,9,,906.17,0.25,,(9-),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+10,88,136,Ra,10,,916.38,0.06,,0+,2.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+11,88,136,Ra,11,,965.65,0.06,,2+,2.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+12,88,136,Ra,12,,992.7,0.06,,(2+),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+13,88,136,Ra,13,,1053.041,0.023,,1-,2.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+14,88,136,Ra,14,,1068.5,0.3,,10+,1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+15,88,136,Ra,15,,1090.087,0.024,,(2 3)-,1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+16,88,136,Ra,16,,1187.1,0.4,,0+ 1 2,1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+17,88,136,Ra,17,,1216.89,0.19,,(1- 2),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+18,88,136,Ra,18,,1220.7,0.4,,(11-),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+19,88,136,Ra,19,,1223.0,4.0,,0+,3.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+20,88,136,Ra,20,,1348.22,0.09,,2+ 3+,1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+21,88,136,Ra,21,,1378.41,0.03,,1-,3.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+22,88,136,Ra,22,,1379.04,0.06,,(1+ 2+),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+23,88,136,Ra,23,,1389.93,0.15,,(0+ 1 2),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+24,88,136,Ra,24,,1413.7,0.4,,(12+),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+25,88,136,Ra,25,,1425.152,0.02,,(0 1 2)-,1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+26,88,136,Ra,26,,1435.54,0.03,,1-,4.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+27,88,136,Ra,27,,1437.11,0.06,,2+,3.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+28,88,136,Ra,28,,1553.67,0.14,,1 2+,1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+29,88,136,Ra,29,,1573.6,0.6,,(13-),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+30,88,136,Ra,30,,1614.42,0.17,,(1- 2),2.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+31,88,136,Ra,31,,1627.0,3.0,,,,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+32,88,136,Ra,32,,1652.49,0.04,,2+,4.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+33,88,136,Ra,33,,1658.49,0.09,,1(-) 2+,1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+34,88,136,Ra,34,,1736.44,0.16,,1 2+,2.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+35,88,136,Ra,35,,1754.84,0.09,,0+ 1 2,2.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+36,88,136,Ra,36,,1761.0,4.0,,,,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+37,88,136,Ra,37,,1787.5,0.6,,(14+),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+38,88,136,Ra,38,,1789.61,0.06,,1 2+,3.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+39,88,136,Ra,39,,1796.71,0.09,,(1- 2),3.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+40,88,136,Ra,40,,1818.06,0.19,,(1- 2),4.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+41,88,136,Ra,41,,1838.53,0.1,,0 1 2,1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+42,88,136,Ra,42,,1896.3,0.3,,(1- 2),5.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+43,88,136,Ra,43,,1949.0,4.0,,,,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+44,88,136,Ra,44,,1964.7,0.8,,(15-),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+45,88,136,Ra,45,,1969.92,0.1,,(0 1 2),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+46,88,136,Ra,46,,2000.26,0.17,,(1- 2),6.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+47,88,136,Ra,47,,2043.0,0.3,,0 1 2,2.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+48,88,136,Ra,48,,2052.3,0.4,,2+,5.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+49,88,136,Ra,49,,2077.3,0.4,,0+ 1 2,3.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+50,88,136,Ra,50,,2117.4,0.4,,1 2+,4.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+51,88,136,Ra,51,,2135.3,0.5,,0 1 2,3.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+52,88,136,Ra,52,,2187.7,0.8,,(16+),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+53,88,136,Ra,53,,2229.4,0.4,,(1- 2),7.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+54,88,136,Ra,54,,2246.5,0.3,,1 2+,5.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+55,88,136,Ra,55,,2368.7,0.4,,1 2+,6.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+56,88,136,Ra,56,,2384.1,0.9,,(17-),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+57,88,136,Ra,57,,2612.1,1.0,,(18+),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+58,88,136,Ra,58,,2827.0,1.1,,(19-),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+59,88,136,Ra,59,,3059.2,1.1,,(20+),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+60,88,136,Ra,60,,3289.8,1.2,,(21-),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+61,88,136,Ra,61,,3526.3,1.2,,(22+),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+62,88,136,Ra,62,,3769.6,1.3,,(23-),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+63,88,136,Ra,63,,4011.4,1.3,,(24+),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+64,88,136,Ra,64,,4266.4,1.4,,(25-),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+65,88,136,Ra,65,,4512.2,1.4,,(26+),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+66,88,136,Ra,66,,4778.0,1.5,,(27-),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27
+67,88,136,Ra,67,,5030.4,1.5,,(28+),1.0,,,,,,,,,,,,,,,,,,,,,08-Mar-2022,Balraj Singh and  Sukhjeet Singh,2024-04-27

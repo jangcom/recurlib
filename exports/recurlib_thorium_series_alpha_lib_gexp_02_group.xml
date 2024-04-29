@@ -1,0 +1,291 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="nuc_対象核種_Index">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="PurposeCode" type="xs:string" minOccurs="0" />
+                <xs:element name="Purpose" type="xs:string" minOccurs="0" />
+                <xs:element name="Comment1" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="nuc_対象核種_List">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="PurposeCode" type="xs:string" minOccurs="0" />
+                <xs:element name="IsoCode" type="xs:string" minOccurs="0" />
+                <xs:element name="OriginCode" type="xs:string" minOccurs="0" />
+                <xs:element name="UsrNucAtri" type="xs:string" minOccurs="0" />
+                <xs:element name="SysNucAtri" type="xs:string" minOccurs="0" />
+                <xs:element name="DispOrder" type="xs:short" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="nuc_対象核種_Pks">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="PurposeCode" type="xs:string" minOccurs="0" />
+                <xs:element name="IsoCode" type="xs:string" minOccurs="0" />
+                <xs:element name="OriginCode" type="xs:string" minOccurs="0" />
+                <xs:element name="PeakNo" type="xs:short" minOccurs="0" />
+                <xs:element name="Energy" type="xs:float" minOccurs="0" />
+                <xs:element name="Priority" type="xs:short" minOccurs="0" />
+                <xs:element name="UsrPksAtri" type="xs:string" minOccurs="0" />
+                <xs:element name="SysPksAtri" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <nuc_対象核種_Index>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <Purpose>recurlib-thorium_series_alpha (RecurLib v1.0.0; ENSDF)</Purpose>
+    <Comment1>Generated on April 28, 2024, at 17:23:14 (UTC -07:00)</Comment1>
+  </nuc_対象核種_Index>
+  <nuc_対象核種_List>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>TH232</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <UsrNucAtri>%</UsrNucAtri>
+  </nuc_対象核種_List>
+  <nuc_対象核種_List>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>TH228</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <UsrNucAtri>%</UsrNucAtri>
+  </nuc_対象核種_List>
+  <nuc_対象核種_List>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>RA224</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <UsrNucAtri>%</UsrNucAtri>
+  </nuc_対象核種_List>
+  <nuc_対象核種_List>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>RN220</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <UsrNucAtri>%</UsrNucAtri>
+  </nuc_対象核種_List>
+  <nuc_対象核種_List>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>PO216</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <UsrNucAtri>%</UsrNucAtri>
+  </nuc_対象核種_List>
+  <nuc_対象核種_List>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>BI212</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <UsrNucAtri>%</UsrNucAtri>
+  </nuc_対象核種_List>
+  <nuc_対象核種_List>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>PO212</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <UsrNucAtri>%</UsrNucAtri>
+  </nuc_対象核種_List>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>TH232</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>1</PeakNo>
+    <Energy>3811.1</Energy>
+    <Priority>0</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>TH232</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>2</PeakNo>
+    <Energy>3947.2</Energy>
+    <Priority>0</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>TH232</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>3</PeakNo>
+    <Energy>4012.3</Energy>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>1</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>TH228</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>1</PeakNo>
+    <Energy>5138.0</Energy>
+    <Priority>0</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>TH228</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>2</PeakNo>
+    <Energy>5173.0</Energy>
+    <Priority>0</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>TH228</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>3</PeakNo>
+    <Energy>5211.0</Energy>
+    <Priority>0</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>TH228</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>4</PeakNo>
+    <Energy>5340.36</Energy>
+    <Priority>0</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>TH228</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>5</PeakNo>
+    <Energy>5423.15</Energy>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>1</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>RA224</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>1</PeakNo>
+    <Energy>5034.0</Energy>
+    <Priority>0</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>RA224</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>2</PeakNo>
+    <Energy>5051.0</Energy>
+    <Priority>0</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>RA224</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>3</PeakNo>
+    <Energy>5161.0</Energy>
+    <Priority>0</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>RA224</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>4</PeakNo>
+    <Energy>5448.6</Energy>
+    <Priority>0</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>RA224</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>5</PeakNo>
+    <Energy>5685.37</Energy>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>1</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>RN220</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>1</PeakNo>
+    <Energy>5747.0</Energy>
+    <Priority>0</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>RN220</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>2</PeakNo>
+    <Energy>6288.08</Energy>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>1</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>PO216</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>1</PeakNo>
+    <Energy>5985.0</Energy>
+    <Priority>0</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>PO216</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>2</PeakNo>
+    <Energy>6778.3</Energy>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>1</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>BI212</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>1</PeakNo>
+    <Energy>5481.0</Energy>
+    <Priority>0</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>BI212</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>2</PeakNo>
+    <Energy>5607.0</Energy>
+    <Priority>0</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>BI212</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>3</PeakNo>
+    <Energy>5626.0</Energy>
+    <Priority>0</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>BI212</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>5</PeakNo>
+    <Energy>5768.0</Energy>
+    <Priority>0</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>BI212</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>7</PeakNo>
+    <Energy>6050.78</Energy>
+    <Priority>0</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>BI212</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>8</PeakNo>
+    <Energy>6089.88</Energy>
+    <Priority>0</Priority>
+  </nuc_対象核種_Pks>
+  <nuc_対象核種_Pks>
+    <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
+    <IsoCode>PO212</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>2</PeakNo>
+    <Energy>8784.86</Energy>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>1</Priority>
+  </nuc_対象核種_Pks>
+</NewDataSet>

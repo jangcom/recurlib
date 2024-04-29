@@ -1,0 +1,95 @@
+#
+# RecurLib marker registry
+#
+# Syntax
+# <radionuclide>;<marker_specification>
+# where <marker_specification> is specified as
+# marker(, mfc(+mec(+mew)))(, msz)(, alpha)
+#
+# Abbreviations in the syntax above
+# - mfc: markerfacecolor
+# - mec: markeredgecolor
+# - mew: markeredgewidth
+# - msz: markersize
+#
+
+#
+# Common
+#
+K-40; "d, crimson+y+0.7"
+
+#
+# Thorium series (4n)
+#
+Th-232; "p, darkslategray+y, 10"
+Ra-228; "D, darkorange+gray, 8"
+Ac-228; "d, purple+crimson"
+Th-228; "h, lawngreen+rebeccapurple"
+Ra-224; "H, silver+crimson"
+Rn-220; "^, peru+darkblue"
+Po-216; "8, midnightblue+yellow"
+Pb-212; "o, royalblue+navy, 9"
+Bi-212; "*, lavender+mediumvioletred, 13.5"
+Po-212; "s, darkslateblue"
+Tl-208; "X, tab:cyan"
+
+#
+# Neptunium series (4n+1)
+#
+Np-237; "8, midnightblue+yellow"
+Pa-233; "<, k+magenta"
+U-233; "v, peru+k+0.7, 8"
+Th-229; "s, slategray+indigo"
+Ra-225; ">, cornflowerblue+crimson"
+Rn-221; "h, lawngreen+rebeccapurple"
+Po-217; "^, darkorange"
+Ac-225; "o, crimson+k, 9"
+Fr-221; "*, darkgreen+lime+0.7, 13.5"
+At-217; "P, yellow+navy+0.6, 10, 0.8"
+Pb-213; "p, darkslategray+y, 10"
+Bi-213; "D, darkmagenta+aqua+0.8, 8, 0.8"
+Tl-209; "s, b"
+Pb-209; "p, dodgerblue"
+Bi-209; "H, tab:gray+magenta"
+Tl-205; "d, tab:olive"
+Po-213; "X, tab:cyan, 10"
+
+#
+# Uranium series (4n+2)
+#
+U-238; ">, cornflowerblue+crimson"
+Th-234; "*, forestgreen, 13.5"
+Pa-234m; "^, darkorange"
+Pa-234; "v, yellow+k+0.7, 8"
+U-234; "X, tab:cyan"
+Th-230; "o, k+yellow+0.9, 10, 0.75"
+Ra-226; "H, crimson+b+0.8, 9, 0.7"
+Rn-222; "<, k+magenta"
+Po-218; "*, yellow+k, 13.5"
+Pb-214; "s, b"
+Bi-214; "D, k+darkorange+0.8, 8, 0.7"
+Tl-210; "P, mediumslateblue, 10"
+Po-214; "p, dodgerblue"
+Pb-210; "H, tab:gray"
+Hg-206; "d, maroon+teal"
+Tl-206; "p, k+blue"
+Po-210; "s, springgreen+k+0.7, 8"
+
+#
+# Actinium series (4n+3)
+#
+U-235; "P, crimson+yellow+0.9, 9"
+Th-231; "^, k+r"
+Pa-231; "<, yellowgreen"
+Ac-227; ">, rosybrown+blue"
+Fr-223; "s, slategray+crimson"
+At-219; "p, mediumvioletred, 10"
+Th-227; "h, mediumspringgreen+k+0.7, 9"
+Ra-223; "X, yellow+blue, 10"
+Bi-215; "p, darkkhaki+k"
+Po-215; "*, forestgreen, 13.5"
+Pb-211; "H, tab:gray+yellow"
+Bi-211; "D, tan+magenta, 8, 0.7"
+Tl-207; "v, yellow+k+0.7, 8"
+Po-211; "o, crimson+k, 9"
+Rn-219; "X, peru+darkblue, 10"

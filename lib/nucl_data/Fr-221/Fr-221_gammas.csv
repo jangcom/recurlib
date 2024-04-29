@@ -1,0 +1,110 @@
+,z,n,symbol,start_level_idx,start_level_energy,unc_sle,start_level_jp,end_level_idx,end_level_energy,unc_ele,end_level_jp,gamma_idx,energy,unc_en,relative_intensity,unc_ri,multipolarity,mixing_ratio,unc_mr,b_e1,unc_be1,b_e2,unc_be2,b_m1,unc_bm1,b_m2,unc_bm2,tot_conv_coeff,tce_unc,ensdf_publication_cut-off,ensdf_authors,Extraction_date
+0,87,134,Fr,1,26.0,0.04,(1/2)-,0,0.0,,5/2-,0,26.0,0.1,100.0,33.0,(E2),,,,,,,,,,,5940.0,150.0,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+1,87,134,Fr,2,36.64,0.04,(3/2)-,1,26.0,0.04,(1/2)-,0,10.642,0.002,,,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+2,87,134,Fr,2,36.64,0.04,(3/2)-,0,0.0,,5/2-,1,36.7,0.1,100.0,9.0,E2(+M1),,,,,44.0,,,,,,600.0,600.0,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+3,87,134,Fr,3,38.54,0.06,(9/2)-,0,0.0,,5/2-,0,38.5,0.1,100.0,9.0,E2,,,,,,,,,,,863.0,17.0,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+4,87,134,Fr,4,99.62,0.05,(3/2)-,2,36.64,0.04,(3/2)-,0,62.9,0.1,61.4,2.9,M1,,,,,,,0.056,,,,10.87,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+5,87,134,Fr,4,99.62,0.05,(3/2)-,1,26.0,0.04,(1/2)-,1,73.5,0.1,3.6,1.0,E2+M1,,,,,48.0,,,,,,22.0,16.0,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+6,87,134,Fr,4,99.62,0.05,(3/2)-,0,0.0,,5/2-,2,99.6,0.5,100.0,9.0,M1+E2,0.18,0.05,,,23.0,,0.022,,,,3.04,0.14,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+7,87,134,Fr,5,99.85,0.07,(3/2)+,1,26.0,0.04,(1/2)-,0,73.9,0.1,26.4,1.7,E1,,,0.00053,,,,,,,,0.24,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+8,87,134,Fr,5,99.85,0.07,(3/2)+,0,0.0,,5/2-,1,99.8,0.1,100.0,11.0,E1(+M2),,,0.00081,,,,,,,,0.1076,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+9,87,134,Fr,6,100.89,0.05,(5/2)-,2,36.64,0.04,(3/2)-,0,64.3,0.1,47.0,5.0,M1+E2,0.45,0.13,,,,,,,,,20.0,6.0,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+10,87,134,Fr,6,100.89,0.05,(5/2)-,1,26.0,0.04,(1/2)-,1,74.6,0.4,29.0,9.0,(E2),,,,,,,,,,,35.0,1.1,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+11,87,134,Fr,6,100.89,0.05,(5/2)-,0,0.0,,5/2-,2,100.8,0.2,100.0,8.0,M1+(E2),,,,,,,,,,,6.0,3.0,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+12,87,134,Fr,7,108.41,0.05,(7/2)-,3,38.54,0.06,(9/2)-,0,69.87,0.05,1.9,0.5,E2+M1,,,,,49.0,,,,,,28.0,20.0,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+13,87,134,Fr,7,108.41,0.05,(7/2)-,2,36.64,0.04,(3/2)-,1,71.4,0.3,5.8,1.2,(E2),,,,,55.0,,,,,,43.2,1.1,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+14,87,134,Fr,7,108.41,0.05,(7/2)-,0,0.0,,5/2-,2,108.4,0.1,100.0,5.0,M1+E2,0.53,0.13,,,26.0,,0.0033,,,,10.3,0.5,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+15,87,134,Fr,8,145.91,0.08,(1/2)+,4,99.62,0.05,(3/2)-,0,46.2,0.2,5.9,0.9,,,,,,,,,,,,0.841,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+16,87,134,Fr,8,145.91,0.08,(1/2)+,1,26.0,0.04,(1/2)-,1,119.9,0.1,100.0,5.0,,,,,,,,,,,,0.305,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+17,87,134,Fr,9,150.07,0.06,(7/2)+,6,100.89,0.05,(5/2)-,0,49.1,0.2,1.1,0.1,(E1),,,0.00012,,,,,,,,0.716,0.013,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+18,87,134,Fr,9,150.07,0.06,(7/2)+,3,38.54,0.06,(9/2)-,1,111.5,0.1,44.0,2.0,(E1),,,0.00041,,,,,,,,0.363,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+19,87,134,Fr,9,150.07,0.06,(7/2)+,0,0.0,,5/2-,2,150.1,0.1,100.0,5.0,E1,,,0.00038,,,,,,,,0.1764,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+20,87,134,Fr,10,195.77,0.07,(7/2)-,7,108.41,0.05,(7/2)-,0,87.4,0.1,70.6,4.1,M1,,,,,,,0.1,,,,4.17,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+21,87,134,Fr,10,195.77,0.07,(7/2)-,6,100.89,0.05,(5/2)-,1,94.9,0.1,26.3,2.5,M1(+E2),,,,,,,0.028,,,,7.0,4.0,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+22,87,134,Fr,10,195.77,0.07,(7/2)-,4,99.62,0.05,(3/2)-,2,96.7,0.5,8.8,1.6,(E2),,,,,320.0,,,,,,10.3,0.3,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+23,87,134,Fr,10,195.77,0.07,(7/2)-,3,38.54,0.06,(9/2)-,3,157.3,0.2,100.0,6.0,M1+E2,,,,,13.0,,0.023,,,,2.7,1.3,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+24,87,134,Fr,10,195.77,0.07,(7/2)-,1,26.0,0.04,(1/2)-,4,169.9,,3.8,0.3,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+25,87,134,Fr,10,195.77,0.07,(7/2)-,0,0.0,,5/2-,5,195.8,0.2,38.4,1.9,M1+E2,0.8,0.2,,,16.0,,0.003,,,,1.53,0.2,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+26,87,134,Fr,11,224.64,0.06,(3/2)+,8,145.91,0.08,(1/2)+,0,78.8,,2.4,0.3,M1,,,,,,,0.015,,,,5.63,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+27,87,134,Fr,11,224.64,0.06,(3/2)+,6,100.89,0.05,(5/2)-,1,123.8,0.1,16.0,0.9,[E1],,,0.00021,,,,,,,,0.282,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+28,87,134,Fr,11,224.64,0.06,(3/2)+,5,99.85,0.07,(3/2)+,2,124.8,0.1,5.33,0.22,M1+E2,,,,,68.0,,0.005,,,,5.6,2.1,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+29,87,134,Fr,11,224.64,0.06,(3/2)+,3,38.54,0.06,(9/2)-,3,186.1,,2.44,0.22,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+30,87,134,Fr,11,224.64,0.06,(3/2)+,2,36.64,0.04,(3/2)-,4,188.0,0.1,100.0,4.0,E1,,,0.00038,,,,,,,,0.1023,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+31,87,134,Fr,11,224.64,0.06,(3/2)+,1,26.0,0.04,(1/2)-,5,198.4,0.3,3.78,0.22,[E1],,,1.2e-05,,,,,,,,0.0899,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+32,87,134,Fr,11,224.64,0.06,(3/2)+,0,0.0,,5/2-,6,224.7,0.1,21.8,1.1,[E1],,,4.8e-05,,,,,,,,0.0668,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+33,87,134,Fr,12,234.51,0.06,(5/2)+,7,108.41,0.05,(7/2)-,0,126.15,0.1,21.2,6.1,(E1),,,,,,,,,,,0.269,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+34,87,134,Fr,12,234.51,0.06,(5/2)+,6,100.89,0.05,(5/2)-,1,133.64,0.05,39.4,6.1,(E1),,,,,,,,,,,0.234,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+35,87,134,Fr,12,234.51,0.06,(5/2)+,4,99.62,0.05,(3/2)-,2,134.86,0.05,84.8,0.9,(E1),,,,,,,,,,,0.229,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+36,87,134,Fr,12,234.51,0.06,(5/2)+,2,36.64,0.04,(3/2)-,3,197.9,,100.0,9.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+37,87,134,Fr,13,253.56,0.04,(5/2)+,10,195.77,0.07,(7/2)-,0,57.8,0.2,1.4,0.3,[E1],,,0.00012,,,,,,,,0.463,0.008,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+38,87,134,Fr,13,253.56,0.04,(5/2)+,9,150.07,0.06,(7/2)+,1,103.6,0.2,0.9,0.2,[M1+E2],,,,,,,,,,,10.0,3.0,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+39,87,134,Fr,13,253.56,0.04,(5/2)+,7,108.41,0.05,(7/2)-,2,145.2,0.1,46.5,2.2,(E1),,,0.00026,,,,,,,,0.191,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+40,87,134,Fr,13,253.56,0.04,(5/2)+,6,100.89,0.05,(5/2)-,3,152.6,0.2,7.0,0.4,[E1],,,3.4e-05,,,,,,,,0.1695,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+41,87,134,Fr,13,253.56,0.04,(5/2)+,4,99.62,0.05,(3/2)-,4,153.9,0.1,67.2,3.3,E1,,,0.00032,,,,,,,,0.166,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+42,87,134,Fr,13,253.56,0.04,(5/2)+,2,36.64,0.04,(3/2)-,5,216.9,0.2,100.0,52.0,(E1),,,0.00017,,,,,,,,0.0726,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+43,87,134,Fr,13,253.56,0.04,(5/2)+,1,26.0,0.04,(1/2)-,6,228.2,0.4,1.5,0.4,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+44,87,134,Fr,13,253.56,0.04,(5/2)+,0,0.0,,5/2-,7,253.54,0.05,42.8,2.2,[E1],,,4.5e-05,,,,,,,,0.0503,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+45,87,134,Fr,14,272.6,0.6,(7/2- 9/2-),2,36.64,0.04,(3/2)-,0,236.0,0.6,100.0,13.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+46,87,134,Fr,15,279.21,0.1,(7/2)+,9,150.07,0.06,(7/2)+,0,129.2,0.2,8.8,1.6,,,,,,,,,,,,5.0,2.0,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+47,87,134,Fr,15,279.21,0.1,(7/2)+,7,108.41,0.05,(7/2)-,1,170.7,0.2,68.0,4.0,(E1),,,,,,,,,,,0.1291,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+48,87,134,Fr,15,279.21,0.1,(7/2)+,6,100.89,0.05,(5/2)-,2,178.3,0.2,56.0,4.0,E1,,,,,,,,,,,0.1162,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+49,87,134,Fr,15,279.21,0.1,(7/2)+,3,38.54,0.06,(9/2)-,3,240.7,0.2,40.0,4.0,,,,,,,,,,,,0.0568,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+50,87,134,Fr,15,279.21,0.1,(7/2)+,0,0.0,,5/2-,4,279.3,0.3,100.0,8.0,E1,,,,,,,,,,,0.0402,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+51,87,134,Fr,16,288.08,0.16,(9/2)-,7,108.41,0.05,(7/2)-,0,179.8,0.3,78.3,4.9,,,,,,,,,,,,1.8,1.0,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+52,87,134,Fr,16,288.08,0.16,(9/2)-,6,100.89,0.05,(5/2)-,1,187.2,,74.2,2.5,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+53,87,134,Fr,16,288.08,0.16,(9/2)-,3,38.54,0.06,(9/2)-,2,249.6,0.2,100.0,8.0,,,,,,,,,,,,1.083,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+54,87,134,Fr,17,294.66,0.14,(9/2)+,9,150.07,0.06,(7/2)+,0,144.7,0.2,11.1,2.8,M1+E2,,,,,,,,,,,3.5,1.6,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+55,87,134,Fr,17,294.66,0.14,(9/2)+,7,108.41,0.05,(7/2)-,1,186.3,0.4,100.0,8.0,E1,,,,,,,,,,,0.1045,0.0016,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+56,87,134,Fr,17,294.66,0.14,(9/2)+,3,38.54,0.06,(9/2)-,2,256.0,0.2,16.7,5.6,,,,,,,,,,,,0.0492,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+57,87,134,Fr,18,393.35,0.07,(5/2 7/2)+,15,279.21,0.1,(7/2)+,0,114.0,,3.3,0.4,M1,,,,,,,,,,,9.86,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+58,87,134,Fr,18,393.35,0.07,(5/2 7/2)+,13,253.56,0.04,(5/2)+,1,139.6,,5.2,0.9,M1+E2,,,,,,,,,,,3.9,1.7,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+59,87,134,Fr,18,393.35,0.07,(5/2 7/2)+,11,224.64,0.06,(3/2)+,2,168.86,0.13,30.0,4.0,,,,,,,,,,,,2.1,1.1,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+60,87,134,Fr,18,393.35,0.07,(5/2 7/2)+,10,195.77,0.07,(7/2)-,3,197.77,0.12,100.0,9.0,E1,,,,,,,,,,,0.0905,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+61,87,134,Fr,18,393.35,0.07,(5/2 7/2)+,9,150.07,0.06,(7/2)+,4,243.2,0.1,13.0,1.3,,,,,,,,,,,,1.162,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+62,87,134,Fr,18,393.35,0.07,(5/2 7/2)+,7,108.41,0.05,(7/2)-,5,284.8,0.1,27.4,2.2,,,,,,,,,,,,0.0385,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+63,87,134,Fr,18,393.35,0.07,(5/2 7/2)+,3,38.54,0.06,(9/2)-,6,354.8,0.2,10.0,1.3,,,,,,,,,,,,0.0235,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+64,87,134,Fr,19,400.75,0.19,(7/2-),16,288.08,0.16,(9/2)-,0,112.8,0.2,42.9,4.8,,,,,,,,,,,,10.16,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+65,87,134,Fr,19,400.75,0.19,(7/2-),10,195.77,0.07,(7/2)-,1,204.7,0.3,26.2,9.5,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+66,87,134,Fr,19,400.75,0.19,(7/2-),3,38.54,0.06,(9/2)-,2,362.2,0.4,100.0,10.0,,,,,,,,,,,,0.388,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+67,87,134,Fr,20,410.2,1.2,,14,272.6,0.6,(7/2- 9/2-),0,137.6,,100.0,,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+68,87,134,Fr,21,497.3,0.4,,3,38.54,0.06,(9/2)-,0,458.8,0.4,100.0,38.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+69,87,134,Fr,22,517.81,0.12,(5/2+),10,195.77,0.07,(7/2)-,0,321.8,0.4,10.3,1.4,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+70,87,134,Fr,22,517.81,0.12,(5/2+),9,150.07,0.06,(7/2)+,1,368.3,0.6,2.1,0.7,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+71,87,134,Fr,22,517.81,0.12,(5/2+),4,99.62,0.05,(3/2)-,2,417.9,0.3,16.6,1.4,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+72,87,134,Fr,22,517.81,0.12,(5/2+),2,36.64,0.04,(3/2)-,3,481.1,0.2,100.0,7.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+73,87,134,Fr,22,517.81,0.12,(5/2+),1,26.0,0.04,(1/2)-,4,492.6,0.6,0.7,0.4,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+74,87,134,Fr,22,517.81,0.12,(5/2+),0,0.0,,5/2-,5,517.9,0.2,52.0,4.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+75,87,134,Fr,23,552.05,0.05,(3/2)-,13,253.56,0.04,(5/2)+,0,298.6,0.3,2.0,0.6,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+76,87,134,Fr,23,552.05,0.05,(3/2)-,12,234.51,0.06,(5/2)+,1,317.4,,0.11,,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+77,87,134,Fr,23,552.05,0.05,(3/2)-,10,195.77,0.07,(7/2)-,2,356.6,,0.26,0.11,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+78,87,134,Fr,23,552.05,0.05,(3/2)-,8,145.91,0.08,(1/2)+,3,406.1,0.1,7.5,0.5,,,,,,,,,,,,0.01757,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+79,87,134,Fr,23,552.05,0.05,(3/2)-,6,100.89,0.05,(5/2)-,4,450.1,0.7,3.6,0.9,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+80,87,134,Fr,23,552.05,0.05,(3/2)-,4,99.62,0.05,(3/2)-,5,452.4,0.1,100.0,6.0,,,,,,,,,,,,0.213,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+81,87,134,Fr,23,552.05,0.05,(3/2)-,3,38.54,0.06,(9/2)-,6,512.5,0.7,0.56,0.22,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+82,87,134,Fr,23,552.05,0.05,(3/2)-,2,36.64,0.04,(3/2)-,7,515.4,0.05,21.4,1.1,,,,,,,,,,,,0.1504,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+83,87,134,Fr,23,552.05,0.05,(3/2)-,1,26.0,0.04,(1/2)-,8,526.09,0.05,37.1,2.3,,,,,,,,,,,,0.1424,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+84,87,134,Fr,23,552.05,0.05,(3/2)-,0,0.0,,5/2-,9,552.0,0.1,6.3,0.5,,,,,,,,,,,,0.1253,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+85,87,134,Fr,24,570.81,0.16,(5/2+ 7/2+),13,253.56,0.04,(5/2)+,0,317.4,,3.12,0.05,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+86,87,134,Fr,24,570.81,0.16,(5/2+ 7/2+),10,195.77,0.07,(7/2)-,1,375.0,0.7,53.0,13.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+87,87,134,Fr,24,570.81,0.16,(5/2+ 7/2+),7,108.41,0.05,(7/2)-,2,462.4,0.6,25.0,9.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+88,87,134,Fr,24,570.81,0.16,(5/2+ 7/2+),6,100.89,0.05,(5/2)-,3,469.5,0.3,88.0,9.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+89,87,134,Fr,24,570.81,0.16,(5/2+ 7/2+),0,0.0,,5/2-,4,571.0,0.2,100.0,16.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+90,87,134,Fr,25,602.2,0.7,(5/2-),2,36.64,0.04,(3/2)-,0,565.6,0.7,100.0,,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+91,87,134,Fr,26,630.71,0.13,(5/2+),10,195.77,0.07,(7/2)-,0,435.0,0.3,34.0,4.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+92,87,134,Fr,26,630.71,0.13,(5/2+),7,108.41,0.05,(7/2)-,1,522.1,0.2,25.0,4.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+93,87,134,Fr,26,630.71,0.13,(5/2+),6,100.89,0.05,(5/2)-,2,529.7,0.3,100.0,10.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+94,87,134,Fr,26,630.71,0.13,(5/2+),4,99.62,0.05,(3/2)-,3,531.2,0.3,56.0,7.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+95,87,134,Fr,26,630.71,0.13,(5/2+),3,38.54,0.06,(9/2)-,4,591.4,0.7,10.0,3.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+96,87,134,Fr,26,630.71,0.13,(5/2+),2,36.64,0.04,(3/2)-,5,594.6,0.3,39.0,8.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+97,87,134,Fr,27,637.72,0.1,,12,234.51,0.06,(5/2)+,0,403.4,0.3,5.0,3.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+98,87,134,Fr,27,637.72,0.1,,4,99.62,0.05,(3/2)-,1,538.1,0.1,27.0,2.7,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+99,87,134,Fr,27,637.72,0.1,,2,36.64,0.04,(3/2)-,2,601.0,0.3,100.0,24.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+100,87,134,Fr,27,637.72,0.1,,0,0.0,,5/2-,3,637.1,0.7,2.7,0.027,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+101,87,134,Fr,29,714.2,0.6,,8,145.91,0.08,(1/2)+,0,568.3,0.6,100.0,,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+102,87,134,Fr,30,749.16,0.2,,8,145.91,0.08,(1/2)+,0,603.5,0.5,100.0,25.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+103,87,134,Fr,30,749.16,0.2,,4,99.62,0.05,(3/2)-,1,649.5,0.2,75.0,19.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+104,87,134,Fr,31,780.2,0.4,,12,234.51,0.06,(5/2)+,0,545.8,0.6,84.0,17.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+105,87,134,Fr,31,780.2,0.4,,9,150.07,0.06,(7/2)+,1,629.9,0.7,50.0,17.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+106,87,134,Fr,31,780.2,0.4,,5,99.85,0.07,(3/2)+,2,680.4,0.6,100.0,33.0,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+107,87,134,Fr,31,780.2,0.4,,0,0.0,,5/2-,3,780.6,0.6,,,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27
+108,87,134,Fr,32,824.2,0.7,,0,0.0,,5/2-,0,824.2,0.7,100.0,,,,,,,,,,,,,,,15-Jan-2007,Ashok Jain and  Sukhjeet Singh and  Suresh Kumar and  Jagdish Tuli,2024-04-27

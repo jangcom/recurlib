@@ -1,0 +1,6 @@
+,z,n,symbol,start_level_idx,start_level_energy,unc_sle,start_level_jp,end_level_idx,end_level_energy,unc_ele,end_level_jp,gamma_idx,energy,unc_en,relative_intensity,unc_ri,multipolarity,mixing_ratio,unc_mr,b_e1,unc_be1,b_e2,unc_be2,b_m1,unc_bm1,b_m2,unc_bm2,tot_conv_coeff,tce_unc,ensdf_publication_cut-off,ensdf_authors,Extraction_date
+0,89,139,Ac,1,6.28,0.03,1-,0,0.0,,3+,0,6.28,0.03,,,(M2),,,,,,,,,,,6680000.0,190000.0,31-Dec-2012,KHALIFEH ABUSALEEM,2024-04-27
+1,89,139,Ac,2,6.67,0.02,1+,0,0.0,,3+,0,6.67,0.02,,,E2,,,,,,,,,,,1560000.0,40000.0,31-Dec-2012,KHALIFEH ABUSALEEM,2024-04-27
+2,89,139,Ac,3,20.19,0.03,1-,2,6.67,0.02,1+,0,13.52,0.02,,,E1,,,,,,,,,,,5.86,0.09,31-Dec-2012,KHALIFEH ABUSALEEM,2024-04-27
+3,89,139,Ac,4,33.07,0.11,1+,3,20.19,0.03,1-,0,12.75,0.05,,,[E1+M2],,,,,,,,,,,,,31-Dec-2012,KHALIFEH ABUSALEEM,2024-04-27
+4,89,139,Ac,4,33.07,0.11,1+,2,6.67,0.02,1+,1,26.4,0.1,,,M1+E2,,,,,,,,,,,,,31-Dec-2012,KHALIFEH ABUSALEEM,2024-04-27

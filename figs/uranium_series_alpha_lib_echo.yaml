@@ -1,0 +1,250 @@
+# Echoed content of uranium_series_alpha
+
+io:
+  lib:
+    nucl_database: ENSDF
+    nucl_data_path: ./lib/nucl_data
+    nucl_data_nonexist_fname_full: ./lib/nonexistent_nucl_data.txt
+    export_templates:
+    - ./lib/templates/gexp_01_master.xml
+    - ./lib/templates/gexp_02_group.xml
+    marker_registry_fname_full: ./lib/marker_registry.txt
+  out:
+    rpt_path: ./figs
+    export_path: ./exports
+    fig_path: ./figs
+    flag: _lib
+    lineage_bname: uranium_series_alpha_lib
+    lev_bname: uranium_series_alpha_lib
+    echo_bname: uranium_series_alpha_lib
+    rpt_bname: uranium_series_alpha_lib
+    fig_bname: uranium_series_alpha_lib
+    export_bname: recurlib_uranium_series_alpha_lib
+    lineage_fname: uranium_series_alpha_lib_U-238_lineage.yaml
+    lineage_fname_full: ./figs/uranium_series_alpha_lib_U-238_lineage.yaml
+    lev_fname_full: ./figs/uranium_series_alpha_lib_levels.yaml
+    echo_fname_full: ./figs/uranium_series_alpha_lib_echo.yaml
+  cols:
+    radionuclide:
+      nucl_data_new: Radionuclide
+      xml: IsoName
+    radiation_number:
+      nucl_data_new: Radiation number
+      xml: PeakNo
+    key_radiation_bool:
+      nucl_data_new: Key radiation Boolean
+      xml: Priority
+    energy:
+      nucl_data_old: energy
+      nucl_data_new: Radiation energy (keV)
+      xml: Energy
+    energy_unc:
+      nucl_data_old: unc_en
+      nucl_data_new: Uncertainty of radiation energy (keV)
+      xml: EneErr
+    emission_probability:
+      nucl_data_old: intensity
+      nucl_data_new: Emission probability (%)
+      xml: Abundance
+    emission_probability_unc:
+      nucl_data_old: unc_i
+      nucl_data_new: Uncertainty of emission probability (%)
+      xml: AbnErr
+    energy_level:
+      nucl_data_old: p_energy
+      nucl_data_new: Parent energy level
+    jp:
+      nucl_data_old: jp
+      nucl_data_new: Angular momentum and parity
+    half_life:
+      nucl_data_old: half_life
+      nucl_data_new: Half-life
+      xml: HlfLif
+    half_life_unc:
+      nucl_data_old: unc_hl
+      nucl_data_new: Uncertainty of half-life
+      xml: HlfLifErr
+    half_life_unit:
+      nucl_data_old: unit_hl
+      nucl_data_new: Half-life unit
+      xml: HlfLif_Unit
+    half_life_sec:
+      nucl_data_old: half_life_sec
+      nucl_data_new: Half-life (s)
+      xml: HlfLif_Sec
+    decay_mode:
+      nucl_data_old: decay
+      nucl_data_new: Decay mode
+    decay_branching_fraction:
+      nucl_data_old: decay_%
+      nucl_data_new: Branching fraction (%)
+    decay_branching_fraction_unc:
+      nucl_data_old: unc_d
+      nucl_data_new: Uncertainty of branching fraction (%)
+    database:
+      nucl_data_new: Database
+      xml: OriginCode
+    database_literature_cutoff_date:
+      nucl_data_old: ensdf_publication_cut-off
+      nucl_data_new: Literature cutoff date
+    database_literature_authors:
+      nucl_data_old: ensdf_authors
+      nucl_data_new: Literature authors
+    database_access_date:
+      nucl_data_old: Extraction_date
+      nucl_data_new: Database access date
+    flag:
+      nucl_data_new: Flag
+  cols_sort:
+    toggle: false
+    by: radionuclide
+  ctrls:
+    is_verbose: false
+    is_echo: true
+    is_rpt: true
+    rpt_fmts:
+    - csv
+    is_export: true
+    is_plot: true
+    is_plot_test: false
+    is_save_fig: true
+    fig_fmts:
+    - png
+    raster_dpi: 400
+    inkscape:
+      exe: C:/Program Files/Inkscape/bin/inkscape.exe
+    pdf_postproc:
+      ghostscript:
+        toggle: false
+        exe: C:/Program Files/gs/gs10.03.0/bin/gswin64c.exe
+        pdf_ver: 1.5
+      pdfcrop:
+        toggle: false
+        exe: C:/texlive/2024/bin/windows/pdfcrop.exe
+scout:
+  radionuclides:
+    recursive:
+    - U-238
+    static: []
+    exclusion:
+    - ''
+    spectrum_radiation: alpha
+    cutoffs:
+      energy:
+      - 0
+      - 1e4
+      emission_probability:
+      - 1e-3
+      - 1e2
+      half_life_sec:
+      - 0.0
+      - 1.433e99
+plot:
+  style_sheet: seaborn-v0_8
+  rc_params:
+    mathtext.fontset: dejavusans
+  ax:
+    figsize:
+    - 6
+    - 3
+  xticks:
+    is_ticklabels: true
+    is_remove_end_ticklabels: false
+    is_auto: false
+    lim:
+    - 2e3
+    - 9e3
+    minor_ndivs: 2
+    kwargs:
+      labelsize: 13.5
+  xlabel:
+    toggle: true
+    label: Alpha-particle energy (keV)
+    kwargs:
+      fontsize: 16
+  yticks:
+    is_ticklabels: true
+    is_auto: false
+    is_log: true
+    log_locators:
+      major:
+        numticks: 9
+      minor:
+        numticks: 9
+    lim:
+    - 1e-3
+    - 1e2
+    kwargs:
+      labelsize: 13.5
+  ylabel:
+    toggle: true
+    label: Emission probability (%)
+    kwargs:
+      fontsize: 16
+  annots:
+    type: both
+    every:
+      cutoffs:
+        window1:
+          energy:
+          - 0
+          - 1e4
+          emission_probability:
+          - 1e1
+          - 1e2
+      single:
+        line1:
+          offy: 1.5
+          fmt: '''{:.0f}''.format(nrg)'
+          kwargs:
+            ha: center
+            va: bottom
+            fontsize: 9
+            rotation: 0
+      shade:
+        toggle: true
+        kwargs:
+          linestyle: None
+          edgecolor: None
+          facecolor: gray
+          alpha: 0.5
+          zorder: -1
+    grouped:
+      defaults:
+        mfc: k
+        mec: k
+        mew: 0.5
+        msz: 8
+        alpha: 0.75
+      markers:
+      - o, r+k, 9
+      - '*, g, 13'
+      - s, b
+      - D, k+darkorange+0.8, 8, 0.7
+      - P
+      - p
+      - H
+      - d
+      - X
+      - h
+      legend:
+        toggle: true
+        order: as_is
+        kwargs:
+          loc: best
+          ncols: 2
+          frameon: true
+          framealpha: 0.75
+          fontsize: 12
+          labelspacing: 0.3
+          handlelength: 1.5
+          handletextpad: 0.0
+          columnspacing: 0.8
+  title:
+    toggle: true
+    loc: center
+    kwargs:
+      pad: 25
+      fontsize: 16
+      fontweight: bold
+    label: Uranium series ($4n + 2$)

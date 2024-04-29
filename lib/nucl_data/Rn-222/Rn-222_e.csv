@@ -1,0 +1,11 @@
+,energy,unc_en,intensity,unc_i,type,shell,p_z,p_n,p_symbol,p_energy_shift,p_energy,unc_pe,jp,half_life,operator_hl,unc_hl,unit_hl,half_life_sec,unc_hls,decay,decay_%,unc_d,q,unc_q,d_z,d_n,d_symbol,ensdf_publication_cut-off,ensdf_authors,Extraction_date
+0,11.178,,0.0010993227252,3.5548028266e-05,AU,L,86,136,Rn,,0,,0+,3.8222,,9,d,330238.08,77.76,A,100,,5590.4,3,84,134,Po,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+1,36.004,,1.94433294797e-05,2.2852076502e-06,AU,KLX,86,136,Rn,,0,,0+,3.8222,,9,d,330238.08,77.76,A,100,,5590.4,3,84,134,Po,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+2,46.478,,5.6658e-05,6.6042472159e-06,AU,K,86,136,Rn,,0,,0+,3.8222,,9,d,330238.08,77.76,A,100,,5590.4,3,84,134,Po,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+3,62.353,,3.44739884393e-05,4.0221711625e-06,AU,KLL,86,136,Rn,,0,,0+,3.8222,,9,d,330238.08,77.76,A,100,,5590.4,3,84,134,Po,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+4,88.87,,2.7406820809e-06,3.286339172e-07,AU,KXY,86,136,Rn,,0,,0+,3.8222,,9,d,330238.08,77.76,A,100,,5590.4,3,84,134,Po,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+5,416.894,,0.0016188,3.71194019348e-05,CE,K,86,136,Rn,,0,,0+,3.8222,,9,d,330238.08,77.76,A,100,,5590.4,3,84,134,Po,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+6,493.063,,0.00053504,1.21316115994e-05,CE,L,86,136,Rn,,0,,0+,3.8222,,9,d,330238.08,77.76,A,100,,5590.4,3,84,134,Po,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+7,505.839,,0.00013452,3.5177407522e-06,CE,M,86,136,Rn,,0,,0+,3.8222,,9,d,330238.08,77.76,A,100,,5590.4,3,84,134,Po,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+8,509.006,,3.4428e-05,8.204053875e-07,CE,N,86,136,Rn,,0,,0+,3.8222,,9,d,330238.08,77.76,A,100,,5590.4,3,84,134,Po,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+9,509.819,,6.8856e-06,1.578005069e-07,CE,O,86,136,Rn,,0,,0+,3.8222,,9,d,330238.08,77.76,A,100,,5590.4,3,84,134,Po,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27

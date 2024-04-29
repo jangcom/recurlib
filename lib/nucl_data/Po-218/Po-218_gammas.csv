@@ -1,0 +1,13 @@
+,z,n,symbol,start_level_idx,start_level_energy,unc_sle,start_level_jp,end_level_idx,end_level_energy,unc_ele,end_level_jp,gamma_idx,energy,unc_en,relative_intensity,unc_ri,multipolarity,mixing_ratio,unc_mr,b_e1,unc_be1,b_e2,unc_be2,b_m1,unc_bm1,b_m2,unc_bm2,tot_conv_coeff,tce_unc,ensdf_publication_cut-off,ensdf_authors,Extraction_date
+0,84,134,Po,1,509.7,0.1,2+,0,0.0,,0+,0,509.7,0.1,100.0,,[E2],,,,,,,,,,,0.0307,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+1,84,134,Po,3,935.2,0.15,(4+),1,509.7,0.1,2+,0,425.5,0.1,100.0,,[E2],,,,,,,,,,,0.0478,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+2,84,134,Po,4,1320.9,0.18,(6+),3,935.2,0.15,(4+),0,385.7,0.1,100.0,,[E2],,,,,,,,,,,0.0619,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+3,84,134,Po,5,1583.9,0.2,(8+),4,1320.9,0.18,(6+),0,263.0,0.1,100.0,,[E2],,,,,,,,,,,0.189,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+4,84,134,Po,6,1757.9,0.3,,5,1583.9,0.2,(8+),0,174.5,0.9,5.0,2.5,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+5,84,134,Po,6,1757.9,0.3,,4,1320.9,0.18,(6+),1,437.0,0.2,100.0,50.0,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+6,84,134,Po,7,1858.7,0.2,,4,1320.9,0.18,(6+),0,537.8,0.1,100.0,,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+7,84,134,Po,8,1871.0,0.3,,5,1583.9,0.2,(8+),0,287.1,0.2,100.0,,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+8,84,134,Po,9,2002.2,0.6,,5,1583.9,0.2,(8+),0,418.3,0.5,100.0,,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+9,84,134,Po,10,2047.5,0.6,,8,1871.0,0.3,,0,176.6,0.9,1.6,1.6,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+10,84,134,Po,10,2047.5,0.6,,5,1583.9,0.2,(8+),1,463.5,0.6,100.0,33.0,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+11,84,134,Po,11,2286.8,0.4,,5,1583.9,0.2,(8+),0,702.9,0.3,100.0,,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27

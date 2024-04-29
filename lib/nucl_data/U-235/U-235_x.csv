@@ -1,0 +1,7 @@
+,energy,unc_en,intensity,unc_i,type,shell,p_z,p_n,p_symbol,p_energy_shift,p_energy,unc_pe,jp,half_life,operator_hl,unc_hl,unit_hl,half_life_sec,unc_hls,decay,decay_%,unc_d,q,unc_q,d_z,d_n,d_symbol,ensdf_publication_cut-off,ensdf_authors,Extraction_date
+0,15.784,,27.7,1.8,X,L,92,143,U,,0,,7/2-,704000000.0,,1,Y,2.221607588611277e+16,31556925974592,A,100,,4678.1,7,90,141,Th,31-Aug-2022,Balraj Singh and  Jagdish K. Tuli and  and Edgardo Browne,2024-04-27
+1,89.954,,2.9914423277067512,,X,KA2,92,143,U,,0,,7/2-,704000000.0,,1,Y,2.221607588611277e+16,31556925974592,A,100,,4678.1,7,90,141,Th,31-Aug-2022,Balraj Singh and  Jagdish K. Tuli and  and Edgardo Browne,2024-04-27
+2,93.347,,4.838955560832661,,X,KA1,92,143,U,,0,,7/2-,704000000.0,,1,Y,2.221607588611277e+16,31556925974592,A,100,,4678.1,7,90,141,Th,31-Aug-2022,Balraj Singh and  Jagdish K. Tuli and  and Edgardo Browne,2024-04-27
+3,105.566,,1.7218675985269911,,X,KpB1,92,143,U,,0,,7/2-,704000000.0,,1,Y,2.221607588611277e+16,31556925974592,A,100,,4678.1,7,90,141,Th,31-Aug-2022,Balraj Singh and  Jagdish K. Tuli and  and Edgardo Browne,2024-04-27
+4,106.894,,2.3021369792305872,,X,KB,92,143,U,,0,,7/2-,704000000.0,,1,Y,2.221607588611277e+16,31556925974592,A,100,,4678.1,7,90,141,Th,31-Aug-2022,Balraj Singh and  Jagdish K. Tuli and  and Edgardo Browne,2024-04-27
+5,108.58,,0.580269380703596,,X,KpB2,92,143,U,,0,,7/2-,704000000.0,,1,Y,2.221607588611277e+16,31556925974592,A,100,,4678.1,7,90,141,Th,31-Aug-2022,Balraj Singh and  Jagdish K. Tuli and  and Edgardo Browne,2024-04-27

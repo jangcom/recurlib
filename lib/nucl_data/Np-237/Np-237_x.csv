@@ -1,0 +1,7 @@
+,energy,unc_en,intensity,unc_i,type,shell,p_z,p_n,p_symbol,p_energy_shift,p_energy,unc_pe,jp,half_life,operator_hl,unc_hl,unit_hl,half_life_sec,unc_hls,decay,decay_%,unc_d,q,unc_q,d_z,d_n,d_symbol,ensdf_publication_cut-off,ensdf_authors,Extraction_date
+0,16.228,,48.4695682943852,,X,L,93,144,Np,,0,,5/2+,2144000.0,,7,Y,67658049289525.25,220898481822.144,A,100,,4957.3,7,91,142,Pa,8-Oct-2020,B. Singh and  J. K. Tuli and  E. Browne,2024-04-27
+1,92.282,,1.397406408405659,,X,KA2,93,144,Np,,0,,5/2+,2144000.0,,7,Y,67658049289525.25,220898481822.144,A,100,,4957.3,7,91,142,Pa,8-Oct-2020,B. Singh and  J. K. Tuli and  E. Browne,2024-04-27
+2,95.865,,2.2488033608073046,,X,KA1,93,144,Np,,0,,5/2+,2144000.0,,7,Y,67658049289525.25,220898481822.144,A,100,,4957.3,7,91,142,Pa,8-Oct-2020,B. Singh and  J. K. Tuli and  E. Browne,2024-04-27
+3,108.373,,0.8060329288178023,,X,KpB1,93,144,Np,,0,,5/2+,2144000.0,,7,Y,67658049289525.25,220898481822.144,A,100,,4957.3,7,91,142,Pa,8-Oct-2020,B. Singh and  J. K. Tuli and  E. Browne,2024-04-27
+4,109.74,,1.0792780916870373,,X,KB,93,144,Np,,0,,5/2+,2144000.0,,7,Y,67658049289525.25,220898481822.144,A,100,,4957.3,7,91,142,Pa,8-Oct-2020,B. Singh and  J. K. Tuli and  E. Browne,2024-04-27
+5,111.482,,0.273245162869235,,X,KpB2,93,144,Np,,0,,5/2+,2144000.0,,7,Y,67658049289525.25,220898481822.144,A,100,,4957.3,7,91,142,Pa,8-Oct-2020,B. Singh and  J. K. Tuli and  E. Browne,2024-04-27

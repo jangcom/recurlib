@@ -1,0 +1,9 @@
+,z,n,symbol,start_level_idx,start_level_energy,unc_sle,start_level_jp,end_level_idx,end_level_energy,unc_ele,end_level_jp,gamma_idx,energy,unc_en,relative_intensity,unc_ri,multipolarity,mixing_ratio,unc_mr,b_e1,unc_be1,b_e2,unc_be2,b_m1,unc_bm1,b_m2,unc_bm2,tot_conv_coeff,tce_unc,ensdf_publication_cut-off,ensdf_authors,Extraction_date
+0,81,128,Tl,1,323.81,0.05,3/2+,0,0.0,,1/2+,0,323.7,0.02,100.0,,M1+E2,1.3,,,,,,,,,,0.174,0.018,30-Sep-2013,J. CHEN {+#} AND F.G. KONDEV,2024-04-27
+1,81,128,Tl,2,738.4,0.4,,0,0.0,,1/2+,0,738.4,0.4,100.0,,,,,,,,,,,,,,,30-Sep-2013,J. CHEN {+#} AND F.G. KONDEV,2024-04-27
+2,81,128,Tl,3,946.6,0.8,,2,738.4,0.4,,0,208.2,0.6,100.0,,,,,,,,,,,,,,,30-Sep-2013,J. CHEN {+#} AND F.G. KONDEV,2024-04-27
+3,81,128,Tl,4,984.3,,(7/2+),1,323.81,0.05,3/2+,0,661.2,,100.0,,,,,,,,,,,,,,,30-Sep-2013,J. CHEN {+#} AND F.G. KONDEV,2024-04-27
+4,81,128,Tl,5,984.3,,(9/2+),4,984.3,,(7/2+),0,,,,,,,,,,,,,,,,,,30-Sep-2013,J. CHEN {+#} AND F.G. KONDEV,2024-04-27
+5,81,128,Tl,6,1121.1,,(13/2+),5,984.3,,(9/2+),0,136.8,,100.0,,E2,,,,,,,,,,,1.652,,30-Sep-2013,J. CHEN {+#} AND F.G. KONDEV,2024-04-27
+6,81,128,Tl,7,1121.1,,(17/2+),6,1121.1,,(13/2+),0,,,,,,,,,,,,,,,,,,30-Sep-2013,J. CHEN {+#} AND F.G. KONDEV,2024-04-27
+7,81,128,Tl,10,1748.2,0.6,(5/2+),1,323.81,0.05,3/2+,0,1424.2,0.4,100.0,,,,,,,,,,,,,,,30-Sep-2013,J. CHEN {+#} AND F.G. KONDEV,2024-04-27

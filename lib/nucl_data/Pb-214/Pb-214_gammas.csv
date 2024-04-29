@@ -1,0 +1,5 @@
+,z,n,symbol,start_level_idx,start_level_energy,unc_sle,start_level_jp,end_level_idx,end_level_energy,unc_ele,end_level_jp,gamma_idx,energy,unc_en,relative_intensity,unc_ri,multipolarity,mixing_ratio,unc_mr,b_e1,unc_be1,b_e2,unc_be2,b_m1,unc_bm1,b_m2,unc_bm2,tot_conv_coeff,tce_unc,ensdf_publication_cut-off,ensdf_authors,Extraction_date
+0,82,132,Pb,1,835,1.0,(2+),0,0,,0+,0,835.0,,100,,[E2],,,,,,,,,,,0.00953,,1-May-2021,Shaofei Zhu and E. A. McCutchan,2024-04-27
+1,82,132,Pb,2,1179,2.0,(4+),1,835,1.0,(2+),0,344.0,,100,,[E2],,,,,,,,,,,0.0777,0.0013,1-May-2021,Shaofei Zhu and E. A. McCutchan,2024-04-27
+2,82,132,Pb,3,1365,2.0,(6+),2,1179,2.0,(4+),0,186.0,,100,,[E2],,,,,,,,,,,0.552,0.014,1-May-2021,Shaofei Zhu and E. A. McCutchan,2024-04-27
+3,82,132,Pb,4,1365,,(8+),3,1365,2.0,(6+),0,,,100,,[E2],,,,,,,,,,,,,1-May-2021,Shaofei Zhu and E. A. McCutchan,2024-04-27

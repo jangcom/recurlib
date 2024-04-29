@@ -1,0 +1,46 @@
+,z,n,symbol,start_level_idx,start_level_energy,unc_sle,start_level_jp,end_level_idx,end_level_energy,unc_ele,end_level_jp,gamma_idx,energy,unc_en,relative_intensity,unc_ri,multipolarity,mixing_ratio,unc_mr,b_e1,unc_be1,b_e2,unc_be2,b_m1,unc_bm1,b_m2,unc_bm2,tot_conv_coeff,tce_unc,ensdf_publication_cut-off,ensdf_authors,Extraction_date
+0,83,128,Bi,1,404.866,0.009,7/2-,0,0.0,,9/2-,0,404.853,0.01,100.0,,M1+E2,-1.1,0.1,,,1.07,,0.00042,,,,0.122,0.008,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+1,83,128,Bi,2,766.539,0.016,(9/2 11/2)-,1,404.866,0.009,7/2-,0,362.072,0.017,6.9,0.4,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+2,83,128,Bi,2,766.539,0.016,(9/2 11/2)-,0,0.0,,9/2-,1,766.51,0.03,100.0,2.5,M1,,,,,,,,,,,0.0382,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+3,83,128,Bi,4,828.13,0.04,(13/2)-,2,766.539,0.016,(9/2 11/2)-,0,61.6,,,,[M1],,,,,,,,,,,7.84,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+4,83,128,Bi,4,828.13,0.04,(13/2)-,0,0.0,,9/2-,1,828.13,0.04,100.0,,E2,,,,,,,,,,,0.01017,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+5,83,128,Bi,5,831.96,0.012,9/2-,2,766.539,0.016,(9/2 11/2)-,0,65.42,0.014,2.2,0.15,M1,,,,,,,0.011,,,,6.58,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+6,83,128,Bi,5,831.96,0.012,9/2-,1,404.866,0.009,7/2-,1,427.088,0.01,49.8,1.1,M1+E2,-0.022,0.009,,,0.00015,,0.00088,,,,0.1784,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+7,83,128,Bi,5,831.96,0.012,9/2-,0,0.0,,9/2-,2,832.01,0.03,100.0,1.5,M1+E2,0.39,,,,0.0031,,0.00018,,,,0.0281,0.0024,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+8,83,128,Bi,6,950.9,0.7,,1,404.866,0.009,7/2-,0,546.0,,,,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+9,83,128,Bi,6,950.9,0.7,,0,0.0,,9/2-,1,951.0,,100.0,,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+10,83,128,Bi,8,1014.4,0.04,7/2- 9/2- 11/2-,1,404.866,0.009,7/2-,0,609.38,0.04,100.0,15.0,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+11,83,128,Bi,8,1014.4,0.04,7/2- 9/2- 11/2-,0,0.0,,9/2-,1,1014.64,0.05,40.6,1.2,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+12,83,128,Bi,10,1080.15,0.05,-,2,766.539,0.016,(9/2 11/2)-,0,313.59,0.09,100.0,13.0,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+13,83,128,Bi,10,1080.15,0.05,-,1,404.866,0.009,7/2-,1,676.69,0.07,42.0,13.0,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+14,83,128,Bi,10,1080.15,0.05,-,0,0.0,,9/2-,2,1080.16,0.06,39.6,2.1,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+15,83,128,Bi,11,1103.52,0.2,,0,0.0,,9/2-,0,1103.52,0.2,100.0,,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+16,83,128,Bi,12,1109.485,0.023,9/2-,8,1014.4,0.04,7/2- 9/2- 11/2-,0,95.0,0.2,3.9,0.6,M1+E2,1.6,,,,,,,,,,9.4,0.4,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+17,83,128,Bi,12,1109.485,0.023,9/2-,2,766.539,0.016,(9/2 11/2)-,1,342.91,0.04,7.5,1.1,[M1 E2],,,,,,,,,,,0.2,0.12,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+18,83,128,Bi,12,1109.485,0.023,9/2-,1,404.866,0.009,7/2-,2,704.64,0.03,100.0,2.2,M1+E2,-0.022,0.007,,,,,,,,,0.0476,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+19,83,128,Bi,12,1109.485,0.023,9/2-,0,0.0,,9/2-,3,1109.48,0.05,24.9,0.8,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+20,83,128,Bi,14,1129.81,0.05,(17/2)-,4,828.13,0.04,(13/2)-,0,301.68,0.03,100.0,,E2,,,,,,,,,,,0.1186,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+21,83,128,Bi,16,1149.71,0.11,(15/2)-,14,1129.81,0.05,(17/2)-,0,19.9,,,,[M1],,,,,,,,,,,219.0,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+22,83,128,Bi,16,1149.71,0.11,(15/2)-,4,828.13,0.04,(13/2)-,1,321.58,0.1,100.0,,M1,,,,,,,,,,,0.384,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+23,83,128,Bi,17,1196.33,0.05,,2,766.539,0.016,(9/2 11/2)-,0,430.0,1.0,63.0,25.0,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+24,83,128,Bi,17,1196.33,0.05,,0,0.0,,9/2-,1,1196.33,0.05,100.0,4.0,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+25,83,128,Bi,18,1227.2,0.3,(21/2-),14,1129.81,0.05,(17/2)-,0,97.4,0.3,100.0,,(E2),,,,,1.44,,,,,,7.59,0.15,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+26,83,128,Bi,19,1234.3,0.4,,0,0.0,,9/2-,0,1234.3,0.4,100.0,,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+27,83,128,Bi,21,1257.0,10.0,(25/2-),18,1227.2,0.3,(21/2-),0,30.0,,,,[E2],,,,,,,,,,,2520.0,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+28,83,128,Bi,22,1270.72,0.06,(7/2 9/2 11/2),2,766.539,0.016,(9/2 11/2)-,0,504.12,0.12,85.0,11.0,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+29,83,128,Bi,22,1270.72,0.06,(7/2 9/2 11/2),1,404.866,0.009,7/2-,1,865.93,0.14,87.0,6.0,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+30,83,128,Bi,22,1270.72,0.06,(7/2 9/2 11/2),0,0.0,,9/2-,2,1270.71,0.08,100.0,8.0,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+31,83,128,Bi,23,1304.4,0.6,,16,1149.71,0.11,(15/2)-,0,154.7,0.5,100.0,,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+32,83,128,Bi,47,2059.0,1.0,,21,1257.0,10.0,(25/2-),0,802.0,,100.0,,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+33,83,128,Bi,50,2316.0,1.5,,47,2059.0,1.0,,0,257.0,,100.0,,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+34,83,128,Bi,53,2782.0,1.7,,50,2316.0,1.5,,0,466.0,,100.0,,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+35,83,128,Bi,54,3138.0,1.7,,53,2782.0,1.7,,0,356.0,,,,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+36,83,128,Bi,54,3138.0,1.7,,50,2316.0,1.5,,1,822.0,,,,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+37,83,128,Bi,55,3603.0,2.0,,54,3138.0,1.7,,0,465.0,,100.0,,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+38,83,128,Bi,56,4836.0,2.2,(41/2+),55,3603.0,2.0,,0,1233.0,,100.0,,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+39,83,128,Bi,57,4979.0,2.4,,56,4836.0,2.2,(41/2+),0,143.0,,100.0,,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+40,83,128,Bi,58,5257.0,2.4,,56,4836.0,2.2,(41/2+),0,421.0,,100.0,,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+41,83,128,Bi,59,5334.0,2.4,,56,4836.0,2.2,(41/2+),0,498.0,,100.0,,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+42,83,128,Bi,60,5445.0,2.4,,56,4836.0,2.2,(41/2+),0,609.0,,100.0,,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+43,83,128,Bi,61,5945.0,,,58,5257.0,2.4,,0,687.0,,100.0,,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27
+44,83,128,Bi,62,6191.0,,,58,5257.0,2.4,,0,934.0,,100.0,,,,,,,,,,,,,,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27

@@ -1,0 +1,15 @@
+,z,n,symbol,idx,energy_shift,energy,unc_e,ripl_shift,jp,jp_order,half_life,operator_hl,unc_hl,unit_hl,half_life_sec,unc_hl.1,decay_1,decay_1_%,unc_1,decay_2,decay_2_%,unc_2,decay_3,decay_3_%,unc_3,isospin,magnetic_dipole,unc_mn,electric_quadrupole,unc_eq,ENSDF_publication_cut-off,ENSDF_authors,Extraction_date
+0,84,133,Po,0,,0.0,,,(9/2+),1.0,1.53,,5.0,s,1.53,0.05,A,95.0,,B-,5.0,,,,,,-1.11,0.1,,,1-DEC-2017,B. SINGH and  T. ROY and  K. BANERJEE,2024-04-27
+1,84,133,Po,1,,254.1,0.1,,(7/2+),1.0,,,,,,,,,,,,,,,,,,,,,1-DEC-2017,B. SINGH and  T. ROY and  K. BANERJEE,2024-04-27
+2,84,133,Po,2,,264.68,0.04,,(11/2+),1.0,,,,,,,,,,,,,,,,,,,,,1-DEC-2017,B. SINGH and  T. ROY and  K. BANERJEE,2024-04-27
+3,84,133,Po,3,,376.0,1.0,,,,,,,,,,,,,,,,,,,,,,,,1-DEC-2017,B. SINGH and  T. ROY and  K. BANERJEE,2024-04-27
+4,84,133,Po,4,,554.0,1.0,,,,,,,,,,,,,,,,,,,,,,,,1-DEC-2017,B. SINGH and  T. ROY and  K. BANERJEE,2024-04-27
+5,84,133,Po,5,,632.0,1.0,,,,,,,,,,,,,,,,,,,,,,,,1-DEC-2017,B. SINGH and  T. ROY and  K. BANERJEE,2024-04-27
+6,84,133,Po,6,,701.5,0.7,,,,,,,,,,,,,,,,,,,,,,,,1-DEC-2017,B. SINGH and  T. ROY and  K. BANERJEE,2024-04-27
+7,84,133,Po,7,,757.0,1.0,,,,,,,,,,,,,,,,,,,,,,,,1-DEC-2017,B. SINGH and  T. ROY and  K. BANERJEE,2024-04-27
+8,84,133,Po,8,,887.7,1.0,,,,,,,,,,,,,,,,,,,,,,,,1-DEC-2017,B. SINGH and  T. ROY and  K. BANERJEE,2024-04-27
+9,84,133,Po,9,,1095.6,1.8,,,,,,,,,,,,,,,,,,,,,,,,1-DEC-2017,B. SINGH and  T. ROY and  K. BANERJEE,2024-04-27
+10,84,133,Po,10,,1154.6,0.6,,,,,,,,,,,,,,,,,,,,,,,,1-DEC-2017,B. SINGH and  T. ROY and  K. BANERJEE,2024-04-27
+11,84,133,Po,11,,1281.7,1.0,,,,,,,,,,,,,,,,,,,,,,,,1-DEC-2017,B. SINGH and  T. ROY and  K. BANERJEE,2024-04-27
+12,84,133,Po,12,,1314.6,1.2,,,,,,,,,,,,,,,,,,,,,,,,1-DEC-2017,B. SINGH and  T. ROY and  K. BANERJEE,2024-04-27
+13,84,133,Po,13,,1496.0,1.5,,,,,,,,,,,,,,,,,,,,,,,,1-DEC-2017,B. SINGH and  T. ROY and  K. BANERJEE,2024-04-27

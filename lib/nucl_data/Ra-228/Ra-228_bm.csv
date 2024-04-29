@@ -1,0 +1,5 @@
+,mean_energy,unc_me,intensity_beta,unc_ib,daughter_level_hl,daughter_level_energy,max_energy,unc_me.1,log_ft,unc_lf,transition_type,anti_nu_mean_energy,unc_ame,p_z,p_n,p_symbol,p_energy_shift,p_energy,unc_pe,jp,half_life,operator_hl,unc_hl,unit_hl,half_life_sec,unc_hls,decay,decay_%,unc_d,q,unc_q,d_z,d_n,d_symbol,ensdf_publication_cut-off,ensdf_authors,Extraction_date
+0,3.22,0.23,30,0,,33.07,12.7,0.7,5.12,0.18,A,9.3,0.5,88,140,Ra,,0,,0+,5.75,,3,Y,181452324.353904,946707.77923776,B-,100,,45.5,6,89,139,Ac,31-Dec-2012,KHALIFEH ABUSALEEM,2024-04-27
+1,6.48,0.23,20,0,,20.19,25.6,0.7,6.2,0.14,1NU,18.9,0.5,88,140,Ra,,0,,0+,5.75,,3,Y,181452324.353904,946707.77923776,B-,100,,45.5,6,89,139,Ac,31-Dec-2012,KHALIFEH ABUSALEEM,2024-04-27
+2,9.94,0.25,40,4,,6.67,39.1,0.7,6.5,0.065,A,28.9,0.5,88,140,Ra,,0,,0+,5.75,,3,Y,181452324.353904,946707.77923776,B-,100,,45.5,6,89,139,Ac,31-Dec-2012,KHALIFEH ABUSALEEM,2024-04-27
+3,10.04,0.25,10,1,,6.28,39.5,0.7,7.1,0.071,1NU,29.2,0.5,88,140,Ra,,0,,0+,5.75,,3,Y,181452324.353904,946707.77923776,B-,100,,45.5,6,89,139,Ac,31-Dec-2012,KHALIFEH ABUSALEEM,2024-04-27

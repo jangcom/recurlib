@@ -1,0 +1,4 @@
+,energy,unc_en,intensity,unc_i,daughter_level_hl,daughter_level_energy,hindrance_factor,unc_hf,p_z,p_n,p_symbol,p_energy_shift,p_energy,unc_pe,jp,half_life,operator_hl,unc_hl,unit_hl,half_life_sec,unc_hls,decay,decay_%,unc_d,q,unc_q,d_z,d_n,d_symbol,ensdf_publication_cut-off,ensdf_authors,Extraction_date
+0,3811.1,1.4,0.069,0.013,,204.69,16.0,3.0,90,142,Th,,0,,0+,14000000000.0,,1,Y,4.41796963644288e+17,3155692597459200.0,A,100,,4081.6,14,88,140,Ra,31-Dec-2012,KHALIFEH ABUSALEEM,2024-04-27
+1,3947.2,2.0,21.7,1.3,5.5e-10,63.81,0.98,0.06,90,142,Th,,0,,0+,14000000000.0,,1,Y,4.41796963644288e+17,3155692597459200.0,A,100,,4081.6,14,88,140,Ra,31-Dec-2012,KHALIFEH ABUSALEEM,2024-04-27
+2,4012.3,1.4,78.2,1.3,,0.0,1.0,,90,142,Th,,0,,0+,14000000000.0,,1,Y,4.41796963644288e+17,3155692597459200.0,A,100,,4081.6,14,88,140,Ra,31-Dec-2012,KHALIFEH ABUSALEEM,2024-04-27

@@ -1,0 +1,6 @@
+,energy,unc_en,intensity,unc_i,daughter_level_hl,daughter_level_energy,hindrance_factor,unc_hf,p_z,p_n,p_symbol,p_energy_shift,p_energy,unc_pe,jp,half_life,operator_hl,unc_hl,unit_hl,half_life_sec,unc_hls,decay,decay_%,unc_d,q,unc_q,d_z,d_n,d_symbol,ensdf_publication_cut-off,ensdf_authors,Extraction_date
+0,5034.0,,0.003,0.0005,,663.03,7.4,1.5,88,136,Ra,,0,,0+,3.6316,,23,d,313770.24,198.72,A,100,,5788.92,15,86,134,Rn,31-Oct-2010,E. BROWNE and  J. K. TULI,2024-04-27
+1,5051.0,,0.0076,0.0011,,645.44,3.7,0.6,88,136,Ra,,0,,0+,3.6316,,23,d,313770.24,198.72,A,100,,5788.92,15,86,134,Rn,31-Oct-2010,E. BROWNE and  J. K. TULI,2024-04-27
+2,5161.0,,0.0071,,,533.69,8.0,,88,136,Ra,,0,,0+,3.6316,,23,d,313770.24,198.72,A,100,,5788.92,15,86,134,Rn,31-Oct-2010,E. BROWNE and  J. K. TULI,2024-04-27
+3,5448.6,1.2,5.06,0.05,1.46e-10,240.986,1.08,0.01,88,136,Ra,,0,,0+,3.6316,,23,d,313770.24,198.72,A,100,,5788.92,15,86,134,Rn,31-Oct-2010,E. BROWNE and  J. K. TULI,2024-04-27
+4,5685.37,0.15,94.92,0.05,55.6,0.0,1.0,,88,136,Ra,,0,,0+,3.6316,,23,d,313770.24,198.72,A,100,,5788.92,15,86,134,Rn,31-Oct-2010,E. BROWNE and  J. K. TULI,2024-04-27

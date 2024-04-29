@@ -1,0 +1,14 @@
+,z,n,symbol,idx,energy_shift,energy,unc_e,ripl_shift,jp,jp_order,half_life,operator_hl,unc_hl,unit_hl,half_life_sec,unc_hl.1,decay_1,decay_1_%,unc_1,decay_2,decay_2_%,unc_2,decay_3,decay_3_%,unc_3,isospin,magnetic_dipole,unc_mn,electric_quadrupole,unc_eq,ENSDF_publication_cut-off,ENSDF_authors,Extraction_date
+0,83,131,Bi,0,,0.0,,,1-,1.0,19.71,,2.0,m,1182.6,1.2,B-,99.979,0.0013,A,0.021,0.0013,B-A,0.003,,,,,,,1-May-2021,Shaofei Zhu and E. A. McCutchan,2024-04-27
+1,83,131,Bi,1,,53.226,0.0015,,2-,1.0,15.0,LE,,ps,1.5e-11,,,,,,,,,,,,,,,,1-May-2021,Shaofei Zhu and E. A. McCutchan,2024-04-27
+2,83,131,Bi,2,,62.68,0.05,,(2- 3-),1.0,,,,,,,,,,,,,,,,,,,,,1-May-2021,Shaofei Zhu and E. A. McCutchan,2024-04-27
+3,83,131,Bi,3,,101.0,5.0,,(3- 4-),1.0,,,,,,,,,,,,,,,,,,,,,1-May-2021,Shaofei Zhu and E. A. McCutchan,2024-04-27
+4,83,131,Bi,4,,258.869,0.024,,(2)-,1.0,,,,,,,,,,,,,,,,,,,,,1-May-2021,Shaofei Zhu and E. A. McCutchan,2024-04-27
+5,83,131,Bi,5,,295.2236,0.0019,,1-,2.0,0.05,LE,,ns,5e-11,,,,,,,,,,,,,,,,1-May-2021,Shaofei Zhu and E. A. McCutchan,2024-04-27
+6,83,131,Bi,6,,351.9323,0.0021,,0- 1-,1.0,0.1,LE,,ns,1e-10,,,,,,,,,,,,,,,,1-May-2021,Shaofei Zhu and E. A. McCutchan,2024-04-27
+7,83,131,Bi,7,,377.03,0.04,,(2-),1.0,,,,,,,,,,,,,,,,,,,,,1-May-2021,Shaofei Zhu and E. A. McCutchan,2024-04-27
+8,83,131,Bi,8,,533.672,0.014,,(1-),1.0,,,,,,,,,,,,,,,,,,,,,1-May-2021,Shaofei Zhu and E. A. McCutchan,2024-04-27
+9,83,131,Bi,9,,539.0,30.0,,,,93.0,GT,,s,93.0,,,,,,,,,,,,,,,,1-May-2021,Shaofei Zhu and E. A. McCutchan,2024-04-27
+10,83,131,Bi,10,,797.3,0.08,,,,,,,,,,,,,,,,,,,,,,,,1-May-2021,Shaofei Zhu and E. A. McCutchan,2024-04-27
+11,83,131,Bi,11,,838.994,0.022,,1+,1.0,,,,,,,,,,,,,,,,,,,,,1-May-2021,Shaofei Zhu and E. A. McCutchan,2024-04-27
+12,83,131,Bi,12,,888.03,0.1,,,,,,,,,,,,,,,,,,,,,,,,1-May-2021,Shaofei Zhu and E. A. McCutchan,2024-04-27

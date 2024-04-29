@@ -1,0 +1,13 @@
+,z,n,symbol,idx,energy_shift,energy,unc_e,ripl_shift,jp,jp_order,half_life,operator_hl,unc_hl,unit_hl,half_life_sec,unc_hl.1,decay_1,decay_1_%,unc_1,decay_2,decay_2_%,unc_2,decay_3,decay_3_%,unc_3,isospin,magnetic_dipole,unc_mn,electric_quadrupole,unc_eq,ENSDF_publication_cut-off,ENSDF_authors,Extraction_date
+0,84,134,Po,0,,0.0,,,0+,1.0,3.097,,12.0,m,185.82,0.72,A,99.98,0.002,B-,0.02,0.002,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+1,84,134,Po,1,,509.7,0.1,,2+,1.0,,,,,,,,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+2,84,134,Po,2,,676.0,4.0,,,,,,,,,,,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+3,84,134,Po,3,,935.2,0.15,,(4+),1.0,,,,,,,,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+4,84,134,Po,4,,1320.9,0.18,,(6+),1.0,,,,,,,,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+5,84,134,Po,5,,1583.9,0.2,,(8+),1.0,,,,,,,,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+6,84,134,Po,6,,1757.9,0.3,,,,,,,,,,,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+7,84,134,Po,7,,1858.7,0.2,,,,,,,,,,,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+8,84,134,Po,8,,1871.0,0.3,,,,,,,,,,,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+9,84,134,Po,9,,2002.2,0.6,,,,,,,,,,,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+10,84,134,Po,10,,2047.5,0.6,,,,,,,,,,,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27
+11,84,134,Po,11,,2286.8,0.4,,,,,,,,,,,,,,,,,,,,,,,,30-Oct-2019,Balraj Singh and  M.S. Basunia and  Murray Martin et al. and ,2024-04-27

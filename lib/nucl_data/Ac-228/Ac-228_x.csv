@@ -1,0 +1,7 @@
+,energy,unc_en,intensity,unc_i,type,shell,p_z,p_n,p_symbol,p_energy_shift,p_energy,unc_pe,jp,half_life,operator_hl,unc_hl,unit_hl,half_life_sec,unc_hls,decay,decay_%,unc_d,q,unc_q,d_z,d_n,d_symbol,ensdf_publication_cut-off,ensdf_authors,Extraction_date
+0,15.784,,33.4,2.1,X,L,89,139,Ac,,0,,3+,6.15,,2,h,22140,72,B-,100,,2123.8,26,90,138,Th,31-Dec-2012,KHALIFEH ABUSALEEM,2024-04-27
+1,89.954,,2.01,0.19,X,KA2,89,139,Ac,,0,,3+,6.15,,2,h,22140,72,B-,100,,2123.8,26,90,138,Th,31-Dec-2012,KHALIFEH ABUSALEEM,2024-04-27
+2,93.347,,3.2,0.3,X,KA1,89,139,Ac,,0,,3+,6.15,,2,h,22140,72,B-,100,,2123.8,26,90,138,Th,31-Dec-2012,KHALIFEH ABUSALEEM,2024-04-27
+3,105.566,,1.16,0.11,X,KpB1,89,139,Ac,,0,,3+,6.15,,2,h,22140,72,B-,100,,2123.8,26,90,138,Th,31-Dec-2012,KHALIFEH ABUSALEEM,2024-04-27
+4,106.894,,1.54,0.15,X,KB,89,139,Ac,,0,,3+,6.15,,2,h,22140,72,B-,100,,2123.8,26,90,138,Th,31-Dec-2012,KHALIFEH ABUSALEEM,2024-04-27
+5,108.58,,0.39,0.04,X,KpB2,89,139,Ac,,0,,3+,6.15,,2,h,22140,72,B-,100,,2123.8,26,90,138,Th,31-Dec-2012,KHALIFEH ABUSALEEM,2024-04-27

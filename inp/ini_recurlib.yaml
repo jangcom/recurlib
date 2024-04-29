@@ -1,0 +1,374 @@
+%YAML 1.2
+---
+#
+# RecurLib initialization file
+#
+template:  # Overridable at each active dataset
+  #
+  # File I/O
+  #
+  io:
+    lib:
+      nucl_database: ENSDF  # ENSDF is the only option for now; reserved for future use
+      nucl_data_path: ./lib/nucl_data
+      nucl_data_nonexist_fname_full: ./lib/nonexistent_nucl_data.txt
+      export_templates:
+        - ./lib/templates/gexp_01_master.xml
+        - ./lib/templates/gexp_02_group.xml
+      marker_registry_fname_full: ./lib/marker_registry.txt
+    out:
+      rpt_path: ./figs
+      export_path: ./exports
+      fig_path: ./figs
+      flag: _lib
+    cols:
+      radionuclide:
+        nucl_data_new: Radionuclide
+        xml: IsoName
+      radiation_number:
+        nucl_data_new: Radiation number
+        xml: PeakNo
+      key_radiation_bool:
+        nucl_data_new: Key radiation Boolean
+        xml: Priority
+      energy:
+        nucl_data_old: energy
+        nucl_data_new: Radiation energy (keV)
+        xml: Energy
+      energy_unc:
+        nucl_data_old: unc_en
+        nucl_data_new: Uncertainty of radiation energy (keV)
+        xml: EneErr
+      emission_probability:
+        nucl_data_old: intensity
+        nucl_data_new: Emission probability (%)
+        xml: Abundance
+      emission_probability_unc:
+        nucl_data_old: unc_i
+        nucl_data_new: Uncertainty of emission probability (%)
+        xml: AbnErr
+      energy_level:
+        nucl_data_old: p_energy
+        nucl_data_new: Parent energy level
+      jp:
+        nucl_data_old: jp
+        nucl_data_new: Angular momentum and parity
+      half_life:
+        nucl_data_old: half_life
+        nucl_data_new: Half-life
+        xml: HlfLif
+      half_life_unc:
+        nucl_data_old: unc_hl
+        nucl_data_new: Uncertainty of half-life 
+        xml: HlfLifErr
+      half_life_unit:
+        nucl_data_old: unit_hl
+        nucl_data_new: Half-life unit
+        xml: HlfLif_Unit
+      half_life_sec:
+        nucl_data_old: half_life_sec
+        nucl_data_new: Half-life (s)
+        xml: HlfLif_Sec
+      decay_mode:
+        nucl_data_old: decay
+        nucl_data_new: Decay mode
+      decay_branching_fraction:
+        nucl_data_old: decay_%
+        nucl_data_new: Branching fraction (%)
+      decay_branching_fraction_unc:
+        nucl_data_old: unc_d
+        nucl_data_new: Uncertainty of branching fraction (%)
+      database:
+        nucl_data_new: Database
+        xml: OriginCode
+      database_literature_cutoff_date:
+        nucl_data_old: ensdf_publication_cut-off
+        nucl_data_new: Literature cutoff date
+      database_literature_authors:
+        nucl_data_old: ensdf_authors
+        nucl_data_new: Literature authors
+      database_access_date:
+        nucl_data_old: Extraction_date
+        nucl_data_new: Database access date
+      flag:
+        nucl_data_new: Flag
+    cols_sort:
+      toggle: False
+      by: radionuclide  # A key, not value, of cols
+    ctrls:
+      is_verbose: False
+      is_echo: True  # Log the content of .yaml to a file.
+      is_rpt: True
+      rpt_fmts:  # Uncomment each format as per needed.
+        - csv
+        # - html
+        # - xml
+        # - tex
+        # - xlsx  # (optional) A Python library openpyxl or xlsxwriter is required
+      is_export: True  # If True, Jinja-based .xml files are generated.
+      is_plot: True  # Plot the generated radionuclide libraries.
+      is_plot_test: False  # If True, plots are saved to only .png files.
+      is_save_fig: True  # Save the radionuclide library plots to figure files.
+      fig_fmts:
+        # - pdf
+        - png
+        # - jpg
+        # - svg
+        # - emf  # (optional) Inkscape is required
+      raster_dpi: 400  # .png and .jpg resolution; sane range 100-600
+      inkscape:
+        exe: "C:/Program Files/Inkscape/bin/inkscape.exe"
+      pdf_postproc:
+        ghostscript:  # (optional) PDF size reduction and reversioning
+          toggle: False
+          exe: "C:/Program Files/gs/gs10.02.1/bin/gswin64c.exe"
+          pdf_ver: 1.5  # PDF reversioning for pdfTeX compatibility
+        pdfcrop:  # (optional) PDF margin cropping
+          toggle: False
+          # You can also use the Perl script of pdfcrop provided that a Perl
+          # executable has been registered to the path environment variable.
+          exe: C:/texlive/2023/bin/windows/pdfcrop.exe
+  #
+  # Nuclear data
+  #
+  scout:
+    radionuclides:
+      #
+      # Each radionuclide listed below requires the corresponding nuclear data
+      # file. Such a file will be:
+      # (1) searched for at the directory of io > lib > nucl_data_path.
+      #     If not found, the data file will be:
+      # (2) fetched from the IAEA-NDS Live Chart of Nuclides and saved to the
+      #     directory of io > lib > nucl_data_path for future reuse.
+      #     This requires one-time Internet connection to access to
+      #     the IAEA-NDS server.
+      #
+      # recursive group:
+      #   Assign progenitors; all of their progeny radionuclides will be
+      #   automatically identified by RecurLib.
+      # static group:
+      #   Assign radionuclides whose progeny are not to be included in
+      #   the radionuclide subset.
+      # exclusion group:
+      #   Assign radionuclides to be removed from the radionuclide subset.
+      #
+      # **How to designate nuclear isomers**
+      # - Unless identified by RecurLib as a progeny radionuclide,
+      #   a nuclear isomer must be specified together with its energy level
+      #   using the following syntax:
+      #   <radionuclide>;<energy_level_in_keV>
+      #   e.g. Tc-99m;142.6836
+      # - Should a radionuclide and its nuclear isomer are designated together,
+      #   a nuclear isomer must come first. Keep this order within
+      #   each of the recursive and static groups; in case such a pair
+      #   should appear in either of the groups, the nuclear isomer should be 
+      #   placed in the static group, as this is processed before the
+      #   recursive one.
+      #
+      recursive:
+        - Ac-225
+      static:
+        - ""
+      exclusion:
+        - ""
+      spectrum_radiation: gamma  # Available values: alpha, gamma, beta minus
+      cutoffs:  # Pairs of lower and upper limits
+        energy:  # Unit: keV
+          - 0
+          - 1e4
+        emission_probability:  # Unit: %
+          - 1e-3
+          - 1e2
+        half_life_sec:
+          - 0.0
+          - 1.433e99
+  plot:
+    # Designate your own style sheet or a precompiled one in the following URL:
+    # https://matplotlib.org/stable/gallery/style_sheets/style_sheets_reference.html
+    style_sheet: seaborn-v0_8
+    # You can also set the parameters of rcParams. See the following URL for details.
+    # https://matplotlib.org/stable/users/explain/customizing.html
+    rc_params:
+      mathtext.fontset: dejavusans
+    ax:
+      figsize:  # Unit: Inch
+        - 6  # Horizontal
+        - 3  # Vertical
+    #
+    # x-axis
+    #
+    xticks:
+      is_ticklabels: True
+      is_remove_end_ticklabels: False
+      is_auto: False
+      lim:  # Pairs of upper and lower limits; effective for is_auto=False
+        - 0
+        - 2e3
+      minor_ndivs: 2
+      # Available keyword arguments can be found under "Other Parameters"
+      # in the following URL:
+      # https://matplotlib.org/stable/api/_as_gen
+      # /matplotlib.axes.Axes.tick_params.html#matplotlib.axes.Axes.tick_params
+      kwargs:
+        labelsize: 13.5
+    xlabel:
+      toggle: True
+      label: Photon energy (keV)
+      # Available keyword arguments can be found under "Property"
+      # in the following URL:
+      # https://matplotlib.org/stable/api/text_api.html#matplotlib.text.Text
+      kwargs:
+        # labelpad: 0
+        fontsize: 16
+    #
+    # y-axis
+    #
+    yticks:
+      is_ticklabels: True
+      is_auto: False
+      is_log: True
+      log_locators:
+        major:
+          numticks: 9
+        minor:
+          numticks: 9
+      lim:
+        - 1e-3  # Greater than or equal to 1 is required if is_log == True.
+        - 1e2
+      kwargs:
+        labelsize: 13.5
+    ylabel:
+      toggle: True
+      label: Emission probability (%)
+      kwargs:
+        # labelpad: 0
+        fontsize: 16
+    #
+    # Annotations for the identified radionuclides
+    #
+    annots:
+      # Available values for type: every, grouped, both
+      # - every: Individual radiation data point is annotated.
+      # - grouped: Radiation data points belonging to the same radionuclide
+      #   are labeled by a marker. The pair of the marker and its associated
+      #   radionuclide can then be displayed by setting legend = True.
+      # - both: The every and grouped types will be drawn together.
+      type: both
+      every:
+        cutoffs:  # Pairs of lower and upper limits
+          window1:
+            energy:  # Unit: keV
+              - 0
+              - 1e4
+            emission_probability:  # Unit: %
+              - 1e1
+              - 1e2
+        single:
+          line1:  # Required
+            # Multiplication factor
+            # - 1.0 is recommended for type = every.
+            # - 1.5 is recommended for type = grouped.
+            offy: 1.5
+            # Label formatting
+            # - Available variables
+            #   - nrg: Energy of the spectrum radiation of interest
+            #   - ep: Emission probability of radiation of a given energy
+            #   - hl: Half-life of the radionuclide
+            #   - dm: Decay mode (the origin) of the emitted radiation
+            # - Examples using a pair of Fr-221 and 218 keV
+            # (i) "'{0:s}\\n({1:.0f})'.format(lab_rn, nrg)"
+            #   => "221Fr\n(218)" where "\n" stands for a new line.
+            #   => The use of "\n" is recommended for rotation = 0.
+            # (ii) "'{0:s} ({1:.0f})'.format(lab_rn, nrg)"
+            #   => "221Fr (218)"
+            #   => Exclusion of "\n" is recommended for rotation = 90.
+            # (iii) fmt: "'({:.0f},{:.0f})'.format(nrg, ep)"
+            # (vi)  fmt: "'{:s}\\n({:s} {:.1f}%)\\n{:.0f}'.format(lab_rn, dm, ep, nrg)"
+            fmt: "'{:.0f}'.format(nrg)"
+            # Available keyword arguments can be found under "Other Parameters"
+            # in the following URL:
+            # https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.text.html
+            kwargs:
+              ha: center
+              va: bottom
+              fontsize: 9
+              rotation: 0
+          # line2:  # Optional from line2 onward; drawn on top of the previous
+            # offy: 3.8
+            # fmt: "'({:s} {:.2f}%)'.format(dm, ep)"
+            # kwargs:
+              # ha: center
+              # va: bottom
+              # fontsize: 9
+              # rotation: 90
+        shade:
+          toggle: True
+          kwargs:
+            linestyle: None
+            edgecolor: None
+            facecolor: gray
+            alpha: 0.5
+            zorder: -1
+      grouped:
+        #
+        # Markers can be customized using lib/marker_registry.txt;
+        # below serves as the default markers for unregistered radionuclides.
+        #
+        defaults:
+          # Abbreviations
+          # - mfc: markerfacecolor
+          # - mec: markeredgecolor
+          # - mew: markeredgewidth
+          # - msz: markersize
+          mfc: k
+          mec: k  # none: No edge color (which is the MPL default)
+          mew: 0.5
+          msz: 8
+          alpha: 0.75
+        markers:  # marker(, mfc(+mec(+mew)))(, msz)(, alpha)
+          - "o, r+k, 9"
+          - "*, g, 13"
+          - "s, b"
+          - "D, k+darkorange+0.8, 8, 0.7"
+          - P
+          - p
+          - H
+          - d
+          - X
+          - h
+        legend:
+          toggle: True
+          order: as_is  # Available values: as_is, descending, ascending
+          # Available keyword arguments can be found under "Other Parameters"
+          # in the following URL:
+          # https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.legend.html
+          kwargs:
+            loc: best
+            # bbox_to_anchor:
+              # - 0.5
+              # - 1.01
+            ncols: 2
+            frameon: True
+            framealpha: 0.75
+            fontsize: 12
+            labelspacing: 0.3  # Default 0.5
+            handlelength: 1.5  # Default 2.0
+            handletextpad: 0.0  # Default 0.8
+            columnspacing: 0.8  # Default 2.0
+    #
+    # Title
+    #
+    title:
+      toggle: True
+      # crd:  # Will take precedence if uncommented.
+        # - 0.05
+        # - 0.90
+      loc: center
+      # Available keyword arguments can be found under "Property"
+      # in the following URL.
+      # https://matplotlib.org/stable/api/text_api.html#matplotlib.text.Text
+      kwargs:
+        pad: 25
+        fontsize: 16
+        fontweight: bold  # normal, bold, ... (see MPL doc)
+...

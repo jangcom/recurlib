@@ -1,0 +1,11 @@
+,energy,unc_en,intensity,unc_i,type,shell,p_z,p_n,p_symbol,p_energy_shift,p_energy,unc_pe,jp,half_life,operator_hl,unc_hl,unit_hl,half_life_sec,unc_hls,decay,decay_%,unc_d,q,unc_q,d_z,d_n,d_symbol,ensdf_publication_cut-off,ensdf_authors,Extraction_date
+0,10.572,,9.689209011e-06,1.277696716e-06,AU,L,84,132,Po,,0,,0+,0.145,,2,s,0.145,0.002,A,100,,6906.3,5,82,130,Pb,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+1,34.144,,1.916046741e-07,3.68932042e-08,AU,KLX,84,132,Po,,0,,0+,0.145,,2,s,0.145,0.002,A,100,,6906.3,5,82,130,Pb,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+2,43.948,,5.61697e-07,1.078160887e-07,AU,K,84,132,Po,,0,,0+,0.145,,2,s,0.145,0.002,A,100,,6906.3,5,82,130,Pb,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+3,59.103,,3.433775522e-07,6.59333195e-08,AU,KLL,84,132,Po,,0,,0+,0.145,,2,s,0.145,0.002,A,100,,6906.3,5,82,130,Pb,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+4,84.096,,2.67147735e-08,5.1849394e-09,AU,KXY,84,132,Po,,0,,0+,0.145,,2,s,0.145,0.002,A,100,,6906.3,5,82,130,Pb,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+5,716.889,,1.5181e-05,2.4078191377e-06,CE,K,84,132,Po,,0,,0+,0.145,,2,s,0.145,0.002,A,100,,6906.3,5,82,130,Pb,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+6,789.033,,3.2908e-06,5.21766624e-07,CE,L,84,132,Po,,0,,0+,0.145,,2,s,0.145,0.002,A,100,,6906.3,5,82,130,Pb,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+7,801.043,,7.923e-07,1.256183505e-07,CE,M,84,132,Po,,0,,0+,0.145,,2,s,0.145,0.002,A,100,,6906.3,5,82,130,Pb,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+8,804.001,,2.0083e-07,3.18378171e-08,CE,N,84,132,Po,,0,,0+,0.145,,2,s,0.145,0.002,A,100,,6906.3,5,82,130,Pb,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+9,804.747,,3.895e-08,6.1763581e-09,CE,O,84,132,Po,,0,,0+,0.145,,2,s,0.145,0.002,A,100,,6906.3,5,82,130,Pb,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27

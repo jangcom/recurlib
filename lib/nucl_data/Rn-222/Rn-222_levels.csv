@@ -1,0 +1,25 @@
+,z,n,symbol,idx,energy_shift,energy,unc_e,ripl_shift,jp,jp_order,half_life,operator_hl,unc_hl,unit_hl,half_life_sec,unc_hl.1,decay_1,decay_1_%,unc_1,decay_2,decay_2_%,unc_2,decay_3,decay_3_%,unc_3,isospin,magnetic_dipole,unc_mn,electric_quadrupole,unc_eq,ENSDF_publication_cut-off,ENSDF_authors,Extraction_date
+0,86,136,Rn,0,,0.0,,,0+,1,3.8222,,9,d,330238.08,77.76,A,100.0,,,,,,,,,0.92,0.14,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+1,86,136,Rn,1,,186.211,0.013,,2+,1,0.32,,2,ns,3.2e-10,2e-11,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+2,86,136,Rn,2,,448.48,0.06,,4+,1,52.5,,+44-23,ps,5.25e-11,3.35e-12,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+3,86,136,Rn,3,,600.74,0.04,,1-,1,0.7,,+11-5,ps,7e-13,8e-13,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+4,86,136,Rn,4,,635.57,0.09,,3-,1,0.4,AP,,ns,4e-10,,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+5,86,136,Rn,5,,768.08,0.21,,(6+),1,15.9,,+18-11,ps,1.59e-11,1.45e-12,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+6,86,136,Rn,6,,797.4,0.5,,(5-),1,,,,,,,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+7,86,136,Rn,7,,867.0,0.7,,(0+),1,,,,,,,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+8,86,136,Rn,8,,867.1,0.7,,(2+),1,,,,,,,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+9,86,136,Rn,9,,959.2,1.0,,(3+),1,,,,,,,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+10,86,136,Rn,10,,1048.7,0.5,,(7-),1,,,,,,,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+11,86,136,Rn,11,,1111.5,1.0,,(4+),1,,,,,,,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+12,86,136,Rn,12,,1127.7,0.3,,(8+),1,7.3,,+11-16,ps,7.3e-12,1.35e-12,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+13,86,136,Rn,13,,1356.5,0.5,,(9-),1,7.0,,+9-5,ps,7e-12,7e-12,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+14,86,136,Rn,14,,1512.5,0.4,,(10+),1,7.8,,+51-12,ps,7.8e-12,3.15e-12,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+15,86,136,Rn,15,,1707.8,0.5,,(11-),1,,,,,,,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+16,86,136,Rn,16,,1912.9,0.6,,(12+),1,,,,,,,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+17,86,136,Rn,17,,2088.7,0.7,,(13-),1,,,,,,,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+18,86,136,Rn,18,,2316.7,0.8,,(14+),1,,,,,,,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+19,86,136,Rn,19,,2485.0,0.9,,(15-),1,,,,,,,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+20,86,136,Rn,20,,2727.2,1.0,,(16+),1,,,,,,,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+21,86,136,Rn,21,,2881.6,1.0,,(17-),1,,,,,,,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+22,86,136,Rn,22,,3285.6,1.2,,(19-),1,,,,,,,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27
+23,86,136,Rn,23,,3695.8,1.3,,(21-),1,,,,,,,,,,,,,,,,,,,,,25-Sep-2023,Balraj Singh and  M.S. Basunia and  Jun Chen et al. and ,2024-04-27

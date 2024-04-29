@@ -1,0 +1,4 @@
+,mean_energy,unc_me,intensity_beta,unc_ib,daughter_level_hl,daughter_level_energy,max_energy,unc_me.1,log_ft,unc_lf,transition_type,anti_nu_mean_energy,unc_ame,p_z,p_n,p_symbol,p_energy_shift,p_energy,unc_pe,jp,half_life,operator_hl,unc_hl,unit_hl,half_life_sec,unc_hls,decay,decay_%,unc_d,q,unc_q,d_z,d_n,d_symbol,ensdf_publication_cut-off,ensdf_authors,Extraction_date
+0,40.88,0.51,5.01,0.07,1e-11,415.272,153.8,1.8,5.342,0.017,1NU,112.7,1.2,82,130,Pb,,0,,0+,10.622,,7,h,38239.2,25.2,B-,100,,569.0,18,83,129,Bi,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+1,93.28,0.56,81.5,1.0,1e-12,238.632,330.5,1.8,5.179,0.01,1NU,237.4,1.2,82,130,Pb,,0,,0+,10.622,,7,h,38239.2,25.2,B-,100,,569.0,18,83,129,Bi,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27
+2,171.4,0.62,13.7,1.0,3633.0,0.0,569.1,1.8,6.73,0.04,1NU,397.1,1.8,82,130,Pb,,0,,0+,10.622,,7,h,38239.2,25.2,B-,100,,569.0,18,83,129,Bi,1-Aug-2020,K. Auranen and E.A. McCutchan,2024-04-27

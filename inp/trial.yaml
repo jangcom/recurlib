@@ -1,0 +1,118 @@
+%YAML 1.2
+---
+#
+# RecurLib user input file
+#
+active_datasets:
+  #
+  # Actinide decay series
+  #
+  - thorium_series_alpha
+  - thorium_series_gamma
+  - neptunium_series_alpha
+  - neptunium_series_gamma
+  - uranium_series_alpha
+  - uranium_series_gamma
+  - actinium_series_alpha
+  - actinium_series_gamma
+
+thorium_series_alpha:
+  scout:
+    radionuclides:
+      recursive:
+        - Th-232
+      spectrum_radiation: alpha
+  plot:
+    xticks:
+      lim:
+        - 2e3
+        - 9e3
+    xlabel:
+      label: Alpha-particle energy (keV)
+    title:
+      label: Thorium series ($4n$)
+
+thorium_series_gamma:
+  scout:
+    radionuclides:
+      recursive:
+        - Th-232
+  plot:
+    title:
+      label: Thorium series ($4n$)
+
+neptunium_series_alpha:
+  scout:
+    radionuclides:
+      recursive:
+        - Np-237
+      spectrum_radiation: alpha
+  plot:
+    xticks:
+      lim:
+        - 2e3
+        - 9e3
+    xlabel:
+      label: Alpha-particle energy (keV)
+    title:
+      label: Neptunium series ($4n + 1$)
+
+neptunium_series_gamma:
+  scout:
+    radionuclides:
+      recursive:
+        - Np-237
+  plot:
+    title:
+      label: Neptunium series ($4n + 1$)
+
+uranium_series_alpha:
+  scout:
+    radionuclides:
+      recursive:
+        - U-238
+      spectrum_radiation: alpha
+  plot:
+    xticks:
+      lim:
+        - 2e3
+        - 9e3
+    xlabel:
+      label: Alpha-particle energy (keV)
+    title:
+      label: Uranium series ($4n + 2$)
+
+uranium_series_gamma:
+  scout:
+    radionuclides:
+      recursive:
+        - U-238
+  plot:
+    title:
+      label: Uranium series ($4n + 2$)
+
+actinium_series_alpha:
+  scout:
+    radionuclides:
+      recursive:
+        - U-235
+      spectrum_radiation: alpha
+  plot:
+    xticks:
+      lim:
+        - 2e3
+        - 9e3
+    xlabel:
+      label: Alpha-particle energy (keV)
+    title:
+      label: Actinium series ($4n + 3$)
+
+actinium_series_gamma:
+  scout:
+    radionuclides:
+      recursive:
+        - U-235
+  plot:
+    title:
+      label: Actinium series ($4n + 3$)
+...
