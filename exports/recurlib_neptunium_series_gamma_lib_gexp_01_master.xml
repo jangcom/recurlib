@@ -51,7 +51,7 @@
   <nuc_核データ出典>
     <Code>recurlib-neptunium_series_ga-mst</Code>
     <Name>recurlib-neptunium_series_gamma (RecurLib v1.0.0; ENSDF)</Name>
-    <Comment1>Generated on April 28, 2024, at 17:23:49 (UTC -07:00)</Comment1>
+    <Comment1>Generated on May 5, 2024 at 13:53:00 (UTC-07:00)</Comment1>
   </nuc_核データ出典>
   <nuc_核種>
     <IsoCode>NP237</IsoCode>
@@ -340,7 +340,7 @@
     <EneErr>0.01</EneErr>
     <Abundance>12.2</Abundance>
     <AbnErr>0.3</AbnErr>
-    <Priority>0</Priority>
+    <Priority>1</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>NP237</IsoCode>
@@ -730,7 +730,7 @@
     <EneErr>0.0</EneErr>
     <Abundance>48.4695682943852</Abundance>
     <AbnErr>0.0</AbnErr>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>NP237</IsoCode>
@@ -960,7 +960,7 @@
     <EneErr>0.011</EneErr>
     <Abundance>38.18</Abundance>
     <AbnErr>0.445725520920667</AbnErr>
-    <Priority>0</Priority>
+    <Priority>1</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>PA233</IsoCode>
@@ -1040,7 +1040,7 @@
     <EneErr>0.0</EneErr>
     <Abundance>41.3</Abundance>
     <AbnErr>2.2</AbnErr>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>PA233</IsoCode>
@@ -1240,7 +1240,7 @@
     <EneErr>0.0003</EneErr>
     <Abundance>0.0203</Abundance>
     <AbnErr>0.001</AbnErr>
-    <Priority>0</Priority>
+    <Priority>1</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>U233</IsoCode>
@@ -1420,7 +1420,7 @@
     <EneErr>0.0</EneErr>
     <Abundance>5.2</Abundance>
     <AbnErr>1.1</AbnErr>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>U233</IsoCode>
@@ -3250,7 +3250,7 @@
     <EneErr>0.0</EneErr>
     <Abundance>80.0</Abundance>
     <AbnErr>11.0</AbnErr>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>TH229</IsoCode>
@@ -3430,7 +3430,7 @@
     <EneErr>0.0</EneErr>
     <Abundance>24.4</Abundance>
     <AbnErr>0.6</AbnErr>
-    <Priority>0</Priority>
+    <Priority>1</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>TH229</IsoCode>
@@ -3470,7 +3470,7 @@
     <EneErr>0.05</EneErr>
     <Abundance>30.0</Abundance>
     <AbnErr>0.7</AbnErr>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>RA225</IsoCode>
@@ -4140,7 +4140,7 @@
     <EneErr>0.04</EneErr>
     <Abundance>21.6</Abundance>
     <AbnErr>1.4</AbnErr>
-    <Priority>0</Priority>
+    <Priority>1</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>RN221</IsoCode>
@@ -4320,7 +4320,7 @@
     <EneErr>0.0</EneErr>
     <Abundance>23.59682694343392</Abundance>
     <AbnErr>0.0</AbnErr>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>RN221</IsoCode>
@@ -5360,7 +5360,7 @@
     <EneErr>0.0</EneErr>
     <Abundance>13.32939270552604</Abundance>
     <AbnErr>0.0</AbnErr>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>AC225</IsoCode>
@@ -5380,7 +5380,7 @@
     <EneErr>0.0</EneErr>
     <Abundance>1.26620695784061</Abundance>
     <AbnErr>0.244410341412188</AbnErr>
-    <Priority>0</Priority>
+    <Priority>1</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>AC225</IsoCode>
