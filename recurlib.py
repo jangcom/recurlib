@@ -1999,14 +1999,8 @@ class Recurlib():
         prog_name = 'RecurLib'
         col_db = self.cols['database'][df_col_type]
         nucl_database = df_context[col_db].to_list()[0]
-        now = time.localtime()
-        now_ymd = time.strftime('%B %d, %Y', now)
-        now_hms = time.strftime('%H:%M:%S', now)
-        now_utc = re.sub('([0-9]{2})([0-9]{2})', r'\1:\2',
-                         time.strftime('%z', now))
-        tstamp = 'Generated on {}, at {} (UTC {})'.format(now_ymd,
-                                                          now_hms,
-                                                          now_utc)
+        now_is = mt.get_now(ymd_preposition='on ', hms_preposition='at ')
+        tstamp = 'Generated {}'.format(now_is)
         # Restrict the library code length to 32 characters to ensure
         # compatibility with some third-party spectral analysis software.
         rnlib_code_bname = '{}-{}'.format(prog_name.lower(), rnlib_bname)
