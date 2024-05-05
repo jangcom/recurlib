@@ -51,7 +51,7 @@
   <nuc_核データ出典>
     <Code>recurlib-thorium_series_gamm-mst</Code>
     <Name>recurlib-thorium_series_gamma (RecurLib v1.0.0; ENSDF)</Name>
-    <Comment1>Generated on April 28, 2024, at 17:23:21 (UTC -07:00)</Comment1>
+    <Comment1>Generated on May 5, 2024 at 13:52:25 (UTC-07:00)</Comment1>
   </nuc_核データ出典>
   <nuc_核種>
     <IsoCode>TH232</IsoCode>
@@ -191,7 +191,7 @@
     <EneErr>0.01</EneErr>
     <Abundance>0.263</Abundance>
     <AbnErr>0.013</AbnErr>
-    <Priority>0</Priority>
+    <Priority>1</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>TH232</IsoCode>
@@ -211,7 +211,7 @@
     <EneErr>0.0</EneErr>
     <Abundance>7.139185247404</Abundance>
     <AbnErr>0.4525909722248524</AbnErr>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>TH232</IsoCode>
@@ -261,7 +261,7 @@
     <EneErr>0.02</EneErr>
     <Abundance>1.6</Abundance>
     <AbnErr>0.00016</AbnErr>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>RA228</IsoCode>
@@ -1641,7 +1641,7 @@
     <EneErr>0.004</EneErr>
     <Abundance>25.8</Abundance>
     <AbnErr>0.4</AbnErr>
-    <Priority>0</Priority>
+    <Priority>1</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>AC228</IsoCode>
@@ -2951,7 +2951,7 @@
     <EneErr>0.0</EneErr>
     <Abundance>33.4</Abundance>
     <AbnErr>2.1</AbnErr>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>AC228</IsoCode>
@@ -3011,7 +3011,7 @@
     <EneErr>0.003</EneErr>
     <Abundance>1.188</Abundance>
     <AbnErr>0.0389525873851789</AbnErr>
-    <Priority>0</Priority>
+    <Priority>1</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>TH228</IsoCode>
@@ -3061,7 +3061,7 @@
     <EneErr>0.0</EneErr>
     <Abundance>8.423934393021918</Abundance>
     <AbnErr>0.0</AbnErr>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>TH228</IsoCode>
@@ -3451,7 +3451,7 @@
     <EneErr>0.009</EneErr>
     <Abundance>6.67</Abundance>
     <AbnErr>0.09</AbnErr>
-    <Priority>0</Priority>
+    <Priority>1</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>BI212</IsoCode>
@@ -3551,7 +3551,7 @@
     <EneErr>0.0</EneErr>
     <Abundance>6.998779634612</Abundance>
     <AbnErr>0.6613177757538622</AbnErr>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>BI212</IsoCode>

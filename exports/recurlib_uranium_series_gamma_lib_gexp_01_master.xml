@@ -51,7 +51,7 @@
   <nuc_核データ出典>
     <Code>recurlib-uranium_series_gamm-mst</Code>
     <Name>recurlib-uranium_series_gamma (RecurLib v1.0.0; ENSDF)</Name>
-    <Comment1>Generated on April 28, 2024, at 17:24:27 (UTC -07:00)</Comment1>
+    <Comment1>Generated on May 5, 2024 at 13:53:39 (UTC-07:00)</Comment1>
   </nuc_核データ出典>
   <nuc_核種>
     <IsoCode>U238</IsoCode>
@@ -349,7 +349,7 @@
     <EneErr>0.02</EneErr>
     <Abundance>3.665</Abundance>
     <AbnErr>0.3885759127892515</AbnErr>
-    <Priority>0</Priority>
+    <Priority>1</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>TH234</IsoCode>
@@ -449,7 +449,7 @@
     <EneErr>0.0</EneErr>
     <Abundance>7.2</Abundance>
     <AbnErr>0.5</AbnErr>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>TH234</IsoCode>
@@ -4819,7 +4819,7 @@
     <EneErr>0.02</EneErr>
     <Abundance>0.123</Abundance>
     <AbnErr>0.002</AbnErr>
-    <Priority>0</Priority>
+    <Priority>1</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>U234</IsoCode>
@@ -4839,7 +4839,7 @@
     <EneErr>0.0</EneErr>
     <Abundance>9.989616344671614</Abundance>
     <AbnErr>0.0</AbnErr>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>U234</IsoCode>
@@ -4889,7 +4889,7 @@
     <EneErr>0.002</EneErr>
     <Abundance>0.37673</Abundance>
     <AbnErr>0.03083388558064</AbnErr>
-    <Priority>0</Priority>
+    <Priority>1</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>TH230</IsoCode>
@@ -4929,7 +4929,7 @@
     <EneErr>0.0</EneErr>
     <Abundance>7.731809660327399</Abundance>
     <AbnErr>0.7094056020171331</AbnErr>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>TH230</IsoCode>
@@ -8239,7 +8239,7 @@
     <EneErr>0.0</EneErr>
     <Abundance>22.66627</Abundance>
     <AbnErr>1.0027411830539374</AbnErr>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>HG206</IsoCode>

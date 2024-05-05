@@ -46,7 +46,7 @@
   <nuc_対象核種_Index>
     <PurposeCode>recurlib-uranium_series_gamm-grp</PurposeCode>
     <Purpose>recurlib-uranium_series_gamma (RecurLib v1.0.0; ENSDF)</Purpose>
-    <Comment1>Generated on April 28, 2024, at 17:24:27 (UTC -07:00)</Comment1>
+    <Comment1>Generated on May 5, 2024 at 13:53:39 (UTC-07:00)</Comment1>
   </nuc_対象核種_Index>
   <nuc_対象核種_List>
     <PurposeCode>recurlib-uranium_series_gamm-grp</PurposeCode>
@@ -214,7 +214,8 @@
     <OriginCode>recurlib-uranium_series_gamm-mst</OriginCode>
     <PeakNo>5</PeakNo>
     <Energy>63.29</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>1</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_gamm-grp</PurposeCode>
@@ -294,8 +295,7 @@
     <OriginCode>recurlib-uranium_series_gamm-mst</OriginCode>
     <PeakNo>15</PeakNo>
     <Energy>16.228</Energy>
-    <UsrPksAtri>#</UsrPksAtri>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_gamm-grp</PurposeCode>
@@ -3793,7 +3793,8 @@
     <OriginCode>recurlib-uranium_series_gamm-mst</OriginCode>
     <PeakNo>1</PeakNo>
     <Energy>53.2</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>1</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_gamm-grp</PurposeCode>
@@ -3809,8 +3810,7 @@
     <OriginCode>recurlib-uranium_series_gamm-mst</OriginCode>
     <PeakNo>3</PeakNo>
     <Energy>15.784</Energy>
-    <UsrPksAtri>#</UsrPksAtri>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_gamm-grp</PurposeCode>
@@ -3850,7 +3850,8 @@
     <OriginCode>recurlib-uranium_series_gamm-mst</OriginCode>
     <PeakNo>1</PeakNo>
     <Energy>67.672</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>1</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_gamm-grp</PurposeCode>
@@ -3882,8 +3883,7 @@
     <OriginCode>recurlib-uranium_series_gamm-mst</OriginCode>
     <PeakNo>5</PeakNo>
     <Energy>14.92</Energy>
-    <UsrPksAtri>#</UsrPksAtri>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_gamm-grp</PurposeCode>
@@ -6537,8 +6537,7 @@
     <OriginCode>recurlib-uranium_series_gamm-mst</OriginCode>
     <PeakNo>2</PeakNo>
     <Energy>12.904</Energy>
-    <UsrPksAtri>#</UsrPksAtri>
-    <Priority>1</Priority>
+    <Priority>0</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_gamm-grp</PurposeCode>
