@@ -8,8 +8,10 @@ Functions
 ---------
 get_borders(border_len=70)
     Create a list of display borders.
-get_now(ymd_directive='%B %d, %Y', hms_directive='%H:%M:%S (UTC%z)')
-    Return the current time in a formated string.
+get_now(ymd_directive='%B %d, %Y', hms_directive='%H:%M:%S',
+        ymd_preposition='', hms_preposition='',
+        is_ymd_wo_leading_zeros=True, is_append_utc=True)
+    Return the current time in a formatted string.
 get_target_sum(tgt_sum, objs, r, unc=0)
     Find a target sum from a pool of candidates using brute-force search.
 merge(destination, source)
@@ -31,14 +33,13 @@ show_front_matter(prog_info, is_prog=True, is_auth=True)
 import sys
 import re
 import time
-from datetime import datetime, timezone
 from itertools import combinations
 
 __author__ = 'Jaewoong Jang'
 __copyright__ = 'Copyright (c) 2024 Jaewoong Jang'
 __license__ = 'MIT License'
 __version__ = '1.0.0'
-__date__ = '2024-04-28'
+__date__ = '2024-05-05'
 
 BORDERS = {}
 
@@ -61,24 +62,43 @@ def get_borders(border_len=70):
         BORDERS['{symb}-'] = symb + '-' * (border_len - 1)
 
 
-def get_now(ymd_directive='%B %d, %Y', hms_directive='%H:%M:%S (UTC%z)'):
-    """Return the current time in a formated string.
+def get_now(ymd_directive='%B %d, %Y', hms_directive='%H:%M:%S',
+            ymd_preposition='', hms_preposition='',
+            is_ymd_wo_leading_zeros=True, is_append_utc=True):
+    """Return the current time in a formatted string.
 
     Parameters
     ----------
     ymd_directive : str, optional
         A year-month-day directive. The default is '%B %d, %Y'.
     hms_directive : str, optional
-        An hour-minute-second directive. The default is '%H:%M:%S (UTC%z)'.
+        An hour-minute-second directive. The default is '%H:%M:%S'.
+    ymd_preposition : str, optional
+        A preposition for date. You may use 'on '. The default is ''.
+    hms_preposition : str, optional
+        A preposition for time. You may use 'at '. The default is ''.
+    is_ymd_wo_leading_zeros : bool, optional
+        Remove leading zeros, if any, from month and day. The default is True.
+    is_append_utc : bool, optional
+        Append the UTC time zone information to the resulting timestamp.
+        The default is True.
 
     Returns
     -------
     now_is : str
         The current time in a formated string.
     """
-    ymd = datetime.now(tz=timezone.utc).astimezone().strftime(ymd_directive)
-    hms = datetime.now(tz=timezone.utc).astimezone().strftime(hms_directive)
-    now_is = '{} {}'.format(ymd, hms)
+    now = time.localtime()
+    ymd = time.strftime(ymd_directive, now)
+    if is_ymd_wo_leading_zeros:
+        ymd_wo_leading_zeros = [s.lstrip('0') for s in ymd.split(' ')]
+        ymd = ' '.join(ymd_wo_leading_zeros)
+    hms = time.strftime(hms_directive, now)
+    now_is = '{}{} {}{}'.format(ymd_preposition, ymd, hms_preposition, hms)
+    if is_append_utc:
+        utc = re.sub('([0-9]{2})([0-9]{2})', r'\1:\2',
+                     time.strftime('%z', now))
+        now_is += ' (UTC{})'.format(utc)
     return now_is
 
 
