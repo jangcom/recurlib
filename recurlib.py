@@ -20,7 +20,7 @@ __author__ = 'Jaewoong Jang'
 __copyright__ = 'Copyright (c) 2024 Jaewoong Jang'
 __license__ = 'MIT License'
 __version__ = '1.0.0'
-__date__ = '2024-04-28'
+__date__ = '2024-05-05'
 
 
 class Recurlib():
@@ -1734,6 +1734,9 @@ class Recurlib():
         hl_sec_lim = [float(hl) for hl
                       in p['scout']['radionuclides']['cutoffs'][
                           'half_life_sec']]
+        key_radiat_nrg_lim = [
+            float(key_radiat_nrg) for key_radiat_nrg
+            in p['scout']['radionuclides']['cutoffs']['key_radiation_energy']]
         # <<
         dfs_rnlib_to_be_concated = []
         for rn in self.rn_subset_uniq:
@@ -1785,7 +1788,10 @@ class Recurlib():
             # - The radionuclide name must be inserted before energy level
             #   validation step 5, where nuclear isomers are assigned the "m"
             #   suffix on top of their nuclide names.
-            ep_max = df_rnlib_rnwise[col_ep].max()
+            bool_idx_key_radiat_nrg = (
+                (df_rnlib_rnwise[col_nrg] >= key_radiat_nrg_lim[0])
+                & (df_rnlib_rnwise[col_nrg] <= key_radiat_nrg_lim[1]))
+            ep_max = df_rnlib_rnwise.loc[bool_idx_key_radiat_nrg, col_ep].max()
             bool_idx_ep_max = df_rnlib_rnwise[col_ep] == ep_max
             df_rnlib_rnwise.insert(0, col_key_radiat_bool,
                                    bool_idx_ep_max.astype(int))

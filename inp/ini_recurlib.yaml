@@ -182,6 +182,9 @@ template:  # Overridable at each active dataset
         half_life_sec:
           - 0.0
           - 1.433e99
+        key_radiation_energy:
+          - 5e1
+          - 1e4
   plot:
     # Designate your own style sheet or a precompiled one in the following URL:
     # https://matplotlib.org/stable/gallery/style_sheets/style_sheets_reference.html
