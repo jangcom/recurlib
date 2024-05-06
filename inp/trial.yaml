@@ -87,6 +87,8 @@ uranium_series_gamma:
     radionuclides:
       recursive:
         - U-238
+      exclusion:
+        - Pa-234
   plot:
     title:
       label: Uranium series ($4n + 2$)

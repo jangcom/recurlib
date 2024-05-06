@@ -20,7 +20,7 @@ __author__ = 'Jaewoong Jang'
 __copyright__ = 'Copyright (c) 2024 Jaewoong Jang'
 __license__ = 'MIT License'
 __version__ = '1.0.0'
-__date__ = '2024-05-05'
+__date__ = '2024-05-06'
 
 
 class Recurlib():
@@ -1685,13 +1685,6 @@ class Recurlib():
         _rn_subset = (decay_chains_flattened
                       + p['scout']['radionuclides']['static'])
         self.rn_subset_uniq = list(dict.fromkeys(_rn_subset))
-
-        # - Remove the user-specified exclusion group, if any.
-        if ('exclusion' in p['scout']['radionuclides']
-                and len(p['scout']['radionuclides']['exclusion'])):
-            for excl in p['scout']['radionuclides']['exclusion']:
-                if excl in self.rn_subset_uniq:
-                    self.rn_subset_uniq.remove(excl)
         # <<
 
         #
@@ -1940,6 +1933,24 @@ class Recurlib():
         # Combine the radionuclide-wise radionuclide library DFs into one DF,
         # which will yield a single, comprehensive radionuclide library DF.
         df_rnlib = pd.concat(dfs_rnlib_to_be_concated)
+        # - Remove a user-specified exclusion group of radionuclides, if any,
+        #   from the radionuclide library DF. This block of code has been
+        #   moved from the step for radionuclide subset construction to here
+        #   to prevent nuclear isomers from being accidentally excluded from
+        #   a radionuclide library by its nonisomeric counterpart designated
+        #   in an exclusion group.
+        # - A particular example is Pa-234, a member of the uranium
+        #   series. If Pa-234 is excluded directly from a radionuclide subset,
+        #   its isomer Pa-234m, which is more likely detected from a gamma-ray
+        #   spectrum of the uranium series, will also not be included in the
+        #   resulting radionuclide library. This is because nuclear isomers
+        #   are assigned their "m" symbol after radionuclide subsetting (see
+        #   "Nuclear isomer labeling" above).
+        if ('exclusion' in p['scout']['radionuclides']
+                and len(p['scout']['radionuclides']['exclusion'])):
+            bool_idx_rn_excl = df_rnlib[col_rn].isin(
+                p['scout']['radionuclides']['exclusion'])
+            df_rnlib = df_rnlib[~bool_idx_rn_excl].copy()
         # Rename the column names using the user-specified column names.
         df_rnlib.rename(columns=self.cols['nucl_data_to_rpt'],
                         inplace=True)
