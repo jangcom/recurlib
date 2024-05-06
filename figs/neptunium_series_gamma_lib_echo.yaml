@@ -116,11 +116,11 @@ io:
     pdf_postproc:
       ghostscript:
         toggle: false
-        exe: C:/Program Files/gs/gs10.03.0/bin/gswin64c.exe
+        exe: C:/Program Files/gs/gs10.02.1/bin/gswin64c.exe
         pdf_ver: 1.5
       pdfcrop:
         toggle: false
-        exe: C:/texlive/2024/bin/windows/pdfcrop.exe
+        exe: C:/texlive/2023/bin/windows/pdfcrop.exe
 scout:
   radionuclides:
     recursive:
@@ -139,6 +139,9 @@ scout:
       half_life_sec:
       - 0.0
       - 1.433e99
+      key_radiation_energy:
+      - 5e1
+      - 1e4
 plot:
   style_sheet: seaborn-v0_8
   rc_params:
