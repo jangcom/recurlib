@@ -28,8 +28,8 @@ template:  # Overridable at each active dataset
       radiation_number:
         nucl_data_new: Radiation number
         xml: PeakNo
-      key_radiation_bool:
-        nucl_data_new: Key radiation Boolean
+      priority_number:
+        nucl_data_new: Priority number
         xml: Priority
       energy:
         nucl_data_old: energy
@@ -182,9 +182,10 @@ template:  # Overridable at each active dataset
         half_life_sec:
           - 0.0
           - 1.433e99
-        key_radiation_energy:
+        priority_number_energy:
           - 5e1
           - 1e4
+        priority_number_max: 3  # Number of top emission probabilities to be flagged
   plot:
     # Designate your own style sheet or a precompiled one in the following URL:
     # https://matplotlib.org/stable/gallery/style_sheets/style_sheets_reference.html

@@ -1,6 +1,7 @@
 {#- A Jinja template for exporting a RecurLib-generated radionuclide library #}
 {#- to Gamma Explorer (Mirion Technologies Canberra Japan KK) #}
 {#- Library type: Analysis group #}
+{#- Revised by Jaewoong Jang on May 9, 2024 -#}
 {#- Prepared by Jaewoong Jang on March 30, 2024 -#}
 <?xml version="1.0" standalone="yes"?>
 <NewDataSet>
@@ -72,10 +73,10 @@
     <Energy>{{ radiat.energy }}</Energy>
     {#- The UsrPksAtri == # will make the corresponding radiation, #}
     {#- in this case a key radiation, to be printed on the report file. #}
-    {%- if radiat.key_radiation_bool == 1 %}
+    {%- if radiat.priority_number >= 1 %}
     <UsrPksAtri>#</UsrPksAtri>
     {%- endif %}
-    <Priority>{{ radiat.key_radiation_bool }}</Priority>
+    <Priority>{{ radiat.priority_number }}</Priority>
   </nuc_対象核種_Pks>
   {%- endfor %}
   {%- endfor %}

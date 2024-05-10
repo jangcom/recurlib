@@ -46,7 +46,7 @@
   <nuc_対象核種_Index>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
     <Purpose>recurlib-neptunium_series_gamma (RecurLib v1.0.0; ENSDF)</Purpose>
-    <Comment1>Generated on May 5, 2024 at 13:53:00 (UTC-07:00)</Comment1>
+    <Comment1>Generated on May 9, 2024 at 22:05:17 (UTC-07:00)</Comment1>
   </nuc_対象核種_Index>
   <nuc_対象核種_List>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -541,7 +541,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>52</PeakNo>
     <Energy>92.282</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -549,7 +550,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>53</PeakNo>
     <Energy>95.865</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -790,7 +792,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>27</PeakNo>
     <Energy>94.657</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -798,7 +801,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>28</PeakNo>
     <Energy>98.439</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -886,7 +890,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>8</PeakNo>
     <Energy>54.7039</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -1103,7 +1108,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>35</PeakNo>
     <Energy>93.347</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -2687,7 +2693,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>195</PeakNo>
     <Energy>85.432</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -2712,7 +2719,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>198</PeakNo>
     <Energy>101.37</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -3433,7 +3441,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>63</PeakNo>
     <Energy>83.227</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -3441,7 +3450,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>64</PeakNo>
     <Energy>86.102</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -3641,7 +3651,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>19</PeakNo>
     <Energy>99.8</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -4249,7 +4260,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>95</PeakNo>
     <Energy>83.227</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -4539,7 +4551,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>32</PeakNo>
     <Energy>78.947</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -4547,7 +4560,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>33</PeakNo>
     <Energy>81.517</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -4579,7 +4593,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>1</PeakNo>
     <Energy>257.7</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -4627,7 +4642,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>7</PeakNo>
     <Energy>720.3</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -5029,7 +5045,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>25</PeakNo>
     <Energy>76.862</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -5037,7 +5054,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>26</PeakNo>
     <Energy>79.29</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -5093,7 +5111,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>1</PeakNo>
     <Energy>117.21</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -5125,7 +5144,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>5</PeakNo>
     <Energy>465.14</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -5336,7 +5356,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>2</PeakNo>
     <Energy>335.26</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>
@@ -5344,7 +5365,8 @@
     <OriginCode>recurlib-neptunium_series_ga-mst</OriginCode>
     <PeakNo>3</PeakNo>
     <Energy>593.13</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_ga-grp</PurposeCode>

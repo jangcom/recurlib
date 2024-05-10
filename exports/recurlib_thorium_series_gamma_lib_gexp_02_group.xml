@@ -46,7 +46,7 @@
   <nuc_対象核種_Index>
     <PurposeCode>recurlib-thorium_series_gamm-grp</PurposeCode>
     <Purpose>recurlib-thorium_series_gamma (RecurLib v1.0.0; ENSDF)</Purpose>
-    <Comment1>Generated on May 5, 2024 at 13:52:25 (UTC-07:00)</Comment1>
+    <Comment1>Generated on May 9, 2024 at 22:04:47 (UTC-07:00)</Comment1>
   </nuc_対象核種_Index>
   <nuc_対象核種_List>
     <PurposeCode>recurlib-thorium_series_gamm-grp</PurposeCode>
@@ -123,7 +123,8 @@
     <OriginCode>recurlib-thorium_series_gamm-mst</OriginCode>
     <PeakNo>2</PeakNo>
     <Energy>140.88</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_gamm-grp</PurposeCode>
@@ -147,7 +148,8 @@
     <OriginCode>recurlib-thorium_series_gamm-mst</OriginCode>
     <PeakNo>5</PeakNo>
     <Energy>88.471</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_gamm-grp</PurposeCode>
@@ -507,7 +509,8 @@
     <OriginCode>recurlib-thorium_series_gamm-mst</OriginCode>
     <PeakNo>38</PeakNo>
     <Energy>338.32</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_gamm-grp</PurposeCode>
@@ -1372,7 +1375,8 @@
     <OriginCode>recurlib-thorium_series_gamm-mst</OriginCode>
     <PeakNo>146</PeakNo>
     <Energy>968.971</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_gamm-grp</PurposeCode>
@@ -2381,7 +2385,8 @@
     <OriginCode>recurlib-thorium_series_gamm-mst</OriginCode>
     <PeakNo>2</PeakNo>
     <Energy>131.613</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_gamm-grp</PurposeCode>
@@ -2405,7 +2410,8 @@
     <OriginCode>recurlib-thorium_series_gamm-mst</OriginCode>
     <PeakNo>5</PeakNo>
     <Energy>215.983</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_gamm-grp</PurposeCode>
@@ -2510,7 +2516,8 @@
     <OriginCode>recurlib-thorium_series_gamm-mst</OriginCode>
     <PeakNo>7</PeakNo>
     <Energy>81.07</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_gamm-grp</PurposeCode>
@@ -2518,7 +2525,8 @@
     <OriginCode>recurlib-thorium_series_gamm-mst</OriginCode>
     <PeakNo>8</PeakNo>
     <Energy>83.789</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_gamm-grp</PurposeCode>
@@ -2617,7 +2625,8 @@
     <OriginCode>recurlib-thorium_series_gamm-mst</OriginCode>
     <PeakNo>7</PeakNo>
     <Energy>74.815</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_gamm-grp</PurposeCode>
@@ -2625,7 +2634,8 @@
     <OriginCode>recurlib-thorium_series_gamm-mst</OriginCode>
     <PeakNo>8</PeakNo>
     <Energy>77.108</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_gamm-grp</PurposeCode>
@@ -2738,7 +2748,8 @@
     <OriginCode>recurlib-thorium_series_gamm-mst</OriginCode>
     <PeakNo>11</PeakNo>
     <Energy>785.37</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_gamm-grp</PurposeCode>
@@ -2786,7 +2797,8 @@
     <OriginCode>recurlib-thorium_series_gamm-mst</OriginCode>
     <PeakNo>17</PeakNo>
     <Energy>1620.5</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_gamm-grp</PurposeCode>
@@ -2946,7 +2958,8 @@
     <OriginCode>recurlib-thorium_series_gamm-mst</OriginCode>
     <PeakNo>6</PeakNo>
     <Energy>510.77</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_gamm-grp</PurposeCode>
@@ -2954,7 +2967,8 @@
     <OriginCode>recurlib-thorium_series_gamm-mst</OriginCode>
     <PeakNo>7</PeakNo>
     <Energy>583.187</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_gamm-grp</PurposeCode>

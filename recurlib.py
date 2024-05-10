@@ -20,7 +20,7 @@ __author__ = 'Jaewoong Jang'
 __copyright__ = 'Copyright (c) 2024 Jaewoong Jang'
 __license__ = 'MIT License'
 __version__ = '1.0.0'
-__date__ = '2024-05-06'
+__date__ = '2024-05-09'
 
 
 class Recurlib():
@@ -85,8 +85,10 @@ class Recurlib():
     set_levs_energy_flattening(rn,
                                is_sort=True, is_sort_reverse=True)
         Flatten all possible energy levels of a radionuclide.
-    set_levs_feasibility(self)
+    set_levs_feasibility()
         Set the feasibilities of the decay modes of a radionuclide series.
+    get_prio_idx_and_nums(df, sort_by, priority_num_max)
+        Construct DataFrame indices and values for priority numbers.
     get_rnlib(p)
         Generate a radionuclide library by recursive computation.
     get_context(rnlib_bname, df_rnlib, df_col_type='nucl_data_new',
@@ -1550,6 +1552,46 @@ class Recurlib():
             if 'energy_levels_isomer_progenitor' in self.levs[rn]:
                 del self.levs[rn]['energy_levels_isomer_progenitor']
 
+    def get_prio_idx_and_nums(self, df, sort_by, priority_num_max):
+        """Construct DataFrame indices and values for priority numbers.
+
+        Parameters
+        ----------
+        df : pandas.core.frame.DataFrame
+            A DataFrame object for which priority indices and values will be
+            calculated.
+        sort_by : str
+            A DF column by which the DF will be sorted in descending order.
+        priority_num_max : int
+            The greatest priority number, or the priority number of the least
+            prioritized radiation data point among those prioritized.
+
+        Returns
+        -------
+        priority_idx : list
+            A list of DF indices to which the calculated priority numbers are
+            to be assigned.
+        priority_nums : list
+            A list of calculated priority numbers.
+        """
+        # Sort the DF in descending order and fetch the indices of top rows;
+        # the number of top rows is equal to priority_num_max.
+        df_desc = df.sort_values(by=sort_by, ascending=False)
+        priority_idx = df_desc.head(priority_num_max).index
+
+        # Override the maximum priority number by the length of selected
+        # top rows if the latter is smaller than the former. This is to
+        # ensure that the list of priority numbers that will be returned
+        # has the same size as the number of DataFrame rows to which
+        # the priority numbers will be assigned.
+        # e.g. priority_num_max == 3, len(priority_idx) == 1
+        # -> priority_num_max = len(priority_idx)
+        if len(priority_idx) < priority_num_max:
+            priority_num_max = len(priority_idx)
+        # e.g. [1, 2, 3] for priority_num_max == 3
+        priority_nums = list(range(1, priority_num_max + 1))
+        return priority_idx, priority_nums
+
     def get_rnlib(self, p):
         """Generate a radionuclide library by recursive computation.
 
@@ -1712,7 +1754,7 @@ class Recurlib():
         usecols = [self.cols[col]['nucl_data_old'] for col in _usecols]
         col_rn = self.cols['radionuclide']['nucl_data_new']
         col_radiat_num = self.cols['radiation_number']['nucl_data_new']
-        col_key_radiat_bool = self.cols['key_radiation_bool']['nucl_data_new']
+        col_priority_num = self.cols['priority_number']['nucl_data_new']
         col_nrg = self.cols['energy']['nucl_data_old']
         col_ep = self.cols['emission_probability']['nucl_data_old']
         col_nrg_lev = self.cols['energy_level']['nucl_data_old']
@@ -1727,9 +1769,12 @@ class Recurlib():
         hl_sec_lim = [float(hl) for hl
                       in p['scout']['radionuclides']['cutoffs'][
                           'half_life_sec']]
-        key_radiat_nrg_lim = [
-            float(key_radiat_nrg) for key_radiat_nrg
-            in p['scout']['radionuclides']['cutoffs']['key_radiation_energy']]
+        priority_num_nrg_lim = [
+            float(priority_num_nrg) for priority_num_nrg
+            in p['scout']['radionuclides']['cutoffs'][
+                'priority_number_energy']]
+        priority_num_max = p['scout']['radionuclides']['cutoffs'][
+            'priority_number_max']
         # <<
         dfs_rnlib_to_be_concated = []
         for rn in self.rn_subset_uniq:
@@ -1776,18 +1821,26 @@ class Recurlib():
             # containing:
             #   1. Radionuclide name
             #   2. Radiation number
-            #   3. Key radiation Boolean
+            #   3. Priority number
             # - Note that they are inserted to the 0th column in reverse order.
             # - The radionuclide name must be inserted before energy level
             #   validation step 5, where nuclear isomers are assigned the "m"
             #   suffix on top of their nuclide names.
-            bool_idx_key_radiat_nrg = (
-                (df_rnlib_rnwise[col_nrg] >= key_radiat_nrg_lim[0])
-                & (df_rnlib_rnwise[col_nrg] <= key_radiat_nrg_lim[1]))
-            ep_max = df_rnlib_rnwise.loc[bool_idx_key_radiat_nrg, col_ep].max()
-            bool_idx_ep_max = df_rnlib_rnwise[col_ep] == ep_max
-            df_rnlib_rnwise.insert(0, col_key_radiat_bool,
-                                   bool_idx_ep_max.astype(int))
+            bool_idx_priority_num_nrg = (
+                (df_rnlib_rnwise[col_nrg] >= priority_num_nrg_lim[0])
+                & (df_rnlib_rnwise[col_nrg] <= priority_num_nrg_lim[1]))
+            _df_rnlib_rnwise_priority_num_nrg = df_rnlib_rnwise.loc[
+                bool_idx_priority_num_nrg, :]
+            priority_idx, priority_nums = self.get_prio_idx_and_nums(
+                _df_rnlib_rnwise_priority_num_nrg,
+                col_ep,
+                priority_num_max)
+            # Nonpriority data points are assigned the priority number 0
+            # rather than NaN.
+            df_rnlib_rnwise.insert(0, col_priority_num,
+                                   [0] * len(df_rnlib_rnwise.index))
+            df_rnlib_rnwise.loc[priority_idx,
+                                col_priority_num] = priority_nums
             df_rnlib_rnwise.insert(0, col_radiat_num,
                                    range(1, len(df_rnlib_rnwise.index) + 1))
             df_rnlib_rnwise.insert(0, col_rn,
@@ -1860,8 +1913,8 @@ class Recurlib():
             #   undifferentiated, by the radionuclide and its isomer.
             # - Reassign the following attributes separately to the
             #   radionuclide and its isomer:
-            #   - Radiation peak numbers
-            #   - Key radiation Boolean
+            #   - Radiation numbers
+            #   - Priority numbers
             #
             rn_w_forced_m = re.sub('([0-9])$', r'\1m', rn)
             if df_rnlib_rnwise[col_rn].isin([rn_w_forced_m]).any():
@@ -1903,23 +1956,33 @@ class Recurlib():
                                     col_radiat_num] = radiat_num_isomer
                 df_rnlib_rnwise.loc[bool_idx_rn,
                                     col_radiat_num] = radiat_num_rn
-                # Attribute reassignment (ii): Key radiation Booleans
-                ep_max_isomer = df_rnlib_rnwise.loc[bool_idx_isomer,
-                                                    col_ep].max()
-                ep_max_rn = df_rnlib_rnwise.loc[bool_idx_rn,
-                                                col_ep].max()
-                bool_idx_ep_max_isomer = df_rnlib_rnwise.loc[
-                    bool_idx_isomer,
-                    col_ep] == ep_max_isomer
-                bool_idx_ep_max_rn = df_rnlib_rnwise.loc[
-                    bool_idx_rn,
-                    col_ep] == ep_max_rn
+                # Attribute reassignment (ii): Priority numbers
+                # bool_idx_priority_num_nrg is recalculated as df_rnlib_rnwise
+                # has been sorted in the above.
+                bool_idx_priority_num_nrg = (
+                    (df_rnlib_rnwise[col_nrg] >= priority_num_nrg_lim[0])
+                    & (df_rnlib_rnwise[col_nrg] <= priority_num_nrg_lim[1]))
+                _df_rnlib_rnwise_isomer = df_rnlib_rnwise.loc[
+                    bool_idx_priority_num_nrg & bool_idx_isomer, :]
+                _df_rnlib_rnwise_rn = df_rnlib_rnwise.loc[
+                    bool_idx_priority_num_nrg & bool_idx_rn, :]
+                prio_idx_isomer, prio_nums_isomer = self.get_prio_idx_and_nums(
+                    _df_rnlib_rnwise_isomer,
+                    col_ep,
+                    priority_num_max)
+                prio_idx_rn, prio_nums_rn = self.get_prio_idx_and_nums(
+                    _df_rnlib_rnwise_rn,
+                    col_ep,
+                    priority_num_max)
                 df_rnlib_rnwise.loc[
-                    bool_idx_isomer,
-                    col_key_radiat_bool] = bool_idx_ep_max_isomer.astype(int)
+                    :,
+                    col_priority_num] = 0  # Initialization
                 df_rnlib_rnwise.loc[
-                    bool_idx_rn,
-                    col_key_radiat_bool] = bool_idx_ep_max_rn.astype(int)
+                    prio_idx_isomer,
+                    col_priority_num] = prio_nums_isomer
+                df_rnlib_rnwise.loc[
+                    prio_idx_rn,
+                    col_priority_num] = prio_nums_rn
                 if p['io']['ctrls']['is_verbose']:
                     print('\nAfter:')
                     print(df_rnlib_rnwise)
@@ -2047,7 +2110,7 @@ class Recurlib():
             'energy_unc',
             'emission_probability',
             'emission_probability_unc',
-            'key_radiation_bool',
+            'priority_number',
         ]
         # Iterate over the list of radionuclides contained in the library DF.
         col_rn = self.cols['radionuclide'][df_col_type]
@@ -2160,9 +2223,9 @@ class Recurlib():
                 for col in cols_radiat:
                     # e.g. Example dicts to be added to the 'radiats' list:
                     # {'radiation_number': 1, 'energy': 26.0, ...,
-                    #  'key_radiation_bool': 0}
+                    #  'priority_number': 0}
                     # {'radiation_number': 2, 'energy': 36.7, ...,
-                    #  'key_radiation_bool': 0}
+                    #  'priority_number': 0}
                     col_in_df = self.cols[col][df_col_type]
                     anonymous_dct.update({col: rn_dct[col_in_df]})
                 rns[rn]['radiats'].append(anonymous_dct)

@@ -46,7 +46,7 @@
   <nuc_対象核種_Index>
     <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
     <Purpose>recurlib-thorium_series_alpha (RecurLib v1.0.0; ENSDF)</Purpose>
-    <Comment1>Generated on May 5, 2024 at 13:52:17 (UTC-07:00)</Comment1>
+    <Comment1>Generated on May 9, 2024 at 22:04:41 (UTC-07:00)</Comment1>
   </nuc_対象核種_Index>
   <nuc_対象核種_List>
     <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
@@ -96,7 +96,8 @@
     <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
     <PeakNo>1</PeakNo>
     <Energy>3811.1</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
@@ -104,7 +105,8 @@
     <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
     <PeakNo>2</PeakNo>
     <Energy>3947.2</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
@@ -137,7 +139,8 @@
     <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
     <PeakNo>3</PeakNo>
     <Energy>5211.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
@@ -145,7 +148,8 @@
     <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
     <PeakNo>4</PeakNo>
     <Energy>5340.36</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
@@ -170,7 +174,8 @@
     <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
     <PeakNo>2</PeakNo>
     <Energy>5051.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
@@ -186,7 +191,8 @@
     <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
     <PeakNo>4</PeakNo>
     <Energy>5448.6</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
@@ -203,7 +209,8 @@
     <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
     <PeakNo>1</PeakNo>
     <Energy>5747.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
@@ -220,7 +227,8 @@
     <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
     <PeakNo>1</PeakNo>
     <Energy>5985.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
@@ -269,7 +277,8 @@
     <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
     <PeakNo>7</PeakNo>
     <Energy>6050.78</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-thorium_series_alph-grp</PurposeCode>
