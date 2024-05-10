@@ -51,7 +51,7 @@
   <nuc_核データ出典>
     <Code>recurlib-actinium_series_gam-mst</Code>
     <Name>recurlib-actinium_series_gamma (RecurLib v1.0.0; ENSDF)</Name>
-    <Comment1>Generated on May 9, 2024 at 22:06:31 (UTC-07:00)</Comment1>
+    <Comment1>Generated on May 9, 2024 at 22:42:21 (UTC-07:00)</Comment1>
   </nuc_核データ出典>
   <nuc_核種>
     <IsoCode>U235</IsoCode>
@@ -6175,7 +6175,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>6</PeakNo>
+    <PeakNo>1</PeakNo>
     <Energy>271.1</Energy>
     <EneErr>0.1</EneErr>
     <Abundance>4.031</Abundance>
@@ -6185,17 +6185,17 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>8</PeakNo>
+    <PeakNo>2</PeakNo>
     <Energy>293.5</Energy>
     <EneErr>0.1</EneErr>
     <Abundance>48.928</Abundance>
     <AbnErr>5.835860262206421</AbnErr>
-    <Priority>0</Priority>
+    <Priority>1</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>11</PeakNo>
+    <PeakNo>3</PeakNo>
     <Energy>384.0</Energy>
     <EneErr>1.0</EneErr>
     <Abundance>0.278</Abundance>
@@ -6205,7 +6205,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>12</PeakNo>
+    <PeakNo>4</PeakNo>
     <Energy>401.6</Energy>
     <EneErr>1.0</EneErr>
     <Abundance>0.973</Abundance>
@@ -6215,7 +6215,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>16</PeakNo>
+    <PeakNo>5</PeakNo>
     <Energy>517.5</Energy>
     <EneErr>0.2</EneErr>
     <Abundance>2.085</Abundance>
@@ -6225,7 +6225,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>17</PeakNo>
+    <PeakNo>6</PeakNo>
     <Energy>542.7</Energy>
     <EneErr>2.5</EneErr>
     <Abundance>0.417</Abundance>
@@ -6235,7 +6235,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>18</PeakNo>
+    <PeakNo>7</PeakNo>
     <Energy>564.4</Energy>
     <EneErr>0.5</EneErr>
     <Abundance>1.39</Abundance>
@@ -6245,7 +6245,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>19</PeakNo>
+    <PeakNo>8</PeakNo>
     <Energy>609.0</Energy>
     <EneErr>0.5</EneErr>
     <Abundance>1.39</Abundance>
@@ -6255,7 +6255,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>20</PeakNo>
+    <PeakNo>9</PeakNo>
     <Energy>677.6</Energy>
     <EneErr>1.0</EneErr>
     <Abundance>0.834</Abundance>
@@ -6265,7 +6265,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>22</PeakNo>
+    <PeakNo>10</PeakNo>
     <Energy>776.9</Energy>
     <EneErr>0.1</EneErr>
     <Abundance>1.668</Abundance>
@@ -6275,7 +6275,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>23</PeakNo>
+    <PeakNo>11</PeakNo>
     <Energy>784.0</Energy>
     <EneErr>2.0</EneErr>
     <Abundance>0.695</Abundance>
@@ -6285,7 +6285,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>24</PeakNo>
+    <PeakNo>12</PeakNo>
     <Energy>806.5</Energy>
     <EneErr>2.2</EneErr>
     <Abundance>0.834</Abundance>
@@ -6295,7 +6295,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>25</PeakNo>
+    <PeakNo>13</PeakNo>
     <Energy>836.3</Energy>
     <EneErr>1.0</EneErr>
     <Abundance>1.251</Abundance>
@@ -6305,7 +6305,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>26</PeakNo>
+    <PeakNo>14</PeakNo>
     <Energy>905.0</Energy>
     <EneErr>2.0</EneErr>
     <Abundance>0.417</Abundance>
@@ -6315,7 +6315,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>27</PeakNo>
+    <PeakNo>15</PeakNo>
     <Energy>1023.1</Energy>
     <EneErr>1.2</EneErr>
     <Abundance>1.251</Abundance>
@@ -6325,7 +6325,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>28</PeakNo>
+    <PeakNo>16</PeakNo>
     <Energy>1104.5</Energy>
     <EneErr>0.5</EneErr>
     <Abundance>3.058</Abundance>
@@ -6335,7 +6335,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>29</PeakNo>
+    <PeakNo>17</PeakNo>
     <Energy>1127.7</Energy>
     <EneErr>0.7</EneErr>
     <Abundance>0.973</Abundance>
@@ -6345,7 +6345,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>30</PeakNo>
+    <PeakNo>18</PeakNo>
     <Energy>1294.5</Energy>
     <EneErr>0.3</EneErr>
     <Abundance>1.251</Abundance>
@@ -6355,7 +6355,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>31</PeakNo>
+    <PeakNo>19</PeakNo>
     <Energy>1399.2</Energy>
     <EneErr>0.4</EneErr>
     <Abundance>1.668</Abundance>
@@ -6365,7 +6365,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>34</PeakNo>
+    <PeakNo>20</PeakNo>
     <Energy>13.292</Energy>
     <EneErr>0.0</EneErr>
     <Abundance>8.8158743977993</Abundance>
@@ -6375,27 +6375,27 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>36</PeakNo>
+    <PeakNo>21</PeakNo>
     <Energy>76.862</Energy>
     <EneErr>0.0</EneErr>
     <Abundance>6.237255001882334</Abundance>
     <AbnErr>0.7282883438478007</AbnErr>
-    <Priority>0</Priority>
+    <Priority>3</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>39</PeakNo>
+    <PeakNo>22</PeakNo>
     <Energy>79.29</Energy>
     <EneErr>0.0</EneErr>
     <Abundance>10.38676936200222</Abundance>
     <AbnErr>1.212032097959306</AbnErr>
-    <Priority>0</Priority>
+    <Priority>2</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>45</PeakNo>
+    <PeakNo>23</PeakNo>
     <Energy>89.837</Energy>
     <EneErr>0.0</EneErr>
     <Abundance>3.575877094290957</Abundance>
@@ -6405,7 +6405,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>46</PeakNo>
+    <PeakNo>24</PeakNo>
     <Energy>90.941</Energy>
     <EneErr>0.0</EneErr>
     <Abundance>4.687974870615444</Abundance>
@@ -6415,7 +6415,7 @@
   <nuc_核種ピーク>
     <IsoCode>BI215</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>48</PeakNo>
+    <PeakNo>25</PeakNo>
     <Energy>92.315</Energy>
     <EneErr>0.0</EneErr>
     <Abundance>1.1120977763244877</Abundance>
@@ -7015,27 +7015,27 @@
   <nuc_核種ピーク>
     <IsoCode>PO211</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>3</PeakNo>
+    <PeakNo>2</PeakNo>
     <Energy>569.65</Energy>
     <EneErr>0.1</EneErr>
     <Abundance>0.535</Abundance>
     <AbnErr>0.02</AbnErr>
-    <Priority>3</Priority>
-  </nuc_核種ピーク>
-  <nuc_核種ピーク>
-    <IsoCode>PO211</IsoCode>
-    <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>6</PeakNo>
-    <Energy>897.8</Energy>
-    <EneErr>0.1</EneErr>
-    <Abundance>0.55105</Abundance>
-    <AbnErr>0.0232131428290096</AbnErr>
     <Priority>2</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>PO211</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>8</PeakNo>
+    <PeakNo>3</PeakNo>
+    <Energy>897.8</Energy>
+    <EneErr>0.1</EneErr>
+    <Abundance>0.55105</Abundance>
+    <AbnErr>0.0232131428290096</AbnErr>
+    <Priority>1</Priority>
+  </nuc_核種ピーク>
+  <nuc_核種ピーク>
+    <IsoCode>PO211</IsoCode>
+    <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
+    <PeakNo>4</PeakNo>
     <Energy>12.522</Energy>
     <EneErr>0.0</EneErr>
     <Abundance>0.0077627665516255</Abundance>
@@ -7045,7 +7045,7 @@
   <nuc_核種ピーク>
     <IsoCode>PO211</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>9</PeakNo>
+    <PeakNo>5</PeakNo>
     <Energy>72.805</Energy>
     <EneErr>0.0</EneErr>
     <Abundance>0.00561568188103</Abundance>
@@ -7055,17 +7055,17 @@
   <nuc_核種ピーク>
     <IsoCode>PO211</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>10</PeakNo>
+    <PeakNo>6</PeakNo>
     <Energy>74.97</Energy>
     <EneErr>0.0</EneErr>
     <Abundance>0.0094381208084539</Abundance>
     <AbnErr>0.0003130397476659</AbnErr>
-    <Priority>0</Priority>
+    <Priority>3</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>PO211</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>11</PeakNo>
+    <PeakNo>7</PeakNo>
     <Energy>84.986</Energy>
     <EneErr>0.0</EneErr>
     <Abundance>0.0032258148620322</Abundance>
@@ -7075,7 +7075,7 @@
   <nuc_核種ピーク>
     <IsoCode>PO211</IsoCode>
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
-    <PeakNo>12</PeakNo>
+    <PeakNo>8</PeakNo>
     <Energy>86.022</Energy>
     <EneErr>0.0</EneErr>
     <Abundance>0.004200010950366</Abundance>
