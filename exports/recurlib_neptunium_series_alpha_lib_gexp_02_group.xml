@@ -46,7 +46,7 @@
   <nuc_対象核種_Index>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>
     <Purpose>recurlib-neptunium_series_alpha (RecurLib v1.0.0; ENSDF)</Purpose>
-    <Comment1>Generated on May 5, 2024 at 13:52:43 (UTC-07:00)</Comment1>
+    <Comment1>Generated on May 9, 2024 at 22:05:02 (UTC-07:00)</Comment1>
   </nuc_対象核種_Index>
   <nuc_対象核種_List>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>
@@ -256,7 +256,8 @@
     <OriginCode>recurlib-neptunium_series_al-mst</OriginCode>
     <PeakNo>18</PeakNo>
     <Energy>4766.5</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>
@@ -264,7 +265,8 @@
     <OriginCode>recurlib-neptunium_series_al-mst</OriginCode>
     <PeakNo>19</PeakNo>
     <Energy>4771.4</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>
@@ -473,7 +475,8 @@
     <OriginCode>recurlib-neptunium_series_al-mst</OriginCode>
     <PeakNo>19</PeakNo>
     <Energy>4729.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>
@@ -505,7 +508,8 @@
     <OriginCode>recurlib-neptunium_series_al-mst</OriginCode>
     <PeakNo>23</PeakNo>
     <Energy>4783.5</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>
@@ -634,7 +638,8 @@
     <OriginCode>recurlib-neptunium_series_al-mst</OriginCode>
     <PeakNo>14</PeakNo>
     <Energy>4814.6</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>
@@ -699,7 +704,8 @@
     <OriginCode>recurlib-neptunium_series_al-mst</OriginCode>
     <PeakNo>22</PeakNo>
     <Energy>4901.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>
@@ -779,7 +785,8 @@
     <OriginCode>recurlib-neptunium_series_al-mst</OriginCode>
     <PeakNo>1</PeakNo>
     <Energy>5778.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>
@@ -787,7 +794,8 @@
     <OriginCode>recurlib-neptunium_series_al-mst</OriginCode>
     <PeakNo>2</PeakNo>
     <Energy>5788.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>
@@ -1012,7 +1020,8 @@
     <OriginCode>recurlib-neptunium_series_al-mst</OriginCode>
     <PeakNo>27</PeakNo>
     <Energy>5790.6</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>
@@ -1020,7 +1029,8 @@
     <OriginCode>recurlib-neptunium_series_al-mst</OriginCode>
     <PeakNo>28</PeakNo>
     <Energy>5792.5</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>
@@ -1142,7 +1152,8 @@
     <OriginCode>recurlib-neptunium_series_al-mst</OriginCode>
     <PeakNo>11</PeakNo>
     <Energy>6126.3</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>
@@ -1150,7 +1161,8 @@
     <OriginCode>recurlib-neptunium_series_al-mst</OriginCode>
     <PeakNo>12</PeakNo>
     <Energy>6241.8</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>
@@ -1167,7 +1179,8 @@
     <OriginCode>recurlib-neptunium_series_al-mst</OriginCode>
     <PeakNo>1</PeakNo>
     <Energy>5558.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>
@@ -1184,7 +1197,8 @@
     <OriginCode>recurlib-neptunium_series_al-mst</OriginCode>
     <PeakNo>1</PeakNo>
     <Energy>7614.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>
@@ -1201,7 +1215,8 @@
     <OriginCode>recurlib-neptunium_series_al-mst</OriginCode>
     <PeakNo>1</PeakNo>
     <Energy>2877.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>
@@ -1234,7 +1249,8 @@
     <OriginCode>recurlib-neptunium_series_al-mst</OriginCode>
     <PeakNo>3</PeakNo>
     <Energy>6484.7</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>
@@ -1242,7 +1258,8 @@
     <OriginCode>recurlib-neptunium_series_al-mst</OriginCode>
     <PeakNo>4</PeakNo>
     <Energy>6813.8</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-neptunium_series_al-grp</PurposeCode>

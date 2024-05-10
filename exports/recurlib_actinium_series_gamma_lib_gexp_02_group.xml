@@ -46,7 +46,7 @@
   <nuc_対象核種_Index>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
     <Purpose>recurlib-actinium_series_gamma (RecurLib v1.0.0; ENSDF)</Purpose>
-    <Comment1>Generated on May 5, 2024 at 13:54:23 (UTC-07:00)</Comment1>
+    <Comment1>Generated on May 9, 2024 at 22:06:31 (UTC-07:00)</Comment1>
   </nuc_対象核種_Index>
   <nuc_対象核種_List>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -284,7 +284,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>20</PeakNo>
     <Energy>143.765</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -300,7 +301,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>22</PeakNo>
     <Energy>163.357</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -797,7 +799,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>12</PeakNo>
     <Energy>81.228</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -822,7 +825,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>15</PeakNo>
     <Energy>89.95</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -1438,7 +1442,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>48</PeakNo>
     <Energy>283.682</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -1471,7 +1476,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>52</PeakNo>
     <Energy>302.667</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -1775,7 +1781,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>7</PeakNo>
     <Energy>99.6</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -1815,7 +1822,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>12</PeakNo>
     <Energy>160.49</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -1993,7 +2001,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>14</PeakNo>
     <Energy>79.651</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -2121,7 +2130,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>30</PeakNo>
     <Energy>234.75</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -3025,7 +3035,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>21</PeakNo>
     <Energy>50.13</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -3714,7 +3725,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>107</PeakNo>
     <Energy>256.23</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -4490,7 +4502,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>30</PeakNo>
     <Energy>269.463</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -4858,7 +4871,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>76</PeakNo>
     <Energy>81.07</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -5196,7 +5210,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>13</PeakNo>
     <Energy>427.088</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -5316,7 +5331,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>28</PeakNo>
     <Energy>832.01</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -5469,7 +5485,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>3</PeakNo>
     <Energy>70.832</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -5477,7 +5494,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>4</PeakNo>
     <Energy>72.874</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -5517,7 +5535,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>2</PeakNo>
     <Energy>569.698</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -5550,7 +5569,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>6</PeakNo>
     <Energy>74.97</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -5574,7 +5594,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>3</PeakNo>
     <Energy>569.65</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -5582,7 +5603,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>6</PeakNo>
     <Energy>897.8</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -5695,7 +5717,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>9</PeakNo>
     <Energy>401.81</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>
@@ -5775,7 +5798,8 @@
     <OriginCode>recurlib-actinium_series_gam-mst</OriginCode>
     <PeakNo>19</PeakNo>
     <Energy>79.29</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-actinium_series_gam-grp</PurposeCode>

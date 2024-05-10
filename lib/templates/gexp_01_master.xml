@@ -1,6 +1,7 @@
 {#- A Jinja template for exporting a RecurLib-generated radionuclide library #}
 {#- to Gamma Explorer (Mirion Technologies Canberra Japan KK) #}
 {#- Library type: Master data #}
+{#- Revised by Jaewoong Jang on May 9, 2024 -#}
 {#- Prepared by Jaewoong Jang on March 30, 2024 -#}
 <?xml version="1.0" standalone="yes"?>
 <NewDataSet>
@@ -82,7 +83,7 @@
     <EneErr>{{ radiat.energy_unc }}</EneErr>
     <Abundance>{{ radiat.emission_probability }}</Abundance>
     <AbnErr>{{ radiat.emission_probability_unc }}</AbnErr>
-    <Priority>{{ radiat.key_radiation_bool }}</Priority>
+    <Priority>{{ radiat.priority_number }}</Priority>
   </nuc_核種ピーク>
   {%- endfor %}
   {%- endfor %}

@@ -46,7 +46,7 @@
   <nuc_対象核種_Index>
     <PurposeCode>recurlib-uranium_series_alph-grp</PurposeCode>
     <Purpose>recurlib-uranium_series_alpha (RecurLib v1.0.0; ENSDF)</Purpose>
-    <Comment1>Generated on May 5, 2024 at 13:53:20 (UTC-07:00)</Comment1>
+    <Comment1>Generated on May 9, 2024 at 22:05:35 (UTC-07:00)</Comment1>
   </nuc_対象核種_Index>
   <nuc_対象核種_List>
     <PurposeCode>recurlib-uranium_series_alph-grp</PurposeCode>
@@ -108,7 +108,8 @@
     <OriginCode>recurlib-uranium_series_alph-mst</OriginCode>
     <PeakNo>1</PeakNo>
     <Energy>4038.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_alph-grp</PurposeCode>
@@ -116,7 +117,8 @@
     <OriginCode>recurlib-uranium_series_alph-mst</OriginCode>
     <PeakNo>2</PeakNo>
     <Energy>4151.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_alph-grp</PurposeCode>
@@ -133,7 +135,8 @@
     <OriginCode>recurlib-uranium_series_alph-mst</OriginCode>
     <PeakNo>1</PeakNo>
     <Energy>4603.5</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_alph-grp</PurposeCode>
@@ -141,7 +144,8 @@
     <OriginCode>recurlib-uranium_series_alph-mst</OriginCode>
     <PeakNo>2</PeakNo>
     <Energy>4722.4</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_alph-grp</PurposeCode>
@@ -166,7 +170,8 @@
     <OriginCode>recurlib-uranium_series_alph-mst</OriginCode>
     <PeakNo>2</PeakNo>
     <Energy>4479.8</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_alph-grp</PurposeCode>
@@ -174,7 +179,8 @@
     <OriginCode>recurlib-uranium_series_alph-mst</OriginCode>
     <PeakNo>3</PeakNo>
     <Energy>4620.5</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_alph-grp</PurposeCode>
@@ -199,7 +205,8 @@
     <OriginCode>recurlib-uranium_series_alph-mst</OriginCode>
     <PeakNo>2</PeakNo>
     <Energy>4340.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_alph-grp</PurposeCode>
@@ -207,7 +214,8 @@
     <OriginCode>recurlib-uranium_series_alph-mst</OriginCode>
     <PeakNo>3</PeakNo>
     <Energy>4601.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_alph-grp</PurposeCode>
@@ -224,7 +232,8 @@
     <OriginCode>recurlib-uranium_series_alph-mst</OriginCode>
     <PeakNo>1</PeakNo>
     <Energy>4986.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_alph-grp</PurposeCode>
@@ -241,7 +250,8 @@
     <OriginCode>recurlib-uranium_series_alph-mst</OriginCode>
     <PeakNo>1</PeakNo>
     <Energy>5181.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_alph-grp</PurposeCode>
@@ -258,7 +268,8 @@
     <OriginCode>recurlib-uranium_series_alph-mst</OriginCode>
     <PeakNo>1</PeakNo>
     <Energy>5273.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>3</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_alph-grp</PurposeCode>
@@ -275,7 +286,8 @@
     <OriginCode>recurlib-uranium_series_alph-mst</OriginCode>
     <PeakNo>3</PeakNo>
     <Energy>5516.0</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_alph-grp</PurposeCode>
@@ -283,7 +295,8 @@
     <OriginCode>recurlib-uranium_series_alph-mst</OriginCode>
     <PeakNo>1</PeakNo>
     <Energy>6902.2</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_alph-grp</PurposeCode>
@@ -300,7 +313,8 @@
     <OriginCode>recurlib-uranium_series_alph-mst</OriginCode>
     <PeakNo>1</PeakNo>
     <Energy>4516.58</Energy>
-    <Priority>0</Priority>
+    <UsrPksAtri>#</UsrPksAtri>
+    <Priority>2</Priority>
   </nuc_対象核種_Pks>
   <nuc_対象核種_Pks>
     <PurposeCode>recurlib-uranium_series_alph-grp</PurposeCode>
