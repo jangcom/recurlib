@@ -594,31 +594,31 @@ Library index,Radionuclide,Radiation number,Priority number,Radiation energy (ke
 592,Ra-223,78,0,94.878,,8.82,0.15,0.0,3/2+,11.43,5,d,987552.0,A,100.0,,19-May-2021,Balraj Singh et al. and ,2024-04-27,ENSDF
 593,Ra-223,79,0,96.054,,11.64,0.2,0.0,3/2+,11.43,5,d,987552.0,A,100.0,,19-May-2021,Balraj Singh et al. and ,2024-04-27,ENSDF
 594,Ra-223,80,0,97.53,,2.82,0.07,0.0,3/2+,11.43,5,d,987552.0,A,100.0,,19-May-2021,Balraj Singh et al. and ,2024-04-27,ENSDF
-595,Bi-215,6,0,271.1,0.1,4.031,0.4843727903175404,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-596,Bi-215,8,0,293.5,0.1,48.928,5.835860262206421,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-597,Bi-215,11,0,384.0,1.0,0.278,0.1426359001093343,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-598,Bi-215,12,0,401.6,1.0,0.973,0.1785077029150283,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-599,Bi-215,16,0,517.5,0.2,2.085,0.2773463538610162,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-600,Bi-215,17,0,542.7,2.5,0.417,0.1470544116985274,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-601,Bi-215,18,0,564.4,0.5,1.39,0.2119457477752266,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-602,Bi-215,19,0,609.0,0.5,1.39,0.2119457477752266,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-603,Bi-215,20,0,677.6,1.0,0.834,0.1689289791598824,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-604,Bi-215,22,0,776.9,0.1,1.668,0.3378579583197649,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-605,Bi-215,23,0,784.0,2.0,0.695,0.1603776792449622,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-606,Bi-215,24,0,806.5,2.2,0.834,0.1689289791598824,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-607,Bi-215,25,0,836.3,1.0,1.251,0.2001424492705133,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-608,Bi-215,26,0,905.0,2.0,0.417,0.1470544116985274,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-609,Bi-215,27,0,1023.1,1.2,1.251,0.2001424492705133,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-610,Bi-215,28,0,1104.5,0.5,3.058,0.3784507894033251,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-611,Bi-215,29,0,1127.7,0.7,0.973,0.1785077029150283,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-612,Bi-215,30,0,1294.5,0.3,1.251,0.2001424492705133,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-613,Bi-215,31,0,1399.2,0.4,1.668,0.2370337528707673,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-614,Bi-215,34,0,13.292,,8.8158743977993,0.9263671575231354,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-615,Bi-215,36,0,76.862,,6.237255001882334,0.7282883438478007,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-616,Bi-215,39,0,79.29,,10.38676936200222,1.212032097959306,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-617,Bi-215,45,0,89.837,,3.575877094290957,0.4205246456193722,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-618,Bi-215,46,0,90.941,,4.687974870615444,0.5510178122265381,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
-619,Bi-215,48,0,92.315,,1.1120977763244877,0.1319996538506972,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+595,Bi-215,1,0,271.1,0.1,4.031,0.4843727903175404,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+596,Bi-215,2,1,293.5,0.1,48.928,5.835860262206421,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+597,Bi-215,3,0,384.0,1.0,0.278,0.1426359001093343,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+598,Bi-215,4,0,401.6,1.0,0.973,0.1785077029150283,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+599,Bi-215,5,0,517.5,0.2,2.085,0.2773463538610162,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+600,Bi-215,6,0,542.7,2.5,0.417,0.1470544116985274,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+601,Bi-215,7,0,564.4,0.5,1.39,0.2119457477752266,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+602,Bi-215,8,0,609.0,0.5,1.39,0.2119457477752266,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+603,Bi-215,9,0,677.6,1.0,0.834,0.1689289791598824,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+604,Bi-215,10,0,776.9,0.1,1.668,0.3378579583197649,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+605,Bi-215,11,0,784.0,2.0,0.695,0.1603776792449622,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+606,Bi-215,12,0,806.5,2.2,0.834,0.1689289791598824,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+607,Bi-215,13,0,836.3,1.0,1.251,0.2001424492705133,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+608,Bi-215,14,0,905.0,2.0,0.417,0.1470544116985274,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+609,Bi-215,15,0,1023.1,1.2,1.251,0.2001424492705133,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+610,Bi-215,16,0,1104.5,0.5,3.058,0.3784507894033251,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+611,Bi-215,17,0,1127.7,0.7,0.973,0.1785077029150283,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+612,Bi-215,18,0,1294.5,0.3,1.251,0.2001424492705133,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+613,Bi-215,19,0,1399.2,0.4,1.668,0.2370337528707673,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+614,Bi-215,20,0,13.292,,8.8158743977993,0.9263671575231354,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+615,Bi-215,21,3,76.862,,6.237255001882334,0.7282883438478007,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+616,Bi-215,22,2,79.29,,10.38676936200222,1.212032097959306,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+617,Bi-215,23,0,89.837,,3.575877094290957,0.4205246456193722,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+618,Bi-215,24,0,90.941,,4.687974870615444,0.5510178122265381,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
+619,Bi-215,25,0,92.315,,1.1120977763244877,0.1319996538506972,0.0,(9/2-),7.6,2,m,456.0,B-,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
 620,Pb-211,1,0,65.42,0.014,0.07746,0.0052060057625784,0.0,9/2+,36.1,2,m,2166.0,B-,100.0,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27,ENSDF
 621,Pb-211,2,0,81.0,0.2,0.045185,0.0116253768110973,0.0,9/2+,36.1,2,m,2166.0,B-,100.0,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27,ENSDF
 622,Pb-211,3,0,83.8,0.1,0.058095,0.0090505466133267,0.0,9/2+,36.1,2,m,2166.0,B-,100.0,,28-FEB-2013,E.A. McCutchan and  C.M. Baglin and  O. Gorbachenko and  N. Todorovic,2024-04-27,ENSDF
@@ -678,13 +678,13 @@ Library index,Radionuclide,Radiation number,Priority number,Radiation energy (ke
 676,Tl-207,6,2,74.97,,0.0025805334457513,9.2586624723e-05,0.0,1/2+,4.77,3,m,286.2,B-,100.0,,1-Aug-2010,F.G. KONDEV and  S. LALKOVSKI,2024-04-27,ENSDF
 677,Tl-207,7,0,86.022,,0.0011483502860265,4.43326246199e-05,0.0,1/2+,4.77,3,m,286.2,B-,100.0,,1-Aug-2010,F.G. KONDEV and  S. LALKOVSKI,2024-04-27,ENSDF
 678,Po-211,1,0,328.2,0.2,0.00321,0.0010767079455451,0.0,9/2+,0.516,3,s,0.516,A,100.0,,1-Aug-2010,F.G. KONDEV and  S. LALKOVSKI,2024-04-27,ENSDF
-679,Po-211,3,3,569.65,0.1,0.535,0.02,0.0,9/2+,0.516,3,s,0.516,A,100.0,,1-Aug-2010,F.G. KONDEV and  S. LALKOVSKI,2024-04-27,ENSDF
-680,Po-211,6,2,897.8,0.1,0.55105,0.0232131428290096,0.0,9/2+,0.516,3,s,0.516,A,100.0,,1-Aug-2010,F.G. KONDEV and  S. LALKOVSKI,2024-04-27,ENSDF
-681,Po-211,8,0,12.522,,0.0077627665516255,0.000371549115213,0.0,9/2+,0.516,3,s,0.516,A,100.0,,1-Aug-2010,F.G. KONDEV and  S. LALKOVSKI,2024-04-27,ENSDF
-682,Po-211,9,0,72.805,,0.00561568188103,0.0001877472314725,0.0,9/2+,0.516,3,s,0.516,A,100.0,,1-Aug-2010,F.G. KONDEV and  S. LALKOVSKI,2024-04-27,ENSDF
-683,Po-211,10,0,74.97,,0.0094381208084539,0.0003130397476659,0.0,9/2+,0.516,3,s,0.516,A,100.0,,1-Aug-2010,F.G. KONDEV and  S. LALKOVSKI,2024-04-27,ENSDF
-684,Po-211,11,0,84.986,,0.0032258148620322,0.0001171076170063,0.0,9/2+,0.516,3,s,0.516,A,100.0,,1-Aug-2010,F.G. KONDEV and  S. LALKOVSKI,2024-04-27,ENSDF
-685,Po-211,12,0,86.022,,0.004200010950366,0.0001516186315107,0.0,9/2+,0.516,3,s,0.516,A,100.0,,1-Aug-2010,F.G. KONDEV and  S. LALKOVSKI,2024-04-27,ENSDF
+679,Po-211,2,2,569.65,0.1,0.535,0.02,0.0,9/2+,0.516,3,s,0.516,A,100.0,,1-Aug-2010,F.G. KONDEV and  S. LALKOVSKI,2024-04-27,ENSDF
+680,Po-211,3,1,897.8,0.1,0.55105,0.0232131428290096,0.0,9/2+,0.516,3,s,0.516,A,100.0,,1-Aug-2010,F.G. KONDEV and  S. LALKOVSKI,2024-04-27,ENSDF
+681,Po-211,4,0,12.522,,0.0077627665516255,0.000371549115213,0.0,9/2+,0.516,3,s,0.516,A,100.0,,1-Aug-2010,F.G. KONDEV and  S. LALKOVSKI,2024-04-27,ENSDF
+682,Po-211,5,0,72.805,,0.00561568188103,0.0001877472314725,0.0,9/2+,0.516,3,s,0.516,A,100.0,,1-Aug-2010,F.G. KONDEV and  S. LALKOVSKI,2024-04-27,ENSDF
+683,Po-211,6,3,74.97,,0.0094381208084539,0.0003130397476659,0.0,9/2+,0.516,3,s,0.516,A,100.0,,1-Aug-2010,F.G. KONDEV and  S. LALKOVSKI,2024-04-27,ENSDF
+684,Po-211,7,0,84.986,,0.0032258148620322,0.0001171076170063,0.0,9/2+,0.516,3,s,0.516,A,100.0,,1-Aug-2010,F.G. KONDEV and  S. LALKOVSKI,2024-04-27,ENSDF
+685,Po-211,8,0,86.022,,0.004200010950366,0.0001516186315107,0.0,9/2+,0.516,3,s,0.516,A,100.0,,1-Aug-2010,F.G. KONDEV and  S. LALKOVSKI,2024-04-27,ENSDF
 686,Rn-219,1,0,130.6,0.03,0.1296,0.0866994809673045,0.0,5/2+,3.96,1,s,3.96,A,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
 687,Rn-219,2,0,221.5,0.3,0.03024,0.0046351698997987,0.0,5/2+,3.96,1,s,3.96,A,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF
 688,Rn-219,3,0,224.0,0.7,0.001404,0.000229651910508,0.0,5/2+,3.96,1,s,3.96,A,100.0,,23-SEP-2013,J.K. Tuli and  B. Singh and  S. Bhattacharya and  S. Dasgupta and  J.Y. Lee,2024-04-27,ENSDF

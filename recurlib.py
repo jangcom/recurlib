@@ -1923,66 +1923,67 @@ class Recurlib():
                           + ' isomer: [{rn_w_forced_m}]'
                           + 'Before reorganization:')
                     print(df_rnlib_rnwise)
-                # Sort the DF such that the nuclear isomer comes first
-                # while maintaining the order of radiation data points
-                # originated from the Live Chart of Nuclides.
-                # e.g. Before:
-                # Radionuclide | Radiation number | Radiation energy (keV)
-                # Tc-99        | 1                | 89.5
-                # Tc-99m       | 2                | 89.6
-                # Tc-99m       | 3                | 140.511
-                # ...
-                # After:
-                # Radionuclide | Radiation number | Radiation energy (keV)
-                # Tc-99m       | 2                | 89.6
-                # Tc-99m       | 3                | 140.511
-                # ...
-                # Tc-99        | 1                | 89.5
-                # ...
-                df_rnlib_rnwise.sort_values(by=[col_rn, col_radiat_num],
-                                            ascending=[False, True],
-                                            ignore_index=True,
-                                            inplace=True)
-                bool_idx_isomer = df_rnlib_rnwise[col_rn] == rn_w_forced_m
-                bool_idx_rn = df_rnlib_rnwise[col_rn] == rn
-                # Attribute reassignment (i): Radiation numbers
-                radiat_num_isomer = range(
-                    1,
-                    len(df_rnlib_rnwise.loc[bool_idx_isomer].index) + 1)
-                radiat_num_rn = range(
-                    1,
-                    len(df_rnlib_rnwise.loc[bool_idx_rn].index) + 1)
-                df_rnlib_rnwise.loc[bool_idx_isomer,
-                                    col_radiat_num] = radiat_num_isomer
-                df_rnlib_rnwise.loc[bool_idx_rn,
-                                    col_radiat_num] = radiat_num_rn
-                # Attribute reassignment (ii): Priority numbers
-                # bool_idx_priority_num_nrg is recalculated as df_rnlib_rnwise
-                # has been sorted in the above.
-                bool_idx_priority_num_nrg = (
-                    (df_rnlib_rnwise[col_nrg] >= priority_num_nrg_lim[0])
-                    & (df_rnlib_rnwise[col_nrg] <= priority_num_nrg_lim[1]))
-                _df_rnlib_rnwise_isomer = df_rnlib_rnwise.loc[
-                    bool_idx_priority_num_nrg & bool_idx_isomer, :]
-                _df_rnlib_rnwise_rn = df_rnlib_rnwise.loc[
-                    bool_idx_priority_num_nrg & bool_idx_rn, :]
-                prio_idx_isomer, prio_nums_isomer = self.get_prio_idx_and_nums(
-                    _df_rnlib_rnwise_isomer,
-                    col_ep,
-                    priority_num_max)
-                prio_idx_rn, prio_nums_rn = self.get_prio_idx_and_nums(
-                    _df_rnlib_rnwise_rn,
-                    col_ep,
-                    priority_num_max)
-                df_rnlib_rnwise.loc[
-                    :,
-                    col_priority_num] = 0  # Initialization
-                df_rnlib_rnwise.loc[
-                    prio_idx_isomer,
-                    col_priority_num] = prio_nums_isomer
-                df_rnlib_rnwise.loc[
-                    prio_idx_rn,
-                    col_priority_num] = prio_nums_rn
+            # Sort the DF such that the nuclear isomer comes first
+            # while maintaining the order of radiation data points
+            # originated from the Live Chart of Nuclides.
+            # e.g. Before:
+            # Radionuclide | Radiation number | Radiation energy (keV)
+            # Tc-99        | 1                | 89.5
+            # Tc-99m       | 2                | 89.6
+            # Tc-99m       | 3                | 140.511
+            # ...
+            # After:
+            # Radionuclide | Radiation number | Radiation energy (keV)
+            # Tc-99m       | 2                | 89.6
+            # Tc-99m       | 3                | 140.511
+            # ...
+            # Tc-99        | 1                | 89.5
+            # ...
+            df_rnlib_rnwise.sort_values(by=[col_rn, col_radiat_num],
+                                        ascending=[False, True],
+                                        ignore_index=True,
+                                        inplace=True)
+            bool_idx_isomer = df_rnlib_rnwise[col_rn] == rn_w_forced_m
+            bool_idx_rn = df_rnlib_rnwise[col_rn] == rn
+            # Attribute reassignment (i): Radiation numbers
+            radiat_num_isomer = range(
+                1,
+                len(df_rnlib_rnwise.loc[bool_idx_isomer].index) + 1)
+            radiat_num_rn = range(
+                1,
+                len(df_rnlib_rnwise.loc[bool_idx_rn].index) + 1)
+            df_rnlib_rnwise.loc[bool_idx_isomer,
+                                col_radiat_num] = radiat_num_isomer
+            df_rnlib_rnwise.loc[bool_idx_rn,
+                                col_radiat_num] = radiat_num_rn
+            # Attribute reassignment (ii): Priority numbers
+            # bool_idx_priority_num_nrg is recalculated as df_rnlib_rnwise
+            # has been sorted in the above.
+            bool_idx_priority_num_nrg = (
+                (df_rnlib_rnwise[col_nrg] >= priority_num_nrg_lim[0])
+                & (df_rnlib_rnwise[col_nrg] <= priority_num_nrg_lim[1]))
+            _df_rnlib_rnwise_isomer = df_rnlib_rnwise.loc[
+                bool_idx_priority_num_nrg & bool_idx_isomer, :]
+            _df_rnlib_rnwise_rn = df_rnlib_rnwise.loc[
+                bool_idx_priority_num_nrg & bool_idx_rn, :]
+            prio_idx_isomer, prio_nums_isomer = self.get_prio_idx_and_nums(
+                _df_rnlib_rnwise_isomer,
+                col_ep,
+                priority_num_max)
+            prio_idx_rn, prio_nums_rn = self.get_prio_idx_and_nums(
+                _df_rnlib_rnwise_rn,
+                col_ep,
+                priority_num_max)
+            df_rnlib_rnwise.loc[
+                :,
+                col_priority_num] = 0  # Initialization
+            df_rnlib_rnwise.loc[
+                prio_idx_isomer,
+                col_priority_num] = prio_nums_isomer
+            df_rnlib_rnwise.loc[
+                prio_idx_rn,
+                col_priority_num] = prio_nums_rn
+            if df_rnlib_rnwise[col_rn].isin([rn_w_forced_m]).any():
                 if p['io']['ctrls']['is_verbose']:
                     print('\nAfter:')
                     print(df_rnlib_rnwise)

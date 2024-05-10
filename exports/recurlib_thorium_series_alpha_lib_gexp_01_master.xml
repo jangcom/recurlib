@@ -51,7 +51,7 @@
   <nuc_核データ出典>
     <Code>recurlib-thorium_series_alph-mst</Code>
     <Name>recurlib-thorium_series_alpha (RecurLib v1.0.0; ENSDF)</Name>
-    <Comment1>Generated on May 9, 2024 at 22:04:41 (UTC-07:00)</Comment1>
+    <Comment1>Generated on May 9, 2024 at 22:40:35 (UTC-07:00)</Comment1>
   </nuc_核データ出典>
   <nuc_核種>
     <IsoCode>TH232</IsoCode>
@@ -347,37 +347,37 @@
   <nuc_核種ピーク>
     <IsoCode>BI212</IsoCode>
     <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
-    <PeakNo>5</PeakNo>
+    <PeakNo>4</PeakNo>
     <Energy>5768.0</Energy>
     <EneErr>0.0</EneErr>
     <Abundance>0.61098</Abundance>
     <AbnErr>0.00102</AbnErr>
-    <Priority>0</Priority>
-  </nuc_核種ピーク>
-  <nuc_核種ピーク>
-    <IsoCode>BI212</IsoCode>
-    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
-    <PeakNo>7</PeakNo>
-    <Energy>6050.78</Energy>
-    <EneErr>0.03</EneErr>
-    <Abundance>25.125654</Abundance>
-    <AbnErr>0.0683063321808454</AbnErr>
     <Priority>3</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>BI212</IsoCode>
     <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
-    <PeakNo>8</PeakNo>
+    <PeakNo>5</PeakNo>
+    <Energy>6050.78</Energy>
+    <EneErr>0.03</EneErr>
+    <Abundance>25.125654</Abundance>
+    <AbnErr>0.0683063321808454</AbnErr>
+    <Priority>1</Priority>
+  </nuc_核種ピーク>
+  <nuc_核種ピーク>
+    <IsoCode>BI212</IsoCode>
+    <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
+    <PeakNo>6</PeakNo>
     <Energy>6089.88</Energy>
     <EneErr>0.03</EneErr>
     <Abundance>9.746928</Abundance>
     <AbnErr>0.0528817344647469</AbnErr>
-    <Priority>0</Priority>
+    <Priority>2</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>PO212</IsoCode>
     <OriginCode>recurlib-thorium_series_alph-mst</OriginCode>
-    <PeakNo>2</PeakNo>
+    <PeakNo>1</PeakNo>
     <Energy>8784.86</Energy>
     <EneErr>0.12</EneErr>
     <Abundance>100.0</Abundance>

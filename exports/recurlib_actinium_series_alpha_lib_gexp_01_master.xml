@@ -51,7 +51,7 @@
   <nuc_核データ出典>
     <Code>recurlib-actinium_series_alp-mst</Code>
     <Name>recurlib-actinium_series_alpha (RecurLib v1.0.0; ENSDF)</Name>
-    <Comment1>Generated on May 9, 2024 at 22:06:13 (UTC-07:00)</Comment1>
+    <Comment1>Generated on May 9, 2024 at 22:42:03 (UTC-07:00)</Comment1>
   </nuc_核データ出典>
   <nuc_核種>
     <IsoCode>U235</IsoCode>
@@ -1464,7 +1464,7 @@
     <EneErr>0.9</EneErr>
     <Abundance>0.537</Abundance>
     <AbnErr>0.019</AbnErr>
-    <Priority>0</Priority>
+    <Priority>3</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>PO211</IsoCode>
@@ -1474,12 +1474,12 @@
     <EneErr>0.8</EneErr>
     <Abundance>0.546</Abundance>
     <AbnErr>0.019</AbnErr>
-    <Priority>0</Priority>
+    <Priority>2</Priority>
   </nuc_核種ピーク>
   <nuc_核種ピーク>
     <IsoCode>PO211</IsoCode>
     <OriginCode>recurlib-actinium_series_alp-mst</OriginCode>
-    <PeakNo>4</PeakNo>
+    <PeakNo>3</PeakNo>
     <Energy>7450.3</Energy>
     <EneErr>0.5</EneErr>
     <Abundance>98.916</Abundance>
