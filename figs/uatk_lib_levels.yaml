@@ -1,0 +1,4033 @@
+# Energy levels of the involved radionuclides
+
+U-238:
+  daughters:
+  - Th-234
+  is_isomer_progenitor: false
+  from_user_input:
+    energy_levels:
+    - 0
+  from_gamma_cascade:
+    energy_levels: []
+  self:
+    A:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    IT:
+      jps:
+      - 0+
+      energy_levels:
+      - - 2557.4
+        - 2558.4
+      is_energy_level_set: true
+      is_feasible: false
+      feasible_energies: []
+    SF:
+      jps:
+      - 0+
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      - - 2557.4
+        - 2558.4
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 0.0
+  energy_levels_isomer: []
+Th-234:
+  parents:
+  - U-238
+  daughters:
+  - Pa-234
+  from_U-238:
+    decay_modes:
+    - A
+    - A
+    - A
+    energy_levels:
+    - 163.0
+    - 49.55
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 49.55
+  self:
+    B-:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 163.0
+  - 49.55
+  - 0.0
+  energy_levels_isomer: []
+Pa-234:
+  parents:
+  - Th-234
+  daughters:
+  - U-234
+  from_Th-234:
+    decay_modes:
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    energy_levels:
+    - 186.73+X
+    - 177.27+X
+    - 166.72+X
+    - 166.30+X
+    - 73.92+X
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+  self:
+    B-:
+      jps:
+      - 4+
+      - (0-)
+      energy_levels:
+      - - 0.0
+        - 0.0
+      - - 73.92
+        - 73.92
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 73.92
+      - 0.0
+      is_isomer: false
+    IT:
+      jps:
+      - (0-)
+      energy_levels:
+      - - 73.92
+        - 73.92
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 73.92
+      is_isomer: true
+  energy_levels_flattened:
+  - 186.73
+  - 177.27
+  - 166.72
+  - 166.3
+  - 73.92
+  - 0.0
+  energy_levels_isomer:
+  - 73.92
+U-234:
+  parents:
+  - Pa-234
+  daughters:
+  - Th-230
+  from_Pa-234:
+    decay_modes:
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    energy_levels:
+    - 1085.0
+    - 1023.8
+    - 2144.0
+    - 2115.7
+    - 2101.4
+    - 2068.8
+    - 2066.2
+    - 2037.1
+    - 2033.5
+    - 2019.8
+    - 2000.4
+    - 1981.2
+    - 1968.8
+    - 1958.8
+    - 1940.5
+    - 1927.5
+    - 1916.3
+    - 1969.9
+    - 1881.7
+    - 1936.76
+    - 1863.1
+    - 1843.9
+    - 1911.1
+    - 1811.6
+    - 1874.88
+    - 1793.1
+    - 1863.15
+    - 1784.2
+    - 1782.6
+    - 1770.8
+    - 1761.9
+    - 1738.2
+    - 1737.4
+    - 1809.0
+    - 1723.4
+    - 1722.9
+    - 1796.4
+    - 1781.27
+    - 1693.4
+    - 1653.7
+    - 1650.0
+    - 1693.8
+    - 1619.5
+    - 1667.4
+    - 1588.8
+    - 1581.7
+    - 1552.6
+    - 1543.7
+    - 1537.3
+    - 1533.3
+    - 1601.81
+    - 1592.38
+    - 1502.4
+    - 1570.61
+    - 1496.1
+    - 1486.2
+    - 1553.69
+    - 1447.5
+    - 1501.0
+    - 1435.11
+    - 1312.2
+    - 1194.8
+    - 1214.7
+    - 1237.35
+    - 1127.5
+    - 1174.1
+    - 1090.9
+    - 1126.37
+    - 1069.3
+    - 989.4
+    - 1023.9
+    - 1044.539
+    - 968.4
+    - 962.6
+    - 947.6
+    - 989.389
+    - 809.96
+    - 786.312
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 43.4981
+    - 143.352
+    - 296.072
+    - 497.04
+    - 968.425
+    - 741.2
+    - 1274.29
+    - 926.72
+    - 1023.77
+    - 962.546
+    - 947.64
+    - 849.266
+    - 786.288
+    - 989.43
+    - 1023.826
+    - 1069.281
+    - 1127.552
+    - 1125.28
+    - 1277.461
+    - 1261.782
+    - 1194.748
+    - 1172.043
+    - 1090.89
+    - 1421.257
+    - 1581.59
+    - 1552.555
+    - 1096.12
+    - 1737.43
+    - 809.907
+    - 851.74
+    - 1165.44
+    - 1126.626
+    - 1588.819
+    - 1543.69
+    - 1537.228
+    - 1496.111
+    - 1723.402
+    - 1548.28
+    - 1457.16
+    - 1023.8
+    - 1761.79
+    - 1619.58
+    - 1341.33
+    - 1214.71
+    - 1044.536
+    - 1237.256
+    - 1085.26
+    - 1553.6
+    - 1435.38
+    - 1570.69
+  self:
+    A:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    SF:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    Mg:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 2144.0
+  - 2115.7
+  - 2101.4
+  - 2068.8
+  - 2066.2
+  - 2037.1
+  - 2033.5
+  - 2019.8
+  - 2000.4
+  - 1981.2
+  - 1969.9
+  - 1968.8
+  - 1958.8
+  - 1940.5
+  - 1936.76
+  - 1927.5
+  - 1916.3
+  - 1911.1
+  - 1881.7
+  - 1874.88
+  - 1863.15
+  - 1863.1
+  - 1843.9
+  - 1811.6
+  - 1809.0
+  - 1796.4
+  - 1793.1
+  - 1784.2
+  - 1782.6
+  - 1781.27
+  - 1770.8
+  - 1761.9
+  - 1761.79
+  - 1738.2
+  - 1737.43
+  - 1737.4
+  - 1723.402
+  - 1723.4
+  - 1722.9
+  - 1693.8
+  - 1693.4
+  - 1667.4
+  - 1653.7
+  - 1650.0
+  - 1619.58
+  - 1619.5
+  - 1601.81
+  - 1592.38
+  - 1588.819
+  - 1588.8
+  - 1581.7
+  - 1581.59
+  - 1570.69
+  - 1570.61
+  - 1553.69
+  - 1553.6
+  - 1552.6
+  - 1552.555
+  - 1548.28
+  - 1543.7
+  - 1543.69
+  - 1537.3
+  - 1537.228
+  - 1533.3
+  - 1502.4
+  - 1501.0
+  - 1496.111
+  - 1496.1
+  - 1486.2
+  - 1457.16
+  - 1447.5
+  - 1435.38
+  - 1435.11
+  - 1421.257
+  - 1341.33
+  - 1312.2
+  - 1277.461
+  - 1274.29
+  - 1261.782
+  - 1237.35
+  - 1237.256
+  - 1214.71
+  - 1214.7
+  - 1194.8
+  - 1194.748
+  - 1174.1
+  - 1172.043
+  - 1165.44
+  - 1127.552
+  - 1127.5
+  - 1126.626
+  - 1126.37
+  - 1125.28
+  - 1096.12
+  - 1090.9
+  - 1090.89
+  - 1085.26
+  - 1085.0
+  - 1069.3
+  - 1069.281
+  - 1044.539
+  - 1044.536
+  - 1023.9
+  - 1023.826
+  - 1023.8
+  - 1023.77
+  - 989.43
+  - 989.4
+  - 989.389
+  - 968.425
+  - 968.4
+  - 962.6
+  - 962.546
+  - 947.64
+  - 947.6
+  - 926.72
+  - 851.74
+  - 849.266
+  - 809.96
+  - 809.907
+  - 786.312
+  - 786.288
+  - 741.2
+  - 497.04
+  - 296.072
+  - 143.352
+  - 43.4981
+  - 0.0
+  energy_levels_isomer: []
+Th-230:
+  parents:
+  - U-234
+  daughters:
+  - Ra-226
+  from_U-234:
+    decay_modes:
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    energy_levels:
+    - 677.6
+    - 634.9
+    - 508.16
+    - 174.1
+    - 53.2
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 53.227
+  self:
+    A:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    24NE:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    SF:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 677.6
+  - 634.9
+  - 508.16
+  - 174.1
+  - 53.227
+  - 53.2
+  - 0.0
+  energy_levels_isomer: []
+Ra-226:
+  parents:
+  - Th-230
+  daughters:
+  - Rn-222
+  from_Th-230:
+    decay_modes:
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    energy_levels:
+    - 873.7
+    - 824.6
+    - 446.3
+    - 416.5
+    - 321.54
+    - 253.73
+    - 211.54
+    - 67.67
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 67.67
+    - 253.73
+    - 211.54
+    - 321.54
+  self:
+    A:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    14C:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 873.7
+  - 824.6
+  - 446.3
+  - 416.5
+  - 321.54
+  - 253.73
+  - 211.54
+  - 67.67
+  - 0.0
+  energy_levels_isomer: []
+Rn-222:
+  parents:
+  - Ra-226
+  daughters:
+  - Po-218
+  from_Ra-226:
+    decay_modes:
+    - A
+    - A
+    - A
+    - A
+    - A
+    energy_levels:
+    - 635.57
+    - 600.73
+    - 448.48
+    - 186.206
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 186.211
+    - 600.74
+    - 448.48
+  self:
+    A:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 635.57
+  - 600.74
+  - 600.73
+  - 448.48
+  - 186.211
+  - 186.206
+  - 0.0
+  energy_levels_isomer: []
+Po-218:
+  parents:
+  - Rn-222
+  daughters:
+  - Pb-214
+  from_Rn-222:
+    decay_modes:
+    - A
+    - A
+    - A
+    energy_levels:
+    - 676.0
+    - 513.0
+    - 0.0
+  from_gamma_cascade:
+    energy_levels: []
+  self:
+    A:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    B-:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 676.0
+  - 513.0
+  - 0.0
+  energy_levels_isomer: []
+Pb-214:
+  parents:
+  - Po-218
+  daughters:
+  - Bi-214
+  from_Po-218:
+    decay_modes:
+    - A
+    - A
+    energy_levels:
+    - 837.0
+    - 0.0
+  from_gamma_cascade:
+    energy_levels: []
+  self:
+    B-:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    IT:
+      jps:
+      - (8+)
+      energy_levels:
+      - - 1365.0
+        - 1365.0
+      is_energy_level_set: true
+      is_feasible: false
+      feasible_energies: []
+  energy_levels_flattened:
+  - 837.0
+  - 0.0
+  energy_levels_isomer: []
+Bi-214:
+  parents:
+  - Pb-214
+  daughters:
+  - Tl-210
+  - Po-214
+  from_Pb-214:
+    decay_modes:
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    energy_levels:
+    - 888.03
+    - 838.994
+    - 533.672
+    - 351.9323
+    - 295.2236
+    - 258.869
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 53.226
+    - 62.68
+    - 377.03
+    - 258.869
+    - 533.672
+    - 351.9323
+    - 295.2236
+  self:
+    B-:
+      jps:
+      - 1-
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    A:
+      jps:
+      - 1-
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    B-A:
+      jps:
+      - 1-
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 888.03
+  - 838.994
+  - 533.672
+  - 377.03
+  - 351.9323
+  - 295.2236
+  - 258.869
+  - 62.68
+  - 53.226
+  - 0.0
+  energy_levels_isomer: []
+Tl-210:
+  parents:
+  - Bi-214
+  daughters:
+  - Pb-210
+  from_Bi-214:
+    decay_modes:
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    energy_levels:
+    - 582.0
+    - 498.0
+    - 334.0
+    - 253.6
+    - 62.5
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 62.5
+  self:
+    B-:
+      jps:
+      - (5+)
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    B-N:
+      jps:
+      - (5+)
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 582.0
+  - 498.0
+  - 334.0
+  - 253.6
+  - 62.5
+  - 0.0
+  energy_levels_isomer: []
+Po-214:
+  parents:
+  - Bi-214
+  daughters:
+  - Pb-210
+  from_Bi-214:
+    decay_modes:
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    energy_levels:
+    - 3183.6
+    - 3173.3
+    - 3160.4
+    - 3149.2
+    - 3142.6
+    - 3093.48
+    - 3081.84
+    - 3053.88
+    - 3014.11
+    - 3003.4
+    - 3000.0
+    - 2986.22
+    - 2978.93
+    - 2962.8
+    - 2940.67
+    - 2934.54
+    - 2928.55
+    - 2921.89
+    - 2919.5
+    - 2896.98
+    - 2893.6
+    - 2880.36
+    - 2869.63
+    - 2860.93
+    - 2826.82
+    - 2802.54
+    - 2785.97
+    - 2769.91
+    - 2728.617
+    - 2719.26
+    - 2698.6
+    - 2694.62
+    - 2662.33
+    - 2630.84
+    - 2604.68
+    - 2562.4
+    - 2553.0
+    - 2544.92
+    - 2508.12
+    - 2505.34
+    - 2482.46
+    - 2447.701
+    - 2423.25
+    - 2360.97
+    - 2348.3
+    - 2293.362
+    - 2266.41
+    - 2208.69
+    - 2204.103
+    - 2192.536
+    - 2147.86
+    - 2118.535
+    - 2088.44
+    - 2017.315
+    - 2010.831
+    - 1994.639
+    - 1890.306
+    - 1847.446
+    - 1764.52
+    - 1712.93
+    - 1742.99
+    - 1729.613
+    - 1661.282
+    - 1543.37
+    - 1415.498
+    - 1377.681
+    - 1274.765
+    - 1015.041
+    - 609.318
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 609.317
+    - 1661.283
+    - 1274.764
+    - 1015.04
+    - 1543.369
+    - 1377.68
+    - 1847.446
+    - 1415.498
+    - 1742.99
+    - 1729.612
+    - 1712.92
+    - 2204.102
+    - 2010.83
+    - 1764.52
+    - 2698.6
+    - 2017.314
+    - 2118.535
+    - 2088.44
+    - 1890.306
+    - 2192.536
+    - 1994.639
+    - 2719.26
+    - 2447.701
+    - 2266.4
+    - 2508.12
+    - 2544.92
+    - 2208.69
+    - 1339.4
+    - 1583.5
+    - 1823.1
+    - 2272.1
+    - 2147.86
+  self:
+    A:
+      jps:
+      - 0+
+      - 2+
+      - 3-
+      - 0+
+      - 2+
+      - 2+
+      - 2+
+      - 2+
+      - 0+
+      - (1- 2+)
+      - 2+
+      - 1-
+      - (0+)
+      - (1- 2+)
+      - (1- 2+)
+      energy_levels:
+      - - 0.0
+        - 0.0
+      - - 609.312
+        - 609.322
+      - - 1274.7549999999999
+        - 1274.773
+      - - 1415.49
+        - 1415.506
+      - - 1543.36
+        - 1543.378
+      - - 1661.269
+        - 1661.2969999999998
+      - - 1729.605
+        - 1729.6190000000001
+      - - 1847.437
+        - 1847.455
+      - - 2017.305
+        - 2017.323
+      - - 2147.81
+        - 2147.9100000000003
+      - - 2266.36
+        - 2266.44
+      - - 2447.6820000000002
+        - 2447.72
+      - - 2508.08
+        - 2508.16
+      - - 2694.5699999999997
+        - 2694.67
+      - - 2880.2200000000003
+        - 2880.5
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 2880.36
+      - 2694.62
+      - 2508.12
+      - 2447.701
+      - 2266.41
+      - 2266.4
+      - 2147.86
+      - 2017.315
+      - 2017.314
+      - 1847.446
+      - 1729.613
+      - 1729.612
+      - 1661.283
+      - 1661.282
+      - 1543.37
+      - 1543.369
+      - 1415.498
+      - 1274.765
+      - 1274.764
+      - 609.318
+      - 609.317
+      - 0.0
+      is_isomer: false
+    IT:
+      jps:
+      - 2+
+      - 3-
+      - 0+
+      - 2+
+      - 2+
+      - 2+
+      - 2+
+      - 0+
+      - (1- 2+)
+      - 2+
+      - 1-
+      - (0+)
+      - (1- 2+)
+      - (1- 2+)
+      energy_levels:
+      - - 609.312
+        - 609.322
+      - - 1274.7549999999999
+        - 1274.773
+      - - 1415.49
+        - 1415.506
+      - - 1543.36
+        - 1543.378
+      - - 1661.269
+        - 1661.2969999999998
+      - - 1729.605
+        - 1729.6190000000001
+      - - 1847.437
+        - 1847.455
+      - - 2017.305
+        - 2017.323
+      - - 2147.81
+        - 2147.9100000000003
+      - - 2266.36
+        - 2266.44
+      - - 2447.6820000000002
+        - 2447.72
+      - - 2508.08
+        - 2508.16
+      - - 2694.5699999999997
+        - 2694.67
+      - - 2880.2200000000003
+        - 2880.5
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 2880.36
+      - 2694.62
+      - 2508.12
+      - 2447.701
+      - 2266.41
+      - 2266.4
+      - 2147.86
+      - 2017.315
+      - 2017.314
+      - 1847.446
+      - 1729.613
+      - 1729.612
+      - 1661.283
+      - 1661.282
+      - 1543.37
+      - 1543.369
+      - 1415.498
+      - 1274.765
+      - 1274.764
+      - 609.318
+      - 609.317
+      is_isomer: true
+  energy_levels_flattened:
+  - 3183.6
+  - 3173.3
+  - 3160.4
+  - 3149.2
+  - 3142.6
+  - 3093.48
+  - 3081.84
+  - 3053.88
+  - 3014.11
+  - 3003.4
+  - 3000.0
+  - 2986.22
+  - 2978.93
+  - 2962.8
+  - 2940.67
+  - 2934.54
+  - 2928.55
+  - 2921.89
+  - 2919.5
+  - 2896.98
+  - 2893.6
+  - 2880.36
+  - 2869.63
+  - 2860.93
+  - 2826.82
+  - 2802.54
+  - 2785.97
+  - 2769.91
+  - 2728.617
+  - 2719.26
+  - 2698.6
+  - 2694.62
+  - 2662.33
+  - 2630.84
+  - 2604.68
+  - 2562.4
+  - 2553.0
+  - 2544.92
+  - 2508.12
+  - 2505.34
+  - 2482.46
+  - 2447.701
+  - 2423.25
+  - 2360.97
+  - 2348.3
+  - 2293.362
+  - 2272.1
+  - 2266.41
+  - 2266.4
+  - 2208.69
+  - 2204.103
+  - 2204.102
+  - 2192.536
+  - 2147.86
+  - 2118.535
+  - 2088.44
+  - 2017.315
+  - 2017.314
+  - 2010.831
+  - 2010.83
+  - 1994.639
+  - 1890.306
+  - 1847.446
+  - 1823.1
+  - 1764.52
+  - 1742.99
+  - 1729.613
+  - 1729.612
+  - 1712.93
+  - 1712.92
+  - 1661.283
+  - 1661.282
+  - 1583.5
+  - 1543.37
+  - 1543.369
+  - 1415.498
+  - 1377.681
+  - 1377.68
+  - 1339.4
+  - 1274.765
+  - 1274.764
+  - 1015.041
+  - 1015.04
+  - 609.318
+  - 609.317
+  - 0.0
+  energy_levels_isomer:
+  - 2880.36
+  - 2694.62
+  - 2508.12
+  - 2447.701
+  - 2266.41
+  - 2266.4
+  - 2147.86
+  - 2017.315
+  - 2017.314
+  - 1847.446
+  - 1729.613
+  - 1729.612
+  - 1661.283
+  - 1661.282
+  - 1543.37
+  - 1543.369
+  - 1415.498
+  - 1274.765
+  - 1274.764
+  - 609.318
+  - 609.317
+Pb-210:
+  parents:
+  - Tl-210
+  - Po-214
+  daughters:
+  - Hg-206
+  - Bi-210
+  from_Tl-210:
+    decay_modes:
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    energy_levels:
+    - 4102
+    - 3879
+    - 3622
+    - 3458
+    - 3069
+    - 1275
+    - 1096
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 799.7
+    - 1097.7
+    - 2414.0
+    - 1195.0
+    - 3625.0
+    - 1870.0
+    - 2209.0
+  self:
+    B-:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    A:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 4102.0
+  - 3879.0
+  - 3625.0
+  - 3622.0
+  - 3458.0
+  - 3069.0
+  - 2414.0
+  - 2209.0
+  - 1870.0
+  - 1275.0
+  - 1195.0
+  - 1097.7
+  - 1096.0
+  - 799.7
+  - 0.0
+  from_Po-214:
+    decay_modes:
+    - A
+    - A
+    - A
+    energy_levels:
+    - 1097.7
+    - 799.7
+    - 0.0
+  energy_levels_isomer: []
+Hg-206:
+  parents:
+  - Pb-210
+  daughters:
+  - Tl-206
+  from_Pb-210:
+    decay_modes:
+    - A
+    energy_levels:
+    - 0.0
+  from_gamma_cascade:
+    energy_levels: []
+  self:
+    B-:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 0.0
+  energy_levels_isomer: []
+Bi-210:
+  parents:
+  - Pb-210
+  daughters:
+  - Tl-206
+  - Po-210
+  from_Pb-210:
+    decay_modes:
+    - B-
+    - B-
+    energy_levels:
+    - 46.539
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+  self:
+    B-:
+      jps:
+      - 1-
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    A:
+      jps:
+      - 1-
+      - 9-
+      energy_levels:
+      - - 0.0
+        - 0.0
+      - - 271.2
+        - 271.42
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 46.539
+  - 0.0
+  energy_levels_isomer: []
+Tl-206:
+  parents:
+  - Hg-206
+  - Bi-210
+  daughters:
+  - Pb-206
+  from_Hg-206:
+    decay_modes:
+    - B-
+    - B-
+    - B-
+    energy_levels:
+    - 649.42
+    - 304.896
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 304.896
+    - 265.832
+  self:
+    B-:
+      jps:
+      - 0-
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    IT:
+      jps:
+      - (12-)
+      energy_levels:
+      - - 2642.92
+        - 2643.2799999999997
+      is_energy_level_set: true
+      is_feasible: false
+      feasible_energies: []
+  energy_levels_flattened:
+  - 649.42
+  - 304.896
+  - 265.832
+  - 0.0
+  from_Bi-210:
+    decay_modes:
+    - A
+    - A
+    energy_levels:
+    - 304.896
+    - 265.832
+  energy_levels_isomer: []
+Pb-206:
+  parents:
+  - Tl-206
+  - Po-210
+  from_Tl-206:
+    decay_modes:
+    - B-
+    - B-
+    - B-
+    energy_levels:
+    - 1166.4
+    - 803.049
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 803.054
+  self:
+    IT:
+      jps:
+      - 7-
+      - 12+
+      energy_levels:
+      - - 2200.12
+        - 2200.2
+      - - 4027.0
+        - 4027.6000000000004
+      is_energy_level_set: true
+      is_feasible: false
+      feasible_energies: []
+  energy_levels_flattened:
+  - 1166.4
+  - 803.054
+  - 803.049
+  - 0.0
+  from_Po-210:
+    decay_modes:
+    - A
+    - A
+    energy_levels:
+    - 803.049
+    - 0.0
+  energy_levels_isomer: []
+Po-210:
+  parents:
+  - Bi-210
+  daughters:
+  - Pb-206
+  from_Bi-210:
+    decay_modes:
+    - B-
+    energy_levels:
+    - 0.0
+  from_gamma_cascade:
+    energy_levels: []
+  self:
+    A:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 0.0
+  energy_levels_isomer: []
+U-235:
+  daughters:
+  - Th-231
+  is_isomer_progenitor: false
+  from_user_input:
+    energy_levels:
+    - 0
+  from_gamma_cascade:
+    energy_levels: []
+  self:
+    A:
+      jps:
+      - 7/2-
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    IT:
+      jps:
+      - 1/2+
+      energy_levels:
+      - - 0.0756
+        - 0.0764
+      is_energy_level_set: true
+      is_feasible: false
+      feasible_energies: []
+    SF:
+      jps:
+      - 7/2-
+      - .nan
+      energy_levels:
+      - - 0.0
+        - 0.0
+      - - 2200.0
+        - 2800.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    '{+25}Ne':
+      jps:
+      - 7/2-
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 0.0
+  energy_levels_isomer: []
+Th-231:
+  parents:
+  - U-235
+  daughters:
+  - Pa-231
+  from_U-235:
+    decay_modes:
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    energy_levels:
+    - 634.05
+    - 562.0
+    - 530.22
+    - 452.189
+    - 385.68
+    - 387.824
+    - 377.562
+    - 355.0
+    - 331.0
+    - 324.911
+    - 317.079
+    - 301.7
+    - 275.423
+    - 277.6
+    - 240.8785
+    - 236.893
+    - 221.392
+    - 205.3098
+    - 185.7143
+    - 162.13
+    - 96.126
+    - 41.9509
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 41.9521
+    - 185.716
+    - 96.129
+    - 205.3101
+    - 162.11
+    - 240.8794
+    - 236.899
+    - 387.828
+    - 221.3966
+  self:
+    B-:
+      jps:
+      - 5/2+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 634.05
+  - 562.0
+  - 530.22
+  - 452.189
+  - 387.828
+  - 387.824
+  - 385.68
+  - 377.562
+  - 355.0
+  - 331.0
+  - 324.911
+  - 317.079
+  - 301.7
+  - 277.6
+  - 275.423
+  - 240.8794
+  - 240.8785
+  - 236.899
+  - 236.893
+  - 221.3966
+  - 221.392
+  - 205.3101
+  - 205.3098
+  - 185.716
+  - 185.7143
+  - 162.13
+  - 162.11
+  - 96.129
+  - 96.126
+  - 41.9521
+  - 41.9509
+  - 0.0
+  energy_levels_isomer: []
+Pa-231:
+  parents:
+  - Th-231
+  daughters:
+  - Ac-227
+  from_Th-231:
+    decay_modes:
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    energy_levels:
+    - 351.86
+    - 320.211
+    - 317.95
+    - 247.32
+    - 218.244
+    - 183.4955
+    - 174.16
+    - 102.2685
+    - 101.408
+    - 84.2153
+    - 77.694
+    - 58.57
+    - 0.0
+    - 9.21
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 58.5696
+    - 84.2152
+    - 9.183
+    - 102.2685
+    - 101.408
+    - 77.692
+    - 183.4954
+    - 174.16
+    - 111.648
+  self:
+    A:
+      jps:
+      - 3/2-
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    SF:
+      jps:
+      - 3/2-
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 351.86
+  - 320.211
+  - 317.95
+  - 247.32
+  - 218.244
+  - 183.4955
+  - 183.4954
+  - 174.16
+  - 111.648
+  - 102.2685
+  - 101.408
+  - 84.2153
+  - 84.2152
+  - 77.694
+  - 77.692
+  - 58.57
+  - 58.5696
+  - 9.21
+  - 9.183
+  - 0.0
+  energy_levels_isomer: []
+Ac-227:
+  parents:
+  - Pa-231
+  daughters:
+  - Fr-223
+  - Th-227
+  from_Pa-231:
+    decay_modes:
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    energy_levels:
+    - 656.3
+    - 560.98
+    - 537.3
+    - 501.16
+    - 469.26
+    - 435.16
+    - 437.94
+    - 425.6
+    - 387.197
+    - 354.5
+    - 330.037
+    - 304.78
+    - 271.32
+    - 273.16
+    - 210.84
+    - 160.0
+    - 126.845
+    - 109.989
+    - 84.539
+    - 74.147
+    - 46.349
+    - 29.975
+    - 27.365
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 29.978
+    - 27.369
+    - 46.354
+    - 84.544
+    - 74.149
+    - 109.992
+    - 273.19
+    - 330.04
+    - 126.848
+    - 387.202
+    - 198.69
+    - 187.34
+  self:
+    B-:
+      jps:
+      - 3/2-
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    A:
+      jps:
+      - 3/2-
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 656.3
+  - 560.98
+  - 537.3
+  - 501.16
+  - 469.26
+  - 437.94
+  - 435.16
+  - 425.6
+  - 387.202
+  - 387.197
+  - 354.5
+  - 330.04
+  - 330.037
+  - 304.78
+  - 273.19
+  - 273.16
+  - 271.32
+  - 210.84
+  - 198.69
+  - 187.34
+  - 160.0
+  - 126.848
+  - 126.845
+  - 109.992
+  - 109.989
+  - 84.544
+  - 84.539
+  - 74.149
+  - 74.147
+  - 46.354
+  - 46.349
+  - 29.978
+  - 29.975
+  - 27.369
+  - 27.365
+  - 0.0
+  energy_levels_isomer: []
+Fr-223:
+  parents:
+  - Ac-227
+  daughters:
+  - At-219
+  - Ra-223
+  from_Ac-227:
+    decay_modes:
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    energy_levels:
+    - 601.0
+    - 540.74
+    - 515.2
+    - 503.0
+    - 449.0
+    - 379.0
+    - 371.0
+    - 365.47
+    - 242.63
+    - 219.61
+    - 189.1
+    - 172.08
+    - 160.48
+    - 134.51
+    - 99.63
+    - 82.13
+    - 54.97
+    - 12.89
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 54.98
+    - 12.882
+    - 99.53
+    - 100.999
+  self:
+    B-:
+      jps:
+      - 3/2(-)
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    A:
+      jps:
+      - 3/2(-)
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 601.0
+  - 540.74
+  - 515.2
+  - 503.0
+  - 449.0
+  - 379.0
+  - 371.0
+  - 365.47
+  - 242.63
+  - 219.61
+  - 189.1
+  - 172.08
+  - 160.48
+  - 134.51
+  - 100.999
+  - 99.63
+  - 99.53
+  - 82.13
+  - 54.98
+  - 54.97
+  - 12.89
+  - 12.882
+  - 0.0
+  energy_levels_isomer: []
+Th-227:
+  parents:
+  - Ac-227
+  daughters:
+  - Ra-223
+  from_Ac-227:
+    decay_modes:
+    - B-
+    - B-
+    - B-
+    - B-
+    energy_levels:
+    - 37.9
+    - 24.5
+    - 9.3
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+  self:
+    A:
+      jps:
+      - (1/2+)
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 37.9
+  - 24.5
+  - 9.3
+  - 0.0
+  energy_levels_isomer: []
+At-219:
+  parents:
+  - Fr-223
+  daughters:
+  - Bi-215
+  from_Fr-223:
+    decay_modes:
+    - A
+    - A
+    - A
+    - A
+    - A
+    energy_levels:
+    - 296.2
+    - 174.0
+    - 150.9
+    - 58.9
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 150.9
+  self:
+    A:
+      jps:
+      - (9/2-)
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    B-:
+      jps:
+      - (9/2-)
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 296.2
+  - 174.0
+  - 150.9
+  - 58.9
+  - 0.0
+  energy_levels_isomer: []
+Ra-223:
+  parents:
+  - Fr-223
+  - Th-227
+  daughters:
+  - Rn-219
+  from_Fr-223:
+    decay_modes:
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    energy_levels:
+    - 1028.94
+    - 1024.6
+    - 1019.3
+    - 957.73
+    - 943.27
+    - 940.79
+    - 926.56
+    - 905.9
+    - 867.33
+    - 846.41
+    - 842.25
+    - 825.94
+    - 823.22
+    - 805.38
+    - 803.77
+    - 787.14
+    - 782.54
+    - 593.58
+    - 376.1
+    - 369.351
+    - 342.51
+    - 334.3
+    - 329.83
+    - 286.07
+    - 234.779
+    - 123.737
+    - 79.652
+    - 50.093
+    - 29.859
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 29.858
+    - 50.128
+    - 79.708
+    - 61.424
+    - 286.087
+    - 123.793
+    - 234.858
+    - 342.59
+    - 329.856
+    - 130.141
+    - 104.6
+    - 174.569
+    - 280.182
+    - 350.53
+    - 334.37
+    - 342.654
+    - 376.296
+    - 247.39
+    - 174.58
+    - 459.93
+    - 369.36
+    - 315.99
+    - 424.12
+    - 405.07
+  self:
+    A:
+      jps:
+      - 3/2+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    14C:
+      jps:
+      - 3/2+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 1028.94
+  - 1025.0
+  - 1024.6
+  - 1019.3
+  - 999.85
+  - 971.31
+  - 957.73
+  - 943.27
+  - 943.1
+  - 940.79
+  - 926.56
+  - 926.48
+  - 908.03
+  - 905.9
+  - 884.2
+  - 879.41
+  - 867.33
+  - 859.07
+  - 846.41
+  - 842.25
+  - 842.05
+  - 825.94
+  - 823.22
+  - 823.03
+  - 805.38
+  - 803.77
+  - 803.44
+  - 787.14
+  - 786.9
+  - 782.54
+  - 729.0
+  - 712.7
+  - 685.0
+  - 641.0
+  - 593.58
+  - 590.3
+  - 568.0
+  - 537.16
+  - 514.25
+  - 459.93
+  - 445.071
+  - 432.24
+  - 424.12
+  - 405.07
+  - 376.296
+  - 376.1
+  - 369.36
+  - 369.351
+  - 350.53
+  - 342.654
+  - 342.59
+  - 342.51
+  - 334.37
+  - 334.3
+  - 329.856
+  - 329.83
+  - 315.99
+  - 286.087
+  - 286.07
+  - 280.182
+  - 247.39
+  - 234.858
+  - 234.779
+  - 174.58
+  - 174.569
+  - 130.141
+  - 123.793
+  - 123.737
+  - 104.6
+  - 79.708
+  - 79.652
+  - 61.424
+  - 50.128
+  - 50.093
+  - 29.859
+  - 29.858
+  - 0.0
+  from_Th-227:
+    decay_modes:
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    energy_levels:
+    - 1025.0
+    - 999.85
+    - 971.31
+    - 943.1
+    - 926.48
+    - 908.03
+    - 884.2
+    - 879.41
+    - 859.07
+    - 842.05
+    - 823.03
+    - 803.44
+    - 786.9
+    - 729.0
+    - 712.7
+    - 685.0
+    - 641.0
+    - 590.3
+    - 568.0
+    - 537.16
+    - 514.25
+    - 459.93
+    - 445.071
+    - 432.24
+    - 424.12
+    - 405.07
+    - 376.296
+    - 369.36
+    - 350.53
+    - 342.59
+    - 334.37
+    - 329.856
+    - 315.99
+    - 286.087
+    - 280.182
+    - 247.39
+    - 234.858
+    - 174.569
+    - 130.141
+    - 123.793
+    - 79.708
+    - 61.424
+    - 50.128
+    - 29.858
+    - 0.0
+  energy_levels_isomer: []
+Bi-215:
+  parents:
+  - At-219
+  daughters:
+  - Po-215
+  from_At-219:
+    decay_modes:
+    - A
+    energy_levels:
+    - 0.0
+  from_gamma_cascade:
+    energy_levels: []
+  self:
+    B-:
+      jps:
+      - (9/2-)
+      - (25/2:29/2)(-)
+      energy_levels:
+      - - 0.0
+        - 0.0
+      - - 1347.5
+        - 1347.5
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    IT:
+      jps:
+      - (25/2:29/2)(-)
+      energy_levels:
+      - - 1347.5
+        - 1347.5
+      is_energy_level_set: true
+      is_feasible: false
+      feasible_energies: []
+  energy_levels_flattened:
+  - 0.0
+  energy_levels_isomer: []
+Po-215:
+  parents:
+  - Bi-215
+  - Rn-219
+  daughters:
+  - Pb-211
+  from_Bi-215:
+    decay_modes:
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    energy_levels:
+    - 1398.8
+    - 1294.43
+    - 1176.1
+    - 1077.6
+    - 835.7
+    - 677.6
+    - 609.0
+    - 517.53
+    - 401.6
+    - 293.53
+    - 271.11
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 293.56
+    - 271.228
+    - 517.63
+    - 401.812
+    - 608.3
+  self:
+    A:
+      jps:
+      - 9/2+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    B-:
+      jps:
+      - 9/2+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 1398.8
+  - 1294.43
+  - 1176.1
+  - 1094.2
+  - 1077.6
+  - 1073.7
+  - 930.0
+  - 891.1
+  - 877.2
+  - 835.7
+  - 835.32
+  - 732.7
+  - 708.1
+  - 677.6
+  - 676.66
+  - 609.0
+  - 608.3
+  - 517.63
+  - 517.6
+  - 517.53
+  - 401.812
+  - 401.6
+  - 293.56
+  - 293.53
+  - 271.228
+  - 271.11
+  - 0.0
+  from_Rn-219:
+    decay_modes:
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    energy_levels:
+    - 1094.2
+    - 1073.7
+    - 930.0
+    - 891.1
+    - 877.2
+    - 835.32
+    - 732.7
+    - 708.1
+    - 676.66
+    - 608.3
+    - 517.6
+    - 401.812
+    - 293.56
+    - 271.228
+    - 0.0
+  energy_levels_isomer: []
+Pb-211:
+  parents:
+  - Po-215
+  daughters:
+  - Bi-211
+  from_Po-215:
+    decay_modes:
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    energy_levels:
+    - 894.0
+    - 815.0
+    - 762.0
+    - 733.0
+    - 643.0
+    - 598.0
+    - 584.0
+    - 438.9
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+  self:
+    B-:
+      jps:
+      - 9/2+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    IT:
+      jps:
+      - (27/2+)
+      energy_levels:
+      - - 1679.1
+        - 1679.1
+      is_energy_level_set: true
+      is_feasible: false
+      feasible_energies: []
+  energy_levels_flattened:
+  - 894.0
+  - 815.0
+  - 762.0
+  - 733.0
+  - 643.0
+  - 598.0
+  - 584.0
+  - 438.9
+  - 0.0
+  energy_levels_isomer: []
+Bi-211:
+  parents:
+  - Pb-211
+  daughters:
+  - Tl-207
+  - Po-211
+  from_Pb-211:
+    decay_modes:
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    energy_levels:
+    - 1270.72
+    - 1234.3
+    - 1196.33
+    - 1109.485
+    - 1103.5
+    - 1080.15
+    - 951.0
+    - 831.96
+    - 404.866
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 404.866
+    - 766.539
+    - 1014.4
+  self:
+    A:
+      jps:
+      - 9/2-
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    IT:
+      jps:
+      - (25/2-)
+      energy_levels:
+      - - 1247.0
+        - 1267.0
+      is_energy_level_set: true
+      is_feasible: false
+      feasible_energies: []
+    B-:
+      jps:
+      - 9/2-
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 1270.72
+  - 1234.3
+  - 1196.33
+  - 1109.485
+  - 1103.5
+  - 1080.15
+  - 1014.4
+  - 951.0
+  - 831.96
+  - 766.539
+  - 404.866
+  - 0.0
+  energy_levels_isomer: []
+Tl-207:
+  parents:
+  - Bi-211
+  daughters:
+  - Pb-207
+  from_Bi-211:
+    decay_modes:
+    - A
+    - A
+    - A
+    energy_levels:
+    - 1348.1
+    - 351.06
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 351.06
+  self:
+    B-:
+      jps:
+      - 1/2+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    IT:
+      jps:
+      - 11/2-
+      energy_levels:
+      - - 1348.02
+        - 1348.3400000000001
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 1348.1
+      is_isomer: true
+  energy_levels_flattened:
+  - 1348.1
+  - 351.06
+  - 0.0
+  energy_levels_isomer:
+  - 1348.1
+Po-211:
+  parents:
+  - Bi-211
+  daughters:
+  - Pb-207
+  from_Bi-211:
+    decay_modes:
+    - B-
+    energy_levels:
+    - 0.0
+  from_gamma_cascade:
+    energy_levels: []
+  self:
+    A:
+      jps:
+      - 9/2+
+      - (25/2+)
+      energy_levels:
+      - - 0.0
+        - 0.0
+      - - 1457.0
+        - 1467.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    IT:
+      jps:
+      - (25/2+)
+      - (31/2-)
+      - (43/2+)
+      energy_levels:
+      - - 1457.0
+        - 1467.0
+      - - 2130.0
+        - 2140.0
+      - - 4866.0
+        - 4878.0
+      is_energy_level_set: true
+      is_feasible: false
+      feasible_energies: []
+  energy_levels_flattened:
+  - 0.0
+  energy_levels_isomer: []
+Pb-207:
+  parents:
+  - Tl-207
+  - Po-211
+  from_Tl-207:
+    decay_modes:
+    - B-
+    - B-
+    - B-
+    energy_levels:
+    - 897.76
+    - 569.64
+    - 0.0
+  from_gamma_cascade:
+    energy_levels: []
+  self:
+    IT:
+      jps:
+      - 13/2+
+      energy_levels:
+      - - 1633.352
+        - 1633.36
+      is_energy_level_set: true
+      is_feasible: false
+      feasible_energies: []
+  energy_levels_flattened:
+  - 1633.31
+  - 897.81
+  - 897.76
+  - 569.64
+  - 0.0
+  from_Po-211:
+    decay_modes:
+    - A
+    - A
+    - A
+    - A
+    energy_levels:
+    - 1633.31
+    - 897.81
+    - 569.64
+    - 0.0
+  energy_levels_isomer: []
+Rn-219:
+  parents:
+  - Ra-223
+  daughters:
+  - Po-215
+  from_Ra-223:
+    decay_modes:
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    energy_levels:
+    - 873.0
+    - 861.0
+    - 851.0
+    - 830.0
+    - 800.0
+    - 773.0
+    - 748.0
+    - 732.84
+    - 711.34
+    - 672.5
+    - 646.09
+    - 623.7
+    - 598.721
+    - 594.08
+    - 542.011
+    - 514.42
+    - 446.82
+    - 445.037
+    - 397.0
+    - 376.19
+    - 342.792
+    - 338.276
+    - 269.475
+    - 158.631
+    - 126.726
+    - 14.4
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 4.413
+    - 14.4
+    - 342.792
+    - 126.726
+    - 158.631
+    - 377.33
+    - 338.276
+    - 269.475
+    - 446.82
+    - 598.721
+    - 376.19
+    - 514.42
+    - 490.88
+  self:
+    A:
+      jps:
+      - 5/2+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 873.0
+  - 861.0
+  - 851.0
+  - 830.0
+  - 800.0
+  - 773.0
+  - 748.0
+  - 732.84
+  - 711.34
+  - 672.5
+  - 646.09
+  - 623.7
+  - 598.721
+  - 594.08
+  - 542.011
+  - 514.42
+  - 490.88
+  - 446.82
+  - 445.037
+  - 397.0
+  - 377.33
+  - 376.19
+  - 342.792
+  - 338.276
+  - 269.475
+  - 158.631
+  - 126.726
+  - 14.4
+  - 4.413
+  - 0.0
+  energy_levels_isomer: []
+Th-232:
+  daughters:
+  - Ra-228
+  is_isomer_progenitor: false
+  from_user_input:
+    energy_levels:
+    - 0
+  from_gamma_cascade:
+    energy_levels: []
+  self:
+    A:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    SF:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 0.0
+  energy_levels_isomer: []
+Ra-228:
+  parents:
+  - Th-232
+  daughters:
+  - Ac-228
+  from_Th-232:
+    decay_modes:
+    - A
+    - A
+    - A
+    energy_levels:
+    - 204.69
+    - 63.81
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 63.823
+  self:
+    B-:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 204.69
+  - 63.823
+  - 63.81
+  - 0.0
+  energy_levels_isomer: []
+Ac-228:
+  parents:
+  - Ra-228
+  daughters:
+  - Th-228
+  from_Ra-228:
+    decay_modes:
+    - B-
+    - B-
+    - B-
+    - B-
+    energy_levels:
+    - 33.07
+    - 20.19
+    - 6.67
+    - 6.28
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 6.67
+    - 20.19
+  self:
+    B-:
+      jps:
+      - 3+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 33.07
+  - 20.19
+  - 6.67
+  - 6.28
+  - 0.0
+  energy_levels_isomer: []
+Th-228:
+  parents:
+  - Ac-228
+  daughters:
+  - Ra-224
+  from_Ac-228:
+    decay_modes:
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    energy_levels:
+    - 2123.1
+    - 2037.0
+    - 2030.39
+    - 2022.64
+    - 2013.6
+    - 2010.2
+    - 1987.46
+    - 1958.72
+    - 1944.83
+    - 1937.18
+    - 1928.66
+    - 1906.63
+    - 1899.97
+    - 1893.02
+    - 1797.66
+    - 1795.65
+    - 1760.17
+    - 1758.24
+    - 1743.87
+    - 1735.508
+    - 1724.288
+    - 1688.398
+    - 1683.71
+    - 1682.754
+    - 1646.005
+    - 1643.119
+    - 1638.283
+    - 1617.78
+    - 1531.478
+    - 1450.35
+    - 1431.981
+    - 1416.09
+    - 1344.082
+    - 1297.44
+    - 1226.566
+    - 1175.45
+    - 1174.5
+    - 1168.377
+    - 1153.465
+    - 1122.949
+    - 1091.02
+    - 1059.94
+    - 1022.531
+    - 1016.386
+    - 979.507
+    - 968.972
+    - 968.335
+    - 944.2
+    - 874.48
+    - 519.195
+    - 328.006
+    - 396.083
+    - 378.178
+    - 186.827
+    - 57.763
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 57.773
+    - 328.019
+    - 186.838
+    - 378.195
+    - 519.208
+    - 396.094
+    - 1091.048
+    - 1016.386
+    - 1022.542
+    - 968.984
+    - 968.451
+    - 944.205
+    - 1168.389
+    - 1122.959
+    - 1795.92
+    - 1638.284
+    - 622.5
+    - 911.8
+    - 1239.3
+    - 1599.4
+    - 1539.21
+    - 874.535
+    - 1416.1
+    - 831.842
+    - 695.45
+    - 979.522
+    - 938.61
+    - 1297.435
+    - 1270.08
+    - 1200.6
+    - 1174.515
+    - 1153.487
+    - 1074.8
+    - 1059.928
+    - 1431.994
+    - 968.381
+    - 1531.49
+    - 1226.58
+    - 1175.41
+    - 1646.003
+    - 1393.31
+    - 1119.7
+    - 1344.142
+  self:
+    A:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 2123.1
+  - 2037.0
+  - 2030.39
+  - 2022.64
+  - 2013.6
+  - 2010.2
+  - 1987.46
+  - 1958.72
+  - 1944.83
+  - 1937.18
+  - 1928.66
+  - 1906.63
+  - 1899.97
+  - 1893.02
+  - 1797.66
+  - 1795.92
+  - 1795.65
+  - 1760.17
+  - 1758.24
+  - 1743.87
+  - 1735.508
+  - 1724.288
+  - 1688.398
+  - 1683.71
+  - 1682.754
+  - 1646.005
+  - 1646.003
+  - 1643.119
+  - 1638.284
+  - 1638.283
+  - 1617.78
+  - 1599.4
+  - 1539.21
+  - 1531.49
+  - 1531.478
+  - 1450.35
+  - 1431.994
+  - 1431.981
+  - 1416.1
+  - 1416.09
+  - 1393.31
+  - 1344.142
+  - 1344.082
+  - 1297.44
+  - 1297.435
+  - 1270.08
+  - 1239.3
+  - 1226.58
+  - 1226.566
+  - 1200.6
+  - 1175.45
+  - 1175.41
+  - 1174.515
+  - 1174.5
+  - 1168.389
+  - 1168.377
+  - 1153.487
+  - 1153.465
+  - 1122.959
+  - 1122.949
+  - 1119.7
+  - 1091.048
+  - 1091.02
+  - 1074.8
+  - 1059.94
+  - 1059.928
+  - 1022.542
+  - 1022.531
+  - 1016.386
+  - 979.522
+  - 979.507
+  - 968.984
+  - 968.972
+  - 968.451
+  - 968.381
+  - 968.335
+  - 944.205
+  - 944.2
+  - 938.61
+  - 911.8
+  - 874.535
+  - 874.48
+  - 831.842
+  - 695.45
+  - 622.5
+  - 519.208
+  - 519.195
+  - 396.094
+  - 396.083
+  - 378.195
+  - 378.178
+  - 328.019
+  - 328.006
+  - 186.838
+  - 186.827
+  - 57.773
+  - 57.763
+  - 0.0
+  energy_levels_isomer: []
+Ra-224:
+  parents:
+  - Th-228
+  daughters:
+  - Rn-220
+  from_Th-228:
+    decay_modes:
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    energy_levels:
+    - 992.5
+    - 916.39
+    - 479.28
+    - 432.89
+    - 290.32
+    - 250.783
+    - 215.985
+    - 84.373
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 84.372
+    - 215.985
+  self:
+    A:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    14C:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 992.5
+  - 916.39
+  - 479.28
+  - 432.89
+  - 290.32
+  - 250.783
+  - 215.985
+  - 84.373
+  - 84.372
+  - 0.0
+  energy_levels_isomer: []
+Rn-220:
+  parents:
+  - Ra-224
+  daughters:
+  - Po-216
+  from_Ra-224:
+    decay_modes:
+    - A
+    - A
+    - A
+    - A
+    - A
+    energy_levels:
+    - 663.03
+    - 645.44
+    - 533.69
+    - 240.986
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 240.986
+  self:
+    A:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 663.03
+  - 645.44
+  - 533.69
+  - 240.986
+  - 0.0
+  energy_levels_isomer: []
+Po-216:
+  parents:
+  - Rn-220
+  daughters:
+  - Pb-212
+  from_Rn-220:
+    decay_modes:
+    - A
+    - A
+    energy_levels:
+    - 549.73
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+  self:
+    A:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 549.73
+  - 0.0
+  energy_levels_isomer: []
+Pb-212:
+  parents:
+  - Po-216
+  daughters:
+  - Bi-212
+  from_Po-216:
+    decay_modes:
+    - A
+    - A
+    energy_levels:
+    - 804.9
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+  self:
+    B-:
+      jps:
+      - 0+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 804.9
+  - 0.0
+  energy_levels_isomer: []
+Bi-212:
+  parents:
+  - Pb-212
+  daughters:
+  - Tl-208
+  - Po-212
+  from_Pb-212:
+    decay_modes:
+    - B-
+    - B-
+    - B-
+    energy_levels:
+    - 415.272
+    - 238.632
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 115.183
+    - 238.632
+  self:
+    B-:
+      jps:
+      - 1(-)
+      - (8- 9-)
+      - (18-)
+      energy_levels:
+      - - 0.0
+        - 0.0
+      - - 209.0
+        - 269.0
+      - - 1440.0
+        - 1516.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 238.632
+      - 0.0
+      is_isomer: false
+    A:
+      jps:
+      - 1(-)
+      - (8- 9-)
+      energy_levels:
+      - - 0.0
+        - 0.0
+      - - 209.0
+        - 269.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 238.632
+      - 0.0
+      is_isomer: false
+    IT:
+      jps:
+      - (18-)
+      energy_levels:
+      - - 1440.0
+        - 1516.0
+      is_energy_level_set: true
+      is_feasible: false
+      feasible_energies: []
+    B-A:
+      jps:
+      - (8- 9-)
+      energy_levels:
+      - - 209.0
+        - 269.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 238.632
+      is_isomer: false
+  energy_levels_flattened:
+  - 415.272
+  - 238.632
+  - 115.183
+  - 0.0
+  energy_levels_isomer: []
+Tl-208:
+  parents:
+  - Bi-212
+  daughters:
+  - Pb-208
+  from_Bi-212:
+    decay_modes:
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    - A
+    energy_levels:
+    - 803.0
+    - 759.0
+    - 621.0
+    - 492.84
+    - 473.4
+    - 328.04
+    - 39.857
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 39.858
+    - 328.04
+  self:
+    B-:
+      jps:
+      - 5+
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 803.0
+  - 759.0
+  - 621.0
+  - 492.84
+  - 473.4
+  - 328.04
+  - 39.858
+  - 39.857
+  - 0.0
+  energy_levels_isomer: []
+Po-212:
+  parents:
+  - Bi-212
+  daughters:
+  - Pb-208
+  from_Bi-212:
+    decay_modes:
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    energy_levels:
+    - 1805.96
+    - 1800.9
+    - 1679.45
+    - 1620.738
+    - 1512.7
+    - 727.33
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 727.33
+    - 1620.739
+  self:
+    A:
+      jps:
+      - 0+
+      - 2+
+      - 4+
+      - .nan
+      - 6+
+      - 8+
+      - .nan
+      - .nan
+      - .nan
+      - .nan
+      - 2+
+      - 0+
+      - 2+
+      - (18+)
+      energy_levels:
+      - - 0.0
+        - 0.0
+      - - 727.321
+        - 727.339
+      - - 1132.41
+        - 1132.61
+      - - 1239.0
+        - 1259.0
+      - - 1355.35
+        - 1355.63
+      - - 1476.22
+        - 1476.5600000000002
+      - - 1537.0
+        - 1557.0
+      - - 1568.0
+        - 1588.0
+      - - 1602.0
+        - 1622.0
+      - - 1647.0
+        - 1667.0
+      - - 1679.438
+        - 1679.466
+      - - 1800.72
+        - 1801.1000000000001
+      - - 1805.8500000000001
+        - 1806.05
+      - - 2920.0
+        - 2940.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 1805.96
+      - 1800.9
+      - 1679.45
+      - 1620.739
+      - 1620.738
+      - 727.33
+      - 0.0
+      is_isomer: false
+    IT:
+      jps:
+      - 2+
+      - 4+
+      - 6+
+      - 8+
+      - 2+
+      - 0+
+      - 2+
+      - (18+)
+      energy_levels:
+      - - 727.321
+        - 727.339
+      - - 1132.41
+        - 1132.61
+      - - 1355.35
+        - 1355.63
+      - - 1476.22
+        - 1476.5600000000002
+      - - 1679.438
+        - 1679.466
+      - - 1800.72
+        - 1801.1000000000001
+      - - 1805.8500000000001
+        - 1806.05
+      - - 2920.0
+        - 2940.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 1805.96
+      - 1800.9
+      - 1679.45
+      - 727.33
+      is_isomer: true
+  energy_levels_flattened:
+  - 1805.96
+  - 1800.9
+  - 1679.45
+  - 1620.739
+  - 1620.738
+  - 1512.7
+  - 727.33
+  - 0.0
+  energy_levels_isomer:
+  - 1805.96
+  - 1800.9
+  - 1679.45
+  - 727.33
+Pb-208:
+  parents:
+  - Tl-208
+  - Po-212
+  from_Tl-208:
+    decay_modes:
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    - B-
+    energy_levels:
+    - 4480.5
+    - 4382.9
+    - 4358.44
+    - 4323.4
+    - 4296.28
+    - 4262.0
+    - 4180.38
+    - 4125.28
+    - 3995.6
+    - 3960.93
+    - 3946.42
+    - 3919.78
+    - 3708.41
+    - 3475.088
+    - 3197.717
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+    - 2614.522
+    - 3197.711
+  self: {}
+  energy_levels_flattened:
+  - 4480.5
+  - 4382.9
+  - 4358.44
+  - 4323.4
+  - 4296.28
+  - 4262.0
+  - 4180.38
+  - 4125.28
+  - 3995.6
+  - 3960.93
+  - 3946.42
+  - 3919.78
+  - 3708.41
+  - 3475.088
+  - 3197.717
+  - 3197.711
+  - 2614.522
+  - 0.0
+  from_Po-212:
+    decay_modes:
+    - A
+    energy_levels:
+    - 0.0
+K-40:
+  daughters:
+  - Ar-40
+  - Ca-40
+  is_isomer_progenitor: false
+  from_user_input:
+    energy_levels:
+    - 0
+  from_gamma_cascade:
+    energy_levels: []
+  self:
+    B-:
+      jps:
+      - 4-
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+    EC+B+:
+      jps:
+      - 4-
+      energy_levels:
+      - - 0.0
+        - 0.0
+      is_energy_level_set: true
+      is_feasible: true
+      feasible_energies:
+      - 0.0
+      is_isomer: false
+  energy_levels_flattened:
+  - 0.0
+  energy_levels_isomer: []
+Ar-40:
+  parents:
+  - K-40
+  from_K-40:
+    decay_modes:
+    - EC+B+
+    - EC+B+
+    energy_levels:
+    - 1460.851
+    - 0.0
+  from_gamma_cascade:
+    energy_levels:
+    - 0.0
+  self: {}
+  energy_levels_flattened:
+  - 1460.851
+  - 0.0
+Ca-40:
+  parents:
+  - K-40
+  from_K-40:
+    decay_modes:
+    - B-
+    energy_levels:
+    - 0
+  from_gamma_cascade:
+    energy_levels: []
+  self: {}
+  energy_levels_flattened:
+  - 0.0
