@@ -19,7 +19,7 @@ __author__ = 'Jaewoong Jang'
 __copyright__ = 'Copyright (c) 2024 Jaewoong Jang'
 __license__ = 'MIT License'
 __version__ = '1.0.0'
-__date__ = '2024-04-28'
+__date__ = '2024-05-22'
 
 
 class Painter():
@@ -295,8 +295,10 @@ class Painter():
             The name of a DF column to be used as y-axis data.
             The default is 'emission_probability'.
         plot_type : str, optional
-            A plot type. Available values are ['spectrum', 'rn'].
-            The default is 'spectrum'.
+            A plot type. Available values are ['efficiency_fit',
+            'efficiency_data', 'efficiency_annot', 'efficiency_calc']
+            + ['spectrum', 'rn'], the former of which is for extended use of
+            this function. The default is 'spectrum'.
         is_spotting : bool, optional
             If True, some of the commands related to plot_type == 'rn' are
             customized for radionuclide identification settings.
@@ -312,6 +314,13 @@ class Painter():
         None.
             is_finalize == False will terminate the function by returning None.
         """
+        #
+        # Data column type selection
+        #
+        data_col_type = 'nucl_data_new'
+        if is_spotting:
+            data_col_type = 'spectrum'
+
         #
         # x-axis
         #
@@ -348,15 +357,22 @@ class Painter():
         #   when this function is called multiple times.
         #
         if is_finalize:
-            out_fig_bname += '_nrg{}-{}'.format(
-                int(ax.get_xlim()[0]),
-                int(ax.get_xlim()[1]))
+            # Efficiency plotting (extended use)
+            if re.search('(?i)efficiency', plot_type):
+                out_fig_bname += p['io']['out']['flag']
+                if p['plot']['legend']['toggle']:
+                    ax.legend(**p['plot']['legend']['kwargs'])
+            # Radiation spectrum plotting (original use)
+            else:
+                out_fig_bname += '_nrg{}-{}'.format(int(ax.get_xlim()[0]),
+                                                    int(ax.get_xlim()[1]))
 
         #
         # Figure base name modification (3/4)
         # - Append the plot type to the figure base name.
         #
-        out_fig_bname += '_{}'.format(plot_type)
+        if not re.search('(?i)efficiency', plot_type):
+            out_fig_bname += '_{}'.format(plot_type)
 
         #
         # y-axis
@@ -379,11 +395,45 @@ class Painter():
                           **p['plot']['ylabel']['kwargs'])
 
         #
-        # Data column type selection
+        # Plotting: Efficiency fit function and data points
+        # (extended use of plot_radiat_spectr())
         #
-        data_col_type = 'nucl_data_new'
-        if is_spotting:
-            data_col_type = 'spectrum'
+        if re.search('(?i)efficiency', plot_type):
+            # Efficiency fit function
+            if re.search('(?i)efficiency_fit', plot_type):
+                xdata_eff_fit = df[cols[x][data_col_type]].copy()
+                ydata_eff_fit = df[cols[y][data_col_type]].copy()
+                ax.plot(xdata_eff_fit, ydata_eff_fit,
+                        label='Fitted ({})'.format(
+                            p['efficiency']['fit']['function']),
+                        **p['plot']['line2d']['kwargs'])
+            # Efficiency data points
+            if re.search('(?i)efficiency_data|calc', plot_type):
+                xdata_eff_data = df[cols[x][data_col_type]].copy()
+                ydata_eff_data = df[cols[y][data_col_type]].copy()
+                k = 'data' if re.search('(?i)data', plot_type) else 'calc'
+                ax.plot(xdata_eff_data, ydata_eff_data,
+                        label=p['plot']['marker'][k]['label'],
+                        **p['plot']['marker'][k]['kwargs'])
+            if re.search('(?i)efficiency_annot|calc', plot_type):
+                # Horizontal line
+                h_y = df[cols[y][data_col_type]][0]
+                h_xmin = int(ax.get_xlim()[0])
+                h_xmax = df[cols[x][data_col_type]][0]
+                ax.hlines(y=h_y, xmin=h_xmin, xmax=h_xmax,
+                          **p['plot']['annot']['line2d']['kwargs'])
+                # Vertical line
+                v_x = h_xmax
+                v_ymin = int(ax.get_ylim()[0])
+                v_ymax = h_y
+                ax.vlines(x=v_x, ymin=v_ymin, ymax=v_ymax,
+                          **p['plot']['annot']['line2d']['kwargs'])
+                # Label
+                eff_pair = '({:g}, {:g})'.format(h_xmax, v_ymax)
+                ax.text(x=h_xmax, y=v_ymax, s=eff_pair,
+                        **p['plot']['annot']['text']['kwargs'])
+            if is_finalize and p['plot']['legend']['toggle']:
+                ax.legend(**p['plot']['legend']['kwargs'])
 
         #
         # Plotting: A radiation spectrum
@@ -431,6 +481,8 @@ class Painter():
             annots = p['plot']['annots']
             col_rn = cols['radionuclide']['nucl_data_new']
             col_nrg = cols['energy']['nucl_data_new']
+            if is_spotting:
+                col_nrg_spectr = cols['energy']['spectrum']
             col_ep = cols['emission_probability']['nucl_data_new']
             col_hl = cols['half_life']['nucl_data_new']
             col_dm = cols['decay_mode']['nucl_data_new']
@@ -547,6 +599,40 @@ class Painter():
                 #
                 bool_idx_rn = df[col_rn] == rn
                 df_rn = df[bool_idx_rn].copy()
+                # TypeError prevention measure
+                # - Below is to avoid the following error thrown at the
+                #   commands "df_rn.loc[idx, col_nrg]" and the likes:
+                #     TypeError: unsupported format string passed to
+                #     Series.__format__
+                # - Select the first row if the radionuclide in question has
+                #   a duplicate index. Note that the index of df_rn is that of
+                #   the original radiation spectrum, and such index duplication
+                #   within the same radionuclide can be present if more than
+                #   one of its radiation data points have been attributed to
+                #   the same spectrum radiation energy. This can happen if such
+                #   radiation data points are in close proximity to each other.
+                # - Note that duplicate indices between different radionuclides
+                #   are intentional. Such duplicates, if exist, indicate that
+                #   the corresponding radiation point are attributable to
+                #   multiple radionuclides; e.g. 186 keV to Ra-226 and U-235.
+                # - Examples include Th-234 as a progeny radionuclide of U-238:
+                #   - Duplicate row 1
+                #     - Channel (ch): 186
+                #     - Gamma energy (keV): 93.1784191
+                #     - ...
+                #     - Radiation energy (keV): 92.38
+                #     - Energy difference (keV): -0.798419100000004
+                #   - Duplicate row 2
+                #     - Channel (ch): 186
+                #     - Gamma energy (keV): 93.1784191
+                #     - ...
+                #     - Radiation energy (keV): 92.8
+                #     - Energy difference (keV): -0.378419100000002
+                # - Note that the two radiation data points at 92.38 keV and
+                #   92.8 keV are too close to each other that both of them
+                #   can pass the energy tolerance in question (say, 1 keV)
+                #   during radionuclide identification.
+                df_rn = df_rn[~df_rn.index.duplicated(keep='first')]
                 # Fallback for unspotted local maxima
                 # - Unspotted local maxima will have NaN in their decay
                 #   data energy column. Fill such NaN values with the
@@ -556,9 +642,19 @@ class Painter():
                 #   local maxima will be labeled with the actual spectrum
                 #   energies.
                 if is_spotting:
-                    df_rn[cols[x]['nucl_data_new']].fillna(
-                        cols[x]['spectrum'],
-                        inplace=True)
+                    bool_idx_na = df_rn[col_nrg].isna()
+                    if True in bool_idx_na.to_list():
+                        # A single-row DF can be associated with the object
+                        # dtype, which, with the use of .fillna(), produces
+                        # the following warning. Cast the dtype to float64
+                        # in advance to silent this warning.
+                        #   FutureWarning: Downcasting object dtype arrays on
+                        #   .fillna, .ffill, .bfill is deprecated and will
+                        #   change in a future version.
+                        #   Call result.infer_objects(copy=False) instead.
+                        df_rn[col_nrg] = df_rn[col_nrg].astype('float64')
+                        nrgs_fallback = df_rn[col_nrg_spectr]
+                        df_rn[col_nrg] = df_rn[col_nrg].fillna(nrgs_fallback)
                 # ydata (cols[y]) can either be:
                 # - an emission probability dataset for nuclear data plotting
                 # - a count dataset for radiation spectrum plotting

@@ -20,7 +20,7 @@ __author__ = 'Jaewoong Jang'
 __copyright__ = 'Copyright (c) 2024 Jaewoong Jang'
 __license__ = 'MIT License'
 __version__ = '1.0.0'
-__date__ = '2024-05-09'
+__date__ = '2024-05-22'
 
 
 class Recurlib():
@@ -342,7 +342,7 @@ class Recurlib():
                     # Add the dataless pair to the registry. Remove, if any,
                     # duplicate pairs, and sort them.
                     nonexist_pairs.append(decay_radiat_type_pair)
-                    nonexist_pairs_uniq = list(dict.fromkeys(nonexist_pairs))
+                    nonexist_pairs_uniq = mt.get_unique(nonexist_pairs)
                     nonexist_pairs_uniq_sorted = sorted(nonexist_pairs_uniq)
                     with open(nucl_data_nonexist_fname_full, 'w',
                               encoding='utf8') as fh_out:
@@ -1288,7 +1288,7 @@ class Recurlib():
                     # elimination here for cosmetic purposes, as the content
                     # of eles will appear in the level report file under
                     # from_gamma_cascade > energy_levels.
-                    eles_uniq = list(dict.fromkeys(eles))
+                    eles_uniq = mt.get_unique(eles)
                     self.levs[rn]['from_gamma_cascade'][
                         'energy_levels'] += eles_uniq
 
@@ -1698,7 +1698,7 @@ class Recurlib():
                 self.lineage = {}  # Initialize for the next progenitor.
                 # Remove duplicates, if any, from the identified daughters
                 # of the recursive progenitor in question.
-                daughters_uniq = list(dict.fromkeys(daughters))
+                daughters_uniq = mt.get_unique(daughters)
                 # Construct a decay chain of the progenitor and its progeny.
                 decay_chains_flattened.append(progenitor_recursive)
                 decay_chains_flattened += daughters_uniq
@@ -1726,7 +1726,7 @@ class Recurlib():
         # - Remove duplicates, if any, from the radionuclide subset.
         _rn_subset = (decay_chains_flattened
                       + p['scout']['radionuclides']['static'])
-        self.rn_subset_uniq = list(dict.fromkeys(_rn_subset))
+        self.rn_subset_uniq = mt.get_unique(_rn_subset)
         # <<
 
         #
