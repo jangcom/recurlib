@@ -18,7 +18,7 @@ __author__ = 'Jaewoong Jang'
 __copyright__ = 'Copyright (c) 2024 Jaewoong Jang'
 __license__ = 'MIT License'
 __version__ = '1.0.0'
-__date__ = '2024-04-28'
+__date__ = '2024-05-16'
 
 
 class InpOut():
@@ -272,6 +272,7 @@ class InpOut():
         return the_located_exe
 
     def save_df(self, df, pname, bname,
+                is_noheader=False, is_noindex=False,
                 fmt='xlsx', xl_sheet_name='library', xml_parser='etree'):
         """Save a pandas DataFrame to multiple file formats.
 
@@ -283,6 +284,10 @@ class InpOut():
             The path to which files will be saved.
         bname : str
             The base name of files to be saved.
+        is_noheader : bool, optional
+            Suppress the DF header in output files. The default is False.
+        is_noindex : bool, optional
+            Suppress the DF index in output files. The default is False.
         fmt : str, optional
             The file format to be saved. The default is 'xlsx'.
         xl_sheet_name : str, optional
@@ -313,6 +318,14 @@ class InpOut():
                 'kwargs': dict(sheet_name=xl_sheet_name),
             },
         }
+        if is_noheader or is_noindex:
+            for cmd in cmds:
+                if 'kwargs' not in cmds[cmd]:
+                    cmds[cmd]['kwargs'] = {}
+                if is_noheader:
+                    cmds[cmd]['kwargs']['header'] = False
+                if is_noindex:
+                    cmds[cmd]['kwargs']['index'] = False
         kwargs_common = dict(encoding='utf8')
         if fmt not in cmds.keys():
             msg = f'The format [{fmt}] is not supported; skipping.'

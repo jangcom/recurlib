@@ -14,6 +14,8 @@ get_now(ymd_directive='%B %d, %Y', hms_directive='%H:%M:%S',
     Return the current time in a formatted string.
 get_target_sum(tgt_sum, objs, r, unc=0)
     Find a target sum from a pool of candidates using brute-force search.
+get_unique(dupl)
+    Remove duplicate elements, if any, from a list.
 merge(destination, source)
     Deeply merge two dictionaries.
 pause_shell(second)
@@ -39,7 +41,7 @@ __author__ = 'Jaewoong Jang'
 __copyright__ = 'Copyright (c) 2024 Jaewoong Jang'
 __license__ = 'MIT License'
 __version__ = '1.0.0'
-__date__ = '2024-05-05'
+__date__ = '2024-05-22'
 
 BORDERS = {}
 
@@ -126,6 +128,22 @@ def get_target_sum(tgt_sum, objs, r,
     combos = [combo for combo in combinations(objs, r)
               if abs(sum(combo) - tgt_sum) <= unc]
     return combos
+
+
+def get_unique(dupl):
+    """Return a list with potential duplicate elements removed.
+
+    Parameters
+    ----------
+    dupl : list
+        A list whose duplicate elements, if any, are to be removed.
+
+    Returns
+    -------
+    list
+        A unique list.
+    """
+    return list(dict.fromkeys(dupl))
 
 
 def merge(destination, source):
