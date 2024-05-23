@@ -1,0 +1,50 @@
+%YAML 1.2
+---
+#
+# RecurLib user input file
+#
+active_datasets:
+  - uatk
+
+uatk:
+  scout:
+    radionuclides:
+      recursive:
+        - U-238  # Uranium series (4n + 2)
+        - U-235  # Actinium series (4n + 3)
+        - Th-232  # Thorium series (4n)
+        - K-40
+      exclusion:
+        - Pa-234
+      spectrum_radiation: gamma
+      cutoffs:
+        energy:
+          - 0
+          - 3e3
+        emission_probability:
+          - 1e-1
+          - 1e2
+  plot:
+    xticks:
+      lim:
+        - 0
+        - 3e3
+    yticks:
+      lim:
+        - 1e-1
+        - 1e2
+    annots:
+      every:
+        single:
+          line1:
+            offy: 1.2
+      grouped:
+        legend:
+          kwargs:
+            bbox_to_anchor:
+              - 0.05
+              - 1.05
+            ncols: 5
+    title:
+      toggle: False
+...
