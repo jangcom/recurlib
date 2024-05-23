@@ -28,6 +28,8 @@ class Recurlib():
 
     Attributes
     ----------
+    prog_info : dict
+        A dictionary containing the program information.
     radiat : dict
         A dictionary to hold short and long names of a spectrum radiation.
     lineage : dict
@@ -100,6 +102,17 @@ class Recurlib():
 
     def __init__(self):
         """Initialize an object of the Recurlib class."""
+        self.prog_info = {
+            'name': 'RecurLib',
+            'desc': 'A recursion-based radionuclide library generator',
+            'vers': __version__,
+            'date': __date__,
+            'auth': {
+                'name': __author__,
+                'affi': 'Isotope Science Center, University of Tokyo',
+                'mail': 'jang[at]ric.u-tokyo.ac.jp',
+            },
+        }
         self.radiat = {}
         self.lineage = {}
         self.levs = {}
@@ -2071,22 +2084,22 @@ class Recurlib():
         #
         # Radionuclide library information
         #
-        prog_name = 'RecurLib'
         col_db = self.cols['database'][df_col_type]
         nucl_database = df_context[col_db].to_list()[0]
         now_is = mt.get_now(ymd_preposition='on ', hms_preposition='at ')
         tstamp = 'Generated {}'.format(now_is)
         # Restrict the library code length to 32 characters to ensure
         # compatibility with some third-party spectral analysis software.
-        rnlib_code_bname = '{}-{}'.format(prog_name.lower(), rnlib_bname)
+        rnlib_code_bname = '{}-{}'.format(
+            self.prog_info['name'].lower(), rnlib_bname)
         rnlib_code_bname = rnlib_code_bname[:28]
         rnlib_info = {
             'code_master': '{}-mst'.format(rnlib_code_bname),
             'code_group': '{}-grp'.format(rnlib_code_bname),
-            'name': '{}-{} ({} v{}; {})'.format(prog_name.lower(),
+            'name': '{}-{} ({} v{}; {})'.format(self.prog_info['name'].lower(),
                                                 rnlib_bname,
-                                                prog_name,
-                                                __version__,
+                                                self.prog_info['name'],
+                                                self.prog_info['vers'],
                                                 nucl_database),
             'comment': tstamp,
         }
@@ -2427,28 +2440,19 @@ if __name__ == '__main__':
     # Run time measurement - Beginning
     time_ref = time.monotonic()
 
+    # Class instantiation
+    recurlib = Recurlib()
+
     #
     # Front matter
     #
-    prog_name = 'RecurLib'
-    prog_info = {
-        'name': prog_name,
-        'desc': 'A recursion-based radionuclide library generator',
-        'vers': __version__,
-        'date': __date__,
-        'auth': {
-            'name': __author__,
-            'affi': 'Isotope Science Center, University of Tokyo',
-            'mail': 'jang[at]ric.u-tokyo.ac.jp',
-        },
-    }
-    mt.show_front_matter(prog_info)
+    mt.show_front_matter(recurlib.prog_info)
 
     #
     # I/O
     #
     io = inpout.InpOut()
-    argv = io.read_argv(desc=prog_info['desc'],
+    argv = io.read_argv(desc=recurlib.prog_info['desc'],
                         ini_dflt='./inp/ini_recurlib.yaml')
     the_ini = io.read_yaml(argv.ini,
                            is_echo=argv.is_echo)
@@ -2456,7 +2460,6 @@ if __name__ == '__main__':
                            is_echo=argv.is_echo)
 
     # Construct a radionuclide library.
-    recurlib = Recurlib()
     recurlib.run_recurlib(the_ini, the_yml)
 
     # Run time measurement - End
