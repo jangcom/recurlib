@@ -1,3 +1,4 @@
+[![Static Badge](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.11081346-%233F3FD4)](https://zenodo.org/doi/10.5281/zenodo.11081346)
 [![Static Badge](https://img.shields.io/badge/GitHub_Pages-https%3A%2F%2Fjangcom.github.io%2Frecurlib%2F-crimson)](https://jangcom.github.io/recurlib/)
 
 ---
