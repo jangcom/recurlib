@@ -12,15 +12,15 @@ import sys
 import time
 import re
 import copy
-from urllib import request
+from urllib import request, error
 import matplotlib.pyplot as plt
 import pandas as pd
 
 __author__ = 'Jaewoong Jang'
 __copyright__ = 'Copyright (c) 2024 Jaewoong Jang'
 __license__ = 'MIT License'
-__version__ = '1.0.0'
-__date__ = '2024-05-22'
+__version__ = '1.0.1'
+__date__ = '2024-10-28'
 
 
 class Recurlib():
@@ -59,6 +59,8 @@ class Recurlib():
         Populate the cols attribute.
     get_rn_alias(rn, how='plain2lc')
         Return an alias of a radionuclide name.
+    check_url(url)
+        Check if a URL is accessible.
     get_livechart_df(url_params, nucl_data_nonexist_fname_full,
                      decay_radiat_type_pair, is_verbose=False)
         Generate a nuclear data DF using the IAEA-NDS Live Chart web API.
@@ -251,6 +253,25 @@ class Recurlib():
             rn_alias = re.sub('[-]', '', rn).upper()
         return rn_alias
 
+    def check_url(self, url):
+        """Check if a URL is accessible.
+
+        Parameters
+        ----------
+        url : str
+            A uniform resource locator (URL) to be tested for connectivity.
+
+        Returns
+        -------
+        bool
+        True if the URL is accessible, otherwise False.
+        """
+        try:
+            request.urlopen(url)
+            return True
+        except error.URLError:
+            return False
+
     def get_livechart_df(self, url_params,
                          nucl_data_nonexist_fname_full,
                          decay_radiat_type_pair,
@@ -311,8 +332,27 @@ class Recurlib():
         storage_opts_listed = list(*storage_opts.items())
         req = request.Request(url)
         req.add_header(*storage_opts_listed)
-        with request.urlopen(req) as content:
-            content_stringified = str(content.read())
+        try:
+            response = request.urlopen(req)
+            content_stringified = str(response.read())
+        except error.URLError:
+            url_reliable = 'https://8.8.8.8'  # Google public DNS
+            is_url_accessible = self.check_url(url_reliable)
+            msg = ('Program execution error:'
+                   + ' Could not reach the Live Chart of Nuclides server.\n'
+                   + '(requested query: {})\n\n'.format(url)
+                   + '{} needs access to the Live Chart of Nuclides'.format(
+                       self.prog_info['name'])
+                   + ' server to download\nnuclear data for a newly'
+                   + ' encountered radionuclide-decay radiation pair.\n\n')
+            if is_url_accessible:
+                msg += ('The Live Chart of Nuclides server seems to be'
+                        + ' unavailable; please try later.')
+            else:
+                msg += ('It seems that you do not have Internet access;'
+                        + ' please check your network connection status.')
+            mt.show_warn(msg)
+            sys.exit()
 
         #
         # Check if the data retrieval has failed.
