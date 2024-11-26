@@ -1,5 +1,6 @@
 [![Static Badge](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.11081346-%233F3FD4)](https://zenodo.org/doi/10.5281/zenodo.11081346)
 [![Static Badge](https://img.shields.io/badge/GitHub_Pages-https%3A%2F%2Fjangcom.github.io%2Frecurlib%2F-crimson)](https://jangcom.github.io/recurlib/)
+[![Static Badge](https://img.shields.io/badge/Paper-https%3A%2F%2Fdoi.org%2F10.1103%2FPhysRevResearch.6.043208-%23189ab4)](https://doi.org/10.1103/PhysRevResearch.6.043208)
 
 ---
 
@@ -142,6 +143,10 @@ For the reason above, RecurLib can be used in offline environments only if all t
 [1] [ENSDF](https://www.nndc.bnl.gov/ensdf/), maintained by the National Nuclear Data Center of the Brookhaven National Laboratory.
 
 [2] [Live Chart of Nuclides](https://www-nds.iaea.org/relnsd/vcharthtml/VChartHTML.html), developed and maintained by the Nuclear Data Section of the International Atomic Energy Agency.
+
+# SEE ALSO
+
+[RecurLib in a paper: _Phys. Rev. Res._ **6** (2024) 043208](https://doi.org/10.1103/PhysRevResearch.6.043208)
 
 # AUTHOR
 
