@@ -20,7 +20,7 @@ __author__ = 'Jaewoong Jang'
 __copyright__ = 'Copyright (c) 2024 Jaewoong Jang'
 __license__ = 'MIT License'
 __version__ = '1.0.1'
-__date__ = '2024-10-28'
+__date__ = '2024-11-27'
 
 
 class Recurlib():
@@ -198,14 +198,31 @@ class Recurlib():
         #     }
         for k, col_group in col_groups.items():
             #
+            # Energy-related column keys dependent on radiation types
+            # (i) Alpha and gamma
+            #   - energy
+            #   - energy_unc
+            # (ii) Beta minus
+            #   - energy_bm_mean
+            #   - energy_bm_mean_unc
+            #   - energy_bm_max
+            #   - energy_bm_max_unc
+            #
+            if (self.radiat['short'] == 'bm'
+                    and re.search(r'\b(energy|energy_unc)\b', k)):
+                continue
+            elif (re.search('a|g', self.radiat['short'])
+                    and re.search(r'^energy_bm', k)):
+                continue
+            #
             # Create column names for respective data types.
             #
             self.cols[k] = {}  # Initialization
             for data_type in data_types:
                 if data_type in col_group:
                     # Examples
-                    # - self.cols['energy'][nucl_data] = 'energy'
-                    # - self.cols['energy'][rpt] = 'Energy (keV)'
+                    # - self.cols['energy'][nucl_data_old] = 'energy'
+                    # - self.cols['energy'][nucl_data_new] = 'Energy (keV)'
                     # - self.cols['energy'][xml] = 'Energy'
                     self.cols[k].update({data_type: col_group[data_type]})
             #
@@ -1786,11 +1803,29 @@ class Recurlib():
         # Step 2. Generate a radionuclide-wise library DF.
         #
         # >> Aliasing
-        _usecols = [
-            'energy',
-            'energy_unc',
-            'emission_probability',
-            'emission_probability_unc',
+        _usecols_radiat = {
+            'a': [  # Alpha (monoenergetic)
+                'energy',
+                'energy_unc',
+                'emission_probability',
+                'emission_probability_unc',
+            ],
+            'g': [  # Gamma (monoenergetic)
+                'energy',
+                'energy_unc',
+                'emission_probability',
+                'emission_probability_unc',
+            ],
+            'bm': [  # Beta minus (continuous energy)
+                'energy_bm_mean',
+                'energy_bm_mean_unc',
+                'energy_bm_max',
+                'energy_bm_max_unc',
+                'emission_probability_bm',
+                'emission_probability_bm_unc',
+            ],
+        }
+        _usecols_common = [
             'energy_level',
             'jp',
             'half_life',
@@ -1804,12 +1839,19 @@ class Recurlib():
             'database_literature_authors',
             'database_access_date',
         ]
+        _usecols = _usecols_radiat[self.radiat['short']] + _usecols_common
         usecols = [self.cols[col]['nucl_data_old'] for col in _usecols]
         col_rn = self.cols['radionuclide']['nucl_data_new']
         col_radiat_num = self.cols['radiation_number']['nucl_data_new']
         col_priority_num = self.cols['priority_number']['nucl_data_new']
-        col_nrg = self.cols['energy']['nucl_data_old']
-        col_ep = self.cols['emission_probability']['nucl_data_old']
+        if self.radiat['short'] == 'bm':  # Beta minus
+            _col_nrg_key = 'energy_bm_max'
+            _col_ep_key = 'emission_probability_bm'
+        else:  # Alpha and gamma
+            _col_nrg_key = 'energy'
+            _col_ep_key = 'emission_probability'
+        col_nrg = self.cols[_col_nrg_key]['nucl_data_old']
+        col_ep = self.cols[_col_ep_key]['nucl_data_old']
         col_nrg_lev = self.cols['energy_level']['nucl_data_old']
         col_hl_sec = self.cols['half_life_sec']['nucl_data_old']
         col_dm = self.cols['decay_mode']['nucl_data_old']
@@ -2158,14 +2200,32 @@ class Recurlib():
             'half_life_unit',
             'half_life_sec',
         ]
-        cols_radiat = [
-            'radiation_number',
-            'energy',
-            'energy_unc',
-            'emission_probability',
-            'emission_probability_unc',
-            'priority_number',
-        ]
+        cols_radiat = {
+            'a': [
+                'radiation_number',
+                'energy',
+                'energy_unc',
+                'emission_probability',
+                'emission_probability_unc',
+                'priority_number',
+            ],
+            'g': [
+                'radiation_number',
+                'energy',
+                'energy_unc',
+                'emission_probability',
+                'emission_probability_unc',
+                'priority_number',
+            ],
+            'bm': [
+                'radiation_number',
+                'energy_bm_max',
+                'energy_bm_max_unc',
+                'emission_probability_bm',
+                'emission_probability_bm_unc',
+                'priority_number',
+            ],
+        }
         # Iterate over the list of radionuclides contained in the library DF.
         col_rn = self.cols['radionuclide'][df_col_type]
         rns = {rn: {'radiats': []} for rn in df_context[col_rn].unique()}
@@ -2274,7 +2334,7 @@ class Recurlib():
             for rn_dct in rnwise_dicted.values():
                 # An anonymous dict to be appended to the 'radiats' list
                 anonymous_dct = {}
-                for col in cols_radiat:
+                for col in cols_radiat[self.radiat['short']]:
                     # e.g. Example dicts to be added to the 'radiats' list:
                     # {'radiation_number': 1, 'energy': 26.0, ...,
                     #  'priority_number': 0}
@@ -2467,8 +2527,30 @@ class Recurlib():
             creator = painter.Painter()
             creator.set_plot_style(a['plot'])
             fig, ax = plt.subplots(figsize=a['plot']['ax']['figsize'])
+            if self.radiat['short'] == 'bm':  # Beta minus
+                # Default: Maximum energy
+                _nrg_key = 'energy_bm_max'
+                self.cols['energy'] = self.cols['energy_bm_max']
+                # Mean energy can be designated at user input
+                if ('xkey' in a['plot']
+                        and len(a['plot']['xkey'])):
+                    if not re.search('\b(energy_bm_mean|energy_bm_max)\b',
+                                     a['plot']['xkey']):
+                        msg = ("Invalid value for [plot][xkey]:"
+                               + ' {}\n'.format(a['plot']['xkey'])
+                               + 'Allowed values: '
+                               + '[energy_bm_mean, energy_bm_max (default)]\n'
+                               + 'The default value will be used.')
+                        mt.show_warn(msg)
+                    else:
+                        _nrg_key = a['plot']['xkey']
+                        self.cols['energy'] = self.cols[a['plot']['xkey']]
+                _ep_key = 'emission_probability_bm'
+            else:  # Alpha and gamma
+                _nrg_key = 'energy'
+                _ep_key = 'emission_probability'
             creator.plot_radiat_spectr(fig, ax, a, self.df_rnlib, self.cols,
-                                       x='energy', y='emission_probability',
+                                       x=_nrg_key, y=_ep_key,
                                        plot_type='rn')
 
 

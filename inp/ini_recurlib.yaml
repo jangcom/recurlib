@@ -39,12 +39,36 @@ template:  # Overridable at each active dataset
         nucl_data_old: unc_en
         nucl_data_new: Uncertainty of radiation energy (keV)
         xml: EneErr
+      energy_bm_mean:
+        nucl_data_old: mean_energy
+        nucl_data_new: Mean radiation energy (keV)
+        xml: MeanEnergy
+      energy_bm_mean_unc:
+        nucl_data_old: unc_me
+        nucl_data_new: Uncertainty of mean radiation energy (keV)
+        xml: MeanEneErr
+      energy_bm_max:
+        nucl_data_old: max_energy
+        nucl_data_new: Maximum radiation energy (keV)
+        xml: MaxEnergy
+      energy_bm_max_unc:
+        nucl_data_old: unc_me.1
+        nucl_data_new: Uncertainty of maximum radiation energy (keV)
+        xml: MaxEneErr
       emission_probability:
         nucl_data_old: intensity
         nucl_data_new: Emission probability (%)
         xml: Abundance
       emission_probability_unc:
         nucl_data_old: unc_i
+        nucl_data_new: Uncertainty of emission probability (%)
+        xml: AbnErr
+      emission_probability_bm:
+        nucl_data_old: intensity_beta
+        nucl_data_new: Emission probability (%)
+        xml: Abundance
+      emission_probability_bm_unc:
+        nucl_data_old: unc_ib
         nucl_data_new: Uncertainty of emission probability (%)
         xml: AbnErr
       energy_level:
