@@ -2534,7 +2534,7 @@ class Recurlib():
                 # Mean energy can be designated at user input
                 if ('xkey' in a['plot']
                         and len(a['plot']['xkey'])):
-                    if not re.search('\b(energy_bm_mean|energy_bm_max)\b',
+                    if not re.search(r'\b(energy_bm_mean|energy_bm_max)\b',
                                      a['plot']['xkey']):
                         msg = ("Invalid value for [plot][xkey]:"
                                + ' {}\n'.format(a['plot']['xkey'])
