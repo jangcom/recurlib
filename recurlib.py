@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 __author__ = 'Jaewoong Jang'
-__copyright__ = 'Copyright (c) 2024 Jaewoong Jang'
+__copyright__ = 'Copyright (c) 2024-2026 Jaewoong Jang'
 __license__ = 'MIT License'
 __version__ = '1.0.1'
 __date__ = '2024-11-27'
@@ -329,7 +329,7 @@ class Recurlib():
         #
         # Construct a data retrieval URL.
         #
-        url_service = 'https://www-nds.iaea.org/relnsd/v1/data?'
+        url_service = 'https://nds.iaea.org/relnsd/v1/data?'
         # e.g. ['fields'='decay_rads', 'nuclides'='225ac', 'rad_types'='a']
         url_params_listed = [f'{k}={v}' for k, v in url_params.items()]
         # e.g. 'fields=decay_rads&nuclides=225ac&rad_types=a'
