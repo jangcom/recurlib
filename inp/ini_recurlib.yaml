@@ -141,17 +141,24 @@ template:  # Overridable at each active dataset
         # - emf  # (optional) Inkscape is required
       raster_dpi: 400  # .png and .jpg resolution; sane range 100-600
       inkscape:
-        exe: "C:/Program Files/Inkscape/bin/inkscape.exe"
+        exes:
+          - /opt/homebrew/bin/inkscape  # Darwin (macOS)
+          - "C:/Program Files/Inkscape/bin/inkscape.exe"  # Windows
       pdf_postproc:
         ghostscript:  # (optional) PDF size reduction and reversioning
           toggle: False
-          exe: "C:/Program Files/gs/gs10.02.1/bin/gswin64c.exe"
+          exes:
+            - /usr/local/bin/gs  # Darwin (macOS)
+            - /opt/homebrew/bin/gs
+            - "C:/Program Files/gs/gs10.02.1/bin/gswin64c.exe"  # Windows
           pdf_ver: 1.5  # PDF reversioning for pdfTeX compatibility
         pdfcrop:  # (optional) PDF margin cropping
           toggle: False
           # You can also use the Perl script of pdfcrop provided that a Perl
           # executable has been registered to the path environment variable.
-          exe: C:/texlive/2023/bin/windows/pdfcrop.exe
+          exes:
+            - /Library/TeX/texbin/pdfcrop  # Darwin (macOS)
+            - "C:/texlive/2023/bin/windows/pdfcrop.exe"  # Windows
   #
   # Nuclear data
   #
@@ -202,7 +209,7 @@ template:  # Overridable at each active dataset
           - 1e4
         emission_probability:  # Unit: %
           - 1e-3
-          - 1e2
+          - 1e3
         half_life_sec:
           - 0.0
           - 1.433e99
@@ -232,6 +239,10 @@ template:  # Overridable at each active dataset
       lim:  # Pairs of upper and lower limits; effective for is_auto=False
         - 0
         - 2e3
+      # range:  # Optional
+      #   start: 0
+      #   stop: 2.8e3
+      #   step: 7.0e2
       minor_ndivs: 2
       # Available keyword arguments can be found under "Other Parameters"
       # in the following URL:
@@ -262,7 +273,7 @@ template:  # Overridable at each active dataset
           numticks: 9
       lim:
         - 1e-3  # Greater than or equal to 1 is required if is_log == True.
-        - 1e2
+        - 2e2
       kwargs:
         labelsize: 13.5
     ylabel:
@@ -289,8 +300,19 @@ template:  # Overridable at each active dataset
               - 0
               - 1e4
             emission_probability:  # Unit: %
-              - 1e1
-              - 1e2
+              - 1
+              - 1e3
+            ref_lines:
+              is_nrg_min: False
+              is_nrg_max: False
+              is_ep_min: True
+              is_ep_max: False
+              kwargs:
+                linestyle: "--"
+                linewidth: 0.75
+                color: gray
+                # alpha: 0.75
+                zorder: 0
         single:
           line1:  # Required
             # Multiplication factor

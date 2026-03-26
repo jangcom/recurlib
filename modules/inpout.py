@@ -7,7 +7,9 @@ InpOut()
     A file I/O interface class
 """
 
+import platform
 import os
+import shutil
 import sys
 import re
 import argparse
@@ -15,10 +17,10 @@ import yaml
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 __author__ = 'Jaewoong Jang'
-__copyright__ = 'Copyright (c) 2024 Jaewoong Jang'
+__copyright__ = 'Copyright (c) 2024-2026 Jaewoong Jang'
 __license__ = 'MIT License'
-__version__ = '1.0.0'
-__date__ = '2024-05-16'
+__version__ = '1.0.1'
+__date__ = '2026-03-26'
 
 
 class InpOut():
@@ -49,8 +51,8 @@ class InpOut():
         Join the names of a directory and a file.
     mk_dir(dname)
         Create a directory if it does not exist.
-    locate_exe(v, re_exe)
-        Locate an executable from the path environment variable.
+    locate_exe(ls_exes, by='shutil')
+        Locate an executable of interest.
     save_df(df, pname, bname, fmts='xlsx')
         Save a pandas DataFrame to multiple file formats.
     save_jinja(context, tpl_fname_full, out_pname, out_bname,
@@ -149,6 +151,11 @@ class InpOut():
         None.
         """
         if is_savetxt:
+            # Create the parent directory if it does not exist.
+            txt_dname, txt_fname = os.path.split(txt_fname_full)
+            self.mk_dir(txt_dname,
+                        is_yn=False)
+            # Writing to a file
             with open(txt_fname_full, 'w', encoding=yml_encoding) as out_fh:
                 if msg:
                     out_fh.write(msg)
@@ -244,31 +251,50 @@ class InpOut():
                 os.mkdir(dname)
                 self.show_file_gen(dname)
 
-    def locate_exe(self, v, re_exe):
-        """Locate an executable from the path environment variable.
+    def locate_exe(self, ls_exes,
+                   by='shutil'):
+        """Locate an executable of interest.
 
         Parameters
         ----------
-        v : str
-            A regex for the path of a directory containing the executable
-            of interest stored in the 'path' environment variable.
-        re_exe : str
-            A regex for the file name of the executable.
+        ls_exes : list
+            A list of executable names to be searched for. The one found first
+            is identified as the executable of interest. For by == 'shutil',
+            the names must be plain strings. For by == 'env_var', regex entries
+            are accepted.
+        by : str, optional
+            The method to locate the executable of interest.
+            Available options: ['shutil', 'env_var']. The default is 'shutil'.
 
         Returns
         -------
         the_located_exe : str
-            The file name of the located executable.
+            The file name of the located executable
         """
         the_located_exe = ''
-        path_vals = re.split(';', os.environ['path'])
-        for path_val in path_vals:
-            if re.search(v, path_val):
-                fnames_in_the_found_path = os.listdir(path_val)
-                for fname in fnames_in_the_found_path:
-                    if re.search(re_exe, fname):
-                        the_located_exe = fname
-                        break
+        # Method 1: Look for the executable via shutil.which().
+        if by == 'shutil':
+            for potential_exe in ls_exes:
+                the_located_exe = shutil.which(potential_exe)
+                if the_located_exe:
+                    break
+        # Method 2: Look for the executable in the path environment variables.
+        elif by == 'env_var':
+            os_type = platform.system()
+            if os_type == 'Windows':
+                path_name = 'path'
+            elif os_type == 'Darwin':
+                path_name = 'PATH'
+            path_env = os.environ.get(path_name)
+            path_vals = path_env.split(os.pathsep)
+            for path_val in path_vals:
+                if not os.path.isdir(path_val):
+                    continue
+                for fname in os.listdir(path_val):
+                    for potential_exe_regex in ls_exes:
+                        if re.search(potential_exe_regex, fname):
+                            the_located_exe = os.path.join(path_val, fname)
+                            break
         return the_located_exe
 
     def save_df(self, df, pname, bname,

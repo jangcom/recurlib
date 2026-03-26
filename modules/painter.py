@@ -7,19 +7,21 @@ Painter()
     A figure interface class
 """
 
+import platform
 import os
 import re
 import subprocess
+import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import rcParams, patches
 from matplotlib.ticker import AutoMinorLocator
 from matplotlib.lines import Line2D
 
 __author__ = 'Jaewoong Jang'
-__copyright__ = 'Copyright (c) 2024 Jaewoong Jang'
+__copyright__ = 'Copyright (c) 2024-2026 Jaewoong Jang'
 __license__ = 'MIT License'
-__version__ = '1.0.0'
-__date__ = '2024-05-22'
+__version__ = '1.0.1'
+__date__ = '2026-03-26'
 
 
 class Painter():
@@ -28,7 +30,7 @@ class Painter():
     Parameters
     ----------
     dflt_style_sheet : str, optional
-        A default matplotlib style sheet. The default is 'bmh'.
+        A default Matplotlib style sheet. The default is 'bmh'.
 
     Attributes
     ----------
@@ -45,7 +47,7 @@ class Painter():
         Apply user-designated MPL rcParams parameters.
     set_plot_style(d)
         Apply MPL style configurations designated by the user.
-    set_markers(self, mrks_def, mrks_dflt, sep1=',', sep2='+',
+    set_markers(mrks_def, mrks_dflt, sep1=',', sep2='+',
                 is_verbose=False)
         Create a dictionary of marker attributes using one-line strings.
     plot_radiat_spectr(fig, ax, p, df, cols,
@@ -54,11 +56,11 @@ class Painter():
                        is_spotting=False, is_finalize=True)
         Plot a radiation spectrum and/or its associated radionuclides.
     save_fig(fig, out_path, out_bname, fmts,
-             dpi=300, inkscape_exe='inkscape.exe')
+             dpi=300, inkscape_exes=['inkscape.exe'])
         Save an MPL figure in multiple formats.
     run_pdf_postproc(pdf_fname_full,
-                     is_gs=True, gs_exe='gswin64.exe', gs_pdf_ver=1.5,
-                     is_pdfcrop=True, pdfcrop_exe='pdfcrop.exe')
+                     is_gs=True, gs_pdf_ver=1.5, gs_exes=['gswin64.exe'],
+                     is_pdfcrop=True, pdfcrop_exes=['pdfcrop.exe'])
         Postprocess a .pdf figure file.
     """
 
@@ -327,6 +329,12 @@ class Painter():
         if not p['plot']['xticks']['is_auto']:
             xlim = [float(n) for n in p['plot']['xticks']['lim']]
             ax.set_xlim(xlim)
+        if 'range' in p['plot']['xticks']:
+            _xstart = float(p['plot']['xticks']['range']['start'])
+            _xstop = float(p['plot']['xticks']['range']['stop']) + 1e-9
+            _xstep = float(p['plot']['xticks']['range']['step'])
+            _xticks = np.arange(_xstart, _xstop, _xstep)
+            ax.set_xticks(_xticks)
         if 'minor_ndivs' in p['plot']['xticks']:
             mxticks = p['plot']['xticks']['minor_ndivs']
             ax.xaxis.set_minor_locator(AutoMinorLocator(mxticks))
@@ -493,6 +501,27 @@ class Painter():
                 nrg_lims.append([float(nrg) for nrg in win['energy']])
                 ep_lims.append([float(ep) for ep
                                in win['emission_probability']])
+            # Draw YAML-controlled reference lines per cutoff window
+            for win in annots['every']['cutoffs'].values():
+                ref = win.get('ref_lines', None)
+                if not ref:
+                    continue
+                kwargs = ref.get('kwargs', {})
+                # Energy limits (vertical lines)
+                if ref.get('is_nrg_min', False):
+                    ax.axvline(float(win['energy'][0]),
+                               **kwargs)
+                if ref.get('is_nrg_max', False):
+                    ax.axvline(float(win['energy'][1]),
+                               **kwargs)
+                # Emission probability limits (horizontal lines)
+                if (ref.get('is_ep_min', False)
+                        and win['emission_probability'][0] > 0):
+                    ax.axhline(float(win['emission_probability'][0]),
+                               **kwargs)
+                if ref.get('is_ep_max', False):
+                    ax.axhline(float(win['emission_probability'][1]),
+                               **kwargs)
 
             #
             # Figure base name modification (4/4)
@@ -844,8 +873,9 @@ class Painter():
         #
         if not is_finalize:
             return
-        is_gs = p['io']['ctrls']['pdf_postproc']['ghostscript']['toggle']
-        is_pdfcrop = p['io']['ctrls']['pdf_postproc']['pdfcrop']['toggle']
+        ppp = p['io']['ctrls']['pdf_postproc']  # Aliasing
+        is_gs = ppp['ghostscript']['toggle']
+        is_pdfcrop = ppp['pdfcrop']['toggle']
         if p['io']['ctrls']['is_plot_test']:
             mt.show_warn('Running in a plot testing mode...')
             p['io']['ctrls']['is_plot'] = True
@@ -855,32 +885,59 @@ class Painter():
             is_pdfcrop = False
         if p['io']['ctrls']['is_plot']:
             io.mk_dir(p['io']['out']['fig_path'])
-            inkscape_exe = os.path.expandvars(
-                p['io']['ctrls']['inkscape']['exe'])
+            # >> Inkscape
+            if 'exes' in p['io']['ctrls']['inkscape']:
+                inkscape_exes = [os.path.expandvars(exe)
+                                 for exe
+                                 in p['io']['ctrls']['inkscape']['exes']]
+            # Left for backward compatibility
+            else:
+                if 'exe' in p['io']['ctrls']['inkscape']:
+                    inkscape_exes = []
+                    inkscape_exes.append(os.path.expandvars(
+                        p['io']['ctrls']['inkscape']['exe']))
+            # <<
             self.save_fig(fig,
                           p['io']['out']['fig_path'],
                           out_fig_bname,
                           p['io']['ctrls']['fig_fmts'],
                           dpi=p['io']['ctrls']['raster_dpi'],
-                          inkscape_exe=inkscape_exe)
+                          inkscape_exes=inkscape_exes)
         if is_gs or is_pdfcrop:
             pdf_fname_full = '{}/{}.pdf'.format(p['io']['out']['fig_path'],
                                                 out_fig_bname)
-            gs_exe = os.path.expandvars(
-                p['io']['ctrls']['pdf_postproc']['ghostscript']['exe'])
-            gs_pdf_ver = p['io']['ctrls']['pdf_postproc']['ghostscript'][
-                'pdf_ver']
-            pdfcrop_exe = os.path.expandvars(
-                p['io']['ctrls']['pdf_postproc']['pdfcrop']['exe'])
+            # >> Ghostscript
+            gs_pdf_ver = ppp['ghostscript']['pdf_ver']
+            if 'exes' in ppp['ghostscript']:
+                gs_exes = [os.path.expandvars(exe)
+                           for exe in ppp['ghostscript']['exes']]
+            # Left for backward compatibility
+            else:
+                if 'exe' in ppp['ghostscript']:
+                    gs_exes = []
+                    gs_exes.append(os.path.expandvars(
+                        ppp['ghostscript']['exe']))
+            # <<
+            # >> pdfcrop
+            if 'exes' in ppp['pdfcrop']:
+                pdfcrop_exes = [os.path.expandvars(exe)
+                                for exe in ppp['pdfcrop']['exes']]
+            # Left for backward compatibility
+            else:
+                if 'exe' in ppp['pdfcrop']:
+                    pdfcrop_exes = []
+                    pdfcrop_exes.append(os.path.expandvars(
+                        ppp['pdfcrop']['exe']))
+            # <<
             self.run_pdf_postproc(pdf_fname_full,
                                   is_gs=is_gs,
-                                  gs_exe=gs_exe,
                                   gs_pdf_ver=gs_pdf_ver,
+                                  gs_exes=gs_exes,
                                   is_pdfcrop=is_pdfcrop,
-                                  pdfcrop_exe=pdfcrop_exe)
+                                  pdfcrop_exes=pdfcrop_exes)
 
     def save_fig(self, fig, out_path, out_bname, fmts,
-                 dpi=300, inkscape_exe='inkscape.exe'):
+                 dpi=300, inkscape_exes=['inkscape.exe']):
         """Save an MPL figure in multiple formats.
 
         Parameters
@@ -895,8 +952,9 @@ class Painter():
             The formats of figure files.
         dpi : int, optional
             Raster figure resolution. The default is 300.
-        inkscape_exe : str, optional
-            A full-path Inkscape executable. The default is 'inkscape.exe'.
+        inkscape_exes : list, optional
+            A list of full-path Inkscape executables.
+            The default is ['inkscape.exe'].
 
         Returns
         -------
@@ -916,33 +974,40 @@ class Painter():
                 io.show_file_gen(out_fname_full)
             # .emf via from .svg
             else:
-                is_inkscape_exe_found = bool(os.path.exists(inkscape_exe))
-                if not is_inkscape_exe_found:
+                inkscape_exe = io.locate_exe(inkscape_exes,
+                                             by='shutil')
+                if not inkscape_exe:
+                    msg = ('None of the following Inkscape executables'
+                           + ' designated at the user input file'
+                           + ' could be located:\n'
+                           + f'{inkscape_exes}')
                     inkscape_exe_on_environ_var = io.locate_exe(
-                        '(?i)inkscape.*bin',
-                        '(?i)inkscape[.]exe$')
+                        ['(?i)^inkscape([.]exe)?'],
+                        by='env_var')
                     if inkscape_exe_on_environ_var:
-                        msg = ('The designated inkscape executable'
-                               + f' [{inkscape_exe}] could not be located,\n'
-                               + 'but its alternative'
-                               + f' [{inkscape_exe_on_environ_var}] was found'
-                               + ' in the path environment variable.'
-                               + ' We fall back to this executable.')
-                        mt.show_warn(msg)
+                        os_type = platform.system()
+                        if os_type == 'Windows':
+                            path_name = 'path'
+                        elif os_type == 'Darwin':
+                            path_name = 'PATH'
+                        msg += ('\nAlternatively, we will use'
+                                + f' [{inkscape_exe_on_environ_var}]'
+                                + f' found in the {path_name} environment'
+                                + ' variable.')
                         inkscape_exe = inkscape_exe_on_environ_var
-                        is_inkscape_exe_found = True
-                if not is_inkscape_exe_found:
-                    msg = ('The designated Inkscape executable '
-                           + f' [{inkscape_exe}] could not be located;\n'
-                           + '.emf rendering will be skipped.')
+                    else:
+                        msg += '\nEMF rendering will be skipped.'
+                        mt.show_warn(msg)
+                        continue
                     mt.show_warn(msg)
-                    continue
                 _svg = '{}.svg'.format(out_bname_full)
                 if not is_svg:
                     fig.savefig(_svg, dpi=dpi, bbox_inches='tight')
-                inkscape_exe = '"{}"'.format(inkscape_exe)
+                # Quote the full-path name of the executable
+                # in case it contains a blank space.
+                inkscape_exe_robust = '"{}"'.format(inkscape_exe)
                 _inkscape_cmd = [
-                    inkscape_exe,
+                    inkscape_exe_robust,
                     _svg,
                     '--export-filename={}'.format(out_fname_full),
                 ]
@@ -954,8 +1019,8 @@ class Painter():
                                  verb=f' generated using [{inkscape_exe}].')
 
     def run_pdf_postproc(self, pdf_fname_full,
-                         is_gs=True, gs_exe='gswin64.exe', gs_pdf_ver=1.5,
-                         is_pdfcrop=True, pdfcrop_exe='pdfcrop.exe'):
+                         is_gs=True, gs_pdf_ver=1.5, gs_exes=['gswin64.exe'],
+                         is_pdfcrop=True, pdfcrop_exes=['pdfcrop.exe']):
         """Postprocess a .pdf figure file.
 
         Parameters
@@ -967,16 +1032,18 @@ class Painter():
             the PDF file is reversioned using Ghostscript. Recommended for
             a PDF file generated by Matplotlib with pdf.fonttype = 42.
             The default is True.
-        gs_exe : str, optional
-            A full-path Ghostscript executable. The default is 'gswin64.exe'.
         gs_pdf_ver : float, optional
             The version you want the postprocessed PDF to have.
             The default is 1.5 (pdfTeX requirement).
+        gs_exes : list, optional
+            A list of full-path Ghostscript executables.
+            The default is ['gswin64.exe'].
         is_pdfcrop : bool, optional
             If True, the empty margins of the designated PDF file are cropped
             using pdfcrop. The default is True.
-        pdfcrop_exe : str, optional
-            A full-path pdfcrop executable. The default is 'pdfcrop.exe'.
+        pdfcrop_exes : list, optional
+            A list of full-path pdfcrop executables.
+            The default is ['pdfcrop.exe'].
 
         Returns
         -------
@@ -1001,6 +1068,13 @@ class Painter():
         #
         bname, ext = os.path.splitext(pdf_fname_full)
         _pdf_fname_full = '{}0{}'.format(bname, ext)  # Temporary .pdf storage
+        os_type = platform.system()
+
+        # OS-dependent environmental variable name
+        if os_type == 'Windows':
+            path_name = 'path'
+        elif os_type == 'Darwin':
+            path_name = 'PATH'
 
         #
         # PDF postprocessing (1/2)
@@ -1010,99 +1084,100 @@ class Painter():
         # If this is not found, search on the path environment variable.
         # If still not found, skip running Ghostscript.
         #
-        is_gs_exe_found = bool(os.path.exists(gs_exe))
-        if not is_gs_exe_found:
-            gs_exe_on_environ_var = io.locate_exe('(?i)gs.*bin',
-                                                  '(?i)gswin[0-9]+c[.]exe$')
-            if gs_exe_on_environ_var:
-                msg = (f'The designated pdfcrop executable [{gs_exe}]'
-                       + ' could not be located,\nbut its alternative'
-                       + f' [{gs_exe_on_environ_var}] was found'
-                       + ' in the path environment variable.'
-                       + ' We fall back to this executable.')
+        if is_gs:
+            gs_exe = io.locate_exe(gs_exes,
+                                   by='shutil')
+            if not gs_exe:
+                msg = ('None of the following Ghostscript executables'
+                       + ' designated at the user input file'
+                       + ' could be located:\n'
+                       + f'{gs_exes}')
+                gs_exe_on_environ_var = io.locate_exe(
+                    ['(?i)^gs(win[0-9]+c[.]exe)?$'],
+                    by='env_var')
+                if gs_exe_on_environ_var:
+                    msg += ('\nAlternatively, we will use'
+                            + f' [{gs_exe_on_environ_var}]'
+                            + f' found in the {path_name} environment'
+                            + ' variable.')
+                    gs_exe = gs_exe_on_environ_var
+                else:
+                    msg += '\nPDF file size reduction will be skipped.'
+                    mt.show_warn(msg)
                 mt.show_warn(msg)
-                gs_exe = gs_exe_on_environ_var
-                is_gs_exe_found = True
-        if is_gs and not is_gs_exe_found:
-            msg = (f'The designated Ghostscript executable [{gs_exe}]'
-                   + ' could not be located;\n'
-                   + '.pdf file size reduction will be skipped.')
-            mt.show_warn(msg)
-        elif is_gs and is_gs_exe_found:
-            gs_exe = '"{}"'.format(gs_exe)  # A measure for blank spaces
-            _gs_cmd = [
-                gs_exe,
-                '-dSAFER',
-                '-dBATCH',
-                '-dNOPAUSE',
-                '-sDEVICE=pdfwrite',
-                '-dCompatibilityLevel={}'.format(gs_pdf_ver),
-                '-dSubsetFonts=true',
-                '-dEmbedAllFonts=true',
-                # Do not rotate the PDF file even if the height is greater
-                # than the width, which can happen in figures where the
-                # legends are placed outside the Axes.
-                # https://ghostscript.com/docs/9.54.0/VectorDevices.htm
-                '-dAutoRotatePages=/None',
-                '-sOutputFile={}'.format(_pdf_fname_full),
-                '-f {}'.format(pdf_fname_full),
-            ]
-            gs_cmd = ' '.join(_gs_cmd)
-            subprocess.run(gs_cmd, shell=True, check=True)
-            os.unlink(pdf_fname_full)
-            os.rename(_pdf_fname_full, pdf_fname_full)
-            io.show_file_gen(pdf_fname_full,
-                             verb=f' file size reduced using [{gs_exe}].')
+            else:
+                # Quote the full-path name of the executable
+                # in case it contains a blank space.
+                gs_exe_robust = '"{}"'.format(gs_exe)
+                _gs_cmd = [
+                    gs_exe_robust,
+                    '-dSAFER',
+                    '-dBATCH',
+                    '-dNOPAUSE',
+                    '-sDEVICE=pdfwrite',
+                    '-dCompatibilityLevel={}'.format(gs_pdf_ver),
+                    '-dSubsetFonts=true',
+                    '-dEmbedAllFonts=true',
+                    # Do not rotate the PDF file even if the height is greater
+                    # than the width, which can happen in figures where the
+                    # legends are placed outside the Axes.
+                    # https://ghostscript.com/docs/9.54.0/VectorDevices.htm
+                    '-dAutoRotatePages=/None',
+                    '-sOutputFile={}'.format(_pdf_fname_full),
+                    '-f {}'.format(pdf_fname_full),
+                ]
+                gs_cmd = ' '.join(_gs_cmd)
+                subprocess.run(gs_cmd, shell=True, check=True)
+                os.unlink(pdf_fname_full)
+                os.rename(_pdf_fname_full, pdf_fname_full)
+                io.show_file_gen(pdf_fname_full,
+                                 verb=f' file size reduced using [{gs_exe}].')
 
         #
         # PDF postprocessing (2/2)
         # Crop the empty margins of .pdf using pdfcrop. The executable locating
         # process is the same as that for Ghostscript.
         #
-        is_pdfcrop_exe_found = bool(os.path.exists(pdfcrop_exe))
-        if not is_pdfcrop_exe_found:
-            pdfcrop_exe_on_environ_var = io.locate_exe('(?i)texlive',
-                                                       '(?i)pdfcrop[.]exe$')
-            if pdfcrop_exe_on_environ_var:
-                msg = (f'The designated pdfcrop executable [{pdfcrop_exe}]'
-                       + ' could not be located,\nbut its alternative'
-                       + f' [{pdfcrop_exe_on_environ_var}] was found'
-                       + ' in the path environment variable.'
-                       + ' We fall back to this executable.')
-                mt.show_warn(msg)
-                pdfcrop_exe = pdfcrop_exe_on_environ_var
-                is_pdfcrop_exe_found = True
-        if is_pdfcrop and not is_pdfcrop_exe_found:
-            msg = (f'The designated pdfcrop executable [{pdfcrop_exe}]'
-                   + ' could not be located;\n'
-                   + '.pdf margin cropping will be skipped.')
-            mt.show_warn(msg)
-        elif is_pdfcrop and is_pdfcrop_exe_found:
-            # Fallback for a pdfcrop Perl script
-            pdfcrop_exe = '"{}"'.format(pdfcrop_exe)
-            if not re.search('(?i)[.]exe"?$', pdfcrop_exe):
-                perl_exe_on_environ_var = io.locate_exe('(?i)perl',
-                                                        '(?i)perl[.]exe$')
-                if not perl_exe_on_environ_var:
-                    msg = (f'You have designated a Perl script [{pdfcrop_exe}]'
-                           + ' as the pdfcrop executable,\nbut it seems that'
-                           + ' a Perl executable is unavailable in the path'
-                           + ' environment variable.\n'
-                           + '.pdf margin cropping will be skipped.')
+        if is_pdfcrop:
+            pdfcrop_exe = io.locate_exe(pdfcrop_exes,
+                                        by='shutil')
+            if not pdfcrop_exe:
+                msg = ('None of the following pdfcrop executables'
+                       + ' designated at the user input file'
+                       + ' could be located:\n'
+                       + f'{pdfcrop_exes}')
+                pdfcrop_exe_on_environ_var = io.locate_exe(
+                    ['(?i)^pdfcrop([.]exe)?$'],
+                    by='env_var')
+                if pdfcrop_exe_on_environ_var:
+                    msg += ('\nAlternatively, we will use'
+                            + f' [{pdfcrop_exe_on_environ_var}]'
+                            + f' found in the {path_name} environment'
+                            + ' variable.')
+                    pdfcrop_exe = pdfcrop_exe_on_environ_var
+                else:
+                    msg += '\nPDF file size reduction will be skipped.'
                     mt.show_warn(msg)
-                    return
-                pdfcrop_exe = 'perl {}'.format(pdfcrop_exe)
-            _pdfcrop_cmd = [
-                pdfcrop_exe,
-                '-margins "0 0 0 0"',
-                '{} {}'.format(pdf_fname_full, _pdf_fname_full),
-            ]
-            pdfcrop_cmd = ' '.join(_pdfcrop_cmd)
-            subprocess.run(pdfcrop_cmd, shell=True, check=True)
-            os.unlink(pdf_fname_full)
-            os.rename(_pdf_fname_full, pdf_fname_full)
-            io.show_file_gen(pdf_fname_full,
-                             verb=f' margin cropped using [{pdfcrop_exe}].')
+                mt.show_warn(msg)
+            else:
+                try:
+                    with open(pdfcrop_exe, 'r') as pdfcrop_f:
+                        pdfcrop_f.read()
+                    pdfcrop_exe_robust = 'perl {}'.format(pdfcrop_exe)
+                except UnicodeDecodeError:
+                    pdfcrop_exe_robust = '"{}"'.format(pdfcrop_exe)
+                _pdfcrop_cmd = [
+                    pdfcrop_exe_robust,
+                    '-margins "0 0 0 0"',
+                    '{} {}'.format(pdf_fname_full, _pdf_fname_full),
+                ]
+                pdfcrop_cmd = ' '.join(_pdfcrop_cmd)
+                subprocess.run(pdfcrop_cmd, shell=True, check=True)
+                os.unlink(pdf_fname_full)
+                os.rename(_pdf_fname_full, pdf_fname_full)
+                io.show_file_gen(
+                    pdf_fname_full,
+                    verb=f' margin cropped using [{pdfcrop_exe}].')
 
 
 if __name__ == '__main__':
