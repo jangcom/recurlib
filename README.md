@@ -154,7 +154,7 @@ Jaewoong Jang <jang[at]ric.u-tokyo.ac.jp>
 
 # COPYRIGHT
 
-Copyright (c) 2024 Jaewoong Jang
+Copyright (c) 2024-2026 Jaewoong Jang
 
 # LICENSE
 
