@@ -3,3 +3,8 @@ __pycache__/
 
 # Misc.
 .DS_Store
+
+# PyInstaller
+*.exe
+build/
+dist/

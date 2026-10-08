@@ -10,7 +10,7 @@ RecurLib: A recursion-based radionuclide library generator
 
 # DESCRIPTION
 
-RecurLib generates radionuclide identification libraries for alpha-particle or gamma-ray spectrometry. Nuclear data are retrieved from the Evaluated Nuclear Structure Data File [[l](#references)] via the web application programming interface of the Live Chart of Nuclides [[2](#references)] requiring one-time Internet connection for newly encountered radionuclides.
+RecurLib generates radionuclide identification libraries for alpha-particle or gamma-ray spectrometry. Nuclear data are retrieved from the Evaluated Nuclear Structure Data File [[1](#references)] via the web application programming interface of the Live Chart of Nuclides [[2](#references)] requiring one-time Internet connection for newly encountered radionuclides.
 
 *Keep it simple*: **All you need to do is specify progenitor radionuclides in a user input file**. RecurLib will then compute every feasible progeny and collect all the associated nuclear data on your behalf.
 
@@ -20,25 +20,45 @@ RecurLib generates radionuclide identification libraries for alpha-particle or g
 
 # INSTALLATION
 
-**Option 1: No installation required**
-
-Use the enclosed executable `recurlib.exe`.
-
-**Option 2: Full-fledged implementation**
-
 Run the Python script `recurlib.py` with the list of Python libraries in [PYTHON REQUIREMENTS](#python-requirements) installed.
+
+The required libraries can be installed at once with either pip or conda:
+
+    pip install -r requirements.txt
+
+    conda install -c conda-forge --file requirements.txt
+
+## PYTHON REQUIREMENTS
+
+- The versions of Python libraries listed below are those that have been confirmed to work properly with RecurLib. Try these versions if you encounter a library-related program crash.
+- For convenience, these versions are pinned in `requirements-tested.txt`; with Python 3.11, run `pip install -r requirements-tested.txt` or `conda install -c conda-forge --file requirements-tested.txt` to install them.
+
+| Python library | Version | Use                               |
+|----------------|---------|-----------------------------------|
+| python         | 3.11.9  | To run RecurLib                   |
+| pyyaml         | 6.0.1   | User input parsing                |
+| jinja2         | 3.1.3   | Cross-platform data exchange      |
+| matplotlib     | 3.8.4   | Data visualization                |
+| pandas         | 2.2.1   | Data restructuring and management |
+
+## OPTIONAL DEPENDENCIES
+
+- Tabulated below are optional Python libraries and third-party software used for Excel writing or figure rendering purposes; install them on a per-need basis.
+- Use of the specified versions is recommended, but not required.
+
+| Python library/software                    | Version | Use                                       |
+|--------------------------------------------|---------|-------------------------------------------|
+| openpyxl (v3.0.10) or xlsxwriter (v3.1.1)  | -       | A Pandas dependency for Excel writing     |
+| [Inkscape](https://inkscape.org)           | 1.3     | .emf rendering                            |
+| [Ghostscript](https://www.ghostscript.com) | 10.02.1 | .pdf file size reduction and reversioning |
+| [pdfcrop](https://ctan.org/pkg/pdfcrop)    | 1.38    | .pdf margin cropping                      |
 
 # SYNOPSIS
 
-**Executable**
-
-    recurlib.exe [file]
-                 [--ini=file] [--echo]
-
-**Python (full-fledged)**
-
     python recurlib.py [file]
                        [--ini=file] [--echo]
+
+> On macOS and Linux without an activated conda or virtual environment, use `python3` instead of `python`.
 
 # OPTIONS
 
@@ -54,10 +74,6 @@ Run the Python script `recurlib.py` with the list of Python libraries in [PYTHON
 # EXAMPLES
 
 ## Running RecurLib
-
-`recurlib.exe ./inp/trial.yaml`
-
-`recurlib.exe ./inp/trial.yaml --echo > trial.log`
 
 `python recurlib.py ./inp/trial.yaml`
 
@@ -106,31 +122,6 @@ mixture_gamma:
     title:
       label: Uranium ($4n+2$) and actinium series ($4n+3$), and $^{40}$K
 ```
-
-## PYTHON REQUIREMENTS
-
-- The versions of Python libraries listed below are those that have been confirmed to work properly with RecurLib. Try these versions if you encounter a library-related program crash.
-- pip-installed Matplotlib uses OpenBLAS NumPy, which may be more suitable for bundling purposes.
-
-| Python library | Version | Use                               |
-|----------------|---------|-----------------------------------|
-| python         | 3.11.9  | To run RecurLib                   |
-| pyyaml         | 6.0.1   | User input parsing                |
-| jinja2         | 3.1.3   | Cross-platform data exchange      |
-| matplotlib     | 3.8.4   | Data visualization                |
-| pandas         | 2.2.1   | Data restructuring and management |
-
-## OPTIONAL DEPENDENCIES
-
-- Tabulated below are optional Python libraries and third-party software used for Excel writing or figure rendering purposes; install them on a per-need basis.
-- Use of the specified versions is recommended, but not required.
-
-| Python library/software                    | Version | Use                                       |
-|--------------------------------------------|---------|-------------------------------------------|
-| openpyxl (v3.0.10) or xlsxwriter (v3.1.1)  | -       | A Pandas dependency for Excel writing     |
-| [Inkscape](https://inkscape.org)           | 1.3     | .emf rendering                            |
-| [Ghostscript](https://www.ghostscript.com) | 10.02.1 | .pdf file size reduction and reversioning |
-| [pdfcrop](https://ctan.org/pkg/pdfcrop)    | 1.38    | .pdf margin cropping                      |
 
 # CAVEATS
 
