@@ -19,8 +19,8 @@ import pandas as pd
 __author__ = 'Jaewoong Jang'
 __copyright__ = 'Copyright (c) 2024-2026 Jaewoong Jang'
 __license__ = 'MIT License'
-__version__ = '1.0.2'
-__date__ = '2026-03-26'
+__version__ = '1.0.3'
+__date__ = '2026-10-08'
 
 
 class Recurlib():
