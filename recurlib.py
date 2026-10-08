@@ -19,8 +19,8 @@ import pandas as pd
 __author__ = 'Jaewoong Jang'
 __copyright__ = 'Copyright (c) 2024-2026 Jaewoong Jang'
 __license__ = 'MIT License'
-__version__ = '1.0.2'
-__date__ = '2026-03-26'
+__version__ = '1.0.3'
+__date__ = '2026-10-08'
 
 
 class Recurlib():
@@ -343,9 +343,9 @@ class Recurlib():
         # The "User-Agent" key-val pair is prepared in two versions:
         # - as a list to be unpacked to two strings, which will then be passed
         #   to request.Request.add_header() as its positional arguments
-        # - as a dict to be passed to pd.read_csv() as its positional argument
+        # - as a dict to be passed to pd.read_csv() as a keyword argument
         #
-        storage_opts = {'User-Agent': ''}
+        storage_opts = {'User-Agent': 'Livechart/1.0'}
         storage_opts_listed = list(*storage_opts.items())
         req = request.Request(url)
         req.add_header(*storage_opts_listed)
