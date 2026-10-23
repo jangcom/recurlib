@@ -103,10 +103,11 @@ def make_workspace(work_dir, inputs=()):
 
 
 def run_input(work_dir, input_name, serve_dir=None, network=None,
-              timeout=1800):
+              args=(), timeout=1800):
     """Run "python recurlib.py ./inp/<input_name>" in a workspace made by
     make_workspace(), offline, served from serve_dir, or with the network
-    'down' or answering with a 'timeout' (see offline_run)."""
+    'down' or answering with a 'timeout' (see offline_run); args are added
+    to the command line, e.g. ['--ini=./inp/custom.yaml']."""
     work_dir = pathlib.Path(work_dir).resolve()
     request_log = work_dir / 'requests.log'
     env = dict(os.environ)
@@ -125,7 +126,7 @@ def run_input(work_dir, input_name, serve_dir=None, network=None,
     # for deprecations raised by RecurLib's own calls.
     proc = subprocess.run(
         [sys.executable, '-W', 'default', str(LAUNCHER), str(CORE),
-         f'./inp/{input_name}'],
+         f'./inp/{input_name}', *args],
         cwd=work_dir, env=env, stdin=subprocess.DEVNULL,
         capture_output=True, text=True, encoding='utf-8', errors='replace',
         timeout=timeout)

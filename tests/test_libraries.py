@@ -122,14 +122,16 @@ DERIVED_OUT_KEYS = {
 
 def test_settings_are_the_template_merged_with_the_dataset(case):
     """The echoed settings equal the initialization file's template deep-
-    updated by the dataset, with the recursive and static lists normalised
+    updated by the template of the user input file, if any, and then by
+    the dataset, with the recursive and static lists normalised
     (empty entries dropped, isomer suffix and energy level removed; the
     exclusion list is kept as written) and the output names added."""
     dataset, run = case
     ini = read_yaml(REPO_ROOT / 'inp' / 'ini_recurlib.yaml')['template']
     inp = (REPO_ROOT / 'inp' / 'trial.yaml' if FIXTURE[dataset] == 'trial'
            else EXTRA_INPUT)
-    want = _merge(ini, read_yaml(inp)[dataset])
+    user = read_yaml(inp)
+    want = _merge(_merge(ini, user.get('template') or {}), user[dataset])
     rns = want['scout']['radionuclides']
     for group in ['recursive', 'static']:
         rns[group] = [base_name(n) for n in rns[group] if n]

@@ -3,6 +3,21 @@
 #
 # RecurLib initialization file
 #
+# - This file holds every setting of RecurLib with its default value, and is
+#   read from the inp directory next to recurlib.py regardless of the
+#   working directory.
+# - A user input file needs only the settings that differ from these: copy
+#   a setting from here, together with its parent keys, into the user input
+#   file and edit it there.
+# - A user input file consists of the following keys.
+#   template:        (Optional) Settings shared by every dataset of the file,
+#                    overriding the "template" key below.
+#   active_datasets: The list of the datasets to be processed, in that order.
+#   <dataset>:       The settings of a dataset, overriding "template".
+# - A custom initialization file, passed with --ini, holds settings shared
+#   by several user input files under the same "template" key, and needs
+#   only the settings that differ from these.
+#
 template:  # Overridable at each active dataset
   #
   # File I/O

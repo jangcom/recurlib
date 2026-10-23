@@ -1,6 +1,17 @@
 #!/usr/bin/env python3
 """RecurLib: A recursion-based radionuclide library generator
 
+Functions
+---------
+write_atomically(fname_full, write)
+    Write a file via a temporary file to prevent partial writing.
+is_same_file(fname1, fname2)
+    Check if two file names designate the same file.
+find_unmergeable(dflt, over, path=())
+    Find settings that cannot be merged over their default values.
+terminate(msg)
+    Display a warning message and terminate the program.
+
 Classes
 -------
 Recurlib()
@@ -12,6 +23,7 @@ import sys
 import time
 import re
 import copy
+import filecmp
 from io import BytesIO
 from urllib import request, error
 import matplotlib.pyplot as plt
@@ -26,6 +38,17 @@ __date__ = '2026-10-08'
 
 # Timeout (s) of a request to the IAEA-NDS Live Chart of Nuclides
 LIVECHART_TIMEOUT = 60
+# The default initialization file in the inp directory next to recurlib.py,
+# found regardless of the working directory
+INI_DFLT = os.path.join(os.path.dirname(os.path.realpath(__file__)),
+                        'inp', 'ini_recurlib.yaml')
+# Settings that can be left without a value; the radionuclide groups can be
+# empty (e.g. "static:" with no radionuclide listed)
+NULLABLE = [
+    ('scout', 'radionuclides', 'recursive'),
+    ('scout', 'radionuclides', 'static'),
+    ('scout', 'radionuclides', 'exclusion'),
+]
 
 
 def write_atomically(fname_full, write):
@@ -49,6 +72,72 @@ def write_atomically(fname_full, write):
     tmp_fname_full = f'{fname_full}.tmp'
     write(tmp_fname_full)
     os.replace(tmp_fname_full, fname_full)
+
+
+def is_same_file(fname1, fname2):
+    """Check if two file names designate the same file.
+
+    Parameters
+    ----------
+    fname1 : str
+        The name of a file.
+    fname2 : str
+        The name of another file.
+
+    Returns
+    -------
+    bool
+        True if the names resolve to the same path, otherwise False.
+    """
+    return (os.path.normcase(os.path.realpath(fname1))
+            == os.path.normcase(os.path.realpath(fname2)))
+
+
+def find_unmergeable(dflt, over, path=()):
+    """Find settings that cannot be merged over their default values.
+
+    Parameters
+    ----------
+    dflt : dict
+        A dictionary of default settings; e.g. the 'template' key of
+        the initialization file.
+    over : dict
+        A dictionary of settings to be merged over dflt; e.g. a dataset of
+        the user input file.
+    path : tuple, optional
+        The keys leading to dflt and over. The default is ().
+
+    Returns
+    -------
+    problems : list
+        A list of messages on the settings of over that would break a run
+        once merged over dflt:
+        (i) a setting without a value over a set of settings or a list;
+            e.g. 'plot:' with all of its keys commented out
+        (ii) a set of settings over a value that is not, or vice versa
+        Settings not found in dflt are not examined.
+    """
+    problems = []
+    for k, v in over.items():
+        if not isinstance(dflt, dict) or k not in dflt:
+            continue
+        key_path = path + (k,)
+        where = ' > '.join(str(key) for key in key_path)
+        default = dflt[k]
+        if v is None:
+            if (isinstance(default, (dict, list))
+                    and key_path not in NULLABLE):
+                problems.append(f'[{where}] has no value.')
+        elif isinstance(v, dict):
+            if isinstance(default, dict):
+                problems += find_unmergeable(default, v, key_path)
+            elif default is not None:
+                problems.append(f'[{where}] must not be a set of settings'
+                                + ' (key: value pairs).')
+        elif isinstance(default, dict):
+            problems.append(f'[{where}] must be a set of settings'
+                            + ' (key: value pairs).')
+    return problems
 
 
 def terminate(msg):
@@ -2568,16 +2657,43 @@ class Recurlib():
             active_datasets = [active_datasets]
         if not active_datasets or not isinstance(active_datasets, list):
             terminate('[active_datasets] has no element.')
+
+        #
+        # Read the 'template' key of the user input file, if any.
+        # - It holds the settings shared by every active dataset of the
+        #   file, and is merged over the 'template' key of the initialization
+        #   file and under each active dataset.
+        #
+        shared = the_yml.get('template')
+        if shared is not None and not isinstance(shared, dict):
+            terminate('[template] must be a set of settings'
+                      + ' (key: value pairs).')
+        problems = find_unmergeable(the_ini['template'], shared or {})
+        if problems:
+            terminate('[template] cannot be merged over the initialization'
+                      + ' file:\n' + '\n'.join(problems))
+        # Deep-copy the settings, as get_rnlib() rewrites the radionuclide
+        # lists in place.
+        inherited = mt.merge(copy.deepcopy(the_ini['template']),
+                             copy.deepcopy(shared or {}))
+
+        reserved = ['active_datasets', 'template']
+        processed = []
         for adataset in active_datasets:
             # >> Dataset name validation
             msg = ''
+            reserved_found = [w for w in reserved
+                              if re.search(fr'(?i)\b{w}\b', str(adataset))]
             if adataset is None or adataset == '':
                 msg = (f'Warning: A null element name [{adataset}];'
                        + ' skipping.')
-            elif re.search(r'(?i)\bactive_datasets\b', str(adataset)):
-                msg = ('Warning: [active_datasets] is not allowed as an'
+            elif reserved_found:
+                msg = (f'Warning: [{reserved_found[0]}] is not allowed as an'
                        + ' element name under [active_datasets];'
                        + ' skipping.')
+            elif adataset in processed:
+                msg = (f'Warning: [{adataset}] is listed more than once'
+                       + ' under [active_datasets]; skipping.')
             elif adataset not in the_yml:  # Wrong key
                 msg = (f'Warning: [{adataset}] not in [{argv.file}];'
                        + ' skipping.')
@@ -2592,21 +2708,28 @@ class Recurlib():
                 continue
             # <<
 
+            processed.append(adataset)
+
             # Notification
             mt.show_msg(f'Working on [{adataset}]...')
 
             #
             # Construct the configuration dict of an active dataset.
             # (1) Copy all the key-val pairs of all nested dictionaries of
-            # the 'template' key to an active dataset.
+            # the 'template' key of the initialization file, merged with
+            # the 'template' key of the user input file, if any.
             # (2) Override the key-val pairs designated at the active dataset
             # at the active dataset dict.
+            # Settings that cannot be merged terminate the program, and
+            # the user input dict is left unchanged.
             #
-            inherited = copy.deepcopy(the_ini['template'])
-            the_yml[adataset] = mt.merge(inherited, the_yml[adataset])
-
-            # Aliasing
-            a = the_yml[adataset]
+            problems = find_unmergeable(inherited, the_yml[adataset])
+            if problems:
+                terminate(f'[{adataset}] cannot be merged over the'
+                          + ' initialization file and [template]:\n'
+                          + '\n'.join(problems))
+            a = mt.merge(copy.deepcopy(inherited),
+                         copy.deepcopy(the_yml[adataset]))
 
             # Initialize for the next active dataset.
             self.levs = {}
@@ -2778,6 +2901,16 @@ if __name__ == '__main__':
     # Class instantiation
     recurlib = Recurlib()
 
+    # Command-line arguments; parsed before the front matter so that
+    # --help and --show-ini print nothing else.
+    io = inpout.InpOut()
+    argv = io.read_argv(desc=recurlib.prog_info['desc'],
+                        ini_dflt=INI_DFLT,
+                        is_show_ini=True)
+    if argv.is_show_ini:
+        print(INI_DFLT)
+        sys.exit()
+
     #
     # Front matter
     #
@@ -2785,12 +2918,46 @@ if __name__ == '__main__':
 
     #
     # I/O
+    # (1) The default initialization file is always read.
+    # (2) A custom initialization file only needs to hold the settings that
+    #     differ from the default ones; it is deeply merged over them.
+    #     A complete one written for earlier versions works as before.
     #
-    io = inpout.InpOut()
-    argv = io.read_argv(desc=recurlib.prog_info['desc'],
-                        ini_dflt='./inp/ini_recurlib.yaml')
-    the_ini = io.read_yaml(argv.ini,
+    the_ini = io.read_yaml(INI_DFLT,
                            is_echo=argv.is_echo)
+    if not is_same_file(argv.ini, INI_DFLT):
+        ini_custom = io.read_yaml(argv.ini,
+                                  is_echo=argv.is_echo) or {}
+        if (not isinstance(ini_custom, dict)
+                or not isinstance(ini_custom.get('template') or {}, dict)):
+            terminate(f'The custom initialization file [{argv.ini}] must'
+                      + ' hold its settings under the [template] key.')
+        # Settings outside the 'template' key are not read.
+        for k in ini_custom:
+            if k != 'template':
+                mt.show_warn(f'Warning: [{k}] of the custom initialization'
+                             + f' file [{argv.ini}] is not under [template];'
+                             + ' ignored.')
+        ini_custom = {'template': ini_custom.get('template') or {}}
+        problems = find_unmergeable(the_ini['template'],
+                                    ini_custom['template'])
+        if problems:
+            terminate(f'The custom initialization file [{argv.ini}] cannot'
+                      + ' be merged over the default one:\n'
+                      + '\n'.join(problems))
+        the_ini = mt.merge(the_ini, ini_custom)
+    elif (os.path.isfile('./inp/ini_recurlib.yaml')
+            and not is_same_file('./inp/ini_recurlib.yaml', INI_DFLT)
+            and not filecmp.cmp('./inp/ini_recurlib.yaml', INI_DFLT,
+                                shallow=False)):
+        # Earlier versions read ./inp/ini_recurlib.yaml of the working
+        # directory by default; notify the user if such a file differs
+        # from the default one.
+        mt.show_warn('Warning: [./inp/ini_recurlib.yaml] of the working'
+                     + ' directory is not read; the default initialization'
+                     + f' file [{INI_DFLT}] is used.\nTo use the file of'
+                     + ' the working directory, add'
+                     + ' --ini=./inp/ini_recurlib.yaml.')
     the_yml = io.read_yaml(argv.file,
                            is_echo=argv.is_echo)
 

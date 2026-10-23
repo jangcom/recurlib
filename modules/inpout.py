@@ -38,7 +38,7 @@ class InpOut():
 
     Methods
     -------
-    read_argv(desc='')
+    read_argv(desc='', ini_dflt='ini.yaml', is_show_ini=False)
         Read the sys.argv list into a program.
     show_file_gen(fname, verb=' generated.')
         Notify the creation of a file or a directory.
@@ -76,15 +76,19 @@ class InpOut():
         self.conf_file_type = conf_file_type
 
     def read_argv(self,
-                  desc='', ini_dflt='ini.yaml'):
+                  desc='', ini_dflt='ini.yaml', is_show_ini=False):
         """Read the sys.argv list into a program.
 
         Parameters
         ----------
         desc : str, optional
             A description of argparse.ArgumentParser. The default is ''.
-        ini : str, optional
+        ini_dflt : str, optional
             A low-level initialization file. The default is 'ini.yaml'.
+        is_show_ini : bool, optional
+            If True, the option --show-ini, which prints the path of
+            the default initialization file, is added, and the file
+            argument can be omitted with it. The default is False.
 
         Returns
         -------
@@ -95,6 +99,7 @@ class InpOut():
             description=desc,
             formatter_class=argparse.ArgumentDefaultsHelpFormatter)
         parser.add_argument('file',
+                            nargs='?' if is_show_ini else None,
                             help='a program configuration file ({})'.format(
                                 self.conf_file_type))
         parser.add_argument('--ini',
@@ -105,7 +110,16 @@ class InpOut():
                             dest='is_echo',
                             action='store_true',
                             help='echo the YAML content on the shell')
-        return parser.parse_args()
+        if is_show_ini:
+            parser.add_argument('--show-ini',
+                                dest='is_show_ini',
+                                action='store_true',
+                                help='print the path of the default'
+                                     ' initialization file and exit')
+        args = parser.parse_args()
+        if is_show_ini and not args.is_show_ini and args.file is None:
+            parser.error('the following arguments are required: file')
+        return args
 
     def show_file_gen(self, fname,
                       verb=' generated.'):

@@ -15,7 +15,7 @@ RecurLib generates radionuclide identification libraries for alpha-particle or g
 *Keep it simple*: **All you need to do is specify progenitor radionuclides in a user input file**. RecurLib will then compute every feasible progeny and collect all the associated nuclear data on your behalf.
 
 *But remain customizable*:
-- Edit the initialization file `./inp/ini_recurlib.yaml` where you can tailor the data coverage and visualization settings of radionuclide libraries in great detail.
+- Consult the initialization file `./inp/ini_recurlib.yaml` (`python recurlib.py --show-ini` prints its path), where you can find every setting of the data coverage and visualization of radionuclide libraries. To change a setting, copy it, together with its parent keys, into a dataset of the user input file; settings shared by every dataset of the file go under its `template` key, and those shared by several user input files can be collected in a custom initialization file passed with `--ini`.
 - Create a Jinja template to obtain cross-platform library files that can be imported into commercial spectral analysis software.
 
 # INSTALLATION
@@ -68,20 +68,28 @@ After a deliberate change to the libraries RecurLib writes, rewrite the expected
 # SYNOPSIS
 
     python recurlib.py [file]
-                       [--ini=file] [--echo]
+                       [--ini=file] [--echo] [--show-ini]
 
 > On macOS and Linux without an activated conda or virtual environment, use `python3` instead of `python`.
+
+> The paths in the initialization and user input files (e.g. `./lib/nucl_data` and `./figs`) are relative to the working directory; run RecurLib from the repository root, or use absolute paths. The default initialization file, `ini_recurlib.yaml` in the `inp` directory next to `recurlib.py`, is found regardless of the working directory; earlier versions read `./inp/ini_recurlib.yaml` of the working directory, which can now be passed with `--ini`.
 
 # OPTIONS
 
     file
         A user input file (.yaml).
 
-    --ini=file (default: ./inp/ini_recurlib.yaml)
-        An initialization file (.yaml).
+    --ini=file
+        A custom initialization file (.yaml), deeply merged over the default
+        one in the inp directory next to recurlib.py. It only needs to hold
+        the settings that differ from the default ones, under the template
+        key; a complete initialization file of earlier versions also works.
 
     --echo (default: False)
         Print the content of the initialization and user input files on the shell.
+
+    --show-ini (default: False)
+        Print the path of the default initialization file and exit.
 
 # EXIT STATUS
 
@@ -91,7 +99,8 @@ After a deliberate change to the libraries RecurLib writes, rewrite the expected
 
     1   RecurLib stopped: a warning ending with the line "Terminating." says
         why (e.g. a missing input file, a misspelled radiation, invalid
-        cutoffs, or no access to the Live Chart of Nuclides).
+        cutoffs, settings that cannot be merged over the default ones, or
+        no access to the Live Chart of Nuclides).
 
 # EXAMPLES
 
@@ -144,6 +153,28 @@ mixture_gamma:
     title:
       label: Uranium ($4n+2$) and actinium series ($4n+3$), and $^{40}$K
 ```
+
+**A template shared by every dataset of the file**
+```
+template:  # Overridable at each active dataset
+  scout:
+    radionuclides:
+      cutoffs:
+        emission_probability:
+          - 1e-1  # Unit: %
+          - 1e2
+
+active_datasets:
+  - thorium_series_alpha
+  - mixture_gamma
+
+thorium_series_alpha:
+  # As above
+mixture_gamma:
+  # As above
+```
+
+> `template` and `active_datasets` are not allowed as dataset names, in any letter case or as a word of one (e.g. `thorium template`).
 
 # CAVEATS
 
