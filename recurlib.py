@@ -32,8 +32,8 @@ import pandas as pd
 __author__ = 'Jaewoong Jang'
 __copyright__ = 'Copyright (c) 2024-2026 Jaewoong Jang'
 __license__ = 'MIT License'
-__version__ = '1.0.3'
-__date__ = '2026-10-08'
+__version__ = '1.1.0'
+__date__ = '2026-10-23'
 
 
 # Timeout (s) of a request to the IAEA-NDS Live Chart of Nuclides
