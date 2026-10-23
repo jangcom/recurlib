@@ -83,6 +83,16 @@ After a deliberate change to the libraries RecurLib writes, rewrite the expected
     --echo (default: False)
         Print the content of the initialization and user input files on the shell.
 
+# EXIT STATUS
+
+    0   Every active dataset was processed. A dataset that cannot be processed
+        (e.g. not defined in the user input file, or empty) is skipped with a
+        warning, as is a library left without lines by the cutoffs.
+
+    1   RecurLib stopped: a warning ending with the line "Terminating." says
+        why (e.g. a missing input file, a misspelled radiation, invalid
+        cutoffs, or no access to the Live Chart of Nuclides).
+
 # EXAMPLES
 
 ## Running RecurLib

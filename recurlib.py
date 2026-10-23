@@ -23,6 +23,17 @@ __version__ = '1.0.3'
 __date__ = '2026-10-08'
 
 
+def terminate(msg):
+    """Show msg in a warning block ending with the line "Terminating.",
+    and exit with status 1.
+
+    Every deliberate stop of RecurLib ends this way, so that a shell script
+    or a graphical interface can tell a stopped run from a finished one.
+    """
+    mt.show_warn(f'{msg}\nTerminating.')
+    sys.exit(1)
+
+
 class Recurlib():
     """A class for recursion-based radionuclide library generation.
 
@@ -134,28 +145,17 @@ class Recurlib():
         -------
         None.
         """
-        # Radiation type validation
-        allowed = ['alpha', 'gamma', 'beta minus']
-        re_allowed = '|'.join(allowed)
-        if not re.search(r'(?i)\b({})\b'.format(re_allowed), spectr_radiat):
-            msg = ('The spectrum radiation has been set to be'
-                   + f' [{spectr_radiat}];\nIt must be one of'
-                   + f' [{re_allowed}]. Terminating the program.')
-            mt.show_warn(msg)
-            sys.exit()
-        # Shorten the radiation type with respect to the IAEA-NDS Live Chart
-        # of Nuclides.
-        # Examples
-        # - spl = 'beta minus' -> ['beta', 'minus']
-        # - shortened = 'bm'
-        # - spl = 'gamma' -> ['gamma']
-        # - shortened = 'g'
-        # - spl = 'alpha' -> ['alpha']
-        # - shortened = 'a'
-        spl = re.split(r'\s+', spectr_radiat)
-        shortened = ''.join([s[0] for s in spl])
-        self.radiat.update({'long': spectr_radiat.lower(),
-                            'short': shortened})
+        # Radiation type validation: case and surrounding or repeated
+        # blanks do not matter (e.g. 'Gamma', 'beta  minus').
+        # The short names are the rad_types of the IAEA-NDS Live Chart of
+        # Nuclides.
+        allowed = {'alpha': 'a', 'gamma': 'g', 'beta minus': 'bm'}
+        normalized = ' '.join(str(spectr_radiat).split()).lower()
+        if normalized not in allowed:
+            terminate(f'The spectrum radiation [{spectr_radiat}] is not'
+                      f' one of [{", ".join(allowed)}].')
+        self.radiat.update({'long': normalized,
+                            'short': allowed[normalized]})
 
     def set_cols(self, col_groups):
         """Populate the cols attribute.
@@ -368,8 +368,7 @@ class Recurlib():
             else:
                 msg += ('It seems that you do not have Internet access;'
                         + ' please check your network connection status.')
-            mt.show_warn(msg)
-            sys.exit()
+            terminate(msg)
 
         #
         # Check if the data retrieval has failed.
@@ -476,9 +475,8 @@ class Recurlib():
                 msg = (f'The nuclear data file [{dat_fname_full}] could'
                        + ' not be loaded correctly.\nPlease check if the'
                        + ' file conforms to the format of IAEA-NDS Live'
-                       + ' Chart of Nuclides.\nTerminating the program.')
-                mt.show_warn(msg)
-                sys.exit()
+                       + ' Chart of Nuclides.')
+                terminate(msg)
         else:  # **Internet connection required**
             df_lc = self.get_livechart_df(url_params,
                                           nucl_data_nonexist_fname_full,
@@ -1662,6 +1660,36 @@ class Recurlib():
         priority_nums = list(range(1, priority_num_max + 1))
         return priority_idx, priority_nums
 
+    @staticmethod
+    def get_limits(cutoffs, key):
+        """Return the [lower, upper] limits of a cutoff as floats.
+
+        Parameters
+        ----------
+        cutoffs : dict
+            The scout > radionuclides > cutoffs settings of a dataset.
+        key : str
+            The cutoff, e.g. 'energy'.
+
+        Returns
+        -------
+        list
+            The lower and upper limits. A cutoff that is not a pair of
+            numbers, or whose lower limit exceeds the upper, stops the
+            program.
+        """
+        pair = cutoffs.get(key) if isinstance(cutoffs, dict) else None
+        where = f'[scout > radionuclides > cutoffs > {key}]'
+        try:
+            lower, upper = (float(x) for x in pair)
+        except (TypeError, ValueError):
+            terminate(f'{where} must be a pair of numbers, [lower, upper];'
+                      + f' it is [{pair}].')
+        if lower > upper:
+            terminate(f'The lower limit of {where} exceeds its upper'
+                      + f' limit: [{pair}].')
+        return [lower, upper]
+
     def get_rnlib(self, p):
         """Generate a radionuclide library by recursive computation.
 
@@ -1701,6 +1729,11 @@ class Recurlib():
         #
         # Energy level feasibility validation (1/5): Individually specified
         # static isomers
+        # A group left out, or given without elements, is an empty list.
+        for group in ['recursive', 'static', 'exclusion']:
+            if not p['scout']['radionuclides'].get(group):
+                p['scout']['radionuclides'][group] = []
+        decay_chains_flattened = []
         if len(p['scout']['radionuclides']['static']) >= 1:
             for i, progenitor_stat in enumerate(
                     p['scout']['radionuclides']['static']):
@@ -1714,9 +1747,6 @@ class Recurlib():
                               p['io']['lib']['nucl_data_path'])
         # Identify the progeny of each user-designated recursive progenitor.
         if len(p['scout']['radionuclides']['recursive']) >= 1:
-            # Assign an empty list in case none of the designated
-            # recursive progenitors has progeny.
-            decay_chains_flattened = []
             daughters = []
             for i, progenitor_recursive in enumerate(
                     p['scout']['radionuclides']['recursive']):
@@ -1746,6 +1776,8 @@ class Recurlib():
                 self.set_levs(progenitor_recursive,
                               p['io']['lib']['nucl_data_path'])
                 # **Create a list of all possible progeny nuclides.**
+                mt.show_msg('Searching the decay chain of'
+                            + f' [{progenitor_recursive}]...')
                 daughters = self.get_daughters(
                     progenitor_recursive,
                     p['io']['lib']['nucl_data_path'],
@@ -1856,20 +1888,21 @@ class Recurlib():
         col_hl_sec = self.cols['half_life_sec']['nucl_data_old']
         col_dm = self.cols['decay_mode']['nucl_data_old']
         col_db = self.cols['database']['nucl_data_new']
-        nrg_lim = [float(nrg) for nrg
-                   in p['scout']['radionuclides']['cutoffs']['energy']]
-        ep_lim = [float(ep) for ep
-                  in p['scout']['radionuclides']['cutoffs']
-                      ['emission_probability']]
-        hl_sec_lim = [float(hl) for hl
-                      in p['scout']['radionuclides']['cutoffs'][
-                          'half_life_sec']]
-        priority_num_nrg_lim = [
-            float(priority_num_nrg) for priority_num_nrg
-            in p['scout']['radionuclides']['cutoffs'][
-                'priority_number_energy']]
-        priority_num_max = p['scout']['radionuclides']['cutoffs'][
-            'priority_number_max']
+        cutoffs = p['scout']['radionuclides']['cutoffs']
+        nrg_lim = self.get_limits(cutoffs, 'energy')
+        ep_lim = self.get_limits(cutoffs, 'emission_probability')
+        hl_sec_lim = self.get_limits(cutoffs, 'half_life_sec')
+        priority_num_nrg_lim = self.get_limits(cutoffs,
+                                               'priority_number_energy')
+        priority_num_max = cutoffs.get('priority_number_max')
+        if (isinstance(priority_num_max, bool)
+                or not isinstance(priority_num_max, (int, float))
+                or priority_num_max < 0
+                or not float(priority_num_max).is_integer()):
+            terminate('[scout > radionuclides > cutoffs >'
+                      + ' priority_number_max] must be a whole number of'
+                      + f' 0 or more; it is [{priority_num_max}].')
+        priority_num_max = int(priority_num_max)
         # <<
         dfs_rnlib_to_be_concated = []
         for rn in self.rn_subset_uniq:
@@ -2091,6 +2124,11 @@ class Recurlib():
 
         # Combine the radionuclide-wise radionuclide library DFs into one DF,
         # which will yield a single, comprehensive radionuclide library DF.
+        # No line within the cutoffs gives an empty library.
+        if not dfs_rnlib_to_be_concated:
+            df_rnlib = pd.DataFrame()
+            df_rnlib.index.name = 'Library index'
+            return df_rnlib
         df_rnlib = pd.concat(dfs_rnlib_to_be_concated)
         # - Remove a user-specified exclusion group of radionuclides, if any,
         #   from the radionuclide library DF. This block of code has been
@@ -2116,6 +2154,13 @@ class Recurlib():
         # Sort the combined DF by the values of the user-specified column.
         if p['io']['cols_sort']['toggle']:
             sort_by = p['io']['cols_sort']['by']  # e.g. 'energy'
+            choices = [k for k, v in self.cols.items()
+                       if isinstance(v, dict)
+                       and v.get('nucl_data_new') in df_rnlib.columns]
+            if sort_by not in choices:
+                terminate(f'[io > cols_sort > by] is [{sort_by}]; for'
+                          + f' a {self.radiat["long"]} library it must be'
+                          + f' one of [{", ".join(choices)}].')
             if re.search('(?i)radionuclide', sort_by):
                 # Force the legend order to be 'as_is'.
                 p['plot']['annots']['grouped']['legend']['order'] = 'as_is'
@@ -2374,28 +2419,32 @@ class Recurlib():
         #
         # Iterate over the active datasets designated in the user input file.
         #
-        if the_yml['active_datasets'] is None:  # Empty list
-            msg = ('[active_datasets] has no element.'
-                   + ' Terminating the program.')
-            mt.show_warn(msg)
-            sys.exit()
-        for adataset in the_yml['active_datasets']:
+        active_datasets = (the_yml.get('active_datasets')
+                           if isinstance(the_yml, dict) else None)
+        if isinstance(active_datasets, str):  # A single dataset
+            active_datasets = [active_datasets]
+        if not active_datasets or not isinstance(active_datasets, list):
+            terminate('[active_datasets] lists no dataset.')
+        for adataset in active_datasets:
             # >> Dataset name validation
-            is_skip = False
-            if not adataset:
+            msg = ''
+            if adataset is None or adataset == '':
                 msg = (f'Warning: A null element name [{adataset}];'
                        + ' skipping.')
-                is_skip = True
-            if adataset not in the_yml:  # Wrong key
-                msg = (f'Warning: [{adataset}] not in [{argv.file}];'
-                       + ' skipping.')
-                is_skip = True
-            if re.search('(?i)active_datasets', adataset):
+            elif re.search(r'(?i)\bactive_datasets\b', str(adataset)):
                 msg = ('Warning: [active_datasets] is not allowed as an'
                        + ' element name under [active_datasets];'
-                       + ' skipiing.')
-                is_skip = True
-            if is_skip:
+                       + ' skipping.')
+            elif adataset not in the_yml:  # Wrong key
+                msg = (f'Warning: [{adataset}] not in [{argv.file}];'
+                       + ' skipping.')
+            elif not the_yml[adataset]:
+                msg = (f'Warning: The dataset [{adataset}] is empty;'
+                       + ' skipping.')
+            elif not isinstance(the_yml[adataset], dict):
+                msg = (f'Warning: The dataset [{adataset}] is not a set of'
+                       + ' settings (key: value pairs); skipping.')
+            if msg:
                 mt.show_warn(msg)
                 continue
             # <<
@@ -2474,6 +2523,22 @@ class Recurlib():
                     msg=f'# Echoed content of {adataset}\n\n',
                     is_savetxt=True,
                     txt_fname_full=a['io']['out']['echo_fname_full'])
+
+            #
+            # A library holding no line is reported and not written.
+            #
+            if self.df_rnlib.empty:
+                if not self.rn_subset_uniq:
+                    reason = ('it names no radionuclide under [recursive]'
+                              + ' or [static]')
+                else:
+                    reason = ('no line of its radionuclides lies within the'
+                              + ' cutoffs, or every such radionuclide is'
+                              + ' excluded')
+                mt.show_warn(f'Warning: The library of [{adataset}] is'
+                             + f' empty: {reason}; skipping its tables,'
+                             + ' exports and figure.')
+                continue
 
             #
             # Save the radionuclide library DF to report files.

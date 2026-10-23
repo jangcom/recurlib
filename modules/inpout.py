@@ -182,8 +182,9 @@ class InpOut():
         yml_encoding : str, optional
             The encoding of the YAML file. The default is 'utf-8'.
         is_yml_required : bool, optional
-            If True, exit the program if the designated YAML file was not
-            found. The default is True.
+            If True, exit the program (status 1) if the designated YAML file
+            was not found; if False, return an empty dict. The default is
+            True. A file that is not valid YAML always exits the program.
         is_echo : bool, optional
             If True, dump the content of the YAML file. The default is False.
 
@@ -194,12 +195,18 @@ class InpOut():
         """
         if not os.path.exists(yml):
             msg = f'The designated YAML file [{yml}] could not be located.'
-            mt.show_warn(msg)
             if is_yml_required:
-                print(' Terminating.')
-                sys.exit()
+                mt.show_warn(f'{msg}\nTerminating.')
+                sys.exit(1)
+            mt.show_warn(msg)
+            return {}
         with open(yml, 'r', encoding=yml_encoding) as fh:
-            yml_d = yaml.load(fh, Loader=yaml.FullLoader)
+            try:
+                yml_d = yaml.load(fh, Loader=yaml.FullLoader)
+            except yaml.YAMLError as e:
+                mt.show_warn(f'The YAML file [{yml}] could not be read:\n'
+                             f'{e}\nTerminating.')
+                sys.exit(1)
         if is_echo:
             msg = f'Content of [{yml}]'
             self.dump_yaml(yml_d,

@@ -4,6 +4,7 @@ expected ones under ./tests/golden.
 Used by conftest.py, update_golden.py and the tests.
 """
 
+import hashlib
 import math
 import os
 import pathlib
@@ -100,9 +101,11 @@ def make_workspace(work_dir, inputs=()):
     return work_dir
 
 
-def run_input(work_dir, input_name, serve_dir=None, timeout=1800):
+def run_input(work_dir, input_name, serve_dir=None, network_down=False,
+              timeout=1800):
     """Run "python recurlib.py ./inp/<input_name>" in a workspace made by
-    make_workspace(), offline, or served from serve_dir (see offline_run)."""
+    make_workspace(), offline, served from serve_dir, or with the network
+    down (see offline_run)."""
     work_dir = pathlib.Path(work_dir).resolve()
     request_log = work_dir / 'requests.log'
     env = dict(os.environ)
@@ -112,8 +115,11 @@ def run_input(work_dir, input_name, serve_dir=None, timeout=1800):
         'RECURLIB_TEST_REQUEST_LOG': str(request_log),
     })
     env.pop('RECURLIB_TEST_SERVE_DIR', None)
+    env.pop('RECURLIB_TEST_NETWORK', None)
     if serve_dir:
         env['RECURLIB_TEST_SERVE_DIR'] = str(serve_dir)
+    if network_down:
+        env['RECURLIB_TEST_NETWORK'] = 'down'
     # -W default: show every warning once on stderr, where the tests look
     # for deprecations raised by RecurLib's own calls.
     proc = subprocess.run(
@@ -137,6 +143,15 @@ def run_extra(work_dir):
     """Run the test-only input ./tests/inp/extra.yaml offline in work_dir."""
     return run_input(make_workspace(work_dir, inputs=[EXTRA_INPUT]),
                      EXTRA_INPUT.name)
+
+
+def file_digests(folder):
+    """{relative path: SHA-256} of the files under folder."""
+    folder = pathlib.Path(folder)
+    return {p.relative_to(folder).as_posix():
+            hashlib.sha256(p.read_bytes()).hexdigest()
+            for p in folder.rglob('*')
+            if p.is_file() and not p.name.startswith('.')}
 
 
 def output_names(dataset):

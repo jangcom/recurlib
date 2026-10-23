@@ -13,6 +13,8 @@ Two modes, chosen by the environment:
 - Served. If RECURLIB_TEST_SERVE_DIR names a nuclear data folder, every
   query is answered from it as the Live Chart would: the dataset without the
   index column RecurLib adds on saving, or "0" if the folder lacks it.
+- Network down. If RECURLIB_TEST_NETWORK is "down", every query fails as
+  it does without Internet access (urllib.error.URLError).
 
 Every query is appended to the file named by RECURLIB_TEST_REQUEST_LOG, if
 set. Importing this module changes nothing; install() does.
@@ -24,6 +26,7 @@ import re
 import runpy
 import socket
 import sys
+import urllib.error
 import urllib.request
 
 LIVECHART = 'https://nds.iaea.org/relnsd/v1/data?'
@@ -66,6 +69,8 @@ def served_file(serve_dir, url):
 def fake_urlopen(req, *args, **kwargs):
     url = getattr(req, 'full_url', req)
     _log(url)
+    if os.environ.get('RECURLIB_TEST_NETWORK') == 'down':
+        raise urllib.error.URLError('Network is unreachable')
     serve_dir = os.environ.get('RECURLIB_TEST_SERVE_DIR')
     if serve_dir and url.startswith(LIVECHART):
         path = served_file(serve_dir, url)

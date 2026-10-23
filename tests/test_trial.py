@@ -3,13 +3,12 @@ ends, what it reads and writes, and the messages it prints. Its libraries
 are compared with the expected outputs in test_golden.py.
 """
 
-import hashlib
 import re
 
 import pytest
 
 from offline_run import KNOWN_EMPTY
-from trial_run import DATASETS, FLAG
+from trial_run import DATASETS, FLAG, file_digests
 
 
 def test_run_finishes(trial):
@@ -24,14 +23,6 @@ def test_run_needs_no_network(trial):
     """Every query is one the Live Chart answers with "no dataset";
     nothing is downloaded."""
     assert set(trial.requests) <= KNOWN_EMPTY
-
-
-def file_digests(folder):
-    """{relative path: SHA-256} of the files under folder."""
-    return {p.relative_to(folder).as_posix():
-            hashlib.sha256(p.read_bytes()).hexdigest()
-            for p in folder.rglob('*')
-            if p.is_file() and not p.name.startswith('.')}
 
 
 def test_run_leaves_nuclear_data_unchanged(trial, repo_root):
@@ -54,10 +45,19 @@ def test_no_deprecation_from_recurlib(trial):
 
 
 def test_messages_name_each_dataset_in_order(trial):
-    """The lines a graphical interface follows a run by."""
-    working = re.findall(r'^Working on \[(.+)\]\.\.\.$', trial.stdout,
-                         re.MULTILINE)
-    assert working == list(DATASETS)
+    """The lines a graphical interface follows a run by: each dataset,
+    then the decay chain of each of its recursive progenitors."""
+    steps = re.findall(r'^(Working on|Searching the decay chain of) '
+                       r'\[(.+)\]\.\.\.$', trial.stdout, re.MULTILINE)
+    expected = []
+    for dataset, progenitors in DATASETS.items():
+        expected.append(('Working on', dataset))
+        expected += [('Searching the decay chain of', p) for p in progenitors]
+    assert steps == expected
+
+
+def test_finished_run_has_no_stop_line(trial):
+    assert not re.search(r'^Terminating\.$', trial.stdout, re.MULTILINE)
 
 
 @pytest.mark.parametrize('dataset', DATASETS)

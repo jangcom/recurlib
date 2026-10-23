@@ -179,7 +179,10 @@ template:  # Overridable at each active dataset
       #   automatically identified by RecurLib.
       # static group:
       #   Assign radionuclides whose progeny are not to be included in
-      #   the radionuclide subset.
+      #   the radionuclide subset. Transitions within a static radionuclide
+      #   (gamma cascades and isomeric transitions) are still followed:
+      #   a static nuclear isomer, e.g. Pa-234m;73.92, also brings in its
+      #   ground state (Pa-234), which can be excluded below.
       # exclusion group:
       #   Assign radionuclides to be removed from the radionuclide subset.
       #
