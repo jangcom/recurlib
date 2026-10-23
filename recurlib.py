@@ -214,7 +214,7 @@ class Recurlib():
     set_progenitor(rn)
         Initialize a progenitor radionuclide.
     get_nrg_lev_end(df_rn_gams, nrg_lev_start,
-                    is_verbose=False)
+                    is_verbose=False, memo=None, visiting=None)
         Traverse through a gamma cascade given a start energy level.
     set_gams(rn, nucl_data_path,
              is_verbose=False)
@@ -254,6 +254,9 @@ class Recurlib():
         self.radiat = {}
         self.lineage = {}
         self.levs = {}
+        # The end energy levels identified by get_nrg_lev_end(), memoized by
+        # gamma data file and start energy level
+        self.cascades = {}
         # The file listing radionuclide-radiation pairs having no associated
         # nuclear data; assigned at get_rnlib() and used by set_gams() and
         # set_levs()
@@ -1333,7 +1336,7 @@ class Recurlib():
         return rn
 
     def get_nrg_lev_end(self, df_rn_gams, nrg_lev_start,
-                        is_verbose=False):
+                        is_verbose=False, memo=None, visiting=None):
         """Traverse through a gamma cascade given a start energy level.
 
         Parameters
@@ -1345,89 +1348,107 @@ class Recurlib():
         is_verbose : bool, optional
             If True, the unwinding process of recursion will be displayed.
             The default is False.
+        memo : dict, optional
+            A dictionary of the end energy levels already identified for
+            start energy levels of the same gamma data; filled in by this
+            method and to be passed again for the same gamma data file.
+            The default is None (no reuse).
+        visiting : set, optional
+            The start energy levels on the current path of recursion, used to
+            stop at a cycle; passed by the recursive calls. The default is
+            None.
+
+        Returns
+        -------
+        nrgs_lev_end_tally : list
+            A tallied list of end energy levels, without duplicates, in the
+            order of their first identification; NaN (unknown end energy
+            levels) is not tallied.
+        """
+        nrgs_lev_end_tally, _ = self._get_nrg_lev_end(
+            df_rn_gams, nrg_lev_start,
+            {} if memo is None else memo,
+            set() if visiting is None else visiting,
+            is_verbose)
+        return nrgs_lev_end_tally
+
+    def _get_nrg_lev_end(self, df_rn_gams, nrg_lev_start, memo, visiting,
+                         is_verbose):
+        """Recursive part of get_nrg_lev_end().
+
+        Parameters
+        ----------
+        df_rn_gams : pandas.core.frame.DataFrame
+            A DF containing gamma data of a radionuclide of interest.
+        nrg_lev_start : float
+            A start energy level.
+        memo : dict
+            A dictionary of the end energy levels already identified for
+            start energy levels.
+        visiting : set
+            The start energy levels on the current path of recursion.
+        is_verbose : bool
+            If True, the unwinding process of recursion will be displayed.
 
         Returns
         -------
         nrgs_lev_end_tally : list
             A tallied list of end energy levels.
+        is_cut : bool
+            True if a cycle was cut below the start energy level, in which
+            case the tally is not memoized.
         """
-        # **Identified end level energies will be tallied to the
-        # nrgs_lev_end_tally list.**
-        nrgs_lev_end_tally = []
+        # Reuse the end energy levels already identified for the start
+        # energy level; a start energy level on the current path of
+        # recursion (a cycle) or an unknown one (NaN) adds nothing new.
+        if pd.isna(nrg_lev_start):
+            return [], False
+        if nrg_lev_start in memo:
+            return list(memo[nrg_lev_start]), False
+        if nrg_lev_start in visiting:
+            return [], True
         if is_verbose:
-            func_name_centered = mt.centering(
-                'get_nrg_lev_end(df_rn_gams, nrg_lev_start)')
-            msg = ('\n'
-                   + func_name_centered
-                   + '\n\nUnder a new local namespace for this call\n'
-                   + '               "nrg_lev_start": {}'.format(
-                       nrg_lev_start))
-            print(msg)
-
+            print(mt.centering('get_nrg_lev_end(df_rn_gams, nrg_lev_start)')
+                  + f'\n"nrg_lev_start": {nrg_lev_start}')
         #
         # Find the end level energies, if any, corresponding to the given
         # start level energy (sle).
+        # - Unknown end level energies (NaN) are not followed or tallied.
         #
         bool_idx_sle = ((df_rn_gams['sle_llim'] <= nrg_lev_start)
                         & (df_rn_gams['sle_ulim'] >= nrg_lev_start))
-        nrgs_lev_end = df_rn_gams.loc[bool_idx_sle,
-                                      'end_level_energy'].to_list()
-
+        nrgs_lev_end = [ele for ele
+                        in df_rn_gams.loc[bool_idx_sle,
+                                          'end_level_energy'].to_list()
+                        if not pd.isna(ele)]
         #
-        # Recursive case (i)
-        # - len(nrgs_lev_end) >= 2, meaning that multiple end level energies
-        #   have been found for one start level energy.
+        # Recursive case
+        # - Each end level energy is in turn a start level energy, followed
+        #   until the lowest level energy is reached.
+        # - Identified end level energies are tallied after those reached
+        #   from them, as before, excluding duplicates.
         #
-        if len(nrgs_lev_end) >= 2:
-            # End level energy as start level energy
-            if is_verbose:
-                print('Multiple end energy levels:     {}'.format(
-                    nrgs_lev_end))
-            for ele_as_sle in nrgs_lev_end:
-                if is_verbose:
-                    print('Recursion with "ele_as_sle":    {}'.format(
-                        ele_as_sle))
-                nrgs_lev_end_tally += self.get_nrg_lev_end(
-                    df_rn_gams,
-                    ele_as_sle,
-                    is_verbose=is_verbose)
-
-        #
-        # Recursive case (ii)
-        # - len(nrgs_lev_end) == 1, meaning that at least one end level energy
-        #   has been found; in other words, the start level energy in question
-        #   has been found in the corresponding gamma dataset.
-        #
-        elif len(nrgs_lev_end) == 1:
-            if True in bool_idx_sle.unique():
-                if is_verbose:
-                    print('Recursion with "nrgs_lev_end":  {}'.format(
-                        nrgs_lev_end))
-                nrgs_lev_end_tally += self.get_nrg_lev_end(
-                    df_rn_gams,
-                    nrgs_lev_end[0],
-                    is_verbose=is_verbose)
-
-        #
-        # Tally the identified end level energies.
-        #
-        if is_verbose:
-            print('Tallying "nrgs_lev_end":        {}'.format(
-                nrgs_lev_end))
-        nrgs_lev_end_tally += nrgs_lev_end
-
+        visiting.add(nrg_lev_start)
+        nrgs_lev_end_tally = []
+        is_cut = False
+        for ele_as_sle in nrgs_lev_end:
+            tally, is_cut_below = self._get_nrg_lev_end(
+                df_rn_gams, ele_as_sle, memo, visiting, is_verbose)
+            nrgs_lev_end_tally += tally
+            is_cut = is_cut or is_cut_below
+        visiting.discard(nrg_lev_start)
+        nrgs_lev_end_tally = list(dict.fromkeys(nrgs_lev_end_tally
+                                                + nrgs_lev_end))
         #
         # Base case
-        # - len(nrgs_lev_end) == 0, meaning that there is no end level energy;
-        #   namely, there is no data row corresponding to the start level
-        #   energy in question.
+        # - No end level energy, meaning that there is no data row
+        #   corresponding to the start level energy in question.
         #
         if is_verbose:
-            msg = ('\nThe base case met!\n'
-                   + 'Returning "nrgs_lev_end_tally": {}\n'.format(
-                       nrgs_lev_end_tally))
-            print(msg)
-        return nrgs_lev_end_tally
+            print(f'Returning "nrgs_lev_end_tally": {nrgs_lev_end_tally}')
+        if not is_cut:
+            memo[nrg_lev_start] = tuple(nrgs_lev_end_tally)
+        return nrgs_lev_end_tally, is_cut
 
     def set_gams(self, rn, nucl_data_path,
                  is_verbose=False):
@@ -1491,8 +1512,11 @@ class Recurlib():
                     # Collect all feasible end level energies (eles)
                     # corresponding to each of the parent-inherited energy
                     # levels.
-                    nrgs_lev_end = self.get_nrg_lev_end(df_rn_gams, nrg_lev_p,
-                                                        is_verbose=is_verbose)
+                    nrgs_lev_end = self.get_nrg_lev_end(
+                        df_rn_gams, nrg_lev_p,
+                        is_verbose=is_verbose,
+                        memo=self.cascades.setdefault(
+                            os.path.abspath(decay_gams_fname_full), {}))
                     eles = [ele for ele in nrgs_lev_end
                             if ele not in self.levs[rn]['from_gamma_cascade'][
                                 'energy_levels']]
