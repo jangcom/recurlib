@@ -72,6 +72,11 @@ def test_downloaded_data_give_the_same_library(redownload):
             == REGISTRY.read_text(encoding='utf-8'))
 
 
+def test_downloads_leave_no_temporary_file(redownload):
+    run, _ = redownload
+    assert not list(run.work_dir.rglob('*.tmp'))
+
+
 def test_only_the_removed_nuclides_are_asked_for(redownload):
     run, removed = redownload
     asked = {re.search(r'nuclides=(\d+)([a-z]+)', url).groups()
@@ -79,9 +84,6 @@ def test_only_the_removed_nuclides_are_asked_for(redownload):
     assert {f'{sym.capitalize()}-{a}' for a, sym in asked} == set(removed)
 
 
-@pytest.mark.xfail(strict=True, reason='Each dataset is fetched twice: '
-                   'once to check for an error code, then again by '
-                   'pandas.read_csv (recurlib.py get_livechart_df)')
 def test_each_dataset_is_downloaded_once(redownload):
     run, _ = redownload
     counts = collections.Counter(run.requests)
@@ -98,7 +100,8 @@ def test_registry_is_rebuilt_from_scratch(tmp_path):
     assert run.ok, run.stdout[-3000:] + run.stderr[-3000:]
 
     members = nodes(PUBLISHED_LINEAGES['Th-232'])
-    lacking = {f'{rn}_{rt}' for rn in members for rt in RAD_TYPES
+    lacking = {f'{rn}_{rt}' for rn in members
+               for rt in RAD_TYPES + ['gammas', 'levels']
                if not (SHIPPED / rn / f'{rn}_{rt}.csv').is_file()}
     rebuilt = run.registry.read_text(encoding='utf-8').splitlines()
     assert rebuilt == sorted(set(rebuilt))
@@ -109,6 +112,53 @@ def test_registry_is_rebuilt_from_scratch(tmp_path):
     for pair in lacking:
         rn, rt = pair.rsplit('_', 1)
         m = re.match(r'([A-Z][a-z]?)-(\d+)$', rn)
-        url = (f'{LIVECHART}fields=decay_rads&nuclides='
-               f'{m.group(2)}{m.group(1).lower()}&rad_types={rt}')
+        lc = f'{m.group(2)}{m.group(1).lower()}'
+        url = (f'{LIVECHART}fields={rt}&nuclides={lc}'
+               if rt in ('gammas', 'levels') else
+               f'{LIVECHART}fields=decay_rads&nuclides={lc}&rad_types={rt}')
         assert url in run.requests, pair
+
+
+def test_missing_gamma_cascades_are_registered(tmp_path):
+    """The Live Chart has no gamma cascades of Rn-221 (neptunium series).
+    Without that line in the registry, a run asks once and records the
+    answer; the next run asks nothing."""
+    work = make_workspace(tmp_path / 'w')
+    registry = work / 'lib' / 'nonexistent_nucl_data.txt'
+    lines = registry.read_text(encoding='utf-8').splitlines()
+    assert 'Rn-221_gammas' in lines
+    registry.write_text(''.join(f'{x}\n' for x in lines
+                                if x != 'Rn-221_gammas'), encoding='utf-8')
+    trial = yaml.safe_load((work / 'inp' / 'trial.yaml')
+                           .read_text(encoding='utf-8'))
+    trial['active_datasets'] = ['neptunium_series_alpha']
+    (work / 'inp' / 'np.yaml').write_text(
+        yaml.safe_dump(trial, sort_keys=False), encoding='utf-8')
+    first = run_input(work, 'np.yaml', serve_dir=SHIPPED)
+    assert first.ok, first.stdout[-3000:] + first.stderr[-3000:]
+    assert first.requests == [f'{LIVECHART}fields=gammas&nuclides=221rn']
+    assert (registry.read_text(encoding='utf-8')
+            == REGISTRY.read_text(encoding='utf-8'))
+    second = run_input(work, 'np.yaml')  # Offline: any query fails
+    assert second.ok, second.stdout[-3000:] + second.stderr[-3000:]
+    assert second.requests == []
+
+
+def test_registry_lines_match_exactly(tmp_path):
+    """The registry line Rn-221_gammas (no gamma cascades) must not hide the
+    gamma rays of Rn-221 (Rn-221_g): with Rn-221_g.csv removed from the
+    nuclear data folder, the run downloads it again and the library is the
+    same."""
+    work = make_workspace(tmp_path / 'w')
+    (work / 'lib' / 'nucl_data' / 'Rn-221' / 'Rn-221_g.csv').unlink()
+    trial = yaml.safe_load((work / 'inp' / 'trial.yaml')
+                           .read_text(encoding='utf-8'))
+    trial['active_datasets'] = ['neptunium_series_gamma']
+    (work / 'inp' / 'np.yaml').write_text(
+        yaml.safe_dump(trial, sort_keys=False), encoding='utf-8')
+    run = run_input(work, 'np.yaml', serve_dir=SHIPPED)
+    assert run.ok, run.stdout[-3000:] + run.stderr[-3000:]
+    assert run.requests == [f'{LIVECHART}fields=decay_rads&nuclides=221rn'
+                            '&rad_types=g']
+    name = f'neptunium_series_gamma{FLAG}.csv'
+    assert_library_equal(run.figs / name, GOLDEN_DIR / name)

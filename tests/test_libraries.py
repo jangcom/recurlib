@@ -73,8 +73,13 @@ def library(run, dataset):
     return read_library(run.figs / f'{dataset}{FLAG}.csv')
 
 
+def radiation(s):
+    return ' '.join(str(s['scout']['radionuclides']['spectrum_radiation'])
+                    .split()).lower()
+
+
 def is_beta(s):
-    return s['scout']['radionuclides']['spectrum_radiation'] == 'beta minus'
+    return radiation(s) == 'beta minus'
 
 
 def col(s, key):
@@ -83,8 +88,10 @@ def col(s, key):
     the maximum energy and the beta emission probability."""
     if is_beta(s):
         key = {'energy': 'energy_bm_max',
-               'emission_probability': 'emission_probability_bm'}.get(key,
-                                                                      key)
+               'energy_unc': 'energy_bm_max_unc',
+               'emission_probability': 'emission_probability_bm',
+               'emission_probability_unc': 'emission_probability_bm_unc',
+               }.get(key, key)
     return s['io']['cols'][key]['nucl_data_new']
 
 
@@ -175,29 +182,65 @@ def test_radiation_numbers_count_up_per_nuclide(case):
             range(1, len(rows) + 1)), label
 
 
-def test_key_lines_are_the_most_probable(case):
+def xray_rows(run, df, s):
+    """The rows of a gamma-ray library that are X-rays: lines of the cached
+    <nuclide>_x.csv, with the same energy and emission probability."""
+    mask = pd.Series(False, index=df.index)
+    if radiation(s) != 'gamma':
+        return mask
+    c_nrg, c_ep = col(s, 'energy'), col(s, 'emission_probability')
+    for label, rows in df.groupby(col(s, 'radionuclide'), sort=False):
+        rn = base_name(label)
+        path = run.nucl_data / rn / f'{rn}_x.csv'
+        if not path.is_file():
+            continue
+        xrays = pd.read_csv(path)
+        for nrg, ep in zip(xrays['energy'], xrays['intensity']):
+            hit = (((rows[c_nrg] - nrg).abs() <= 1e-9 * max(1.0, abs(nrg)))
+                   & ((rows[c_ep] - ep).abs() <= 1e-9 * abs(ep)))
+            mask[hit[hit].index] = True
+    return mask
+
+
+def test_key_lines_follow_the_ranking_rule(case):
     """Per nuclide (an isomer apart), the lines within the key-line energy
-    window ranked by emission probability: 1, 2, ... up to the maximum;
-    every other line 0. Ties may rank either way."""
+    window, X-rays left out unless priority_number_xrays is True, ranked by
+    emission probability, ties by the smaller uncertainty of the emission
+    probability, then of the energy, then by radiation number: the first N
+    are numbered 1, 2, ..., every other line 0."""
     dataset, run = case
     s = settings(run, dataset)
     cut = s['scout']['radionuclides']['cutoffs']
     lo, hi = (float(x) for x in cut['priority_number_energy'])
     n_max = int(cut['priority_number_max'])
+    allow_xrays = cut.get('priority_number_xrays', False)
     c_nrg, c_ep = col(s, 'energy'), col(s, 'emission_probability')
-    c_key = col(s, 'priority_number')
+    c_key, c_num = col(s, 'priority_number'), col(s, 'radiation_number')
+    ties = [col(s, 'emission_probability_unc'), col(s, 'energy_unc'), c_num]
     df = library(run, dataset)
+    xrays = xray_rows(run, df, s)
     for label, rows in df.groupby(col(s, 'radionuclide'), sort=False):
-        inside = rows[(rows[c_nrg] >= lo) & (rows[c_nrg] <= hi)]
-        n = min(n_max, len(inside))
-        assert (rows.loc[~rows.index.isin(inside.index), c_key] == 0).all()
-        keyed = inside[inside[c_key] > 0].sort_values(c_key)
-        assert list(keyed[c_key]) == list(range(1, n + 1)), label
-        eps = list(keyed[c_ep])
-        assert eps == sorted(eps, reverse=True), label
-        others = inside.loc[inside[c_key] == 0, c_ep]
-        if n and len(others):
-            assert others.max() <= eps[-1], label
+        eligible = rows[(rows[c_nrg] >= lo) & (rows[c_nrg] <= hi)
+                        & (allow_xrays | ~xrays[rows.index])]
+        ranked = eligible.sort_values(
+            [c_ep] + ties, ascending=[False, True, True, True],
+            na_position='last', kind='stable')
+        expected = pd.Series(0, index=rows.index)
+        n = min(n_max, len(ranked))
+        expected[ranked.index[:n]] = range(1, n + 1)
+        assert list(rows[c_key]) == list(expected), label
+
+
+def test_xrays_are_key_lines_only_when_allowed(case):
+    dataset, run = case
+    s = settings(run, dataset)
+    df = library(run, dataset)
+    keyed_xrays = int((df.loc[xray_rows(run, df, s),
+                              col(s, 'priority_number')] > 0).sum())
+    if s['scout']['radionuclides']['cutoffs'].get('priority_number_xrays'):
+        assert keyed_xrays > 0
+    else:
+        assert keyed_xrays == 0
 
 
 def test_lines_come_from_the_ground_state_or_the_isomer(case):
@@ -236,16 +279,16 @@ def _children(root, tag):
     return [{c.tag: (c.text or '') for c in el} for el in root.findall(tag)]
 
 
-@pytest.fixture(params=[
-    pytest.param(ds, marks=pytest.mark.xfail(
-        strict=True, reason='Known bug: for a beta-minus library, '
-        'get_context stores the energies under energy_bm_max and '
-        'emission_probability_bm, while the templates read energy and '
-        'emission_probability, so every peak is written empty'))
-    if ds == 'beta_minus' else ds
-    for ds in ALL_DATASETS])
+@pytest.fixture(params=[ds for ds in ALL_DATASETS if ds != 'beta_minus'])
 def export_case(request):
+    """(dataset, run) for each dataset with Gamma Explorer exports."""
     return request.param, request.getfixturevalue(FIXTURE[request.param])
+
+
+def test_beta_minus_library_is_not_exported(extra):
+    assert not list(extra.exports.glob(f'recurlib_beta_minus{FLAG}_*'))
+    assert ('Export of beta-particle libraries is not supported;'
+            ' skipping.') in extra.stdout
 
 
 def test_gamma_explorer_exports_hold_the_library(export_case):

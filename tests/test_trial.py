@@ -7,7 +7,6 @@ import re
 
 import pytest
 
-from offline_run import KNOWN_EMPTY
 from trial_run import DATASETS, FLAG, file_digests
 
 
@@ -20,9 +19,9 @@ def test_run_finishes(trial):
 
 
 def test_run_needs_no_network(trial):
-    """Every query is one the Live Chart answers with "no dataset";
-    nothing is downloaded."""
-    assert set(trial.requests) <= KNOWN_EMPTY
+    """The shipped nuclear data folder and registry cover the sample
+    input: no query is made."""
+    assert trial.requests == []
 
 
 def test_run_leaves_nuclear_data_unchanged(trial, repo_root):

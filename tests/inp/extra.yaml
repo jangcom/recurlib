@@ -1,14 +1,16 @@
 %YAML 1.2
 ---
 #
-# Test-only RecurLib input: settings that ./inp/trial.yaml does not use.
-# Each dataset is run offline from the shipped nuclear data folder.
+# RecurLib user input file for the test suite
+# - Settings not used by ./inp/trial.yaml
+# - Run offline using the shipped nuclear data files
 #
 active_datasets:
   - tight_cutoffs
   - beta_minus
   - static_and_isomer
   - mixture_gamma
+  - xray_key_lines
 
 # The thorium series with cutoffs of which each bound, alone, removes lines
 # of ./inp/trial.yaml's thorium_series_gamma
@@ -97,4 +99,14 @@ mixture_gamma:
             ncols: 5
     title:
       toggle: False
+
+# The thorium series with X-rays ranked as key lines too (the behaviour of
+# RecurLib 1.0)
+xray_key_lines:
+  scout:
+    radionuclides:
+      recursive:
+        - Th-232
+      cutoffs:
+        priority_number_xrays: True
 ...

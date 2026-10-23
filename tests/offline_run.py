@@ -2,19 +2,21 @@
 
 Usage: python offline_run.py <path to recurlib.py> [recurlib.py arguments]
 
-Two modes, chosen by the environment:
+Modes, chosen by the environment:
 
-- Offline (default). The Live Chart of Nuclides answers "0" (no dataset) to
-  the queries listed in KNOWN_EMPTY. RecurLib records no such answer for
-  these queries and asks again on every run, so the launcher gives the same
-  answer and an offline run matches an online one. Any other query means
-  that the nuclear data folder lacks a file the run needs: the query raises
-  OfflineError, which RecurLib does not catch, and the run stops.
+- Offline (default). Any query means that the nuclear data folder lacks a
+  file the run needs, or that the registry of datasets the Live Chart lacks
+  does not list it: the query raises OfflineError, which RecurLib does not
+  catch, and the run stops.
 - Served. If RECURLIB_TEST_SERVE_DIR names a nuclear data folder, every
   query is answered from it as the Live Chart would: the dataset without the
   index column RecurLib adds on saving, or "0" if the folder lacks it.
-- Network down. If RECURLIB_TEST_NETWORK is "down", every query fails as
-  it does without Internet access (urllib.error.URLError).
+- Network down or slow. If RECURLIB_TEST_NETWORK is "down", every query
+  fails as it does without Internet access (urllib.error.URLError); if it is
+  "timeout", as it does when the server does not answer (TimeoutError).
+
+In every mode a query without a timeout raises OfflineError: RecurLib must
+never wait for the network without limit.
 
 Every query is appended to the file named by RECURLIB_TEST_REQUEST_LOG, if
 set. Importing this module changes nothing; install() does.
@@ -30,11 +32,6 @@ import urllib.error
 import urllib.request
 
 LIVECHART = 'https://nds.iaea.org/relnsd/v1/data?'
-KNOWN_EMPTY = {
-    # Rn-221 has no gamma-cascade (fields=gammas) dataset; asked by the
-    # neptunium series.
-    LIVECHART + 'fields=gammas&nuclides=221rn',
-}
 
 
 class OfflineError(RuntimeError):
@@ -69,8 +66,13 @@ def served_file(serve_dir, url):
 def fake_urlopen(req, *args, **kwargs):
     url = getattr(req, 'full_url', req)
     _log(url)
-    if os.environ.get('RECURLIB_TEST_NETWORK') == 'down':
+    if kwargs.get('timeout') is None and len(args) < 2:
+        raise OfflineError(f'A query without a timeout: {url}')
+    network = os.environ.get('RECURLIB_TEST_NETWORK')
+    if network == 'down':
         raise urllib.error.URLError('Network is unreachable')
+    if network == 'timeout':
+        raise TimeoutError('The read operation timed out')
     serve_dir = os.environ.get('RECURLIB_TEST_SERVE_DIR')
     if serve_dir and url.startswith(LIVECHART):
         path = served_file(serve_dir, url)
@@ -79,8 +81,6 @@ def fake_urlopen(req, *args, **kwargs):
         import pandas as pd
         df = pd.read_csv(path, index_col=0)  # The index RecurLib added
         return Response(df.to_csv(index=False).encode('utf-8'))
-    if url in KNOWN_EMPTY:
-        return Response(b'0\n')
     raise OfflineError(f'Network access in an offline run: {url}')
 
 

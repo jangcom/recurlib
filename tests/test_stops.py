@@ -39,15 +39,15 @@ def cutoff(**cutoffs):
 STOPS = {
     'missing input file': (None, ['could not be located']),
     'not valid YAML': ('active_datasets: [unclosed\n',
-                       ['could not be read']),
-    'empty input file': ('', ['[active_datasets] lists no dataset.']),
+                       ['could not be parsed']),
+    'empty input file': ('', ['[active_datasets] has no element.']),
     'no active_datasets': ({'thorium': THORIUM},
-                           ['[active_datasets] lists no dataset.']),
+                           ['[active_datasets] has no element.']),
     'empty active_datasets': ({'active_datasets': [], 'thorium': THORIUM},
-                              ['[active_datasets] lists no dataset.']),
+                              ['[active_datasets] has no element.']),
     'unknown radiation': (thorium_with(spectrum_radiation='gammas'),
-                          ['[gammas] is not one of',
-                           'alpha, gamma, beta minus']),
+                          ['has been set to be [gammas]',
+                           'It must be one of [alpha, gamma, beta minus]']),
     'non-numeric cutoff': (cutoff(energy=[0, 'lots']),
                            ['[scout > radionuclides > cutoffs > energy]'
                             ' must be a pair of numbers']),
@@ -94,10 +94,38 @@ def test_network_down_stops_cleanly(tmp_path):
     write_input(work, 'case.yaml', {
         'active_datasets': ['potassium'],
         'potassium': {'scout': {'radionuclides': {'recursive': ['K-40']}}}})
-    run = run_input(work, 'case.yaml', network_down=True)
+    run = run_input(work, 'case.yaml', network='down')
     assert_stopped(run, ['Could not reach the Live Chart of Nuclides',
                          'do not have Internet access'])
     assert not (work / 'lib' / 'nucl_data' / 'K-40').exists()
+
+
+def test_network_timeout_stops_cleanly(tmp_path):
+    work = make_workspace(tmp_path / 'w')
+    write_input(work, 'case.yaml', {
+        'active_datasets': ['potassium'],
+        'potassium': {'scout': {'radionuclides': {'recursive': ['K-40']}}}})
+    run = run_input(work, 'case.yaml', network='timeout')
+    assert_stopped(run, ['Could not reach the Live Chart of Nuclides'
+                         ' server (no answer within 60 s)'])
+
+
+def test_missing_output_folders_are_created_without_asking(tmp_path):
+    """Nested folders for the tables, figures and exports that do not
+    exist yet are created, with no question on the shell (whose input is
+    empty here)."""
+    work = make_workspace(tmp_path / 'w')
+    write_input(work, 'case.yaml', dict(thorium_with(), thorium=dict(
+        THORIUM, io={'out': {'rpt_path': './out/tables',
+                             'fig_path': './out/figures/png',
+                             'export_path': './out/exports'}})))
+    run = run_input(work, 'case.yaml')
+    assert run.ok, run.stdout[-3000:] + run.stderr[-3000:]
+    for folder in ['out/tables', 'out/figures/png', 'out/exports']:
+        assert '[./' + folder + '] generated.' in run.stdout
+    assert (work / 'out' / 'tables' / 'thorium_lib.csv').is_file()
+    assert list((work / 'out' / 'figures' / 'png').glob('*.png'))
+    assert list((work / 'out' / 'exports').glob('*.xml'))
 
 
 def test_unreadable_nuclear_data_file_stops_cleanly(tmp_path):
@@ -161,9 +189,10 @@ def test_warnings_do_not_stop_the_run(warned):
     'The dataset [empty_one] is empty; skipping.',
     'The dataset [listy] is not a set of settings',
     '[active_datasets] is not allowed as an element name',
-    'The library of [nothing_named] is empty: it names no radionuclide',
-    'The library of [nothing_within] is empty: no line of its'
-    ' radionuclides lies within the cutoffs'])
+    'The radionuclide library of [nothing_named] is empty, as no'
+    ' radionuclide has been designated under [recursive] or [static]',
+    'The radionuclide library of [nothing_within] is empty, as no data'
+    ' point lies within the cutoffs'])
 def test_each_skip_is_named(warned, phrase):
     assert phrase in warned.stdout
 

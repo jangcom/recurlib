@@ -98,3 +98,13 @@ def test_static_and_excluded_nuclides(trial, extra):
     # Ra-226's progeny are not followed
     assert not set(mixed[RN]) & {'Rn-222', 'Pb-214', 'Bi-214', 'Pb-210'}
     assert set(mixed.loc[mixed[RN] == 'Pa-234', 'Decay mode']) == {'B-'}
+
+
+def test_xray_key_lines_change_only_the_priority_numbers(trial, extra):
+    """Allowing X-rays as key lines changes no line, only priority
+    numbers."""
+    default = library(trial, 'thorium_series_gamma')
+    allowed = library(extra, 'xray_key_lines')
+    keep = [c for c in default.columns if c != 'Priority number']
+    assert allowed[keep].equals(default[keep])
+    assert not allowed['Priority number'].equals(default['Priority number'])

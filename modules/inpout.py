@@ -204,8 +204,8 @@ class InpOut():
             try:
                 yml_d = yaml.load(fh, Loader=yaml.FullLoader)
             except yaml.YAMLError as e:
-                mt.show_warn(f'The YAML file [{yml}] could not be read:\n'
-                             f'{e}\nTerminating.')
+                mt.show_warn(f'The designated YAML file [{yml}] could not'
+                             f' be parsed:\n{e}\nTerminating.')
                 sys.exit(1)
         if is_echo:
             msg = f'Content of [{yml}]'
@@ -255,7 +255,7 @@ class InpOut():
                      + ' Create (y/n)? ')
                 is_mk_dir = mt.invoke_yn_prompt(q)
             if is_mk_dir:
-                os.mkdir(dname)
+                os.makedirs(dname, exist_ok=True)  # Incl. parent dirs
                 self.show_file_gen(dname)
 
     def locate_exe(self, ls_exes,

@@ -12,6 +12,7 @@ import sys
 import time
 import re
 import copy
+from io import BytesIO
 from urllib import request, error
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -23,12 +24,47 @@ __version__ = '1.0.3'
 __date__ = '2026-10-08'
 
 
-def terminate(msg):
-    """Show msg in a warning block ending with the line "Terminating.",
-    and exit with status 1.
+# Timeout (s) of a request to the IAEA-NDS Live Chart of Nuclides
+LIVECHART_TIMEOUT = 60
 
-    Every deliberate stop of RecurLib ends this way, so that a shell script
-    or a graphical interface can tell a stopped run from a finished one.
+
+def write_atomically(fname_full, write):
+    """Write a file via a temporary file to prevent partial writing.
+
+    Parameters
+    ----------
+    fname_full : str
+        The name of a file to be written.
+    write : callable
+        A function writing the content of the file to a path passed to it;
+        e.g. df.to_csv
+
+    Returns
+    -------
+    None.
+    """
+    # Write the content to a temporary file next to the file of interest,
+    # and then replace the file by the temporary file; an interrupted run
+    # will not leave a truncated file behind.
+    tmp_fname_full = f'{fname_full}.tmp'
+    write(tmp_fname_full)
+    os.replace(tmp_fname_full, fname_full)
+
+
+def terminate(msg):
+    """Display a warning message and terminate the program.
+
+    Parameters
+    ----------
+    msg : str
+        A warning message to be displayed. The line "Terminating." is
+        appended to the message, and the program exits with status 1;
+        a shell script or a graphical interface can therefore tell
+        a terminated run from a completed one.
+
+    Returns
+    -------
+    None.
     """
     mt.show_warn(f'{msg}\nTerminating.')
     sys.exit(1)
@@ -129,6 +165,10 @@ class Recurlib():
         self.radiat = {}
         self.lineage = {}
         self.levs = {}
+        # The file listing radionuclide-radiation pairs having no associated
+        # nuclear data; assigned at get_rnlib() and used by set_gams() and
+        # set_levs()
+        self.nucl_data_nonexist_fname_full = ''
         self.cols = {}
         self.df_rnlib = None
         self.df_rnlib_xml = None
@@ -145,15 +185,17 @@ class Recurlib():
         -------
         None.
         """
-        # Radiation type validation: case and surrounding or repeated
-        # blanks do not matter (e.g. 'Gamma', 'beta  minus').
-        # The short names are the rad_types of the IAEA-NDS Live Chart of
-        # Nuclides.
+        # Radiation type validation
+        # - Letter cases and redundant blanks are ignored;
+        #   e.g. 'Gamma', 'beta  minus'
+        # - The radiation types are shortened with respect to the rad_types
+        #   of the IAEA-NDS Live Chart of Nuclides; e.g. 'beta minus' -> 'bm'
         allowed = {'alpha': 'a', 'gamma': 'g', 'beta minus': 'bm'}
         normalized = ' '.join(str(spectr_radiat).split()).lower()
         if normalized not in allowed:
-            terminate(f'The spectrum radiation [{spectr_radiat}] is not'
-                      f' one of [{", ".join(allowed)}].')
+            terminate('The spectrum radiation has been set to be'
+                      + f' [{spectr_radiat}];\nIt must be one of'
+                      + f' [{", ".join(allowed)}].')
         self.radiat.update({'long': normalized,
                             'short': allowed[normalized]})
 
@@ -284,9 +326,9 @@ class Recurlib():
         True if the URL is accessible, otherwise False.
         """
         try:
-            request.urlopen(url)
+            request.urlopen(url, timeout=10)
             return True
-        except error.URLError:
+        except OSError:  # e.g. URLError, timeout, connection reset
             return False
 
     def get_livechart_df(self, url_params,
@@ -337,26 +379,24 @@ class Recurlib():
         url = url_service + url_params_stringified
 
         #
-        # Read in and stringify the content of the URL, which is originally
-        # binary data, for the subsequent error checking.
+        # Read in the content of the URL, which is binary data, only once;
+        # the content is used for the subsequent error checking and, if no
+        # error is found, for the construction of a DF.
         #
-        # The "User-Agent" key-val pair is prepared in two versions:
-        # - as a list to be unpacked to two strings, which will then be passed
-        #   to request.Request.add_header() as its positional arguments
-        # - as a dict to be passed to pd.read_csv() as a keyword argument
-        #
-        storage_opts = {'User-Agent': 'Livechart/1.0'}
-        storage_opts_listed = list(*storage_opts.items())
-        req = request.Request(url)
-        req.add_header(*storage_opts_listed)
+        req = request.Request(url, headers={'User-Agent': 'Livechart/1.0'})
         try:
-            response = request.urlopen(req)
-            content_stringified = str(response.read())
-        except error.URLError:
+            with request.urlopen(req, timeout=LIVECHART_TIMEOUT) as response:
+                content = response.read()
+        except OSError as e:  # e.g. URLError, timeout, connection reset
             url_reliable = 'https://8.8.8.8'  # Google public DNS
             is_url_accessible = self.check_url(url_reliable)
+            is_timeout = (isinstance(e, TimeoutError)
+                          or isinstance(getattr(e, 'reason', None),
+                                        TimeoutError))
             msg = ('Program execution error:'
-                   + ' Could not reach the Live Chart of Nuclides server.\n'
+                   + ' Could not reach the Live Chart of Nuclides server'
+                   + (f' (no answer within {LIVECHART_TIMEOUT} s)'
+                      if is_timeout else '') + '.\n'
                    + '(requested query: {})\n\n'.format(url)
                    + '{} needs access to the Live Chart of Nuclides'.format(
                        self.prog_info['name'])
@@ -369,6 +409,7 @@ class Recurlib():
                 msg += ('It seems that you do not have Internet access;'
                         + ' please check your network connection status.')
             terminate(msg)
+        content_stringified = str(content)
 
         #
         # Check if the data retrieval has failed.
@@ -395,36 +436,60 @@ class Recurlib():
             if (err == '0'
                     and nucl_data_nonexist_fname_full
                     and decay_radiat_type_pair):
-                # Examine the registry if the pair is already listed in it.
-                is_already_listed = False
+                # Examine the registry if the pair is already listed in it;
+                # pairs are compared exactly, as 'Rn-221_g' is part of
+                # 'Rn-221_gammas'.
                 with open(nucl_data_nonexist_fname_full,
                           encoding='utf8') as fh_inp:
-                    nonexist_pairs = [s.rstrip() for s in fh_inp.readlines()
-                                      if not re.search('^$', s)]
-                    for nonexist_pair in nonexist_pairs:
-                        # If already listed in the registry, the pair needs
-                        # not be added to it.
-                        if re.search(nonexist_pair, decay_radiat_type_pair):
-                            is_already_listed = True
-                            break
-                if not is_already_listed:
+                    nonexist_pairs = [s.strip() for s in fh_inp.readlines()
+                                      if s.strip()]
+                if decay_radiat_type_pair not in nonexist_pairs:
                     # Add the dataless pair to the registry. Remove, if any,
                     # duplicate pairs, and sort them.
                     nonexist_pairs.append(decay_radiat_type_pair)
-                    nonexist_pairs_uniq = mt.get_unique(nonexist_pairs)
-                    nonexist_pairs_uniq_sorted = sorted(nonexist_pairs_uniq)
-                    with open(nucl_data_nonexist_fname_full, 'w',
-                              encoding='utf8') as fh_out:
-                        for nonexist_pair in nonexist_pairs_uniq_sorted:
-                            fh_out.write(f'{nonexist_pair}\n')
+                    text = ''.join(f'{pair}\n' for pair
+                                   in sorted(set(nonexist_pairs)))
+
+                    def write_registry(fname):
+                        with open(fname, 'w', encoding='utf8') as fh_out:
+                            fh_out.write(text)
+                    write_atomically(nucl_data_nonexist_fname_full,
+                                     write_registry)
                 if is_verbose:
                     msg = f'An error raised for: [{decay_radiat_type_pair}]'
                     mt.show_warn(msg)
             if is_verbose:
                 mt.show_warn(error_codes[err])
             return None
-        return pd.read_csv(url,
-                           storage_options=storage_opts)
+        return pd.read_csv(BytesIO(content))
+
+    @staticmethod
+    def is_registered(nucl_data_nonexist_fname_full, pair):
+        """Check if a radionuclide-radiation pair is listed in the registry.
+
+        Parameters
+        ----------
+        nucl_data_nonexist_fname_full : str
+            The name of a file containing pairs of a radionuclide and decay
+            radiation, where the radiation emission from the radionuclide
+            does not have associated nuclear data in the ENSDF database.
+        pair : str
+            A pair of a radionuclide and decay radiation, or of
+            a radionuclide and its gamma-cascade or energy-level dataset;
+            e.g. 'Pb-208_a', 'Rn-221_gammas'
+
+        Returns
+        -------
+        bool
+            True if the pair is listed in the registry, otherwise False.
+            Pairs are compared exactly, as 'Rn-221_g' is part of
+            'Rn-221_gammas'.
+        """
+        if (not nucl_data_nonexist_fname_full or not pair
+                or not os.path.exists(nucl_data_nonexist_fname_full)):
+            return False
+        with open(nucl_data_nonexist_fname_full, encoding='utf8') as fh:
+            return pair in {line.strip() for line in fh}
 
     def run_get_livechart_df(self, dat_fname_full, url_params,
                              nucl_data_nonexist_fname_full='',
@@ -477,6 +542,10 @@ class Recurlib():
                        + ' file conforms to the format of IAEA-NDS Live'
                        + ' Chart of Nuclides.')
                 terminate(msg)
+        elif self.is_registered(nucl_data_nonexist_fname_full,
+                                decay_radiat_type_pair):
+            # A pair listed in the registry: no data retrieval
+            df_lc = None
         else:  # **Internet connection required**
             df_lc = self.get_livechart_df(url_params,
                                           nucl_data_nonexist_fname_full,
@@ -484,10 +553,11 @@ class Recurlib():
                                           is_verbose=is_verbose)
             if isinstance(df_lc, pd.DataFrame):
                 # If the DF has been fetched from the IAEA-NDS Live Chart of
-                # Nuclides server, save the DF to a file for future reuse.
+                # Nuclides server, save the DF to a file for future reuse
+                # (via a temporary file; see write_atomically()).
                 dat_dname = os.path.dirname(dat_fname_full)
                 io.mk_dir(dat_dname, is_yn=False)
-                df_lc.to_csv(dat_fname_full)
+                write_atomically(dat_fname_full, df_lc.to_csv)
                 io.show_file_gen(dat_fname_full)
         return df_lc
 
@@ -746,12 +816,8 @@ class Recurlib():
             #    as well.
             #
             decay_radiat_type_pair = '{}_{}'.format(parent, radiat_type)
-            is_nonexistent = False
-            with open(nucl_data_nonexist_fname_full) as fh_inp:
-                for pair in fh_inp.readlines():
-                    if re.search(decay_radiat_type_pair, pair):
-                        is_nonexistent = True
-                        break
+            is_nonexistent = self.is_registered(nucl_data_nonexist_fname_full,
+                                                decay_radiat_type_pair)
             if is_nonexistent:
                 if is_verbose:
                     msg = (f'The radionuclide [{parent}] does not have nuclear'
@@ -1307,8 +1373,8 @@ class Recurlib():
         df_rn_gams = self.run_get_livechart_df(
             decay_gams_fname_full,
             url_params_gams,
-            nucl_data_nonexist_fname_full='',
-            decay_radiat_type_pair='',
+            nucl_data_nonexist_fname_full=self.nucl_data_nonexist_fname_full,
+            decay_radiat_type_pair=f'{rn}_gammas',
             is_verbose=is_verbose)
         # df will be "None" on data retrieval failure.
         if isinstance(df_rn_gams, pd.DataFrame):
@@ -1393,8 +1459,8 @@ class Recurlib():
         df_rn_levs = self.run_get_livechart_df(
             decay_levs_fname_full,
             url_params_levs,
-            nucl_data_nonexist_fname_full='',
-            decay_radiat_type_pair='',
+            nucl_data_nonexist_fname_full=self.nucl_data_nonexist_fname_full,
+            decay_radiat_type_pair=f'{rn}_levels',
             is_verbose=is_verbose)
         # df will be "None" on data retrieval failure.
         if isinstance(df_rn_levs, pd.DataFrame):
@@ -1620,7 +1686,8 @@ class Recurlib():
             if 'energy_levels_isomer_progenitor' in self.levs[rn]:
                 del self.levs[rn]['energy_levels_isomer_progenitor']
 
-    def get_prio_idx_and_nums(self, df, sort_by, priority_num_max):
+    def get_prio_idx_and_nums(self, df, sort_by, priority_num_max,
+                              tie_breakers=()):
         """Construct DataFrame indices and values for priority numbers.
 
         Parameters
@@ -1633,6 +1700,13 @@ class Recurlib():
         priority_num_max : int
             The greatest priority number, or the priority number of the least
             prioritized radiation data point among those prioritized.
+        tie_breakers : list, optional
+            DF columns by which data points of the same sort_by value are
+            sorted in ascending order; e.g. the uncertainties of emission
+            probability and energy, by which better-known data points are
+            prioritized. Data points still tied keep their DF order (that
+            of the nuclear data file), and NaN comes last. The default
+            is ().
 
         Returns
         -------
@@ -1644,7 +1718,15 @@ class Recurlib():
         """
         # Sort the DF in descending order and fetch the indices of top rows;
         # the number of top rows is equal to priority_num_max.
-        df_desc = df.sort_values(by=sort_by, ascending=False)
+        # - A stable sort with explicit tie-breakers gives the same priority
+        #   numbers regardless of platforms.
+        keys = pd.DataFrame({'_by': df[sort_by]}, index=df.index)
+        for i, col in enumerate(tie_breakers):
+            keys[f'_tie{i}'] = pd.to_numeric(df[col], errors='coerce')
+        df_desc = keys.sort_values(
+            by=list(keys.columns),
+            ascending=[False] + [True] * len(tie_breakers),
+            na_position='last', kind='stable')
         priority_idx = df_desc.head(priority_num_max).index
 
         # Override the maximum priority number by the length of selected
@@ -1659,6 +1741,41 @@ class Recurlib():
         # e.g. [1, 2, 3] for priority_num_max == 3
         priority_nums = list(range(1, priority_num_max + 1))
         return priority_idx, priority_nums
+
+    def get_xray_mask(self, df, nucl_data_path, rn):
+        """Mark X-rays in a gamma-ray library DF of a radionuclide.
+
+        Parameters
+        ----------
+        df : pandas.core.frame.DataFrame
+            A radionuclide-wise radionuclide library DF.
+        nucl_data_path : str
+            The directory of nuclear data files.
+        rn : str
+            A radionuclide of interest.
+
+        Returns
+        -------
+        mask : pandas.core.series.Series
+            A Boolean Series being True at X-ray data points. The gamma-ray
+            dataset of the IAEA-NDS Live Chart of Nuclides lists X-rays
+            together with gamma rays; X-rays are identified as the data
+            points of the X-ray dataset (e.g. Pb-214_x.csv) having the same
+            energy and emission probability. All False for alpha-particle
+            and beta-particle libraries.
+        """
+        mask = pd.Series(False, index=df.index)
+        x_fname_full = f'{nucl_data_path}/{rn}/{rn}_x.csv'
+        if self.radiat.get('short') != 'g' or not os.path.exists(
+                x_fname_full):
+            return mask
+        col_nrg = self.cols['energy']['nucl_data_old']
+        col_ep = self.cols['emission_probability']['nucl_data_old']
+        xrays = pd.read_csv(x_fname_full, usecols=[col_nrg, col_ep])
+        for nrg, ep in zip(xrays[col_nrg], xrays[col_ep]):
+            mask |= (((df[col_nrg] - nrg).abs() <= 1e-9 * max(1.0, abs(nrg)))
+                     & ((df[col_ep] - ep).abs() <= 1e-9 * abs(ep)))
+        return mask
 
     @staticmethod
     def get_limits(cutoffs, key):
@@ -1721,6 +1838,8 @@ class Recurlib():
             open(p['io']['lib']['nucl_data_nonexist_fname_full'], 'w',
                  encoding='utf8').close()
             io.show_file_gen(p['io']['lib']['nucl_data_nonexist_fname_full'])
+        self.nucl_data_nonexist_fname_full = p['io']['lib'][
+            'nucl_data_nonexist_fname_full']
 
         #
         # Step 1. Construct a radionuclide subset by recursive computation,
@@ -1729,7 +1848,7 @@ class Recurlib():
         #
         # Energy level feasibility validation (1/5): Individually specified
         # static isomers
-        # A group left out, or given without elements, is an empty list.
+        # Treat an omitted or empty radionuclide group as an empty list.
         for group in ['recursive', 'static', 'exclusion']:
             if not p['scout']['radionuclides'].get(group):
                 p['scout']['radionuclides'][group] = []
@@ -1884,6 +2003,11 @@ class Recurlib():
             _col_ep_key = 'emission_probability'
         col_nrg = self.cols[_col_nrg_key]['nucl_data_old']
         col_ep = self.cols[_col_ep_key]['nucl_data_old']
+        # Tie-breakers of priority numbers (see get_prio_idx_and_nums())
+        # (1) Uncertainty of emission probability
+        # (2) Uncertainty of energy
+        tie_breakers = [self.cols[f'{_col_ep_key}_unc']['nucl_data_old'],
+                        self.cols[f'{_col_nrg_key}_unc']['nucl_data_old']]
         col_nrg_lev = self.cols['energy_level']['nucl_data_old']
         col_hl_sec = self.cols['half_life_sec']['nucl_data_old']
         col_dm = self.cols['decay_mode']['nucl_data_old']
@@ -1903,6 +2027,15 @@ class Recurlib():
                       + ' priority_number_max] must be a whole number of'
                       + f' 0 or more; it is [{priority_num_max}].')
         priority_num_max = int(priority_num_max)
+        # X-rays as priority data points (not recommended)
+        # - X-rays are emitted from the atomic shells of daughters, shared
+        #   by other radionuclides, and overlapped with gamma rays;
+        #   e.g. Th K X-rays and Th-234 gamma rays near 93 keV
+        is_xray_priority = cutoffs.get('priority_number_xrays', False)
+        if not isinstance(is_xray_priority, bool):
+            terminate('[scout > radionuclides > cutoffs >'
+                      + ' priority_number_xrays] must be True or False;'
+                      + f' it is [{is_xray_priority}].')
         # <<
         dfs_rnlib_to_be_concated = []
         for rn in self.rn_subset_uniq:
@@ -1940,7 +2073,7 @@ class Recurlib():
                               & (df_rnlib_rnwise[col_ep] <= ep_lim[1])
                               & (df_rnlib_rnwise[col_hl_sec] >= hl_sec_lim[0])
                               & (df_rnlib_rnwise[col_hl_sec] <= hl_sec_lim[1]))
-            df_rnlib_rnwise = df_rnlib_rnwise[bool_idx_cuton]
+            df_rnlib_rnwise = df_rnlib_rnwise[bool_idx_cuton].copy()
             # Skip the current radionuclide if the sliced DF does not have
             # nuclear data (cases where all data rows have been pruned).
             if not len(df_rnlib_rnwise.index):
@@ -1954,15 +2087,21 @@ class Recurlib():
             # - The radionuclide name must be inserted before energy level
             #   validation step 5, where nuclear isomers are assigned the "m"
             #   suffix on top of their nuclide names.
+            # Mark X-rays at a temporary column, which will be dropped
+            # before the radionuclide-wise DF is added to the list of DFs.
+            df_rnlib_rnwise['_is_xray'] = self.get_xray_mask(
+                df_rnlib_rnwise, p['io']['lib']['nucl_data_path'], rn)
             bool_idx_priority_num_nrg = (
                 (df_rnlib_rnwise[col_nrg] >= priority_num_nrg_lim[0])
-                & (df_rnlib_rnwise[col_nrg] <= priority_num_nrg_lim[1]))
+                & (df_rnlib_rnwise[col_nrg] <= priority_num_nrg_lim[1])
+                & (~df_rnlib_rnwise['_is_xray'] | is_xray_priority))
             _df_rnlib_rnwise_priority_num_nrg = df_rnlib_rnwise.loc[
                 bool_idx_priority_num_nrg, :]
             priority_idx, priority_nums = self.get_prio_idx_and_nums(
                 _df_rnlib_rnwise_priority_num_nrg,
                 col_ep,
-                priority_num_max)
+                priority_num_max,
+                tie_breakers=tie_breakers)
             # Nonpriority data points are assigned the priority number 0
             # rather than NaN.
             df_rnlib_rnwise.insert(0, col_priority_num,
@@ -2089,7 +2228,8 @@ class Recurlib():
             # has been sorted in the above.
             bool_idx_priority_num_nrg = (
                 (df_rnlib_rnwise[col_nrg] >= priority_num_nrg_lim[0])
-                & (df_rnlib_rnwise[col_nrg] <= priority_num_nrg_lim[1]))
+                & (df_rnlib_rnwise[col_nrg] <= priority_num_nrg_lim[1])
+                & (~df_rnlib_rnwise['_is_xray'] | is_xray_priority))
             _df_rnlib_rnwise_isomer = df_rnlib_rnwise.loc[
                 bool_idx_priority_num_nrg & bool_idx_isomer, :]
             _df_rnlib_rnwise_rn = df_rnlib_rnwise.loc[
@@ -2097,11 +2237,13 @@ class Recurlib():
             prio_idx_isomer, prio_nums_isomer = self.get_prio_idx_and_nums(
                 _df_rnlib_rnwise_isomer,
                 col_ep,
-                priority_num_max)
+                priority_num_max,
+                tie_breakers=tie_breakers)
             prio_idx_rn, prio_nums_rn = self.get_prio_idx_and_nums(
                 _df_rnlib_rnwise_rn,
                 col_ep,
-                priority_num_max)
+                priority_num_max,
+                tie_breakers=tie_breakers)
             df_rnlib_rnwise.loc[
                 :,
                 col_priority_num] = 0  # Initialization
@@ -2117,6 +2259,7 @@ class Recurlib():
                     print(df_rnlib_rnwise)
             # Append a column containing the name of the nuclear database
             # in question to the radionuclide-wise DF.
+            df_rnlib_rnwise = df_rnlib_rnwise.drop(columns='_is_xray')
             df_rnlib_rnwise[col_db] = p['io']['lib']['nucl_database']
             # Add the radionuclide-wise DF to a list which will in turn be
             # combined into one DF.
@@ -2124,7 +2267,7 @@ class Recurlib():
 
         # Combine the radionuclide-wise radionuclide library DFs into one DF,
         # which will yield a single, comprehensive radionuclide library DF.
-        # No line within the cutoffs gives an empty library.
+        # Return an empty DF if no data point remains after the cutoffs.
         if not dfs_rnlib_to_be_concated:
             df_rnlib = pd.DataFrame()
             df_rnlib.index.name = 'Library index'
@@ -2424,7 +2567,7 @@ class Recurlib():
         if isinstance(active_datasets, str):  # A single dataset
             active_datasets = [active_datasets]
         if not active_datasets or not isinstance(active_datasets, list):
-            terminate('[active_datasets] lists no dataset.')
+            terminate('[active_datasets] has no element.')
         for adataset in active_datasets:
             # >> Dataset name validation
             msg = ''
@@ -2525,19 +2668,19 @@ class Recurlib():
                     txt_fname_full=a['io']['out']['echo_fname_full'])
 
             #
-            # A library holding no line is reported and not written.
+            # Skip the reports, exports, and plots of an empty radionuclide
+            # library.
             #
             if self.df_rnlib.empty:
                 if not self.rn_subset_uniq:
-                    reason = ('it names no radionuclide under [recursive]'
-                              + ' or [static]')
+                    reason = ('no radionuclide has been designated under'
+                              + ' [recursive] or [static]')
                 else:
-                    reason = ('no line of its radionuclides lies within the'
-                              + ' cutoffs, or every such radionuclide is'
-                              + ' excluded')
-                mt.show_warn(f'Warning: The library of [{adataset}] is'
-                             + f' empty: {reason}; skipping its tables,'
-                             + ' exports and figure.')
+                    reason = ('no data point lies within the cutoffs, or'
+                              + ' the radionuclides have been excluded')
+                mt.show_warn('Warning: The radionuclide library of'
+                             + f' [{adataset}] is empty, as {reason};'
+                             + ' skipping.')
                 continue
 
             #
@@ -2570,6 +2713,11 @@ class Recurlib():
             # Generate a cross-platform radionuclide library file (.xml).
             #
             if (a['io']['ctrls']['is_export']
+                    and len(a['io']['lib']['export_templates'])
+                    and self.radiat['short'] == 'bm'):
+                mt.show_msg('Export of beta-particle libraries is not'
+                            + ' supported; skipping.')
+            elif (a['io']['ctrls']['is_export']
                     and len(a['io']['lib']['export_templates'])):
                 context = self.get_context(
                     adataset, self.df_rnlib,

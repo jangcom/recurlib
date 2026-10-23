@@ -23,21 +23,27 @@ def ra223(df, energy):
 
 
 def test_golden_holds_the_ra223_tie():
+    """The tie is broken by the energy uncertainty, 0.4 keV against
+    0.9 keV, the emission-probability uncertainties being equal."""
     df = pd.read_csv(GOLDEN)
     tied = df[ra223(df, 5539.8) | ra223(df, 5747.0)]
     assert tied['Emission probability (%)'].nunique() == 1
-    assert sorted(tied['Priority number']) == [0, 3]
+    assert tied['Uncertainty of emission probability (%)'].nunique() == 1
+    keyed = tied.set_index('Radiation energy (keV)')['Priority number']
+    assert keyed[5747.0] == 3 and keyed[5539.8] == 0
 
 
-def test_tied_key_lines_may_trade_places(tmp_path):
-    """Ra-223 at 5539.8 and 5747.0 keV have the same emission probability:
-    either may be key line 3."""
+def test_tied_key_lines_may_not_trade_places(tmp_path):
+    """Ra-223 at 5539.8 and 5747.0 keV have the same emission probability;
+    RecurLib breaks the tie by the uncertainties, so trading their priority
+    numbers is a change."""
     def swap(df):
         a, b = ra223(df, 5539.8), ra223(df, 5747.0)
         df.loc[a, 'Priority number'], df.loc[b, 'Priority number'] = (
             df.loc[b, 'Priority number'].values,
             df.loc[a, 'Priority number'].values)
-    assert_library_equal(edited(tmp_path, swap), GOLDEN)
+    with pytest.raises(AssertionError):
+        assert_library_equal(edited(tmp_path, swap), GOLDEN)
 
 
 def test_other_key_line_changes_fail(tmp_path):

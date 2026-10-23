@@ -40,6 +40,7 @@ EXTRA_DATASETS = {
     'beta_minus': ['Th-232'],
     'static_and_isomer': ['Th-232'],
     'mixture_gamma': ['U-238', 'U-235', 'Th-232'],
+    'xray_key_lines': ['Th-232'],
 }
 EXTRA_INPUT = TESTS_DIR / 'inp' / 'extra.yaml'
 ALL_DATASETS = {**DATASETS, **EXTRA_DATASETS}
@@ -101,11 +102,11 @@ def make_workspace(work_dir, inputs=()):
     return work_dir
 
 
-def run_input(work_dir, input_name, serve_dir=None, network_down=False,
+def run_input(work_dir, input_name, serve_dir=None, network=None,
               timeout=1800):
     """Run "python recurlib.py ./inp/<input_name>" in a workspace made by
     make_workspace(), offline, served from serve_dir, or with the network
-    down (see offline_run)."""
+    'down' or answering with a 'timeout' (see offline_run)."""
     work_dir = pathlib.Path(work_dir).resolve()
     request_log = work_dir / 'requests.log'
     env = dict(os.environ)
@@ -118,8 +119,8 @@ def run_input(work_dir, input_name, serve_dir=None, network_down=False,
     env.pop('RECURLIB_TEST_NETWORK', None)
     if serve_dir:
         env['RECURLIB_TEST_SERVE_DIR'] = str(serve_dir)
-    if network_down:
-        env['RECURLIB_TEST_NETWORK'] = 'down'
+    if network:
+        env['RECURLIB_TEST_NETWORK'] = network
     # -W default: show every warning once on stderr, where the tests look
     # for deprecations raised by RecurLib's own calls.
     proc = subprocess.run(
@@ -166,42 +167,22 @@ def output_names(dataset):
 #
 # Comparisons
 #
-COL_RN = 'Radionuclide'
-COL_EP = 'Emission probability (%)'
-COL_KEY = 'Priority number'
-
-
 def read_library(path):
     """A library as written: empty fields are NaN, any other text is kept."""
     return pd.read_csv(path, keep_default_na=False, na_values=[''])
 
 
-def _key_lines(df):
-    """Priority numbers > 0 by (nuclide, emission probability), sorted.
-
-    Lines of a nuclide with equal emission probabilities may trade their
-    priority numbers: RecurLib ranks them with an unstable sort, whose
-    order for ties varies with the platform (e.g. Ra-223 at 5539.8 and
-    5747.0 keV, both 8.9 %).
-    """
-    keyed = df[df[COL_KEY] > 0]
-    return sorted(zip(keyed[COL_RN], keyed[COL_EP].round(12),
-                      keyed[COL_KEY]))
-
-
 def assert_library_equal(actual_csv, expected_csv):
     """Same columns, rows, texts and types; numbers equal to 12 significant
-    digits; priority numbers equal up to ties (see _key_lines).
+    digits.
 
     The tolerance absorbs the last-digit differences that float parsing and
     formatting show across versions of pandas.
     """
     actual = read_library(actual_csv)
     expected = read_library(expected_csv)
-    pd.testing.assert_frame_equal(
-        actual.drop(columns=COL_KEY), expected.drop(columns=COL_KEY),
-        check_exact=False, rtol=1e-12, atol=0)
-    assert _key_lines(actual) == _key_lines(expected)
+    pd.testing.assert_frame_equal(actual, expected, check_exact=False,
+                                  rtol=1e-12, atol=0)
 
 
 def read_yaml(path):

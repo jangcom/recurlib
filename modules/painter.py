@@ -884,7 +884,7 @@ class Painter():
             is_gs = False
             is_pdfcrop = False
         if p['io']['ctrls']['is_plot']:
-            io.mk_dir(p['io']['out']['fig_path'])
+            io.mk_dir(p['io']['out']['fig_path'], is_yn=False)
             # >> Inkscape
             if 'exes' in p['io']['ctrls']['inkscape']:
                 inkscape_exes = [os.path.expandvars(exe)
@@ -961,7 +961,7 @@ class Painter():
         None.
         """
         # Generate the output directory if not exists.
-        io.mk_dir(out_path)
+        io.mk_dir(out_path, is_yn=False)
 
         # Save figure files in user-designated file formats.
         out_bname_full = '{}/{}'.format(out_path, out_bname)
