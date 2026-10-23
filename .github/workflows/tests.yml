@@ -1,0 +1,55 @@
+name: tests
+
+# Every push runs the suite, so that a branch gets its result before a pull
+# request exists; a pull request from a branch of this repository is not run
+# a second time (its push already was), while one from a fork is.
+on:
+  push:
+  pull_request:
+
+env:
+  MPLBACKEND: Agg
+
+jobs:
+  latest:
+    name: ${{ matrix.os }}, Python ${{ matrix.python-version }}, latest libraries
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ['3.11', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt pytest
+      - name: Show library versions
+        run: python -m pip list
+      - name: Test
+        run: python -m pytest -v
+
+  pinned:
+    name: ubuntu-latest, Python 3.11, tested library versions
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-tested.txt pytest
+      - name: Show library versions
+        run: python -m pip list
+      - name: Test
+        run: python -m pytest -v

@@ -53,6 +53,18 @@ The required libraries can be installed at once with either pip or conda:
 | [Ghostscript](https://www.ghostscript.com) | 10.02.1 | .pdf file size reduction and reversioning |
 | [pdfcrop](https://ctan.org/pkg/pdfcrop)    | 1.38    | .pdf margin cropping                      |
 
+## TESTS
+
+The test suite under `tests/` runs RecurLib without Internet access on the sample input `./inp/trial.yaml` and on a test-only input, `tests/inp/extra.yaml`, using the nuclear data shipped in `./lib/nucl_data`. It compares the libraries, lineages and energy levels with the expected outputs under `tests/golden`, and checks independently that the lineages reproduce those published in the paper (see [SEE ALSO](#see-also)), that every line lies within the cutoffs, that the key lines are the most probable lines of each radionuclide, and that the Gamma Explorer exports hold the libraries. It also checks downloads and the registry of unavailable datasets against a stand-in for the Live Chart of Nuclides served from the shipped nuclear data. To run it from a clone of the repository:
+
+    pip install -r requirements.txt pytest
+
+    pytest
+
+The same suite runs on GitHub Actions for every push and pull request, on Linux, macOS, and Windows, with the latest releases of the libraries and with the versions pinned in `requirements-tested.txt`.
+
+After a deliberate change to the libraries RecurLib writes, rewrite the expected outputs with `python tests/update_golden.py` and review the differences (`git diff tests/golden`) before committing.
+
 # SYNOPSIS
 
     python recurlib.py [file]

@@ -1,0 +1,15 @@
+# Identified lineage of Th-232
+
+Th-232:
+  Ra-228:
+    Ac-228:
+      Th-228:
+        Ra-224:
+          Rn-220:
+            Po-216:
+              Pb-212:
+                Bi-212:
+                  Tl-208:
+                    Pb-208: {}
+                  Po-212:
+                    Pb-208: {}
