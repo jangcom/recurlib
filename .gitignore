@@ -8,3 +8,6 @@ __pycache__/
 *.exe
 build/
 dist/
+
+# pytest
+.pytest_cache/

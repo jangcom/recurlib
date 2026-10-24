@@ -1,0 +1,112 @@
+%YAML 1.2
+---
+#
+# RecurLib user input file for the test suite
+# - Settings not used by ./inp/trial.yaml
+# - Run offline using the shipped nuclear data files
+#
+active_datasets:
+  - tight_cutoffs
+  - beta_minus
+  - static_and_isomer
+  - mixture_gamma
+  - xray_key_lines
+
+# The thorium series with cutoffs of which each bound, alone, removes lines
+# of ./inp/trial.yaml's thorium_series_gamma
+tight_cutoffs:
+  scout:
+    radionuclides:
+      recursive:
+        - Th-232
+      cutoffs:
+        energy:
+          - 1e2
+          - 1.5e3
+        emission_probability:
+          - 1
+          - 40
+        half_life_sec:
+          - 2e2
+          - 1e5
+
+# A beta-particle library of the thorium series
+beta_minus:
+  scout:
+    radionuclides:
+      recursive:
+        - Th-232
+      spectrum_radiation: beta minus
+  plot:
+    xticks:
+      lim:
+        - 0
+        - 2.5e3
+    xlabel:
+      label: Negatron maximum energy (keV)
+
+# Static radionuclides (progeny not followed), a nuclear isomer designated
+# by its energy level, and the exclusion of a recursive progeny
+static_and_isomer:
+  scout:
+    radionuclides:
+      recursive:
+        - Th-232
+      static:
+        - Pa-234m;73.92
+        - Ra-226
+      exclusion:
+        - Tl-208
+
+# ./inp/uatk.yaml without K-40, whose data the shipped folder lacks
+mixture_gamma:
+  scout:
+    radionuclides:
+      recursive:
+        - U-238
+        - U-235
+        - Th-232
+      exclusion:
+        - Pa-234
+      spectrum_radiation: gamma
+      cutoffs:
+        energy:
+          - 0
+          - 3e3
+        emission_probability:
+          - 1e-1
+          - 1e2
+  plot:
+    xticks:
+      lim:
+        - 0
+        - 3e3
+    yticks:
+      lim:
+        - 1e-1
+        - 1e2
+    annots:
+      every:
+        single:
+          line1:
+            offy: 1.2
+      grouped:
+        legend:
+          kwargs:
+            bbox_to_anchor:
+              - 0.05
+              - 1.05
+            ncols: 5
+    title:
+      toggle: False
+
+# The thorium series with X-rays ranked as key lines too (the behaviour of
+# RecurLib 1.0)
+xray_key_lines:
+  scout:
+    radionuclides:
+      recursive:
+        - Th-232
+      cutoffs:
+        priority_number_xrays: True
+...

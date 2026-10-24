@@ -3,6 +3,21 @@
 #
 # RecurLib initialization file
 #
+# - This file holds every setting of RecurLib with its default value, and is
+#   read from the inp directory next to recurlib.py regardless of the
+#   working directory.
+# - A user input file needs only the settings that differ from these: copy
+#   a setting from here, together with its parent keys, into the user input
+#   file and edit it there.
+# - A user input file consists of the following keys.
+#   template:        (Optional) Settings shared by every dataset of the file,
+#                    overriding the "template" key below.
+#   active_datasets: The list of the datasets to be processed, in that order.
+#   <dataset>:       The settings of a dataset, overriding "template".
+# - A custom initialization file, passed with --ini, holds settings shared
+#   by several user input files under the same "template" key, and needs
+#   only the settings that differ from these.
+#
 template:  # Overridable at each active dataset
   #
   # File I/O
@@ -179,7 +194,10 @@ template:  # Overridable at each active dataset
       #   automatically identified by RecurLib.
       # static group:
       #   Assign radionuclides whose progeny are not to be included in
-      #   the radionuclide subset.
+      #   the radionuclide subset. Note that gamma cascades and isomeric
+      #   transitions within a static radionuclide are followed;
+      #   e.g. Pa-234m;73.92 also adds Pa-234, which can be excluded using
+      #   the exclusion group.
       # exclusion group:
       #   Assign radionuclides to be removed from the radionuclide subset.
       #
@@ -216,7 +234,10 @@ template:  # Overridable at each active dataset
         priority_number_energy:
           - 5e1
           - 1e4
+        # Ties in emission probability are flagged in ascending order of
+        # the uncertainties of emission probability and then energy.
         priority_number_max: 3  # Number of top emission probabilities to be flagged
+        priority_number_xrays: False  # True: X-rays can also be flagged (not recommended)
   plot:
     # Designate your own style sheet or a precompiled one in the following URL:
     # https://matplotlib.org/stable/gallery/style_sheets/style_sheets_reference.html

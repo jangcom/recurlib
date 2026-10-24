@@ -102,6 +102,7 @@ Rn-219_bp
 Rn-220_bm
 Rn-220_bp
 Rn-221_bp
+Rn-221_gammas
 Rn-222_bm
 Rn-222_bp
 Th-227_bm

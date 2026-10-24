@@ -1,6 +1,17 @@
 #!/usr/bin/env python3
 """RecurLib: A recursion-based radionuclide library generator
 
+Functions
+---------
+write_atomically(fname_full, write)
+    Write a file via a temporary file to prevent partial writing.
+is_same_file(fname1, fname2)
+    Check if two file names designate the same file.
+find_unmergeable(dflt, over, path=())
+    Find settings that cannot be merged over their default values.
+terminate(msg)
+    Display a warning message and terminate the program.
+
 Classes
 -------
 Recurlib()
@@ -12,6 +23,8 @@ import sys
 import time
 import re
 import copy
+import filecmp
+from io import BytesIO
 from urllib import request, error
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -19,8 +32,131 @@ import pandas as pd
 __author__ = 'Jaewoong Jang'
 __copyright__ = 'Copyright (c) 2024-2026 Jaewoong Jang'
 __license__ = 'MIT License'
-__version__ = '1.0.3'
-__date__ = '2026-10-08'
+__version__ = '1.1.0'
+__date__ = '2026-10-23'
+
+
+# Timeout (s) of a request to the IAEA-NDS Live Chart of Nuclides
+LIVECHART_TIMEOUT = 60
+# The default initialization file in the inp directory next to recurlib.py,
+# found regardless of the working directory
+INI_DFLT = os.path.join(os.path.dirname(os.path.realpath(__file__)),
+                        'inp', 'ini_recurlib.yaml')
+# Settings that can be left without a value; the radionuclide groups can be
+# empty (e.g. "static:" with no radionuclide listed)
+NULLABLE = [
+    ('scout', 'radionuclides', 'recursive'),
+    ('scout', 'radionuclides', 'static'),
+    ('scout', 'radionuclides', 'exclusion'),
+]
+
+
+def write_atomically(fname_full, write):
+    """Write a file via a temporary file to prevent partial writing.
+
+    Parameters
+    ----------
+    fname_full : str
+        The name of a file to be written.
+    write : callable
+        A function writing the content of the file to a path passed to it;
+        e.g. df.to_csv
+
+    Returns
+    -------
+    None.
+    """
+    # Write the content to a temporary file next to the file of interest,
+    # and then replace the file by the temporary file; an interrupted run
+    # will not leave a truncated file behind.
+    tmp_fname_full = f'{fname_full}.tmp'
+    write(tmp_fname_full)
+    os.replace(tmp_fname_full, fname_full)
+
+
+def is_same_file(fname1, fname2):
+    """Check if two file names designate the same file.
+
+    Parameters
+    ----------
+    fname1 : str
+        The name of a file.
+    fname2 : str
+        The name of another file.
+
+    Returns
+    -------
+    bool
+        True if the names resolve to the same path, otherwise False.
+    """
+    return (os.path.normcase(os.path.realpath(fname1))
+            == os.path.normcase(os.path.realpath(fname2)))
+
+
+def find_unmergeable(dflt, over, path=()):
+    """Find settings that cannot be merged over their default values.
+
+    Parameters
+    ----------
+    dflt : dict
+        A dictionary of default settings; e.g. the 'template' key of
+        the initialization file.
+    over : dict
+        A dictionary of settings to be merged over dflt; e.g. a dataset of
+        the user input file.
+    path : tuple, optional
+        The keys leading to dflt and over. The default is ().
+
+    Returns
+    -------
+    problems : list
+        A list of messages on the settings of over that would break a run
+        once merged over dflt:
+        (i) a setting without a value over a set of settings or a list;
+            e.g. 'plot:' with all of its keys commented out
+        (ii) a set of settings over a value that is not, or vice versa
+        Settings not found in dflt are not examined.
+    """
+    problems = []
+    for k, v in over.items():
+        if not isinstance(dflt, dict) or k not in dflt:
+            continue
+        key_path = path + (k,)
+        where = ' > '.join(str(key) for key in key_path)
+        default = dflt[k]
+        if v is None:
+            if (isinstance(default, (dict, list))
+                    and key_path not in NULLABLE):
+                problems.append(f'[{where}] has no value.')
+        elif isinstance(v, dict):
+            if isinstance(default, dict):
+                problems += find_unmergeable(default, v, key_path)
+            elif default is not None:
+                problems.append(f'[{where}] must not be a set of settings'
+                                + ' (key: value pairs).')
+        elif isinstance(default, dict):
+            problems.append(f'[{where}] must be a set of settings'
+                            + ' (key: value pairs).')
+    return problems
+
+
+def terminate(msg):
+    """Display a warning message and terminate the program.
+
+    Parameters
+    ----------
+    msg : str
+        A warning message to be displayed. The line "Terminating." is
+        appended to the message, and the program exits with status 1;
+        a shell script or a graphical interface can therefore tell
+        a terminated run from a completed one.
+
+    Returns
+    -------
+    None.
+    """
+    mt.show_warn(f'{msg}\nTerminating.')
+    sys.exit(1)
 
 
 class Recurlib():
@@ -78,7 +214,7 @@ class Recurlib():
     set_progenitor(rn)
         Initialize a progenitor radionuclide.
     get_nrg_lev_end(df_rn_gams, nrg_lev_start,
-                    is_verbose=False)
+                    is_verbose=False, memo=None, visiting=None)
         Traverse through a gamma cascade given a start energy level.
     set_gams(rn, nucl_data_path,
              is_verbose=False)
@@ -118,6 +254,13 @@ class Recurlib():
         self.radiat = {}
         self.lineage = {}
         self.levs = {}
+        # The end energy levels identified by get_nrg_lev_end(), memoized by
+        # gamma data file and start energy level
+        self.cascades = {}
+        # The file listing radionuclide-radiation pairs having no associated
+        # nuclear data; assigned at get_rnlib() and used by set_gams() and
+        # set_levs()
+        self.nucl_data_nonexist_fname_full = ''
         self.cols = {}
         self.df_rnlib = None
         self.df_rnlib_xml = None
@@ -135,27 +278,18 @@ class Recurlib():
         None.
         """
         # Radiation type validation
-        allowed = ['alpha', 'gamma', 'beta minus']
-        re_allowed = '|'.join(allowed)
-        if not re.search(r'(?i)\b({})\b'.format(re_allowed), spectr_radiat):
-            msg = ('The spectrum radiation has been set to be'
-                   + f' [{spectr_radiat}];\nIt must be one of'
-                   + f' [{re_allowed}]. Terminating the program.')
-            mt.show_warn(msg)
-            sys.exit()
-        # Shorten the radiation type with respect to the IAEA-NDS Live Chart
-        # of Nuclides.
-        # Examples
-        # - spl = 'beta minus' -> ['beta', 'minus']
-        # - shortened = 'bm'
-        # - spl = 'gamma' -> ['gamma']
-        # - shortened = 'g'
-        # - spl = 'alpha' -> ['alpha']
-        # - shortened = 'a'
-        spl = re.split(r'\s+', spectr_radiat)
-        shortened = ''.join([s[0] for s in spl])
-        self.radiat.update({'long': spectr_radiat.lower(),
-                            'short': shortened})
+        # - Letter cases and redundant blanks are ignored;
+        #   e.g. 'Gamma', 'beta  minus'
+        # - The radiation types are shortened with respect to the rad_types
+        #   of the IAEA-NDS Live Chart of Nuclides; e.g. 'beta minus' -> 'bm'
+        allowed = {'alpha': 'a', 'gamma': 'g', 'beta minus': 'bm'}
+        normalized = ' '.join(str(spectr_radiat).split()).lower()
+        if normalized not in allowed:
+            terminate('The spectrum radiation has been set to be'
+                      + f' [{spectr_radiat}];\nIt must be one of'
+                      + f' [{", ".join(allowed)}].')
+        self.radiat.update({'long': normalized,
+                            'short': allowed[normalized]})
 
     def set_cols(self, col_groups):
         """Populate the cols attribute.
@@ -284,9 +418,9 @@ class Recurlib():
         True if the URL is accessible, otherwise False.
         """
         try:
-            request.urlopen(url)
+            request.urlopen(url, timeout=10)
             return True
-        except error.URLError:
+        except OSError:  # e.g. URLError, timeout, connection reset
             return False
 
     def get_livechart_df(self, url_params,
@@ -337,26 +471,24 @@ class Recurlib():
         url = url_service + url_params_stringified
 
         #
-        # Read in and stringify the content of the URL, which is originally
-        # binary data, for the subsequent error checking.
+        # Read in the content of the URL, which is binary data, only once;
+        # the content is used for the subsequent error checking and, if no
+        # error is found, for the construction of a DF.
         #
-        # The "User-Agent" key-val pair is prepared in two versions:
-        # - as a list to be unpacked to two strings, which will then be passed
-        #   to request.Request.add_header() as its positional arguments
-        # - as a dict to be passed to pd.read_csv() as a keyword argument
-        #
-        storage_opts = {'User-Agent': 'Livechart/1.0'}
-        storage_opts_listed = list(*storage_opts.items())
-        req = request.Request(url)
-        req.add_header(*storage_opts_listed)
+        req = request.Request(url, headers={'User-Agent': 'Livechart/1.0'})
         try:
-            response = request.urlopen(req)
-            content_stringified = str(response.read())
-        except error.URLError:
+            with request.urlopen(req, timeout=LIVECHART_TIMEOUT) as response:
+                content = response.read()
+        except OSError as e:  # e.g. URLError, timeout, connection reset
             url_reliable = 'https://8.8.8.8'  # Google public DNS
             is_url_accessible = self.check_url(url_reliable)
+            is_timeout = (isinstance(e, TimeoutError)
+                          or isinstance(getattr(e, 'reason', None),
+                                        TimeoutError))
             msg = ('Program execution error:'
-                   + ' Could not reach the Live Chart of Nuclides server.\n'
+                   + ' Could not reach the Live Chart of Nuclides server'
+                   + (f' (no answer within {LIVECHART_TIMEOUT} s)'
+                      if is_timeout else '') + '.\n'
                    + '(requested query: {})\n\n'.format(url)
                    + '{} needs access to the Live Chart of Nuclides'.format(
                        self.prog_info['name'])
@@ -368,8 +500,8 @@ class Recurlib():
             else:
                 msg += ('It seems that you do not have Internet access;'
                         + ' please check your network connection status.')
-            mt.show_warn(msg)
-            sys.exit()
+            terminate(msg)
+        content_stringified = str(content)
 
         #
         # Check if the data retrieval has failed.
@@ -396,36 +528,60 @@ class Recurlib():
             if (err == '0'
                     and nucl_data_nonexist_fname_full
                     and decay_radiat_type_pair):
-                # Examine the registry if the pair is already listed in it.
-                is_already_listed = False
+                # Examine the registry if the pair is already listed in it;
+                # pairs are compared exactly, as 'Rn-221_g' is part of
+                # 'Rn-221_gammas'.
                 with open(nucl_data_nonexist_fname_full,
                           encoding='utf8') as fh_inp:
-                    nonexist_pairs = [s.rstrip() for s in fh_inp.readlines()
-                                      if not re.search('^$', s)]
-                    for nonexist_pair in nonexist_pairs:
-                        # If already listed in the registry, the pair needs
-                        # not be added to it.
-                        if re.search(nonexist_pair, decay_radiat_type_pair):
-                            is_already_listed = True
-                            break
-                if not is_already_listed:
+                    nonexist_pairs = [s.strip() for s in fh_inp.readlines()
+                                      if s.strip()]
+                if decay_radiat_type_pair not in nonexist_pairs:
                     # Add the dataless pair to the registry. Remove, if any,
                     # duplicate pairs, and sort them.
                     nonexist_pairs.append(decay_radiat_type_pair)
-                    nonexist_pairs_uniq = mt.get_unique(nonexist_pairs)
-                    nonexist_pairs_uniq_sorted = sorted(nonexist_pairs_uniq)
-                    with open(nucl_data_nonexist_fname_full, 'w',
-                              encoding='utf8') as fh_out:
-                        for nonexist_pair in nonexist_pairs_uniq_sorted:
-                            fh_out.write(f'{nonexist_pair}\n')
+                    text = ''.join(f'{pair}\n' for pair
+                                   in sorted(set(nonexist_pairs)))
+
+                    def write_registry(fname):
+                        with open(fname, 'w', encoding='utf8') as fh_out:
+                            fh_out.write(text)
+                    write_atomically(nucl_data_nonexist_fname_full,
+                                     write_registry)
                 if is_verbose:
                     msg = f'An error raised for: [{decay_radiat_type_pair}]'
                     mt.show_warn(msg)
             if is_verbose:
                 mt.show_warn(error_codes[err])
             return None
-        return pd.read_csv(url,
-                           storage_options=storage_opts)
+        return pd.read_csv(BytesIO(content))
+
+    @staticmethod
+    def is_registered(nucl_data_nonexist_fname_full, pair):
+        """Check if a radionuclide-radiation pair is listed in the registry.
+
+        Parameters
+        ----------
+        nucl_data_nonexist_fname_full : str
+            The name of a file containing pairs of a radionuclide and decay
+            radiation, where the radiation emission from the radionuclide
+            does not have associated nuclear data in the ENSDF database.
+        pair : str
+            A pair of a radionuclide and decay radiation, or of
+            a radionuclide and its gamma-cascade or energy-level dataset;
+            e.g. 'Pb-208_a', 'Rn-221_gammas'
+
+        Returns
+        -------
+        bool
+            True if the pair is listed in the registry, otherwise False.
+            Pairs are compared exactly, as 'Rn-221_g' is part of
+            'Rn-221_gammas'.
+        """
+        if (not nucl_data_nonexist_fname_full or not pair
+                or not os.path.exists(nucl_data_nonexist_fname_full)):
+            return False
+        with open(nucl_data_nonexist_fname_full, encoding='utf8') as fh:
+            return pair in {line.strip() for line in fh}
 
     def run_get_livechart_df(self, dat_fname_full, url_params,
                              nucl_data_nonexist_fname_full='',
@@ -476,9 +632,12 @@ class Recurlib():
                 msg = (f'The nuclear data file [{dat_fname_full}] could'
                        + ' not be loaded correctly.\nPlease check if the'
                        + ' file conforms to the format of IAEA-NDS Live'
-                       + ' Chart of Nuclides.\nTerminating the program.')
-                mt.show_warn(msg)
-                sys.exit()
+                       + ' Chart of Nuclides.')
+                terminate(msg)
+        elif self.is_registered(nucl_data_nonexist_fname_full,
+                                decay_radiat_type_pair):
+            # A pair listed in the registry: no data retrieval
+            df_lc = None
         else:  # **Internet connection required**
             df_lc = self.get_livechart_df(url_params,
                                           nucl_data_nonexist_fname_full,
@@ -486,10 +645,11 @@ class Recurlib():
                                           is_verbose=is_verbose)
             if isinstance(df_lc, pd.DataFrame):
                 # If the DF has been fetched from the IAEA-NDS Live Chart of
-                # Nuclides server, save the DF to a file for future reuse.
+                # Nuclides server, save the DF to a file for future reuse
+                # (via a temporary file; see write_atomically()).
                 dat_dname = os.path.dirname(dat_fname_full)
                 io.mk_dir(dat_dname, is_yn=False)
-                df_lc.to_csv(dat_fname_full)
+                write_atomically(dat_fname_full, df_lc.to_csv)
                 io.show_file_gen(dat_fname_full)
         return df_lc
 
@@ -748,12 +908,8 @@ class Recurlib():
             #    as well.
             #
             decay_radiat_type_pair = '{}_{}'.format(parent, radiat_type)
-            is_nonexistent = False
-            with open(nucl_data_nonexist_fname_full) as fh_inp:
-                for pair in fh_inp.readlines():
-                    if re.search(decay_radiat_type_pair, pair):
-                        is_nonexistent = True
-                        break
+            is_nonexistent = self.is_registered(nucl_data_nonexist_fname_full,
+                                                decay_radiat_type_pair)
             if is_nonexistent:
                 if is_verbose:
                     msg = (f'The radionuclide [{parent}] does not have nuclear'
@@ -1180,7 +1336,7 @@ class Recurlib():
         return rn
 
     def get_nrg_lev_end(self, df_rn_gams, nrg_lev_start,
-                        is_verbose=False):
+                        is_verbose=False, memo=None, visiting=None):
         """Traverse through a gamma cascade given a start energy level.
 
         Parameters
@@ -1192,89 +1348,107 @@ class Recurlib():
         is_verbose : bool, optional
             If True, the unwinding process of recursion will be displayed.
             The default is False.
+        memo : dict, optional
+            A dictionary of the end energy levels already identified for
+            start energy levels of the same gamma data; filled in by this
+            method and to be passed again for the same gamma data file.
+            The default is None (no reuse).
+        visiting : set, optional
+            The start energy levels on the current path of recursion, used to
+            stop at a cycle; passed by the recursive calls. The default is
+            None.
+
+        Returns
+        -------
+        nrgs_lev_end_tally : list
+            A tallied list of end energy levels, without duplicates, in the
+            order of their first identification; NaN (unknown end energy
+            levels) is not tallied.
+        """
+        nrgs_lev_end_tally, _ = self._get_nrg_lev_end(
+            df_rn_gams, nrg_lev_start,
+            {} if memo is None else memo,
+            set() if visiting is None else visiting,
+            is_verbose)
+        return nrgs_lev_end_tally
+
+    def _get_nrg_lev_end(self, df_rn_gams, nrg_lev_start, memo, visiting,
+                         is_verbose):
+        """Recursive part of get_nrg_lev_end().
+
+        Parameters
+        ----------
+        df_rn_gams : pandas.core.frame.DataFrame
+            A DF containing gamma data of a radionuclide of interest.
+        nrg_lev_start : float
+            A start energy level.
+        memo : dict
+            A dictionary of the end energy levels already identified for
+            start energy levels.
+        visiting : set
+            The start energy levels on the current path of recursion.
+        is_verbose : bool
+            If True, the unwinding process of recursion will be displayed.
 
         Returns
         -------
         nrgs_lev_end_tally : list
             A tallied list of end energy levels.
+        is_cut : bool
+            True if a cycle was cut below the start energy level, in which
+            case the tally is not memoized.
         """
-        # **Identified end level energies will be tallied to the
-        # nrgs_lev_end_tally list.**
-        nrgs_lev_end_tally = []
+        # Reuse the end energy levels already identified for the start
+        # energy level; a start energy level on the current path of
+        # recursion (a cycle) or an unknown one (NaN) adds nothing new.
+        if pd.isna(nrg_lev_start):
+            return [], False
+        if nrg_lev_start in memo:
+            return list(memo[nrg_lev_start]), False
+        if nrg_lev_start in visiting:
+            return [], True
         if is_verbose:
-            func_name_centered = mt.centering(
-                'get_nrg_lev_end(df_rn_gams, nrg_lev_start)')
-            msg = ('\n'
-                   + func_name_centered
-                   + '\n\nUnder a new local namespace for this call\n'
-                   + '               "nrg_lev_start": {}'.format(
-                       nrg_lev_start))
-            print(msg)
-
+            print(mt.centering('get_nrg_lev_end(df_rn_gams, nrg_lev_start)')
+                  + f'\n"nrg_lev_start": {nrg_lev_start}')
         #
         # Find the end level energies, if any, corresponding to the given
         # start level energy (sle).
+        # - Unknown end level energies (NaN) are not followed or tallied.
         #
         bool_idx_sle = ((df_rn_gams['sle_llim'] <= nrg_lev_start)
                         & (df_rn_gams['sle_ulim'] >= nrg_lev_start))
-        nrgs_lev_end = df_rn_gams.loc[bool_idx_sle,
-                                      'end_level_energy'].to_list()
-
+        nrgs_lev_end = [ele for ele
+                        in df_rn_gams.loc[bool_idx_sle,
+                                          'end_level_energy'].to_list()
+                        if not pd.isna(ele)]
         #
-        # Recursive case (i)
-        # - len(nrgs_lev_end) >= 2, meaning that multiple end level energies
-        #   have been found for one start level energy.
+        # Recursive case
+        # - Each end level energy is in turn a start level energy, followed
+        #   until the lowest level energy is reached.
+        # - Identified end level energies are tallied after those reached
+        #   from them, as before, excluding duplicates.
         #
-        if len(nrgs_lev_end) >= 2:
-            # End level energy as start level energy
-            if is_verbose:
-                print('Multiple end energy levels:     {}'.format(
-                    nrgs_lev_end))
-            for ele_as_sle in nrgs_lev_end:
-                if is_verbose:
-                    print('Recursion with "ele_as_sle":    {}'.format(
-                        ele_as_sle))
-                nrgs_lev_end_tally += self.get_nrg_lev_end(
-                    df_rn_gams,
-                    ele_as_sle,
-                    is_verbose=is_verbose)
-
-        #
-        # Recursive case (ii)
-        # - len(nrgs_lev_end) == 1, meaning that at least one end level energy
-        #   has been found; in other words, the start level energy in question
-        #   has been found in the corresponding gamma dataset.
-        #
-        elif len(nrgs_lev_end) == 1:
-            if True in bool_idx_sle.unique():
-                if is_verbose:
-                    print('Recursion with "nrgs_lev_end":  {}'.format(
-                        nrgs_lev_end))
-                nrgs_lev_end_tally += self.get_nrg_lev_end(
-                    df_rn_gams,
-                    nrgs_lev_end[0],
-                    is_verbose=is_verbose)
-
-        #
-        # Tally the identified end level energies.
-        #
-        if is_verbose:
-            print('Tallying "nrgs_lev_end":        {}'.format(
-                nrgs_lev_end))
-        nrgs_lev_end_tally += nrgs_lev_end
-
+        visiting.add(nrg_lev_start)
+        nrgs_lev_end_tally = []
+        is_cut = False
+        for ele_as_sle in nrgs_lev_end:
+            tally, is_cut_below = self._get_nrg_lev_end(
+                df_rn_gams, ele_as_sle, memo, visiting, is_verbose)
+            nrgs_lev_end_tally += tally
+            is_cut = is_cut or is_cut_below
+        visiting.discard(nrg_lev_start)
+        nrgs_lev_end_tally = list(dict.fromkeys(nrgs_lev_end_tally
+                                                + nrgs_lev_end))
         #
         # Base case
-        # - len(nrgs_lev_end) == 0, meaning that there is no end level energy;
-        #   namely, there is no data row corresponding to the start level
-        #   energy in question.
+        # - No end level energy, meaning that there is no data row
+        #   corresponding to the start level energy in question.
         #
         if is_verbose:
-            msg = ('\nThe base case met!\n'
-                   + 'Returning "nrgs_lev_end_tally": {}\n'.format(
-                       nrgs_lev_end_tally))
-            print(msg)
-        return nrgs_lev_end_tally
+            print(f'Returning "nrgs_lev_end_tally": {nrgs_lev_end_tally}')
+        if not is_cut:
+            memo[nrg_lev_start] = tuple(nrgs_lev_end_tally)
+        return nrgs_lev_end_tally, is_cut
 
     def set_gams(self, rn, nucl_data_path,
                  is_verbose=False):
@@ -1309,8 +1483,8 @@ class Recurlib():
         df_rn_gams = self.run_get_livechart_df(
             decay_gams_fname_full,
             url_params_gams,
-            nucl_data_nonexist_fname_full='',
-            decay_radiat_type_pair='',
+            nucl_data_nonexist_fname_full=self.nucl_data_nonexist_fname_full,
+            decay_radiat_type_pair=f'{rn}_gammas',
             is_verbose=is_verbose)
         # df will be "None" on data retrieval failure.
         if isinstance(df_rn_gams, pd.DataFrame):
@@ -1338,8 +1512,11 @@ class Recurlib():
                     # Collect all feasible end level energies (eles)
                     # corresponding to each of the parent-inherited energy
                     # levels.
-                    nrgs_lev_end = self.get_nrg_lev_end(df_rn_gams, nrg_lev_p,
-                                                        is_verbose=is_verbose)
+                    nrgs_lev_end = self.get_nrg_lev_end(
+                        df_rn_gams, nrg_lev_p,
+                        is_verbose=is_verbose,
+                        memo=self.cascades.setdefault(
+                            os.path.abspath(decay_gams_fname_full), {}))
                     eles = [ele for ele in nrgs_lev_end
                             if ele not in self.levs[rn]['from_gamma_cascade'][
                                 'energy_levels']]
@@ -1395,8 +1572,8 @@ class Recurlib():
         df_rn_levs = self.run_get_livechart_df(
             decay_levs_fname_full,
             url_params_levs,
-            nucl_data_nonexist_fname_full='',
-            decay_radiat_type_pair='',
+            nucl_data_nonexist_fname_full=self.nucl_data_nonexist_fname_full,
+            decay_radiat_type_pair=f'{rn}_levels',
             is_verbose=is_verbose)
         # df will be "None" on data retrieval failure.
         if isinstance(df_rn_levs, pd.DataFrame):
@@ -1622,7 +1799,8 @@ class Recurlib():
             if 'energy_levels_isomer_progenitor' in self.levs[rn]:
                 del self.levs[rn]['energy_levels_isomer_progenitor']
 
-    def get_prio_idx_and_nums(self, df, sort_by, priority_num_max):
+    def get_prio_idx_and_nums(self, df, sort_by, priority_num_max,
+                              tie_breakers=()):
         """Construct DataFrame indices and values for priority numbers.
 
         Parameters
@@ -1635,6 +1813,13 @@ class Recurlib():
         priority_num_max : int
             The greatest priority number, or the priority number of the least
             prioritized radiation data point among those prioritized.
+        tie_breakers : list, optional
+            DF columns by which data points of the same sort_by value are
+            sorted in ascending order; e.g. the uncertainties of emission
+            probability and energy, by which better-known data points are
+            prioritized. Data points still tied keep their DF order (that
+            of the nuclear data file), and NaN comes last. The default
+            is ().
 
         Returns
         -------
@@ -1646,7 +1831,15 @@ class Recurlib():
         """
         # Sort the DF in descending order and fetch the indices of top rows;
         # the number of top rows is equal to priority_num_max.
-        df_desc = df.sort_values(by=sort_by, ascending=False)
+        # - A stable sort with explicit tie-breakers gives the same priority
+        #   numbers regardless of platforms.
+        keys = pd.DataFrame({'_by': df[sort_by]}, index=df.index)
+        for i, col in enumerate(tie_breakers):
+            keys[f'_tie{i}'] = pd.to_numeric(df[col], errors='coerce')
+        df_desc = keys.sort_values(
+            by=list(keys.columns),
+            ascending=[False] + [True] * len(tie_breakers),
+            na_position='last', kind='stable')
         priority_idx = df_desc.head(priority_num_max).index
 
         # Override the maximum priority number by the length of selected
@@ -1661,6 +1854,71 @@ class Recurlib():
         # e.g. [1, 2, 3] for priority_num_max == 3
         priority_nums = list(range(1, priority_num_max + 1))
         return priority_idx, priority_nums
+
+    def get_xray_mask(self, df, nucl_data_path, rn):
+        """Mark X-rays in a gamma-ray library DF of a radionuclide.
+
+        Parameters
+        ----------
+        df : pandas.core.frame.DataFrame
+            A radionuclide-wise radionuclide library DF.
+        nucl_data_path : str
+            The directory of nuclear data files.
+        rn : str
+            A radionuclide of interest.
+
+        Returns
+        -------
+        mask : pandas.core.series.Series
+            A Boolean Series being True at X-ray data points. The gamma-ray
+            dataset of the IAEA-NDS Live Chart of Nuclides lists X-rays
+            together with gamma rays; X-rays are identified as the data
+            points of the X-ray dataset (e.g. Pb-214_x.csv) having the same
+            energy and emission probability. All False for alpha-particle
+            and beta-particle libraries.
+        """
+        mask = pd.Series(False, index=df.index)
+        x_fname_full = f'{nucl_data_path}/{rn}/{rn}_x.csv'
+        if self.radiat.get('short') != 'g' or not os.path.exists(
+                x_fname_full):
+            return mask
+        col_nrg = self.cols['energy']['nucl_data_old']
+        col_ep = self.cols['emission_probability']['nucl_data_old']
+        xrays = pd.read_csv(x_fname_full, usecols=[col_nrg, col_ep])
+        for nrg, ep in zip(xrays[col_nrg], xrays[col_ep]):
+            mask |= (((df[col_nrg] - nrg).abs() <= 1e-9 * max(1.0, abs(nrg)))
+                     & ((df[col_ep] - ep).abs() <= 1e-9 * abs(ep)))
+        return mask
+
+    @staticmethod
+    def get_limits(cutoffs, key):
+        """Return the [lower, upper] limits of a cutoff as floats.
+
+        Parameters
+        ----------
+        cutoffs : dict
+            The scout > radionuclides > cutoffs settings of a dataset.
+        key : str
+            The cutoff, e.g. 'energy'.
+
+        Returns
+        -------
+        list
+            The lower and upper limits. A cutoff that is not a pair of
+            numbers, or whose lower limit exceeds the upper, stops the
+            program.
+        """
+        pair = cutoffs.get(key) if isinstance(cutoffs, dict) else None
+        where = f'[scout > radionuclides > cutoffs > {key}]'
+        try:
+            lower, upper = (float(x) for x in pair)
+        except (TypeError, ValueError):
+            terminate(f'{where} must be a pair of numbers, [lower, upper];'
+                      + f' it is [{pair}].')
+        if lower > upper:
+            terminate(f'The lower limit of {where} exceeds its upper'
+                      + f' limit: [{pair}].')
+        return [lower, upper]
 
     def get_rnlib(self, p):
         """Generate a radionuclide library by recursive computation.
@@ -1693,6 +1951,8 @@ class Recurlib():
             open(p['io']['lib']['nucl_data_nonexist_fname_full'], 'w',
                  encoding='utf8').close()
             io.show_file_gen(p['io']['lib']['nucl_data_nonexist_fname_full'])
+        self.nucl_data_nonexist_fname_full = p['io']['lib'][
+            'nucl_data_nonexist_fname_full']
 
         #
         # Step 1. Construct a radionuclide subset by recursive computation,
@@ -1701,6 +1961,11 @@ class Recurlib():
         #
         # Energy level feasibility validation (1/5): Individually specified
         # static isomers
+        # Treat an omitted or empty radionuclide group as an empty list.
+        for group in ['recursive', 'static', 'exclusion']:
+            if not p['scout']['radionuclides'].get(group):
+                p['scout']['radionuclides'][group] = []
+        decay_chains_flattened = []
         if len(p['scout']['radionuclides']['static']) >= 1:
             for i, progenitor_stat in enumerate(
                     p['scout']['radionuclides']['static']):
@@ -1714,9 +1979,6 @@ class Recurlib():
                               p['io']['lib']['nucl_data_path'])
         # Identify the progeny of each user-designated recursive progenitor.
         if len(p['scout']['radionuclides']['recursive']) >= 1:
-            # Assign an empty list in case none of the designated
-            # recursive progenitors has progeny.
-            decay_chains_flattened = []
             daughters = []
             for i, progenitor_recursive in enumerate(
                     p['scout']['radionuclides']['recursive']):
@@ -1746,6 +2008,8 @@ class Recurlib():
                 self.set_levs(progenitor_recursive,
                               p['io']['lib']['nucl_data_path'])
                 # **Create a list of all possible progeny nuclides.**
+                mt.show_msg('Searching the decay chain of'
+                            + f' [{progenitor_recursive}]...')
                 daughters = self.get_daughters(
                     progenitor_recursive,
                     p['io']['lib']['nucl_data_path'],
@@ -1852,24 +2116,39 @@ class Recurlib():
             _col_ep_key = 'emission_probability'
         col_nrg = self.cols[_col_nrg_key]['nucl_data_old']
         col_ep = self.cols[_col_ep_key]['nucl_data_old']
+        # Tie-breakers of priority numbers (see get_prio_idx_and_nums())
+        # (1) Uncertainty of emission probability
+        # (2) Uncertainty of energy
+        tie_breakers = [self.cols[f'{_col_ep_key}_unc']['nucl_data_old'],
+                        self.cols[f'{_col_nrg_key}_unc']['nucl_data_old']]
         col_nrg_lev = self.cols['energy_level']['nucl_data_old']
         col_hl_sec = self.cols['half_life_sec']['nucl_data_old']
         col_dm = self.cols['decay_mode']['nucl_data_old']
         col_db = self.cols['database']['nucl_data_new']
-        nrg_lim = [float(nrg) for nrg
-                   in p['scout']['radionuclides']['cutoffs']['energy']]
-        ep_lim = [float(ep) for ep
-                  in p['scout']['radionuclides']['cutoffs']
-                      ['emission_probability']]
-        hl_sec_lim = [float(hl) for hl
-                      in p['scout']['radionuclides']['cutoffs'][
-                          'half_life_sec']]
-        priority_num_nrg_lim = [
-            float(priority_num_nrg) for priority_num_nrg
-            in p['scout']['radionuclides']['cutoffs'][
-                'priority_number_energy']]
-        priority_num_max = p['scout']['radionuclides']['cutoffs'][
-            'priority_number_max']
+        cutoffs = p['scout']['radionuclides']['cutoffs']
+        nrg_lim = self.get_limits(cutoffs, 'energy')
+        ep_lim = self.get_limits(cutoffs, 'emission_probability')
+        hl_sec_lim = self.get_limits(cutoffs, 'half_life_sec')
+        priority_num_nrg_lim = self.get_limits(cutoffs,
+                                               'priority_number_energy')
+        priority_num_max = cutoffs.get('priority_number_max')
+        if (isinstance(priority_num_max, bool)
+                or not isinstance(priority_num_max, (int, float))
+                or priority_num_max < 0
+                or not float(priority_num_max).is_integer()):
+            terminate('[scout > radionuclides > cutoffs >'
+                      + ' priority_number_max] must be a whole number of'
+                      + f' 0 or more; it is [{priority_num_max}].')
+        priority_num_max = int(priority_num_max)
+        # X-rays as priority data points (not recommended)
+        # - X-rays are emitted from the atomic shells of daughters, shared
+        #   by other radionuclides, and overlapped with gamma rays;
+        #   e.g. Th K X-rays and Th-234 gamma rays near 93 keV
+        is_xray_priority = cutoffs.get('priority_number_xrays', False)
+        if not isinstance(is_xray_priority, bool):
+            terminate('[scout > radionuclides > cutoffs >'
+                      + ' priority_number_xrays] must be True or False;'
+                      + f' it is [{is_xray_priority}].')
         # <<
         dfs_rnlib_to_be_concated = []
         for rn in self.rn_subset_uniq:
@@ -1907,7 +2186,7 @@ class Recurlib():
                               & (df_rnlib_rnwise[col_ep] <= ep_lim[1])
                               & (df_rnlib_rnwise[col_hl_sec] >= hl_sec_lim[0])
                               & (df_rnlib_rnwise[col_hl_sec] <= hl_sec_lim[1]))
-            df_rnlib_rnwise = df_rnlib_rnwise[bool_idx_cuton]
+            df_rnlib_rnwise = df_rnlib_rnwise[bool_idx_cuton].copy()
             # Skip the current radionuclide if the sliced DF does not have
             # nuclear data (cases where all data rows have been pruned).
             if not len(df_rnlib_rnwise.index):
@@ -1921,15 +2200,21 @@ class Recurlib():
             # - The radionuclide name must be inserted before energy level
             #   validation step 5, where nuclear isomers are assigned the "m"
             #   suffix on top of their nuclide names.
+            # Mark X-rays at a temporary column, which will be dropped
+            # before the radionuclide-wise DF is added to the list of DFs.
+            df_rnlib_rnwise['_is_xray'] = self.get_xray_mask(
+                df_rnlib_rnwise, p['io']['lib']['nucl_data_path'], rn)
             bool_idx_priority_num_nrg = (
                 (df_rnlib_rnwise[col_nrg] >= priority_num_nrg_lim[0])
-                & (df_rnlib_rnwise[col_nrg] <= priority_num_nrg_lim[1]))
+                & (df_rnlib_rnwise[col_nrg] <= priority_num_nrg_lim[1])
+                & (~df_rnlib_rnwise['_is_xray'] | is_xray_priority))
             _df_rnlib_rnwise_priority_num_nrg = df_rnlib_rnwise.loc[
                 bool_idx_priority_num_nrg, :]
             priority_idx, priority_nums = self.get_prio_idx_and_nums(
                 _df_rnlib_rnwise_priority_num_nrg,
                 col_ep,
-                priority_num_max)
+                priority_num_max,
+                tie_breakers=tie_breakers)
             # Nonpriority data points are assigned the priority number 0
             # rather than NaN.
             df_rnlib_rnwise.insert(0, col_priority_num,
@@ -2056,7 +2341,8 @@ class Recurlib():
             # has been sorted in the above.
             bool_idx_priority_num_nrg = (
                 (df_rnlib_rnwise[col_nrg] >= priority_num_nrg_lim[0])
-                & (df_rnlib_rnwise[col_nrg] <= priority_num_nrg_lim[1]))
+                & (df_rnlib_rnwise[col_nrg] <= priority_num_nrg_lim[1])
+                & (~df_rnlib_rnwise['_is_xray'] | is_xray_priority))
             _df_rnlib_rnwise_isomer = df_rnlib_rnwise.loc[
                 bool_idx_priority_num_nrg & bool_idx_isomer, :]
             _df_rnlib_rnwise_rn = df_rnlib_rnwise.loc[
@@ -2064,11 +2350,13 @@ class Recurlib():
             prio_idx_isomer, prio_nums_isomer = self.get_prio_idx_and_nums(
                 _df_rnlib_rnwise_isomer,
                 col_ep,
-                priority_num_max)
+                priority_num_max,
+                tie_breakers=tie_breakers)
             prio_idx_rn, prio_nums_rn = self.get_prio_idx_and_nums(
                 _df_rnlib_rnwise_rn,
                 col_ep,
-                priority_num_max)
+                priority_num_max,
+                tie_breakers=tie_breakers)
             df_rnlib_rnwise.loc[
                 :,
                 col_priority_num] = 0  # Initialization
@@ -2084,6 +2372,7 @@ class Recurlib():
                     print(df_rnlib_rnwise)
             # Append a column containing the name of the nuclear database
             # in question to the radionuclide-wise DF.
+            df_rnlib_rnwise = df_rnlib_rnwise.drop(columns='_is_xray')
             df_rnlib_rnwise[col_db] = p['io']['lib']['nucl_database']
             # Add the radionuclide-wise DF to a list which will in turn be
             # combined into one DF.
@@ -2091,6 +2380,11 @@ class Recurlib():
 
         # Combine the radionuclide-wise radionuclide library DFs into one DF,
         # which will yield a single, comprehensive radionuclide library DF.
+        # Return an empty DF if no data point remains after the cutoffs.
+        if not dfs_rnlib_to_be_concated:
+            df_rnlib = pd.DataFrame()
+            df_rnlib.index.name = 'Library index'
+            return df_rnlib
         df_rnlib = pd.concat(dfs_rnlib_to_be_concated)
         # - Remove a user-specified exclusion group of radionuclides, if any,
         #   from the radionuclide library DF. This block of code has been
@@ -2116,6 +2410,13 @@ class Recurlib():
         # Sort the combined DF by the values of the user-specified column.
         if p['io']['cols_sort']['toggle']:
             sort_by = p['io']['cols_sort']['by']  # e.g. 'energy'
+            choices = [k for k, v in self.cols.items()
+                       if isinstance(v, dict)
+                       and v.get('nucl_data_new') in df_rnlib.columns]
+            if sort_by not in choices:
+                terminate(f'[io > cols_sort > by] is [{sort_by}]; for'
+                          + f' a {self.radiat["long"]} library it must be'
+                          + f' one of [{", ".join(choices)}].')
             if re.search('(?i)radionuclide', sort_by):
                 # Force the legend order to be 'as_is'.
                 p['plot']['annots']['grouped']['legend']['order'] = 'as_is'
@@ -2374,31 +2675,64 @@ class Recurlib():
         #
         # Iterate over the active datasets designated in the user input file.
         #
-        if the_yml['active_datasets'] is None:  # Empty list
-            msg = ('[active_datasets] has no element.'
-                   + ' Terminating the program.')
-            mt.show_warn(msg)
-            sys.exit()
-        for adataset in the_yml['active_datasets']:
+        active_datasets = (the_yml.get('active_datasets')
+                           if isinstance(the_yml, dict) else None)
+        if isinstance(active_datasets, str):  # A single dataset
+            active_datasets = [active_datasets]
+        if not active_datasets or not isinstance(active_datasets, list):
+            terminate('[active_datasets] has no element.')
+
+        #
+        # Read the 'template' key of the user input file, if any.
+        # - It holds the settings shared by every active dataset of the
+        #   file, and is merged over the 'template' key of the initialization
+        #   file and under each active dataset.
+        #
+        shared = the_yml.get('template')
+        if shared is not None and not isinstance(shared, dict):
+            terminate('[template] must be a set of settings'
+                      + ' (key: value pairs).')
+        problems = find_unmergeable(the_ini['template'], shared or {})
+        if problems:
+            terminate('[template] cannot be merged over the initialization'
+                      + ' file:\n' + '\n'.join(problems))
+        # Deep-copy the settings, as get_rnlib() rewrites the radionuclide
+        # lists in place.
+        inherited = mt.merge(copy.deepcopy(the_ini['template']),
+                             copy.deepcopy(shared or {}))
+
+        reserved = ['active_datasets', 'template']
+        processed = []
+        for adataset in active_datasets:
             # >> Dataset name validation
-            is_skip = False
-            if not adataset:
+            msg = ''
+            reserved_found = [w for w in reserved
+                              if re.search(fr'(?i)\b{w}\b', str(adataset))]
+            if adataset is None or adataset == '':
                 msg = (f'Warning: A null element name [{adataset}];'
                        + ' skipping.')
-                is_skip = True
-            if adataset not in the_yml:  # Wrong key
+            elif reserved_found:
+                msg = (f'Warning: [{reserved_found[0]}] is not allowed as an'
+                       + ' element name under [active_datasets];'
+                       + ' skipping.')
+            elif adataset in processed:
+                msg = (f'Warning: [{adataset}] is listed more than once'
+                       + ' under [active_datasets]; skipping.')
+            elif adataset not in the_yml:  # Wrong key
                 msg = (f'Warning: [{adataset}] not in [{argv.file}];'
                        + ' skipping.')
-                is_skip = True
-            if re.search('(?i)active_datasets', adataset):
-                msg = ('Warning: [active_datasets] is not allowed as an'
-                       + ' element name under [active_datasets];'
-                       + ' skipiing.')
-                is_skip = True
-            if is_skip:
+            elif not the_yml[adataset]:
+                msg = (f'Warning: The dataset [{adataset}] is empty;'
+                       + ' skipping.')
+            elif not isinstance(the_yml[adataset], dict):
+                msg = (f'Warning: The dataset [{adataset}] is not a set of'
+                       + ' settings (key: value pairs); skipping.')
+            if msg:
                 mt.show_warn(msg)
                 continue
             # <<
+
+            processed.append(adataset)
 
             # Notification
             mt.show_msg(f'Working on [{adataset}]...')
@@ -2406,15 +2740,20 @@ class Recurlib():
             #
             # Construct the configuration dict of an active dataset.
             # (1) Copy all the key-val pairs of all nested dictionaries of
-            # the 'template' key to an active dataset.
+            # the 'template' key of the initialization file, merged with
+            # the 'template' key of the user input file, if any.
             # (2) Override the key-val pairs designated at the active dataset
             # at the active dataset dict.
+            # Settings that cannot be merged terminate the program, and
+            # the user input dict is left unchanged.
             #
-            inherited = copy.deepcopy(the_ini['template'])
-            the_yml[adataset] = mt.merge(inherited, the_yml[adataset])
-
-            # Aliasing
-            a = the_yml[adataset]
+            problems = find_unmergeable(inherited, the_yml[adataset])
+            if problems:
+                terminate(f'[{adataset}] cannot be merged over the'
+                          + ' initialization file and [template]:\n'
+                          + '\n'.join(problems))
+            a = mt.merge(copy.deepcopy(inherited),
+                         copy.deepcopy(the_yml[adataset]))
 
             # Initialize for the next active dataset.
             self.levs = {}
@@ -2476,6 +2815,22 @@ class Recurlib():
                     txt_fname_full=a['io']['out']['echo_fname_full'])
 
             #
+            # Skip the reports, exports, and plots of an empty radionuclide
+            # library.
+            #
+            if self.df_rnlib.empty:
+                if not self.rn_subset_uniq:
+                    reason = ('no radionuclide has been designated under'
+                              + ' [recursive] or [static]')
+                else:
+                    reason = ('no data point lies within the cutoffs, or'
+                              + ' the radionuclides have been excluded')
+                mt.show_warn('Warning: The radionuclide library of'
+                             + f' [{adataset}] is empty, as {reason};'
+                             + ' skipping.')
+                continue
+
+            #
             # Save the radionuclide library DF to report files.
             #
             if a['io']['ctrls']['is_rpt']:
@@ -2505,6 +2860,11 @@ class Recurlib():
             # Generate a cross-platform radionuclide library file (.xml).
             #
             if (a['io']['ctrls']['is_export']
+                    and len(a['io']['lib']['export_templates'])
+                    and self.radiat['short'] == 'bm'):
+                mt.show_msg('Export of beta-particle libraries is not'
+                            + ' supported; skipping.')
+            elif (a['io']['ctrls']['is_export']
                     and len(a['io']['lib']['export_templates'])):
                 context = self.get_context(
                     adataset, self.df_rnlib,
@@ -2565,6 +2925,16 @@ if __name__ == '__main__':
     # Class instantiation
     recurlib = Recurlib()
 
+    # Command-line arguments; parsed before the front matter so that
+    # --help and --show-ini print nothing else.
+    io = inpout.InpOut()
+    argv = io.read_argv(desc=recurlib.prog_info['desc'],
+                        ini_dflt=INI_DFLT,
+                        is_show_ini=True)
+    if argv.is_show_ini:
+        print(INI_DFLT)
+        sys.exit()
+
     #
     # Front matter
     #
@@ -2572,12 +2942,46 @@ if __name__ == '__main__':
 
     #
     # I/O
+    # (1) The default initialization file is always read.
+    # (2) A custom initialization file only needs to hold the settings that
+    #     differ from the default ones; it is deeply merged over them.
+    #     A complete one written for earlier versions works as before.
     #
-    io = inpout.InpOut()
-    argv = io.read_argv(desc=recurlib.prog_info['desc'],
-                        ini_dflt='./inp/ini_recurlib.yaml')
-    the_ini = io.read_yaml(argv.ini,
+    the_ini = io.read_yaml(INI_DFLT,
                            is_echo=argv.is_echo)
+    if not is_same_file(argv.ini, INI_DFLT):
+        ini_custom = io.read_yaml(argv.ini,
+                                  is_echo=argv.is_echo) or {}
+        if (not isinstance(ini_custom, dict)
+                or not isinstance(ini_custom.get('template') or {}, dict)):
+            terminate(f'The custom initialization file [{argv.ini}] must'
+                      + ' hold its settings under the [template] key.')
+        # Settings outside the 'template' key are not read.
+        for k in ini_custom:
+            if k != 'template':
+                mt.show_warn(f'Warning: [{k}] of the custom initialization'
+                             + f' file [{argv.ini}] is not under [template];'
+                             + ' ignored.')
+        ini_custom = {'template': ini_custom.get('template') or {}}
+        problems = find_unmergeable(the_ini['template'],
+                                    ini_custom['template'])
+        if problems:
+            terminate(f'The custom initialization file [{argv.ini}] cannot'
+                      + ' be merged over the default one:\n'
+                      + '\n'.join(problems))
+        the_ini = mt.merge(the_ini, ini_custom)
+    elif (os.path.isfile('./inp/ini_recurlib.yaml')
+            and not is_same_file('./inp/ini_recurlib.yaml', INI_DFLT)
+            and not filecmp.cmp('./inp/ini_recurlib.yaml', INI_DFLT,
+                                shallow=False)):
+        # Earlier versions read ./inp/ini_recurlib.yaml of the working
+        # directory by default; notify the user if such a file differs
+        # from the default one.
+        mt.show_warn('Warning: [./inp/ini_recurlib.yaml] of the working'
+                     + ' directory is not read; the default initialization'
+                     + f' file [{INI_DFLT}] is used.\nTo use the file of'
+                     + ' the working directory, add'
+                     + ' --ini=./inp/ini_recurlib.yaml.')
     the_yml = io.read_yaml(argv.file,
                            is_echo=argv.is_echo)
 

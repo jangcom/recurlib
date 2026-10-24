@@ -38,7 +38,7 @@ class InpOut():
 
     Methods
     -------
-    read_argv(desc='')
+    read_argv(desc='', ini_dflt='ini.yaml', is_show_ini=False)
         Read the sys.argv list into a program.
     show_file_gen(fname, verb=' generated.')
         Notify the creation of a file or a directory.
@@ -76,15 +76,19 @@ class InpOut():
         self.conf_file_type = conf_file_type
 
     def read_argv(self,
-                  desc='', ini_dflt='ini.yaml'):
+                  desc='', ini_dflt='ini.yaml', is_show_ini=False):
         """Read the sys.argv list into a program.
 
         Parameters
         ----------
         desc : str, optional
             A description of argparse.ArgumentParser. The default is ''.
-        ini : str, optional
+        ini_dflt : str, optional
             A low-level initialization file. The default is 'ini.yaml'.
+        is_show_ini : bool, optional
+            If True, the option --show-ini, which prints the path of
+            the default initialization file, is added, and the file
+            argument can be omitted with it. The default is False.
 
         Returns
         -------
@@ -95,6 +99,7 @@ class InpOut():
             description=desc,
             formatter_class=argparse.ArgumentDefaultsHelpFormatter)
         parser.add_argument('file',
+                            nargs='?' if is_show_ini else None,
                             help='a program configuration file ({})'.format(
                                 self.conf_file_type))
         parser.add_argument('--ini',
@@ -105,7 +110,16 @@ class InpOut():
                             dest='is_echo',
                             action='store_true',
                             help='echo the YAML content on the shell')
-        return parser.parse_args()
+        if is_show_ini:
+            parser.add_argument('--show-ini',
+                                dest='is_show_ini',
+                                action='store_true',
+                                help='print the path of the default'
+                                     ' initialization file and exit')
+        args = parser.parse_args()
+        if is_show_ini and not args.is_show_ini and args.file is None:
+            parser.error('the following arguments are required: file')
+        return args
 
     def show_file_gen(self, fname,
                       verb=' generated.'):
@@ -182,8 +196,9 @@ class InpOut():
         yml_encoding : str, optional
             The encoding of the YAML file. The default is 'utf-8'.
         is_yml_required : bool, optional
-            If True, exit the program if the designated YAML file was not
-            found. The default is True.
+            If True, exit the program (status 1) if the designated YAML file
+            was not found; if False, return an empty dict. The default is
+            True. A file that is not valid YAML always exits the program.
         is_echo : bool, optional
             If True, dump the content of the YAML file. The default is False.
 
@@ -194,12 +209,18 @@ class InpOut():
         """
         if not os.path.exists(yml):
             msg = f'The designated YAML file [{yml}] could not be located.'
-            mt.show_warn(msg)
             if is_yml_required:
-                print(' Terminating.')
-                sys.exit()
+                mt.show_warn(f'{msg}\nTerminating.')
+                sys.exit(1)
+            mt.show_warn(msg)
+            return {}
         with open(yml, 'r', encoding=yml_encoding) as fh:
-            yml_d = yaml.load(fh, Loader=yaml.FullLoader)
+            try:
+                yml_d = yaml.load(fh, Loader=yaml.FullLoader)
+            except yaml.YAMLError as e:
+                mt.show_warn(f'The designated YAML file [{yml}] could not'
+                             f' be parsed:\n{e}\nTerminating.')
+                sys.exit(1)
         if is_echo:
             msg = f'Content of [{yml}]'
             self.dump_yaml(yml_d,
@@ -248,7 +269,7 @@ class InpOut():
                      + ' Create (y/n)? ')
                 is_mk_dir = mt.invoke_yn_prompt(q)
             if is_mk_dir:
-                os.mkdir(dname)
+                os.makedirs(dname, exist_ok=True)  # Incl. parent dirs
                 self.show_file_gen(dname)
 
     def locate_exe(self, ls_exes,

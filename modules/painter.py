@@ -55,6 +55,8 @@ class Painter():
                        plot_type='spectrum',
                        is_spotting=False, is_finalize=True)
         Plot a radiation spectrum and/or its associated radionuclides.
+    get_exes(d)
+        Collect the names of an executable to be searched for.
     save_fig(fig, out_path, out_bname, fmts,
              dpi=300, inkscape_exes=['inkscape.exe'])
         Save an MPL figure in multiple formats.
@@ -516,7 +518,7 @@ class Painter():
                                **kwargs)
                 # Emission probability limits (horizontal lines)
                 if (ref.get('is_ep_min', False)
-                        and win['emission_probability'][0] > 0):
+                        and float(win['emission_probability'][0]) > 0):
                     ax.axhline(float(win['emission_probability'][0]),
                                **kwargs)
                 if ref.get('is_ep_max', False):
@@ -884,18 +886,9 @@ class Painter():
             is_gs = False
             is_pdfcrop = False
         if p['io']['ctrls']['is_plot']:
-            io.mk_dir(p['io']['out']['fig_path'])
+            io.mk_dir(p['io']['out']['fig_path'], is_yn=False)
             # >> Inkscape
-            if 'exes' in p['io']['ctrls']['inkscape']:
-                inkscape_exes = [os.path.expandvars(exe)
-                                 for exe
-                                 in p['io']['ctrls']['inkscape']['exes']]
-            # Left for backward compatibility
-            else:
-                if 'exe' in p['io']['ctrls']['inkscape']:
-                    inkscape_exes = []
-                    inkscape_exes.append(os.path.expandvars(
-                        p['io']['ctrls']['inkscape']['exe']))
+            inkscape_exes = self.get_exes(p['io']['ctrls']['inkscape'])
             # <<
             self.save_fig(fig,
                           p['io']['out']['fig_path'],
@@ -908,26 +901,10 @@ class Painter():
                                                 out_fig_bname)
             # >> Ghostscript
             gs_pdf_ver = ppp['ghostscript']['pdf_ver']
-            if 'exes' in ppp['ghostscript']:
-                gs_exes = [os.path.expandvars(exe)
-                           for exe in ppp['ghostscript']['exes']]
-            # Left for backward compatibility
-            else:
-                if 'exe' in ppp['ghostscript']:
-                    gs_exes = []
-                    gs_exes.append(os.path.expandvars(
-                        ppp['ghostscript']['exe']))
+            gs_exes = self.get_exes(ppp['ghostscript'])
             # <<
             # >> pdfcrop
-            if 'exes' in ppp['pdfcrop']:
-                pdfcrop_exes = [os.path.expandvars(exe)
-                                for exe in ppp['pdfcrop']['exes']]
-            # Left for backward compatibility
-            else:
-                if 'exe' in ppp['pdfcrop']:
-                    pdfcrop_exes = []
-                    pdfcrop_exes.append(os.path.expandvars(
-                        ppp['pdfcrop']['exe']))
+            pdfcrop_exes = self.get_exes(ppp['pdfcrop'])
             # <<
             self.run_pdf_postproc(pdf_fname_full,
                                   is_gs=is_gs,
@@ -935,6 +912,31 @@ class Painter():
                                   gs_exes=gs_exes,
                                   is_pdfcrop=is_pdfcrop,
                                   pdfcrop_exes=pdfcrop_exes)
+
+    def get_exes(self, d):
+        """Collect the names of an executable to be searched for.
+
+        Parameters
+        ----------
+        d : dict
+            A dictionary of the settings of an external program;
+            e.g. io > ctrls > inkscape
+
+        Returns
+        -------
+        list
+            A list of the names of the executable, with environment
+            variables expanded: the 'exe' key, if any, followed by
+            the elements of the 'exes' key.
+            - The 'exe' key, written for earlier versions, is tried first,
+              as it survives a merge with the 'exes' key of the default
+              initialization file.
+        """
+        exes = []
+        if d.get('exe'):  # Left for backward compatibility
+            exes.append(d['exe'])
+        exes += d.get('exes') or []
+        return [os.path.expandvars(exe) for exe in exes]
 
     def save_fig(self, fig, out_path, out_bname, fmts,
                  dpi=300, inkscape_exes=['inkscape.exe']):
@@ -961,7 +963,7 @@ class Painter():
         None.
         """
         # Generate the output directory if not exists.
-        io.mk_dir(out_path)
+        io.mk_dir(out_path, is_yn=False)
 
         # Save figure files in user-designated file formats.
         out_bname_full = '{}/{}'.format(out_path, out_bname)
