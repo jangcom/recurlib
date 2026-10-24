@@ -192,6 +192,8 @@ For the reason above, RecurLib can be used in offline environments only if all t
 
 [RecurLib in a paper: _Phys. Rev. Res._ **6** (2024) 043208](https://doi.org/10.1103/PhysRevResearch.6.043208)
 
+[CHANGELOG.md](CHANGELOG.md): notable changes by version.
+
 # AUTHOR
 
 Jaewoong Jang <jang[at]ric.u-tokyo.ac.jp>
